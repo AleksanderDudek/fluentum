@@ -1,18 +1,13 @@
 import { readFile } from 'node:fs/promises'
 import { expect, test, type Page } from '@playwright/test'
-import { finishOnboarding, installFakeSpeech } from './fakeSpeech.ts'
+import { finishOnboarding, installFakeSpeech, installFakeVoice, talkThroughNext } from './fakeSpeech.ts'
 
 test.use({ locale: 'pl-PL', acceptDownloads: true })
 
-/** Says "Chwała Ojcu" once, so the device has a day of progress. */
+/** Has one conversation, so the device has a day of progress and a star. */
 async function practiseOnce(page: Page) {
-  await page.getByRole('navigation').getByRole('link', { name: 'Biblioteka' }).click()
-  await page.getByRole('link', { name: /Chwała Ojcu/ }).click()
-  await page.getByRole('button', { name: 'Powiedz teraz' }).click()
-  await page.getByRole('button', { name: 'Mów' }).click()
-  await page.getByRole('button', { name: 'Rozumiem – dalej' }).click()
-  await page.waitForURL(/summary$/)
-  await page.getByRole('link', { name: 'Wróć do ekranu Dziś' }).click()
+  await talkThroughNext(page)
+  await page.getByRole('link', { name: 'Start', exact: true }).click()
   await expect(page.getByText('1 dzień z rzędu')).toBeVisible()
 }
 
@@ -37,6 +32,7 @@ async function downloadBackup(page: Page, path: string, password?: string) {
 test('backup → delete everything → restore brings the history back, after showing what the file holds', async ({ page }, testInfo) => {
   test.setTimeout(120_000)
   await installFakeSpeech(page, { live: true, wordDelayMs: 10 })
+  await installFakeVoice(page)
   await finishOnboarding(page)
   await practiseOnce(page)
 
@@ -63,21 +59,23 @@ test('backup → delete everything → restore brings the history back, after sh
 test('a password-protected backup needs its password, and a restore can be undone', async ({ page }, testInfo) => {
   test.setTimeout(120_000)
   await installFakeSpeech(page, { live: true, wordDelayMs: 10 })
+  await installFakeVoice(page)
   await finishOnboarding(page)
   await practiseOnce(page)
 
   const file = testInfo.outputPath('protected.json')
-  await downloadBackup(page, file, 'modlitwa-123')
+  await downloadBackup(page, file, 'rozmowa-123')
   const sealed = await readFile(file, 'utf8')
   expect(JSON.parse(sealed)).toMatchObject({ app: 'fluentum', encrypted: { cipher: 'AES-256-GCM' } })
-  expect(sealed).not.toContain('Chwała')
+  expect(sealed).not.toContain('W kawiarni')
+  expect(sealed).not.toContain('Poznajmy')
 
   await page.locator('input[type="file"]').setInputFiles(file)
   const unlock = page.getByRole('dialog', { name: 'Kopia chroniona hasłem' })
   await unlock.getByLabel('Hasło').fill('zle-haslo')
   await unlock.getByRole('button', { name: 'Odblokuj' }).click()
   await expect(unlock.getByRole('alert')).toHaveText(/Nieprawidłowe hasło/, { timeout: 15_000 })
-  await unlock.getByLabel('Hasło').fill('modlitwa-123')
+  await unlock.getByLabel('Hasło').fill('rozmowa-123')
   await unlock.getByRole('button', { name: 'Odblokuj' }).click()
 
   const preview = page.getByRole('dialog', { name: 'Przywrócić tę kopię?' })

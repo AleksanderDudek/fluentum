@@ -263,6 +263,8 @@
     "newStar": "New star: {{mode}}! +{{xp}} XP",
     "next": "Next conversation",
     "noStar": "A star needs every line said, with nothing skipped or shown.",
+    "shownNoStar_one": "You showed {{count}} line, so no star this time — try again without peeking.",
+    "shownNoStar_other": "You showed {{count}} lines, so no star this time — try again without peeking.",
     "skipped_one": "{{count}} line skipped",
     "skipped_other": "{{count}} lines skipped",
     "starHint": "Try the next way through it for another star.",

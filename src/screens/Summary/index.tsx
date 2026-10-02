@@ -67,6 +67,7 @@ export default function Summary() {
   const todayStats = daily.find((d) => d.dayKey === today)
   const streak = computeStreak(dayMarksFrom(daily), today).current
   const clean = summary.skipped === 0 && summary.accepted > 0
+  const shownLines = run.entries.filter((entry) => entry.hinted).length
   const levelBefore = levelInfo(game.totalXp - run.xpEarned).level
   const levelNow = levelInfo(game.totalXp).level
 
@@ -99,11 +100,13 @@ export default function Summary() {
               <p className="font-semibold text-gold-ink animate-rise">
                 {t('summary.newStar', { mode: t(`modes.${run.newStar}.name`), xp: STAR_XP[run.newStar] })}
               </p>
+            ) : !clean ? (
+              <p className="text-sm text-ink-soft">{t('summary.noStar')}</p>
+            ) : shownLines > 0 ? (
+              <p className="text-sm text-ink-soft">{t('summary.shownNoStar', { count: shownLines })}</p>
             ) : (
-              clean &&
               stars.length < 3 && <p className="text-sm text-ink-soft">{t('summary.starHint')}</p>
             )}
-            {!clean && <p className="text-sm text-ink-soft">{t('summary.noStar')}</p>}
           </div>
 
           {levelNow > levelBefore && (

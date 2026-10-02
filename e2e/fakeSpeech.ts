@@ -105,3 +105,56 @@ export async function finishOnboarding(page: Page) {
   await page.getByRole('button', { name: /Zaczynamy|Get started|Pomiń|Skip/ }).first().click()
   await page.waitForURL(/#\/$/)
 }
+
+/** A silent speechSynthesis that finishes each line at once (headless browsers have no voices). */
+export async function installFakeVoice(page: Page) {
+  await page.addInitScript(() => {
+    const spoken: string[] = []
+    const synth = {
+      speaking: false,
+      pending: false,
+      paused: false,
+      getVoices: () => [],
+      cancel() {},
+      pause() {},
+      resume() {},
+      speak(utterance: { text: string; onend?: ((event: Event) => void) | null }) {
+        spoken.push(utterance.text)
+        setTimeout(() => utterance.onend?.(new Event('end')), 20)
+      },
+      addEventListener() {},
+      removeEventListener() {},
+    }
+    Object.defineProperty(window, 'speechSynthesis', { value: synth, configurable: true })
+    if (!('SpeechSynthesisUtterance' in window)) {
+      Object.assign(window, {
+        SpeechSynthesisUtterance: class {
+          text: string
+          lang = ''
+          rate = 1
+          voice = null
+          onend = null
+          onerror = null
+          constructor(text: string) {
+            this.text = text
+          }
+        },
+      })
+    }
+    Object.assign(window, { __spoken: spoken })
+  })
+}
+
+/** Lines the fake voice has said, in order. */
+export async function spokenLines(page: Page): Promise<string[]> {
+  return page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken)
+}
+
+/** Starts the course's next conversation from Home and says it to the end (live mode). */
+export async function talkThroughNext(page: Page) {
+  await page.getByRole('button', { name: /^(Zacznij rozmowę|Start talking)$/ }).click()
+  await page.getByRole('button', { name: /^(Mów|Speak)$/ }).click()
+  const privacy = page.getByRole('button', { name: /Rozumiem – dalej|I understand — continue/ })
+  if (await privacy.isVisible().catch(() => false)) await privacy.click()
+  await page.waitForURL(/summary$/, { timeout: 90_000 })
+}
