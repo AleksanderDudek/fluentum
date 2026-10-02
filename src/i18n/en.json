@@ -1,0 +1,1294 @@
+{
+  "app": {
+    "name": "Teleo"
+  },
+  "nav": {
+    "main": "Main navigation",
+    "today": "Today",
+    "library": "Library",
+    "sessions": "Sessions",
+    "progress": "Progress",
+    "settings": "Settings"
+  },
+  "common": {
+    "back": "Back",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "continue": "Continue",
+    "done": "Done",
+    "skip": "Skip",
+    "retry": "Try again",
+    "loading": "Loading…",
+    "add": "Add",
+    "remove": "Remove",
+    "search": "Search",
+    "all": "All",
+    "hide": "Hide",
+    "unhide": "Show again",
+    "start": "Start",
+    "confirm": "Confirm",
+    "moveUp": "Move up",
+    "moveDown": "Move down",
+    "more": "More"
+  },
+  "pwa": {
+    "updateAvailable": "A new version of Teleo is ready.",
+    "reload": "Reload",
+    "later": "Later",
+    "offlineReady": "Teleo is ready to work offline."
+  },
+  "errors": {
+    "title": "Something went wrong",
+    "body": "Your data is safe on this device. Try again or go back to Today.",
+    "notFound": "This page does not exist.",
+    "home": "Back to Today"
+  },
+  "today": {
+    "greetingMorning": "Good morning",
+    "greetingDay": "Good to see you",
+    "greetingEvening": "Good evening",
+    "start": "Start",
+    "resume": "Resume",
+    "startHint": "{{name}} · {{count}} sentences",
+    "resumeHint": "{{name}} · {{done}} of {{total}}",
+    "streak_one": "{{count}} day in a row",
+    "streak_other": "{{count}} days in a row",
+    "streakZero": "Start a streak today",
+    "atRisk": "Say at least one sentence today to keep your streak.",
+    "freezes": "Streak freezes: {{count}}",
+    "goal": "Today’s goal",
+    "goalDone": "Goal reached — beautiful.",
+    "goalLeft_one": "{{count}} more sentence",
+    "goalLeft_other": "{{count}} more sentences",
+    "pinned": "Pinned sessions",
+    "daily": "Session of the day",
+    "dailyTitle": "Session of the day",
+    "dailyBody": "Texts you haven’t said today, least recent first.",
+    "dailyStart": "Start the session of the day",
+    "freezeNotice_one": "Your streak is safe — we used a streak freeze for {{days}}.",
+    "freezeNotice_other": "Your streak is safe — we used {{count}} streak freezes ({{days}}).",
+    "backupTitle": "Time for a backup",
+    "backupBody": "Everything lives only on this device. Export a copy every month so nothing gets lost.",
+    "backupAction": "Export backup",
+    "later": "Later",
+    "nothingToStart": "Add a text or a session to begin.",
+    "yourCharacter": "Your character: {{name}}",
+    "guideStart": "Say the first sentence whenever you’re ready. I’ll be listening.",
+    "guideLeft_one": "One more sentence and today’s goal is complete. I’ll be listening.",
+    "guideLeft_other": "{{count}} more sentences and today’s goal is complete. I’ll be listening.",
+    "guideDone": "Your goal is complete. Rest now — or keep going, if your heart wants to.",
+    "guideEmpty": "Add a text you’d like to say aloud, and I’ll help you keep count."
+  },
+  "library": {
+    "rubric": "Library",
+    "title": "Texts",
+    "add": "New text",
+    "searchPlaceholder": "Search titles and words",
+    "filterType": "Type",
+    "filterSource": "Source",
+    "sourceAll": "All",
+    "sourceBuiltin": "Builtin",
+    "sourceUser": "My texts",
+    "showHidden": "Show hidden",
+    "hidden": "Hidden",
+    "builtin": "Builtin",
+    "own": "Mine",
+    "repetitionsLabel": "repetitions",
+    "emptyTitle": "Nothing here yet",
+    "emptyBody": "Add your own prayer, affirmation or passage — or change the filters.",
+    "noResults": "No texts match these filters.",
+    "milestone": "{{remaining}} more to “{{name}}”"
+  },
+  "editor": {
+    "titleNew": "New text",
+    "titleEdit": "Edit text",
+    "fieldTitle": "Title",
+    "titlePlaceholder": "e.g. My morning affirmations",
+    "fieldType": "Type",
+    "fieldSplit": "Split into",
+    "splitSentence": "Sentences",
+    "splitLine": "Lines",
+    "splitLineHint": "Each line becomes one segment — handy for lists of affirmations and poems.",
+    "fieldBody": "Text",
+    "bodyPlaceholder": "Paste or type the text you want to say aloud…",
+    "preview": "Segments",
+    "previewHint": "Each segment is spoken and checked separately. Adjust the split if needed.",
+    "previewEmpty": "Segments will appear here as you type.",
+    "segmentCount": "{{count}} / {{max}}",
+    "splitHere": "Split here",
+    "chooseSplit": "Choose where to split",
+    "splitBefore": "Split before “{{word}}”",
+    "mergeNext": "Merge with next",
+    "mergePrevious": "Merge with previous",
+    "editSegment": "Edit",
+    "applySuggestion": "Split at suggested point",
+    "segmentLabel": "Segment {{n}}",
+    "issueLong": "Long sentence ({{words}} words) — speech recognition works better with shorter parts.",
+    "issueTooLong": "Too long ({{words}} words, max {{max}}) — split it before saving.",
+    "issueShort": "Very short — consider merging it.",
+    "issueDigits": "Contains digits — write numbers as words for reliable recognition.",
+    "issueTooMany": "Too many segments ({{count}}, max {{max}}).",
+    "resplitNotice": "The text changed, so it was split again.",
+    "save": "Save text",
+    "saved": "Text saved",
+    "errors": {
+      "titleEmpty": "Give the text a title.",
+      "titleTooLong": "The title is too long.",
+      "noSegments": "Add some text first.",
+      "tooManySegments": "Too many segments (max 150).",
+      "segmentTooLong": "One of the segments is too long (max 80 words).",
+      "segmentEmpty": "A segment has no words.",
+      "notEditable": "This text can’t be edited."
+    }
+  },
+  "textDetail": {
+    "sayNow": "Say it now",
+    "copy": "Copy as my own",
+    "copyTitle": "{{title}} (copy)",
+    "copied": "Copied to your texts",
+    "hide": "Hide text",
+    "unhide": "Show text",
+    "hiddenNote": "This text is hidden from the library and pickers.",
+    "delete": "Delete text",
+    "deleteTitle": "Delete “{{title}}”?",
+    "deleteBody": "The text, its per-text statistics and achievements will be removed. Your overall history and XP stay.",
+    "deleted": "Text deleted",
+    "segmentsHeading": "Segments",
+    "statsHeading": "Statistics",
+    "achievementsHeading": "Achievements for this text",
+    "statRepetitions": "Repetitions",
+    "statSegments": "Sentences spoken",
+    "statStreak": "Days in a row",
+    "statBestStreak": "Best run",
+    "statPerfect": "Flawless runs",
+    "statLast": "Last practised",
+    "never": "Not yet",
+    "builtinNote": "Builtin texts can’t be edited — make a copy to change it.",
+    "notFound": "This text no longer exists."
+  },
+  "sessions": {
+    "rubric": "Sessions",
+    "title": "Your sessions",
+    "add": "New session",
+    "start": "Start",
+    "pin": "Pin to Today",
+    "unpin": "Unpin",
+    "pinned": "Pinned",
+    "edit": "Edit",
+    "duplicate": "Duplicate",
+    "duplicateName": "{{name}} (copy)",
+    "hide": "Hide",
+    "unhide": "Show again",
+    "delete": "Delete",
+    "deleteTitle": "Delete “{{name}}”?",
+    "deleteBody": "Past runs of this session stay in your history.",
+    "deleted": "Session deleted",
+    "showHidden": "Show hidden",
+    "builtin": "Builtin",
+    "own": "Mine",
+    "emptyTitle": "No sessions yet",
+    "emptyBody": "A session is a list of texts to say in one go, with repetitions — up to 150 segments.",
+    "resumeTitle": "Unfinished session",
+    "resume": "Resume",
+    "progressOf": "{{done}} of {{total}}",
+    "cantStart": "This session has nothing to say — its texts were removed or hidden.",
+    "someSegments": "{{count}} of {{total}} segments",
+    "missingText": "missing text"
+  },
+  "builder": {
+    "titleNew": "New session",
+    "titleEdit": "Edit session",
+    "fieldName": "Name",
+    "namePlaceholder": "e.g. Evening prayers",
+    "items": "Texts in this session",
+    "addText": "Add text",
+    "pickTitle": "Add a text",
+    "pickSearch": "Search texts",
+    "pickEmpty": "No texts to add.",
+    "repeat": "Repetitions",
+    "repeatValue": "×{{count}}",
+    "remove": "Remove",
+    "segments": "Segments",
+    "allSegments": "Whole text",
+    "chooseSegments": "Choose segments",
+    "dragHandle": "Drag to reorder",
+    "counter": "{{count}} / {{max}} segments",
+    "overLimit": "A session can have at most {{max}} segments.",
+    "save": "Save session",
+    "saved": "Session saved",
+    "noItems": "Add at least one text.",
+    "errors": {
+      "nameEmpty": "Give the session a name.",
+      "noItems": "Add at least one text.",
+      "overLimit": "Too many segments (max 150).",
+      "empty": "The chosen texts have no segments.",
+      "notFound": "This session no longer exists.",
+      "notEditable": "Builtin sessions can’t be edited — duplicate it first."
+    }
+  },
+  "player": {
+    "close": "Leave session",
+    "progress": "Sentence {{current}} of {{total}}",
+    "xp": "{{xp}} XP",
+    "retry": "Try again",
+    "skip": "Skip this sentence",
+    "skipHint": "Stuck? You can skip — it earns no XP.",
+    "tapToSpeak": "Tap the microphone and say the sentence",
+    "previous": "Previous sentence",
+    "next": "Next sentence",
+    "great": "Great!",
+    "leaveTitle": "Pause this session?",
+    "leaveBody": "Your progress is saved. You can resume it today from Today or Sessions.",
+    "leaveConfirm": "Pause and leave",
+    "stay": "Keep going",
+    "notFound": "This session no longer exists.",
+    "repetition": "{{current}}/{{total}}",
+    "liveMode": "Live",
+    "liveOn": "Live listening: just keep speaking — each sentence is checked as you go.",
+    "liveOff": "Tap mode: tap the microphone for each sentence.",
+    "listeningLive": "Listening — speak at your own pace",
+    "pausedLive": "Listening paused",
+    "listen": "Listen to the sentence",
+    "listening": "Reading aloud…",
+    "segmentMissing": "This sentence no longer exists (its text was changed or deleted). Skip it to continue.",
+    "praiseGreat": "Great!",
+    "praiseBeautiful": "Beautiful!",
+    "praiseWellSaid": "Well said!",
+    "praiseYes": "Yes!",
+    "praiseLovely": "Lovely!",
+    "combo_one": "{{count}} in a row",
+    "combo_other": "{{count}} in a row",
+    "nextTry": "Next try: {{percent}}% of the words is enough."
+  },
+  "summary": {
+    "title": "Well done",
+    "titleIncomplete": "Session saved",
+    "accepted": "Sentences said",
+    "texts": "Texts completed",
+    "firstTry": "First-try success",
+    "xp": "XP earned",
+    "streak": "Day streak",
+    "goal": "Daily goal",
+    "goalValue": "{{done}} / {{goal}}",
+    "newAchievements": "New achievements",
+    "again": "Once more",
+    "home": "Back to Today",
+    "skipped_one": "{{count}} sentence skipped",
+    "skipped_other": "{{count}} sentences skipped",
+    "nextReading": "Next reading",
+    "biblePercent": "{{percent}} of the Bible read aloud",
+    "nextDialogue": "Next conversation"
+  },
+  "progress": {
+    "rubric": "Progress",
+    "title": "Your garden",
+    "metricsHeading": "At a glance",
+    "firstTry": "First-try success",
+    "firstTryHint": "Aim: 80% or more",
+    "goalDays": "Days with goal reached",
+    "bestStreak": "Longest streak",
+    "totalSegments": "Sentences said",
+    "repetitions": "Texts said in full",
+    "sessions": "Sessions completed",
+    "noValue": "—",
+    "heatmapTitle": "Activity, last 26 weeks",
+    "heatmapSummary": "{{active}} active days and {{frozen}} frozen days in the last 26 weeks.",
+    "less": "less",
+    "more": "more",
+    "frozen": "frozen",
+    "todayLabel": "today",
+    "cellLabel": "{{date}}: {{count}} sentences",
+    "cellFrozen": "{{date}}: frozen day",
+    "firstTryTitle": "First-try success per week",
+    "firstTrySubtitle": "Share of sentences accepted on the first attempt, last 12 weeks.",
+    "weekOf": "Week of {{date}}",
+    "noActivity": "no activity",
+    "showTable": "Show as a table",
+    "colWeek": "Week",
+    "colRate": "First try",
+    "colSentences": "Sentences",
+    "achievementsHeading": "Achievements",
+    "general": "General",
+    "perText": "Per text",
+    "unlockedCount": "{{count}} of {{total}} unlocked",
+    "unlockedOn": "Unlocked {{date}}",
+    "hiddenBody": "Keep practising to reveal it.",
+    "categories": {
+      "streak": "Streaks",
+      "consistency": "Consistency",
+      "daily": "In one day",
+      "volume": "All-time",
+      "sessions": "Sessions",
+      "time": "Time of day",
+      "other": "More",
+      "level": "Levels",
+      "text": "Texts",
+      "golden": "Golden quarter-hour",
+      "bible": "Bible"
+    },
+    "textsHeading": "Texts",
+    "colText": "Text",
+    "colReps": "Repetitions",
+    "colBestStreak": "Best run",
+    "colLast": "Last",
+    "emptyTexts": "Say a text in full to see it here."
+  },
+  "settings": {
+    "rubric": "Settings",
+    "title": "Settings",
+    "language": "Interface language",
+    "theme": "Appearance",
+    "themeSystem": "System",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "privacyPolicy": "Privacy policy",
+    "sectionAppearance": "Language & appearance",
+    "fontSize": "Sentence size",
+    "fontSm": "Small",
+    "fontMd": "Medium",
+    "fontLg": "Large",
+    "fontPreview": "Our Father, who art in heaven",
+    "sectionSpeech": "Speech",
+    "engine": "Speech engine",
+    "engineAuto": "Automatic",
+    "engineWeb": "Browser",
+    "engineWhisper": "Offline Whisper",
+    "checking": "How we check",
+    "checkingHint": "Every try of a sentence is gentler than the one before: the first needs 90% of its words, the second 80%, and from the third on 70%. A word heard as a different one counts as not said; a word added to the text still fails the try.",
+    "handsFree": "Live listening (hands-free)",
+    "handsFreeHint": "Keep listening through the whole session and check each sentence as you speak.",
+    "saveTranscripts": "Save transcripts",
+    "saveTranscriptsHint": "Store what was recognised with each attempt. When off, only the result is kept. Audio is never stored.",
+    "micTest": "Test the microphone",
+    "onDevice": "On-device recognition",
+    "sectionPractice": "Daily practice",
+    "dailyGoal": "Daily goal (sentences)",
+    "dayStart": "New day starts at",
+    "dayStartHint": "Praying after midnight still counts for the previous day until this hour.",
+    "sectionContent": "Content",
+    "focus": "What do you want to practise?",
+    "focusPrayers": "Prayers",
+    "focusAffirmations": "Affirmations",
+    "focusBoth": "Both",
+    "focusOwn": "Only my texts",
+    "focusHint": "Shows or hides the builtin texts and sessions and pins a matching session.",
+    "form": "Polish affirmations form",
+    "formM": "Masculine",
+    "formF": "Feminine",
+    "formN": "Neutral",
+    "formHint": "Builtin Polish affirmations use this grammatical form (e.g. “spokojny” / “spokojna”).",
+    "sectionReminders": "Reminders",
+    "reminderTime": "Daily reminder at",
+    "reminderDownload": "Add to my calendar (.ics)",
+    "reminderHint": "Teleo has no server to send notifications, so the reminder lives in your phone’s calendar — reliable and free.",
+    "reminderTitle": "Time for Teleo",
+    "reminderBody": "Say your prayers and affirmations aloud.",
+    "sectionBackup": "Backup",
+    "backupHint": "All data lives only on this device. A backup keeps it safe and lets you move it.",
+    "lastBackup": "Last backup: {{date}}",
+    "neverBackedUp": "No backup yet.",
+    "dataLink": "Your data: backup, restore, delete",
+    "openData": "Backup and restore",
+    "sectionPrivacy": "Privacy & data",
+    "privacyHint": "No account, no server, no tracking. Your texts and history stay in this browser.",
+    "sectionAbout": "About",
+    "about": "Teleo {{version}} — free and open, runs entirely in your browser.",
+    "specLink": "How Teleo works",
+    "listenFirst": "Listen first",
+    "listenFirstHint": "Teleo reads each sentence aloud before you say it — helpful when learning a new text.",
+    "engineHint": "Automatic uses the browser’s own recognition (Web Speech) and switches to offline Whisper where there is none (e.g. Firefox).",
+    "whisperTitle": "Offline Whisper",
+    "whisperIntro": "Recognises speech right on this device: 100% private — the audio never leaves it — and it works in Firefox too. It is slower than the browser’s recognition, especially on older phones, and checks each sentence after you finish it (no live listening).",
+    "whisperModel": "Whisper model",
+    "whisperTiny": "Tiny · {{size}}",
+    "whisperBase": "Base · {{size}}",
+    "whisperModelHint": "Base (recommended) recognises Polish much better; Tiny is smaller and faster but makes more mistakes.",
+    "whisperChecking": "Checking…",
+    "whisperUnavailable": "This browser can’t run Whisper (it needs Web Workers, WebAssembly, offline storage and microphone recording).",
+    "whisperMissing": "Not downloaded yet.",
+    "whisperDownloading": "Downloading… {{percent}}%",
+    "whisperProgress": "Model download",
+    "whisperReady": "Downloaded — works offline.",
+    "whisperNeedsDownload": "Download the model to use Whisper.",
+    "whisperDownload": "Download ({{size}})",
+    "whisperCancel": "Cancel download",
+    "whisperDelete": "Delete downloaded model",
+    "whisperDeleted": "Model deleted",
+    "whisperDone": "Whisper is ready — it works offline now",
+    "whisperFailed": "The download failed. Check your connection and try again.",
+    "whisperNoSpace": "There isn’t enough storage space on this device for the model.",
+    "whisperAlsoDownloaded": "{{model}} is downloaded too ({{size}}).",
+    "whisperDeleteOther": "Delete {{model}}",
+    "whisperConfirmTitle": "Download the Whisper model?",
+    "whisperConfirmBody": "Teleo will download about {{size}} once: the model from Hugging Face (huggingface.co) and the speech engine from Teleo’s site. On mobile data this can be costly — use Wi-Fi if you can. Afterwards recognition works offline and your audio never leaves the device.",
+    "whisperConfirm": "Download",
+    "sectionCharacter": "Your character",
+    "characterHint": "Choose the figure that stands for you in Teleo.",
+    "character": "Character",
+    "sounds": "Sound effects",
+    "soundsHint": "A soft gold chime for every sentence said; a fuller one for a finished text or goal.",
+    "displayName": "Name on shared cards",
+    "displayNameHint": "Friends see it on their leaderboard. Empty = your character's name.",
+    "sectionInstall": "Teleo as an app",
+    "installBody": "Put Teleo on your home screen: it opens full-screen like an app, starts faster and works offline.",
+    "installButton": "Install Teleo",
+    "installDone": "Teleo is on your home screen.",
+    "installIos1": "In Safari, tap Share",
+    "installIosShare": "Share",
+    "installIos2": "Choose “Add to Home Screen”, then “Add”."
+  },
+  "micTest": {
+    "rubric": "Microphone test",
+    "title": "Test your microphone",
+    "intro": "Say the phrase below. Teleo shows what it heard and whether the sentence would count.",
+    "phrase": "Phrase to say",
+    "custom": "Your own sentence",
+    "customPlaceholder": "Type any sentence…",
+    "heard": "What we heard",
+    "alternatives": "Other hypotheses",
+    "engine": "Engine",
+    "engineWeb": "Browser speech recognition (Web Speech API)",
+    "onDevice": "On-device recognition",
+    "onDeviceAvailable": "available — used automatically",
+    "onDeviceDownloadable": "can be downloaded",
+    "onDeviceUnavailable": "not available",
+    "onDeviceInstall": "Download language pack",
+    "onDeviceInstalled": "Language pack installed",
+    "engineWhisper": "Offline Whisper ({{model}}) — on this device"
+  },
+  "onboarding": {
+    "start": "Get started",
+    "skip": "Skip",
+    "next": "Next",
+    "back": "Back",
+    "step": "Step {{current}} of {{total}}",
+    "welcomeTitle": "Speak it. Complete it.",
+    "welcomeBody": "I am your Guardian. I’ll listen as you say your prayers and affirmations aloud, check every sentence and keep count — privately, on this device.",
+    "focusTitle": "What would you like to practise?",
+    "focusPrayers": "Prayers",
+    "focusPrayersBody": "Our Father, Hail Mary, the Rosary, Psalm 23",
+    "focusAffirmations": "Affirmations",
+    "focusAffirmationsBody": "A calm morning set of short sentences",
+    "focusBoth": "Both",
+    "focusBothBody": "Prayers and affirmations",
+    "focusOwn": "My own texts",
+    "focusOwnBody": "Start with an empty library",
+    "formTitle": "Polish affirmations are gendered — which form fits you?",
+    "micTitle": "Let’s test the microphone",
+    "micBody": "Tap the microphone and say the phrase below.",
+    "micPhrase": "Teleo",
+    "micOk": "I heard you — everything works.",
+    "micRetry": "Not quite — try once more, or skip this step.",
+    "goalTitle": "How many sentences a day?",
+    "goalBody": "A small daily goal keeps the habit alive. You can change it any time.",
+    "goalSentences_one": "{{count}} sentence",
+    "goalSentences_other": "{{count}} sentences",
+    "privacyNote": "No account, no server: your data stays on this device.",
+    "privacyLink": "Privacy policy",
+    "characterTitle": "Choose your character",
+    "characterGuide": "Choose the figure that stands for you. You can change it any time.",
+    "focusGuide": "What would you like to practise? I’ll prepare your library.",
+    "begin": "Begin"
+  },
+  "textTypes": {
+    "affirmation": "Affirmation",
+    "prayer": "Prayer",
+    "text": "Text"
+  },
+  "textTypesPlural": {
+    "affirmation": "Affirmations",
+    "prayer": "Prayers",
+    "text": "Texts"
+  },
+  "counts": {
+    "segments_one": "{{count}} segment",
+    "segments_other": "{{count}} segments",
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days"
+  },
+  "speech": {
+    "speak": "Speak",
+    "stop": "Stop",
+    "listening": "Listening…",
+    "starting": "Starting the microphone…",
+    "checking": "Checking…",
+    "spaceHint": "Space: start / stop",
+    "result": {
+      "great": "Great!",
+      "acceptedNear": "Accepted — a few words sounded slightly different.",
+      "empty": "I didn’t hear anything. Try again a little louder.",
+      "emptySource": "This segment has no words to say.",
+      "extra_one": "Extra word: “{{words}}”. Try again.",
+      "extra_other": "Extra words: “{{words}}”. Try again.",
+      "wrong": "I heard “{{spoken}}” instead of “{{expected}}”. Try again.",
+      "missing_one": "Missing word: “{{words}}”. Try again.",
+      "missing_other": "Missing words: “{{words}}”. Try again.",
+      "coverage": "{{percent}}% of the words matched — {{needed}}% needed."
+    },
+    "howWeCount": "How do we check?",
+    "howWeCountBody": "A sentence counts when enough of its words were said and you added no extra words. The first try needs 90% of the words, the second 80%, and every try after that 70% — so a short sentence may need every word at first. Recognition slips are forgiven: missing Polish letters, one wrong letter in a longer word, the same sound spelled differently (“Bóg” → “bug”), and words written together or apart (“w niebie” → “wniebie”); a word heard as a different one only counts as not said, and filler sounds like “um” are ignored.",
+    "legendMatch": "said",
+    "legendNear": "close enough",
+    "legendMissing": "missing",
+    "legendExtra": "extra / different",
+    "errors": {
+      "not-supported": "This browser can’t recognise speech. Use Chrome, Edge or Safari — or download the offline Whisper engine in Settings.",
+      "permission-denied": "Microphone access was blocked. Allow it in the browser’s site settings and try again.",
+      "no-microphone": "No microphone was found.",
+      "network": "Speech recognition needs an internet connection in this browser.",
+      "language-not-supported": "This browser can’t recognise this language.",
+      "busy": "The microphone is busy — try again in a moment.",
+      "model-missing": "The offline Whisper model isn’t downloaded yet — download it in Settings.",
+      "unknown": "Speech recognition stopped unexpectedly. Try again.",
+      "iosStandalone": "On iPhone, speech recognition can fail in the installed app. If it keeps failing, open Teleo in Safari or switch to offline Whisper in Settings.",
+      "aborted": "Listening was stopped."
+    },
+    "privacy": {
+      "title": "Before you speak",
+      "body": "Teleo never stores your voice and sends nothing to us. The speech recognition built into your browser may send audio to {{vendor}} to turn it into text.",
+      "onDevice": "Good news: your browser can recognise this language on the device.",
+      "whisper": "Prefer fully private recognition? Switch to offline Whisper in Settings — the audio then never leaves your device.",
+      "accept": "I understand — continue",
+      "vendorGoogle": "Google",
+      "vendorMicrosoft": "Microsoft",
+      "vendorApple": "Apple",
+      "vendorGeneric": "the browser vendor",
+      "bodyOnDevice": "Teleo never stores your voice and sends nothing to us. Speech is recognised right on this device, so the audio never leaves it."
+    },
+    "offline": "You’re offline. This browser needs the internet to recognise speech — reconnect, or use on-device recognition where available.",
+    "openSettings": "Speech settings"
+  },
+  "achievements": {
+    "text": {
+      "reps": {
+        "1": {
+          "name": "First Word",
+          "desc": "{{title}} — said once in full"
+        },
+        "7": {
+          "name": "Seven Times",
+          "desc": "{{title}} — 7 repetitions"
+        },
+        "21": {
+          "name": "Habit Forming",
+          "desc": "{{title}} — 21 repetitions"
+        },
+        "50": {
+          "name": "Half Hundred",
+          "desc": "{{title}} — 50 repetitions"
+        },
+        "100": {
+          "name": "Centurion",
+          "desc": "{{title}} — 100 repetitions"
+        },
+        "365": {
+          "name": "A Year of Words",
+          "desc": "{{title}} — 365 repetitions"
+        },
+        "1000": {
+          "name": "Thousandfold",
+          "desc": "{{title}} — 1000 repetitions"
+        }
+      },
+      "streak": {
+        "3": {
+          "name": "Three Faithful Days",
+          "desc": "{{title}} — 3 days in a row"
+        },
+        "7": {
+          "name": "Faithful Week",
+          "desc": "{{title}} — 7 days in a row"
+        },
+        "30": {
+          "name": "Faithful Month",
+          "desc": "{{title}} — 30 days in a row"
+        },
+        "100": {
+          "name": "Hundred Days",
+          "desc": "{{title}} — 100 days in a row"
+        }
+      },
+      "perfect": {
+        "name": "Flawless",
+        "desc": "{{title}} — the whole text without a single retry"
+      },
+      "memory": {
+        "name": "By Heart",
+        "desc": "{{title}} — said from memory, fully hidden"
+      }
+    },
+    "streak": {
+      "2": {
+        "name": "Day Two",
+        "desc": "2 days in a row"
+      },
+      "5": {
+        "name": "Five Days",
+        "desc": "5 days in a row"
+      },
+      "7": {
+        "name": "Full Week",
+        "desc": "7 days in a row"
+      },
+      "14": {
+        "name": "Fortnight",
+        "desc": "14 days in a row"
+      },
+      "30": {
+        "name": "Month Strong",
+        "desc": "30 days in a row"
+      },
+      "60": {
+        "name": "Two Months",
+        "desc": "60 days in a row"
+      },
+      "100": {
+        "name": "100 Days",
+        "desc": "100 days in a row"
+      },
+      "365": {
+        "name": "One Full Year",
+        "desc": "365 days in a row"
+      }
+    },
+    "weekly": {
+      "5of7": {
+        "x4": {
+          "name": "Steady Rhythm",
+          "desc": "4 weeks in a row with at least 5 active days"
+        }
+      }
+    },
+    "goal": {
+      "days": {
+        "30": {
+          "name": "Goal Crusher",
+          "desc": "Daily goal reached 30 times"
+        }
+      }
+    },
+    "daily": {
+      "10": {
+        "name": "Ten Today",
+        "desc": "10 sentences in one day"
+      },
+      "25": {
+        "name": "Twenty-Five",
+        "desc": "25 sentences in one day"
+      },
+      "50": {
+        "name": "Fifty in a Day",
+        "desc": "50 sentences in one day"
+      },
+      "100": {
+        "name": "Hundred in a Day",
+        "desc": "100 sentences in one day"
+      },
+      "150": {
+        "name": "Marathon",
+        "desc": "150 sentences in one day"
+      }
+    },
+    "total": {
+      "100": {
+        "name": "First Hundred",
+        "desc": "100 sentences in total"
+      },
+      "500": {
+        "name": "Five Hundred",
+        "desc": "500 sentences in total"
+      },
+      "1000": {
+        "name": "One Thousand",
+        "desc": "1,000 sentences in total"
+      },
+      "5000": {
+        "name": "Five Thousand",
+        "desc": "5,000 sentences in total"
+      },
+      "10000": {
+        "name": "Ten Thousand",
+        "desc": "10,000 sentences in total"
+      },
+      "50000": {
+        "name": "Legend",
+        "desc": "50,000 sentences in total"
+      }
+    },
+    "session": {
+      "first": {
+        "name": "First Session",
+        "desc": "Your first completed session"
+      },
+      "10": {
+        "name": "Sessions ×10",
+        "desc": "10 completed sessions"
+      },
+      "50": {
+        "name": "Sessions ×50",
+        "desc": "50 completed sessions"
+      },
+      "100": {
+        "name": "Sessions ×100",
+        "desc": "100 completed sessions"
+      },
+      "perfect": {
+        "name": "Clean Session",
+        "desc": "A session of 10+ sentences, all on the first try"
+      },
+      "long": {
+        "name": "The Full 150",
+        "desc": "A 150-sentence session without skipping"
+      }
+    },
+    "time": {
+      "morning": {
+        "7": {
+          "name": "Early Bird",
+          "desc": "7 days with practice before 8:00"
+        }
+      },
+      "evening": {
+        "7": {
+          "name": "Evening Calm",
+          "desc": "7 days with practice after 21:00"
+        }
+      }
+    },
+    "create": {
+      "1": {
+        "name": "My Own Words",
+        "desc": "Added your first own text"
+      },
+      "5": {
+        "name": "Author",
+        "desc": "Added 5 own texts"
+      }
+    },
+    "bilingual": {
+      "name": "Bilingual",
+      "desc": "Polish and English on the same day"
+    },
+    "comeback": {
+      "name": "Welcome Back",
+      "desc": "Returned after 3+ days away"
+    },
+    "level": {
+      "5": {
+        "name": "Level 5",
+        "desc": "Reached level 5"
+      },
+      "10": {
+        "name": "Level 10",
+        "desc": "Reached level 10"
+      },
+      "20": {
+        "name": "Level 20",
+        "desc": "Reached level 20 — Teleo"
+      }
+    },
+    "golden": {
+      "days": {
+        "1": {
+          "name": "Golden Quarter-Hour",
+          "desc": "15 minutes of reading aloud in one day"
+        },
+        "7": {
+          "name": "Seven Golden Days",
+          "desc": "The golden quarter-hour on 7 days"
+        },
+        "30": {
+          "name": "Golden Month",
+          "desc": "The golden quarter-hour on 30 days"
+        },
+        "100": {
+          "name": "Hundred Golden Days",
+          "desc": "The golden quarter-hour on 100 days"
+        },
+        "365": {
+          "name": "A Golden Year",
+          "desc": "The golden quarter-hour on 365 days"
+        }
+      }
+    },
+    "bible": {
+      "readings": {
+        "1": {
+          "name": "Take Up and Read",
+          "desc": "Your first Bible reading said aloud"
+        },
+        "7": {
+          "name": "Seven Readings",
+          "desc": "7 Bible readings said aloud"
+        },
+        "30": {
+          "name": "A Month in the Word",
+          "desc": "30 Bible readings said aloud"
+        },
+        "100": {
+          "name": "Hundred Readings",
+          "desc": "100 Bible readings said aloud"
+        },
+        "365": {
+          "name": "A Year of Scripture",
+          "desc": "365 Bible readings said aloud"
+        },
+        "1000": {
+          "name": "Thousand Readings",
+          "desc": "1000 Bible readings said aloud"
+        }
+      },
+      "books": {
+        "1": {
+          "name": "First Book",
+          "desc": "A whole book of the Bible read aloud"
+        },
+        "10": {
+          "name": "Ten Books",
+          "desc": "10 books of the Bible read aloud"
+        }
+      },
+      "nt": {
+        "name": "The New Testament",
+        "desc": "All 27 books of the New Testament read aloud"
+      },
+      "ot": {
+        "name": "The Old Testament",
+        "desc": "All 39 books of the Old Testament read aloud"
+      },
+      "whole": {
+        "name": "The Whole Bible",
+        "desc": "Every book of the Bible read aloud"
+      }
+    }
+  },
+  "tiers": {
+    "bronze": "Bronze",
+    "silver": "Silver",
+    "gold": "Gold",
+    "platinum": "Platinum",
+    "diamond": "Diamond"
+  },
+  "levelNames": {
+    "1": "Seed",
+    "2": "Sprout",
+    "3": "Seedling",
+    "4": "Shoot",
+    "5": "Stem",
+    "6": "Leaf",
+    "7": "Bud",
+    "8": "Blossom",
+    "9": "Fruit",
+    "10": "Shrub",
+    "11": "Sapling",
+    "12": "Tree",
+    "13": "Deep Roots",
+    "14": "Wide Canopy",
+    "15": "Grove",
+    "16": "Orchard",
+    "17": "Forest",
+    "18": "Old-growth Forest",
+    "19": "Garden",
+    "20": "Teleo"
+  },
+  "level": {
+    "label": "Level {{level}}",
+    "circle": "Teleo {{roman}}",
+    "xp": "{{xp}} XP",
+    "toNext": "{{xp}} XP to {{name}}",
+    "up": "New level: {{name}}"
+  },
+  "celebrate": {
+    "unlocked": "Achievement unlocked",
+    "freezeEarned": "You earned a streak freeze ❄",
+    "goalReached": "Daily goal reached! +{{xp}} XP"
+  },
+  "memory": {
+    "button": "From memory",
+    "title": "Say it from memory",
+    "body": "Choose how much of the text stays visible. Words appear as you say them correctly.",
+    "start": "Start",
+    "badge": "From memory · {{level}}",
+    "hint": "Show the text (hold)",
+    "hintNote": "Peeking is fine — a sentence you peeked at doesn’t count towards “By Heart”.",
+    "levels": {
+      "initials": {
+        "name": "First letters",
+        "desc": "Only the first letter of each word is shown."
+      },
+      "alternate": {
+        "name": "Every other word",
+        "desc": "Every second word is hidden."
+      },
+      "hidden": {
+        "name": "Hidden text",
+        "desc": "Nothing is shown. Completing a text this way earns “By Heart”."
+      }
+    }
+  },
+  "guardian": {
+    "name": "The Guardian",
+    "extra": "Almost — a word slipped in that isn’t in the text. Breathe, and say it once more.",
+    "wrong": "Almost — one word came out differently. Breathe, and say it once more.",
+    "missing": "Almost — a word stayed unsaid. Take your time and say it once more.",
+    "stuck": "This sentence is a stubborn one. Try once more — or skip it and go on; that is all right too."
+  },
+  "characters": {
+    "anna": "Anna",
+    "maria": "Maria",
+    "grace": "Grace",
+    "ewa": "Ewa",
+    "jan": "Jan",
+    "michal": "Michał",
+    "david": "David",
+    "piotr": "Piotr"
+  },
+  "golden": {
+    "title": "Golden quarter-hour",
+    "before": "{{minutes}} of 5 min — from minute 5, every sentence counts double.",
+    "inside": "×2 points now — {{left}} min of the golden quarter-hour left.",
+    "done": "Golden quarter-hour complete — {{minutes}} min read today.",
+    "label": "Read aloud today: {{minutes}} of 15 minutes",
+    "badge": "×2",
+    "badgeTitle": "Golden quarter-hour: every sentence counts double",
+    "hint": "5–15 minutes a day earn double points — the golden quarter-hour.",
+    "tickStart": "0",
+    "tickGolden": "5",
+    "tickEnd": "15 min"
+  },
+  "support": {
+    "rubric": "A word for today",
+    "line": "Teleo is free, with no ads and no tracking. If it helps you, you can buy its author a coffee.",
+    "button": "Buy a coffee",
+    "buttonLabel": "Buy the author a coffee — opens buycoffee.to in a new tab",
+    "note": "buycoffee.to · opens in a new tab",
+    "tip1": "Say each sentence at your own pace. I wait for you — never the other way round.",
+    "tip2": "Five to fifteen minutes a day is the golden quarter-hour: enough to grow, short enough to keep.",
+    "tip3": "Stuck on a name? Say it once more, slowly. After three tries you may skip it — that is all right.",
+    "tip4": "Learning a new text? Turn on “Listen first” and hear each sentence before you say it.",
+    "tip5": "Same time, same place: a habit grows best in the same soil.",
+    "tip6": "Memory mode hides the words a little at a time — a gentle way to learn by heart.",
+    "tip7": "A streak freeze covers a missed day. Rest does not undo the way you have walked.",
+    "tip8": "Morning or evening — find the quiet part of your day and keep it for this.",
+    "tip9": "Long sentences are split for you. Take a breath at each comma.",
+    "tip10": "Words said aloud stay with you longer than words only read.",
+    "strip": "Teleo is free · buy the author a coffee",
+    "bannerTitle": "Help keep Teleo going"
+  },
+  "share": {
+    "button": "Share today",
+    "preparing": "Preparing…",
+    "preview": "What will be shared",
+    "copied": "Copied — paste it wherever you like.",
+    "unsupported": "This browser can't share by itself — pick a service or download the picture.",
+    "download": "Download picture",
+    "x": "X",
+    "facebook": "Facebook",
+    "whatsapp": "WhatsApp",
+    "t1_one": "Today I read aloud for {{minutes}} min — {{count}} sentence, checked word by word. {{points}} pts.",
+    "t1_other": "Today I read aloud for {{minutes}} min — {{count}} sentences, each checked word by word. {{points}} pts.",
+    "t2_one": "Day {{streak}} of my streak: {{count}} sentence said aloud, {{minutes}} min in all.",
+    "t2_other": "Day {{streak}} of my streak: {{count}} sentences said aloud, {{minutes}} min in all.",
+    "t3_one": "{{count}} sentence said aloud today and {{points}} points. Day {{streak}} in a row.",
+    "t3_other": "{{count}} sentences said aloud today and {{points}} points. Day {{streak}} in a row.",
+    "bible": "The Bible read aloud so far: {{percent}}.",
+    "cta": "Speak it. Complete it.",
+    "cardTitle": "My day with Teleo",
+    "cardMinutes": "min read aloud",
+    "cardSentences": "sentences",
+    "cardStreak": "days in a row",
+    "cardPoints": "points",
+    "cardBible": "of the Bible read aloud",
+    "fileName": "teleo-today.png",
+    "sessionButton": "Share your result",
+    "sessionInvite": "Invite others to say it aloud too: share this session.",
+    "session_one": "Just said “{{title}}” aloud: {{count}} sentence, {{firstTry}}% on the first try. Streak: day {{streak}}.",
+    "session_other": "Just said “{{title}}” aloud: {{count}} sentences, {{firstTry}}% on the first try. Streak: day {{streak}}.",
+    "cardFirstTry": "on the first try",
+    "sessionFileName": "teleo-session.png"
+  },
+  "leaderboard": {
+    "title": "Leaderboard",
+    "period": "Period",
+    "periodDay": "Day",
+    "periodWeek": "Week",
+    "periodMonth": "Month",
+    "currentDay": "Today",
+    "currentWeek": "This week",
+    "currentMonth": "This month",
+    "points": "{{points}} pts",
+    "best": "Your best: {{points}} pts",
+    "rankDay_one": "Place {{rank}} among your {{count}} day",
+    "rankDay_other": "Place {{rank}} among your {{count}} days",
+    "rankWeek_one": "Place {{rank}} among your {{count}} week",
+    "rankWeek_other": "Place {{rank}} among your {{count}} weeks",
+    "rankMonth_one": "Place {{rank}} among your {{count}} month",
+    "rankMonth_other": "Place {{rank}} among your {{count}} months",
+    "friendsHeading": "You and your friends",
+    "you": "you",
+    "stale": "no card for this period yet",
+    "noFriends": "No friends here yet — challenge one and their card will appear when they send it back.",
+    "challenge": "Challenge a friend",
+    "challengeHint": "Your card travels in a link: no accounts, no server. When a friend sends theirs back, they join this board.",
+    "challengeText": "My Teleo points — today {{day}}, this week {{week}}, this month {{month}}. Add me to your leaderboard and send me yours:",
+    "copied": "Link copied — send it to a friend.",
+    "remove": "Remove {{name}}",
+    "bestDays": "Your best days",
+    "bestWeeks": "Your best weeks",
+    "bestMonths": "Your best months",
+    "weekOf": "Week of {{date}}",
+    "unit": "pts"
+  },
+  "friend": {
+    "rubric": "A friend's card",
+    "title": "Teleo points of {{name}}",
+    "today": "today",
+    "week": "this week",
+    "month": "this month",
+    "streak": "days in a row",
+    "cardFrom": "Card from {{date}}",
+    "add": "Add to my leaderboard",
+    "update": "Update on my leaderboard",
+    "notNow": "Not now",
+    "added": "{{name}} is on your leaderboard.",
+    "older": "You already have a newer card from {{name}}.",
+    "self": "This is your own card.",
+    "invalid": "This link doesn't hold a valid card.",
+    "privacy": "Nothing is sent anywhere: the card lives in the link and is kept only on this device.",
+    "sendBack": "Send your card back"
+  },
+  "bible": {
+    "rubric": "Bible challenge",
+    "title": "The whole Bible, aloud",
+    "lead": "Every sentence said aloud and checked, in readings of about one minute that always end on a finished sentence.",
+    "yearHint": "About {{days}} days at 15 minutes a day — the golden quarter-hour.",
+    "progress": "{{done}} of {{total}} readings",
+    "percent": "{{percent}} read aloud",
+    "left_one": "About {{count}} day left at 15 min a day",
+    "left_other": "About {{count}} days left at 15 min a day",
+    "readNext": "Read next",
+    "nextHint": "{{title}} · about {{minutes}} min",
+    "allDone": "Every reading is done — the whole Bible, aloud.",
+    "ot": "Old Testament",
+    "nt": "New Testament",
+    "bookProgress": "{{done}}/{{total}}",
+    "bookDone": "Read to the end",
+    "readings": "Readings",
+    "readingDone": "Read",
+    "readingNext": "Next",
+    "minutes": "about {{minutes}} min",
+    "loadError": "The text could not be loaded. Connect to the internet once to download this book; afterwards it works offline.",
+    "sourceNote": "{{name}} · public domain",
+    "todayBody": "{{percent}} of the Bible read aloud",
+    "todayStart": "Read the whole Bible aloud — about a minute at a time.",
+    "open": "Bible challenge",
+    "libraryTitle": "The Bible",
+    "libraryBody": "Read it all aloud, a minute at a time.",
+    "reference": "{{book}} {{range}}",
+    "books": {
+      "GEN": "Genesis",
+      "EXO": "Exodus",
+      "LEV": "Leviticus",
+      "NUM": "Numbers",
+      "DEU": "Deuteronomy",
+      "JOS": "Joshua",
+      "JDG": "Judges",
+      "RUT": "Ruth",
+      "1SA": "1 Samuel",
+      "2SA": "2 Samuel",
+      "1KI": "1 Kings",
+      "2KI": "2 Kings",
+      "1CH": "1 Chronicles",
+      "2CH": "2 Chronicles",
+      "EZR": "Ezra",
+      "NEH": "Nehemiah",
+      "EST": "Esther",
+      "JOB": "Job",
+      "PSA": "Psalms",
+      "PRO": "Proverbs",
+      "ECC": "Ecclesiastes",
+      "SNG": "Song of Solomon",
+      "ISA": "Isaiah",
+      "JER": "Jeremiah",
+      "LAM": "Lamentations",
+      "EZK": "Ezekiel",
+      "DAN": "Daniel",
+      "HOS": "Hosea",
+      "JOL": "Joel",
+      "AMO": "Amos",
+      "OBA": "Obadiah",
+      "JON": "Jonah",
+      "MIC": "Micah",
+      "NAM": "Nahum",
+      "HAB": "Habakkuk",
+      "ZEP": "Zephaniah",
+      "HAG": "Haggai",
+      "ZEC": "Zechariah",
+      "MAL": "Malachi",
+      "MAT": "Matthew",
+      "MRK": "Mark",
+      "LUK": "Luke",
+      "JHN": "John",
+      "ACT": "Acts",
+      "ROM": "Romans",
+      "1CO": "1 Corinthians",
+      "2CO": "2 Corinthians",
+      "GAL": "Galatians",
+      "EPH": "Ephesians",
+      "PHP": "Philippians",
+      "COL": "Colossians",
+      "1TH": "1 Thessalonians",
+      "2TH": "2 Thessalonians",
+      "1TI": "1 Timothy",
+      "2TI": "2 Timothy",
+      "TIT": "Titus",
+      "PHM": "Philemon",
+      "HEB": "Hebrews",
+      "JAS": "James",
+      "1PE": "1 Peter",
+      "2PE": "2 Peter",
+      "1JN": "1 John",
+      "2JN": "2 John",
+      "3JN": "3 John",
+      "JUD": "Jude",
+      "REV": "Revelation"
+    }
+  },
+  "dialogues": {
+    "rubric": "Language practice",
+    "titleIn": {
+      "en": "Conversations in English",
+      "pl": "Conversations in Polish"
+    },
+    "lead": "Short everyday conversations. Your partner starts and you answer aloud — every line you say is checked, just like prayers and affirmations.",
+    "libraryBody": "Practise a language in short conversations — aloud.",
+    "howToReadTitle": "How to read the pronunciation:",
+    "howToRead": "it is spelt the English way, with the stressed syllable in CAPITALS (Polish stresses the last syllable but one). “zh” is the s in “measure”; “y” as in “yes”; “i” as in “bit”; “ee” as in “see”; “oo” as in “too”; “h” is breathier, like the ch in “loch”.",
+    "legendTitle": "Word colours",
+    "legendHint": "Point at or tap a word to light up its counterpart in the translation.",
+    "roles": {
+      "subject": "Subject",
+      "predicate": "Predicate",
+      "adjective": "Adjective",
+      "object": "Object"
+    },
+    "level": "Level {{level}}",
+    "lines_one": "{{count}} line for you",
+    "lines_other": "{{count}} lines for you",
+    "done_one": "Done once",
+    "done_other": "Done {{count}} times",
+    "startError": "The conversation could not be started.",
+    "chat": "Conversation with {{name}}",
+    "typing": "{{name}} is typing…",
+    "partnerSpeaking": "{{name}} is speaking…",
+    "yourTurn": "Your turn — say it aloud",
+    "you": "You",
+    "pronunciation": "Pronunciation",
+    "listenLine": "Listen",
+    "words": "Words",
+    "noWords": "No words are marked in this line.",
+    "said": "Said",
+    "skipped": "Skipped",
+    "skip": "Skip this line",
+    "finished": "End of the conversation",
+    "toSummary": "Summary",
+    "progress": "Line {{current}} of {{total}}",
+    "leaveTitle": "Pause the conversation?",
+    "leaveBody": "Your progress is saved. You can come back to it today from the Today screen."
+  },
+  "data": {
+    "rubric": "Settings",
+    "title": "Your data",
+    "lead": "Everything you do in Teleo is stored only in this browser on this device — no account, no server. A backup is a file you keep somewhere else and can restore on any device.",
+    "deviceTitle": "On this device",
+    "stats": {
+      "sentences": "Sentences said",
+      "activeDays": "Active days",
+      "xp": "XP",
+      "lastActiveDay": "Last active",
+      "ownTexts": "Your own texts",
+      "achievements": "Achievements",
+      "bibleReadings": "Bible readings"
+    },
+    "what": "What",
+    "storageOn": "The browser protects this data and will not delete it on its own. A backup still matters: a new phone, a cleared browser or a broken device.",
+    "storageOff": "The browser may delete this data when space runs low — and Safari also after 7 days without opening the site. Install Teleo on your Home Screen and keep backups.",
+    "storageUnknown": "This browser does not say whether it protects the data. Make backups regularly.",
+    "storageUsage": "Teleo uses {{size}} (including the app, downloaded books and speech models).",
+    "storageAsk": "Ask to protect the data",
+    "storageGranted": "The browser now protects Teleo's data",
+    "storageRefused": "The browser declined for now — it usually agrees once Teleo is installed",
+    "backupTitle": "Backup",
+    "backupHint": "Keep a backup off this device: in Files or iCloud, on Google Drive or in an e-mail to yourself. Once a week is a good habit.",
+    "lastBackup": "Last backup: {{date}}",
+    "neverBackedUp": "You have no backup yet.",
+    "protect": "Protect with a password",
+    "protectHint": "A backup holds your prayers and your whole history. With a password nobody can read it — not in the cloud, not in your mail.",
+    "password": "Password",
+    "passwordRepeat": "Repeat the password",
+    "passwordTooShort_one": "At least {{count}} character.",
+    "passwordTooShort_other": "At least {{count}} characters.",
+    "passwordMismatch": "The passwords differ.",
+    "passwordWarning": "Write the password down somewhere safe. Without it the backup cannot be restored — nobody, not even Teleo's author, can recover it for you.",
+    "create": "Create a backup",
+    "preparing": "Preparing the backup…",
+    "ready": "Backup ready",
+    "protectedFile": "password-protected",
+    "share": "Save to the cloud or send",
+    "download": "Download the file",
+    "whereToKeep": "“Save to the cloud or send” opens the share menu: Files, iCloud, Google Drive, e-mail.",
+    "whereToKeepDownload": "The file goes to your downloads. Then move it somewhere safe, off this device.",
+    "saved": "Backup saved",
+    "shareTitle": "Teleo backup",
+    "shareFailed": "The share menu could not open — download the file instead.",
+    "createFailed": "The backup could not be created.",
+    "restoreTitle": "Restore from a backup",
+    "restoreHint": "Replaces the data on this device with a backup file. You will see what the file holds before anything is replaced, and the data from before the restore stays here — you can undo it.",
+    "choose": "Choose a backup file",
+    "unlockTitle": "Password-protected backup",
+    "unlockBody": "Enter the password set when the backup of {{date}} was made.",
+    "unlock": "Unlock",
+    "unlocking": "Checking the password…",
+    "previewTitle": "Restore this backup?",
+    "previewFrom": "Backup of {{date}}",
+    "previewVersion": "Teleo {{version}}",
+    "inBackup": "In the backup",
+    "kept": "Kept",
+    "onDevice": "Now",
+    "previewOlder": "This backup is older than the data on this device — the later days will be replaced.",
+    "previewLess": "This backup holds less progress than this device.",
+    "previewUndo": "The current data is kept on this device — you can undo the restore under “Your data”.",
+    "previewReplace": "The data on this device will be replaced with the backup.",
+    "restore": "Replace and restore",
+    "restored": "Backup restored",
+    "undoTitle": "Undo the restore",
+    "undoBody": "The data from before the backup was restored ({{date}}) is kept on this device:",
+    "undo": "Bring back the previous data",
+    "undoConfirmTitle": "Go back to the data from before the restore?",
+    "undoConfirmBody": "The data here now — including everything done since — is kept, so you can come back to it.",
+    "undone": "Previous data brought back",
+    "redone": "Restored backup brought back",
+    "redoConfirmTitle": "Go back to the restored backup's data?",
+    "redo": "Back to the restored backup",
+    "redoBody": "The data of the restored backup — with everything done after it — kept on {{date}}:",
+    "redoTitle": "Back to the restored backup",
+    "deleteTitle": "Delete everything",
+    "deleteHint": "Removes texts, sessions, history, achievements and settings from this device. Make a backup first if you may want them back one day.",
+    "deleteAll": "Delete all data",
+    "deleteConfirmTitle": "Delete everything?",
+    "deleteBody": "Texts, sessions, history, achievements and settings will be removed from this device. Type {{word}} to confirm.",
+    "deleteWord": "DELETE",
+    "deleteConfirm": "Delete everything",
+    "errors": {
+      "notJson": "This file cannot be read — it is not a Teleo backup, or it is damaged.",
+      "wrongApp": "This file is not a Teleo backup.",
+      "unsupportedVersion": "This backup comes from a newer version of Teleo. Update the app (reload the page) and try again.",
+      "invalidShape": "The backup is damaged and cannot be restored. Nothing was changed.",
+      "wrongPassword": "Wrong password (or the file was changed).",
+      "noRestorePoint": "There is no earlier data to bring back."
+    }
+  }
+}

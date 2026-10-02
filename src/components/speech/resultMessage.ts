@@ -1,0 +1,38 @@
+import type { TFunction } from 'i18next'
+import type { MatchResult } from '@/domain/matcher'
+
+/** Short feedback line for a comparison result (spec §6.5: "Extra word: *very*. Try again."). */
+export function resultMessage(result: MatchResult, t: TFunction): string {
+  if (result.accepted) return result.near > 0 ? t('speech.result.acceptedNear') : t('speech.result.great')
+  switch (result.reason) {
+    case 'empty':
+      return t('speech.result.empty')
+    case 'emptySource':
+      return t('speech.result.emptySource')
+    case 'extra': {
+      const words = result.ops.filter((op) => op.op === 'extra').map((op) => op.spoken ?? '')
+      return t('speech.result.extra', { count: words.length, words: words.join(', ') })
+    }
+    default: {
+      // One word heard as another: say what was heard (a misheard word counts as not said).
+      const misheard = result.wrong === 1 && result.missing === 0 ? result.ops.find((o) => o.op === 'wrong') : undefined
+      if (misheard) return t('speech.result.wrong', { spoken: misheard.spoken ?? '', expected: misheard.source ?? '' })
+      const words = result.ops.filter((op) => op.op === 'missing' || op.op === 'wrong').map((op) => op.source ?? '')
+      return words.length > 0 && words.length <= 3
+        ? t('speech.result.missing', { count: words.length, words: words.join(', ') })
+        : t('speech.result.coverage', { percent: Math.floor(result.coverage * 100), needed: Math.round(result.threshold * 100) })
+    }
+  }
+}
+
+/**
+ * What the Guardian says after a rejected attempt: warm and never scolding, while the precise
+ * reason stays in the feedback card. `null` when there is nothing to encourage (nothing was heard).
+ */
+export function guardianLine(result: MatchResult, failedAttempts: number, t: TFunction): string | null {
+  if (result.accepted || result.reason === 'empty' || result.reason === 'emptySource') return null
+  if (failedAttempts >= 3) return t('guardian.stuck')
+  if (result.reason === 'extra') return t('guardian.extra')
+  if (result.wrong === 1 && result.missing === 0) return t('guardian.wrong')
+  return t('guardian.missing')
+}
