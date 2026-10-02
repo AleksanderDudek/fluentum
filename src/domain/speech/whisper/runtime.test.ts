@@ -11,17 +11,17 @@ const FIREFOX = 'Mozilla/5.0 (X11; Linux x86_64; rv:143.0) Gecko/20100101 Firefo
 
 describe('ortRuntime', () => {
   it('uses the asyncify build (WebGPU + WebAssembly) with its embedded loader', () => {
-    const runtime = ortRuntime({ base: '/teleo/', version: VERSION, legacySafari: false })
-    expect(runtime.wasm).toBe(`/teleo/ort/${VERSION}/ort-wasm-simd-threaded.asyncify.wasm`)
+    const runtime = ortRuntime({ base: '/fluentum/', version: VERSION, legacySafari: false })
+    expect(runtime.wasm).toBe(`/fluentum/ort/${VERSION}/ort-wasm-simd-threaded.asyncify.wasm`)
     expect(runtime.mjs).toBeUndefined()
     expect(runtime.urls).toEqual([runtime.wasm])
     expect(runtime.bytes).toBeGreaterThan(26e6)
   })
 
   it('uses the plain WebAssembly build on Safari before 26, as transformers.js does', () => {
-    const runtime = ortRuntime({ base: '/teleo/', version: VERSION, legacySafari: true })
-    expect(runtime.wasm).toBe(`/teleo/ort/${VERSION}/ort-wasm-simd-threaded.wasm`)
-    expect(runtime.mjs).toBe(`/teleo/ort/${VERSION}/ort-wasm-simd-threaded.mjs`)
+    const runtime = ortRuntime({ base: '/fluentum/', version: VERSION, legacySafari: true })
+    expect(runtime.wasm).toBe(`/fluentum/ort/${VERSION}/ort-wasm-simd-threaded.wasm`)
+    expect(runtime.mjs).toBe(`/fluentum/ort/${VERSION}/ort-wasm-simd-threaded.mjs`)
     expect(runtime.urls).toEqual([runtime.mjs, runtime.wasm])
     expect(runtime.bytes).toBeLessThan(15e6)
   })
@@ -47,14 +47,14 @@ describe('isSafariBelow26', () => {
 })
 
 describe('isStaleRuntimeUrl', () => {
-  const runtime = ortRuntime({ base: '/teleo/', version: VERSION, legacySafari: false })
+  const runtime = ortRuntime({ base: '/fluentum/', version: VERSION, legacySafari: false })
 
   it('keeps the current runtime', () => {
-    expect(isStaleRuntimeUrl(`https://example.github.io/teleo/ort/${VERSION}/ort-wasm-simd-threaded.asyncify.wasm`, runtime)).toBe(false)
+    expect(isStaleRuntimeUrl(`https://example.github.io/fluentum/ort/${VERSION}/ort-wasm-simd-threaded.asyncify.wasm`, runtime)).toBe(false)
   })
 
   it('flags files of older versions or the other variant', () => {
-    expect(isStaleRuntimeUrl('https://example.github.io/teleo/ort/1.30.0/ort-wasm-simd-threaded.asyncify.wasm', runtime)).toBe(true)
-    expect(isStaleRuntimeUrl(`https://example.github.io/teleo/ort/${VERSION}/ort-wasm-simd-threaded.wasm`, runtime)).toBe(true)
+    expect(isStaleRuntimeUrl('https://example.github.io/fluentum/ort/1.30.0/ort-wasm-simd-threaded.asyncify.wasm', runtime)).toBe(true)
+    expect(isStaleRuntimeUrl(`https://example.github.io/fluentum/ort/${VERSION}/ort-wasm-simd-threaded.wasm`, runtime)).toBe(true)
   })
 })

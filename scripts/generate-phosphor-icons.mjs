@@ -1,36 +1,30 @@
-// Extracts the Duotone weight of the Phosphor icons Teleo uses into one typed module.
+// Extracts the Duotone weight of the Phosphor icons Fluentum uses into one typed module.
 // Run after changing NAMES: `npm run icons:phosphor` (the output is committed).
-// Only the duotone paths are kept: the fill layer (opacity .2 in the source) is gilded by <Icon>.
+// Only the duotone paths are kept: the fill layer (opacity .2 in the source) is coloured by <Icon>.
 import { readFile, writeFile } from 'node:fs/promises'
 
 const NAMES = [
   // controls
-  'arrow-counter-clockwise', 'arrow-down', 'arrow-right', 'arrow-square-out', 'arrow-up', 'arrows-merge',
-  'caret-down', 'caret-left', 'caret-right', 'caret-up', 'check', 'copy', 'dots-six-vertical', 'dots-three',
-  'download-simple', 'export', 'eye', 'eye-slash', 'funnel', 'list', 'list-checks', 'lock-simple',
-  'magnifying-glass', 'minus', 'pencil-simple', 'plus', 'push-pin', 'push-pin-slash', 'scissors', 'trash',
-  'upload-simple', 'x', 'share-network', 'link', 'arrow-up-right',
+  'arrow-counter-clockwise', 'arrow-right', 'arrow-square-out', 'arrow-up-right', 'caret-down', 'caret-left',
+  'caret-right', 'caret-up', 'check', 'copy', 'download-simple', 'export', 'eye', 'eye-slash', 'link',
+  'lock-simple', 'magnifying-glass', 'minus', 'plus', 'share-network', 'trash', 'upload-simple', 'x',
   // status
   'check-circle', 'info', 'question', 'warning', 'warning-circle',
   // tabs and places
-  'book-open-text', 'gear-six', 'house-simple', 'plant', 'sliders-horizontal', 'stack', 'sun',
-  // texts, streaks, achievements
-  'book-bookmark', 'crown', 'crown-simple', 'fire', 'flame', 'hands-praying', 'hand-heart', 'medal',
-  'scroll', 'seal-check', 'shield', 'shield-check', 'snowflake', 'sparkle', 'star-four', 'sun-horizon',
-  'trophy',
-  // player and speech
-  'bell', 'brain', 'broadcast', 'ear', 'microphone', 'microphone-slash', 'pause', 'play', 'quotes',
-  'speaker-high', 'stop', 'text-aa', 'waveform',
-  // time, data, language
-  'calendar-blank', 'calendar-plus', 'clock', 'globe', 'hard-drives', 'hourglass', 'moon', 'translate',
-  // devotional vocabulary
-  'bird', 'church', 'cross', 'feather', 'flower-lotus', 'heart', 'infinity', 'key', 'tree',
-  // support, leaderboard, Bible
-  'coffee', 'ranking', 'users', 'user-plus', 'book-open',
-  // language dialogues: the chat and its everyday scenes
-  'chats-circle', 'hand-waving', 'signpost', 'basket', 'bed', 'fork-knife', 'train',
-  // your data: backups and restore
-  'cloud-arrow-up', 'file-text', 'clock-counter-clockwise', 'database',
+  'chart-line-up', 'chats-circle', 'gear-six', 'house-simple',
+  // progress and rewards
+  'crown', 'flame', 'medal', 'seal-check', 'snowflake', 'sparkle', 'star', 'trophy',
+  // the three ways, the player and speech
+  'brain', 'ear', 'microphone', 'microphone-slash', 'play', 'speaker-high', 'stop', 'text-aa', 'translate',
+  'waveform',
+  // time, data, privacy
+  'calendar-plus', 'clock-counter-clockwise', 'cloud-arrow-up', 'database', 'file-text', 'hard-drives',
+  'shield-check', 'sun', 'moon',
+  // support and friends
+  'coffee', 'ranking', 'user-plus', 'users',
+  // conversations: their everyday scenes
+  'airplane-takeoff', 'basket', 'bed', 'bread', 'cake', 'cloud-sun', 'coffee', 'fork-knife', 'hand-waving',
+  'phone-call', 'pill', 'signpost', 't-shirt', 'taxi', 'train',
 ]
 
 const SOURCE = new URL('../node_modules/@phosphor-icons/core/assets/duotone/', import.meta.url)

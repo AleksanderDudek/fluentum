@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import type { DiffPart } from '@/domain/matcher'
+import { maskWords } from '@/domain/memory/mask'
 import { cn } from '@/lib/cn'
 
 const SOURCE_STYLE = {
@@ -10,14 +11,20 @@ const SOURCE_STYLE = {
   none: 'text-ink',
 } as const
 
-/** Word-level result of a comparison (spec §6.5): green said, amber close, grey missing, red extra/different. */
-export function DiffView({ parts, className }: { parts: readonly DiffPart[]; className?: string }) {
+/** A source word the learner has not said yet, in prompt / recall: only its first letter shows. */
+const hint = (word: string) => maskWords(word, 'initials')[0]?.text ?? word
+
+/**
+ * Word-level result of a comparison: green said, amber close, grey missing, red extra/different. With
+ * `hideUnsaid` (prompt / recall) the words not said keep their mask, so feedback never gives the line away.
+ */
+export function DiffView({ parts, hideUnsaid, className }: { parts: readonly DiffPart[]; hideUnsaid?: boolean; className?: string }) {
   return (
-    <p className={cn('font-serif text-xl leading-relaxed', className)}>
+    <p className={cn('font-display text-xl leading-relaxed', className)}>
       {parts.map((part, i) =>
         part.kind === 'source' ? (
           <span key={i} className={SOURCE_STYLE[part.status]}>
-            {part.text}{' '}
+            {hideUnsaid && (part.status === 'missing' || part.status === 'wrong') ? hint(part.text) : part.text}{' '}
           </span>
         ) : (
           <span key={i} className="mr-1 rounded bg-bad-soft px-1 font-semibold text-bad italic">

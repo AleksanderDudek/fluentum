@@ -35,7 +35,7 @@ export function SpeechPrivacyDialog({ open, onDevice, onAccept, onClose }: Speec
     >
       <div className="space-y-3 text-ink-soft">
         <p className="flex gap-3">
-          <Icon name="shield-cross" size={20} className="mt-0.5 text-primary" />
+          <Icon name="shield-check" size={20} className="mt-0.5 text-primary" />
           <span>{onDevice ? t('speech.privacy.bodyOnDevice') : t('speech.privacy.body', { vendor: vendorName })}</span>
         </p>
         {!onDevice && <p className="text-sm">{t('speech.privacy.whisper')}</p>}

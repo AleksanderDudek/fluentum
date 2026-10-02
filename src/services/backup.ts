@@ -31,14 +31,14 @@ async function replaceAll(data: BackupData): Promise<void> {
   }
 }
 
-/** Every table in one consistent read (spec §13: full JSON export). */
+/** Every table in one consistent read (a full JSON export). */
 export async function exportBackup(now = Date.now()): Promise<BackupFile> {
   const data = await db.transaction('r', tables(), readAll)
   return createBackupFile(data, now, __APP_VERSION__)
 }
 
 export function backupFileName(now = Date.now(), encrypted = false): string {
-  return `teleo-backup-${dayKeyFor(now, 0)}${encrypted ? '-protected' : ''}.json`
+  return `fluentum-backup-${dayKeyFor(now, 0)}${encrypted ? '-protected' : ''}.json`
 }
 
 export interface PreparedBackup {
@@ -49,7 +49,7 @@ export interface PreparedBackup {
 }
 
 /**
- * Builds the backup file before the user saves or shares it (DECISIONS #110): sharing must follow a tap
+ * Builds the backup file before the user saves or shares it : sharing must follow a tap
  * directly, so the slow part — reading everything and, with a password, encrypting — happens first.
  */
 export async function prepareBackup(options: { password?: string; iterations?: number; now?: number } = {}): Promise<PreparedBackup> {
@@ -70,14 +70,13 @@ export type ImportResult = { ok: true } | { ok: false; code: BackupErrorCode | '
 
 /** What is on this device now, in the terms of a backup summary. */
 export async function deviceSummary(): Promise<BackupSummary> {
-  const [dailyStats, texts, xpLedger, achievements, bibleReadings] = await Promise.all([
+  const [dailyStats, textStats, xpLedger, achievements] = await Promise.all([
     db.dailyStats.toArray(),
-    db.texts.toArray(),
+    db.textStats.toArray(),
     db.xpLedger.toArray(),
     db.achievements.toArray(),
-    db.bibleReadings.toArray(),
   ])
-  return summarizeBackup({ dailyStats, texts, xpLedger, achievements, bibleReadings })
+  return summarizeBackup({ dailyStats, textStats, xpLedger, achievements })
 }
 
 /**
@@ -97,7 +96,7 @@ async function keepCurrent(kind: RestorePointRow['kind'], now: number): Promise<
 /**
  * Validates a backup and, only if it is valid, replaces ALL local data with it in a single transaction —
  * either everything is restored or nothing changes. The data it replaces is kept as the restore point
- * (DECISIONS #113), so the restore can be undone.
+ *, so the restore can be undone.
  */
 export async function importBackupJson(json: string, now = Date.now()): Promise<ImportResult> {
   const parsed = parseBackup(json)
@@ -110,7 +109,7 @@ export async function importBackupJson(json: string, now = Date.now()): Promise<
     })
   } catch (error) {
     // e.g. duplicate primary keys: the transaction rolled back, nothing changed.
-    console.error('[teleo] backup import rejected by the database', error)
+    console.error('[fluentum] backup import rejected by the database', error)
     return { ok: false, code: 'invalidShape', path: error instanceof Error ? error.name : undefined }
   }
   return { ok: true }
@@ -134,7 +133,7 @@ export async function switchToRestorePoint(now = Date.now()): Promise<ImportResu
       return { ok: true }
     })
   } catch (error) {
-    console.error('[teleo] switching to the restore point failed', error)
+    console.error('[fluentum] switching to the restore point failed', error)
     return { ok: false, code: 'invalidShape', path: error instanceof Error ? error.name : undefined }
   }
 }
@@ -147,7 +146,7 @@ export async function wipeAllData(): Promise<void> {
   })
 }
 
-/** Asks the browser not to evict our storage (spec §10; important on Safari/iOS). */
+/** Asks the browser not to evict our storage (important on Safari/iOS). */
 export async function requestPersistentStorage(): Promise<boolean> {
   try {
     if (await navigator.storage?.persisted?.()) return true
@@ -160,7 +159,10 @@ export async function requestPersistentStorage(): Promise<boolean> {
 export interface StorageStatus {
   /** The browser promised not to evict our data; undefined where it cannot tell. */
   persisted?: boolean
-  /** Bytes used by this origin (all storage: data, cached app, downloaded models), when known. */
+  /**
+   * Bytes used by this origin, when known: data, cached app, downloaded models — and Teleo's, which shares the
+   * origin (`aleksanderdudek.github.io`).
+   */
   usage?: number
   quota?: number
 }

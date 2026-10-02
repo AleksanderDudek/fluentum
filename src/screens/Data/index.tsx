@@ -24,12 +24,12 @@ function Section({ id, title, icon, children, framed }: { id: string; title: str
         <Icon name={icon} size={24} className="text-gold-ink" />
         {title}
       </h2>
-      <Card className={cn('space-y-4', framed && 'card-framed')}>{children}</Card>
+      <Card className={cn('space-y-4', framed && 'card-hero')}>{children}</Card>
     </section>
   )
 }
 
-/** Whether the browser promised to keep the data, and how much room Teleo takes (spec §10, DECISIONS #115). */
+/** Whether the browser promised to keep the data, and how much room this site takes. */
 function StorageLine() {
   const { t, i18n } = useTranslation()
   const [status, setStatus] = useState<StorageStatus | null>(null)
@@ -91,15 +91,15 @@ export default function Data() {
 
   return (
     <>
-      <PageHeader backTo="/settings" rubric={t('data.rubric')} title={t('data.title')} subtitle={t('data.lead')} />
+      <PageHeader backTo="/settings" eyebrow={t('data.eyebrow')} title={t('data.title')} subtitle={t('data.lead')} />
       <div className="space-y-10">
         <Section id="device" title={t('data.deviceTitle')} icon="hard-drives">
           {device && (
             <dl className="grid grid-cols-2 gap-3">
-              <StatTile label={t('data.stats.sentences')} value={number.format(device.sentences)} />
+              <StatTile label={t('data.stats.lines')} value={number.format(device.lines)} />
               <StatTile label={t('data.stats.activeDays')} value={number.format(device.activeDays)} />
               <StatTile label={t('data.stats.xp')} value={number.format(device.xp)} />
-              <StatTile label={t('data.stats.ownTexts')} value={number.format(device.ownTexts)} />
+              <StatTile label={t('data.stats.stars')} value={number.format(device.stars)} />
             </dl>
           )}
           <StorageLine />

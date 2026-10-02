@@ -1,12 +1,12 @@
 import type { Tier } from '@/domain/types'
 
-/** XP awards of spec §9.2. */
+/** XP awards (spec §Gamification). */
 export const XP_RULES = {
   segmentBase: 5,
   segmentCap: 30,
   firstTryBonus: 2,
-  textCompleteRatio: 0.2,
-  sessionComplete: 25,
+  /** A conversation finished with every line said. */
+  conversationComplete: 25,
   dailyGoal: 50,
 } as const
 
@@ -65,7 +65,3 @@ export function segmentXp(
   return { base, bonus, multiplier, golden, total: Math.round((base + bonus) * multiplier * golden) }
 }
 
-/** Bonus for completing a whole text: 20% of the XP its segments earned in that run. */
-export function textCompletionXp(segmentXpSum: number): number {
-  return Math.round(XP_RULES.textCompleteRatio * segmentXpSum)
-}

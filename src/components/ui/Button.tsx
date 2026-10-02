@@ -10,17 +10,17 @@ interface CommonProps {
   variant?: ButtonVariant
   size?: ButtonSize
   block?: boolean
-  /** Leading icon: an icon name (gilded duotone) or a ready element. */
+  /** Leading icon: an icon name (duotone) or a ready element. */
   icon?: IconSlot
   iconEnd?: IconSlot
-  /** Solid gold-leaf fill for the leading icon (the play triangle). */
+  /** Solid fill for the leading icon (the play triangle). */
   iconFill?: boolean
 }
 
 function slot(icon: IconSlot | undefined, { variant = 'primary', size = 'md', iconFill }: CommonProps, fill = false): ReactNode {
   if (typeof icon !== 'string') return icon
-  // Status-coloured buttons keep a quiet, same-colour fill; the others are gilded.
-  const tone = variant === 'gold' || variant === 'danger' ? 'plain' : 'gilded'
+  // Status-coloured buttons keep a quiet, same-colour fill; the others get the sunny accent.
+  const tone = variant === 'gold' || variant === 'danger' ? 'plain' : 'accent'
   return <Icon name={icon} size={BUTTON_ICON_SIZE[size]} tone={tone} fillOpacity={fill && iconFill ? 1 : undefined} />
 }
 
@@ -89,7 +89,7 @@ export function IconButton({
       )}
       {...rest}
     >
-      {icon && <Icon name={icon} size={20} />}
+      {icon && <Icon name={icon} size={20} tone="plain" />}
       {children}
     </button>
   )

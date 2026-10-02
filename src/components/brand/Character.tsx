@@ -1,24 +1,24 @@
 import type { CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { CharacterId } from '@/domain/types'
-import { Figure, type FigureProps, type Pose } from './Figure'
+import { Portrait, type Expression, type PortraitProps } from './Portrait'
 
-/* The Teleo congregation: four women and four men painted in the manner of an icon. */
-const CAST: Record<CharacterId, Pick<FigureProps, 'gender' | 'skin' | 'hair' | 'hairStyle' | 'cloak' | 'veilStars'>> = {
-  anna: { gender: 'female', skin: 1, hair: 'brown', hairStyle: 'long', cloak: 'lapis' },
-  maria: { gender: 'female', skin: 0, hair: 'brown', hairStyle: 'veil', cloak: 'madder', veilStars: true },
-  grace: { gender: 'female', skin: 4, hair: 'dark', hairStyle: 'bun', cloak: 'verdigris' },
-  ewa: { gender: 'female', skin: 1, hair: 'grey', hairStyle: 'veil', cloak: 'ochre' },
-  jan: { gender: 'male', skin: 1, hair: 'brown', hairStyle: 'short', cloak: 'cinnabar' },
-  michal: { gender: 'male', skin: 2, hair: 'dark', hairStyle: 'beard', cloak: 'lapis' },
-  david: { gender: 'male', skin: 4, hair: 'dark', hairStyle: 'curly', cloak: 'ochre' },
-  piotr: { gender: 'male', skin: 0, hair: 'grey', hairStyle: 'beard', cloak: 'verdigris' },
+/* The cast: four women and four men — the user's avatar and the conversation partners. */
+const CAST: Record<CharacterId, Pick<PortraitProps, 'skin' | 'hair' | 'hairStyle' | 'shirt' | 'beard' | 'glasses' | 'earrings'>> = {
+  anna: { skin: 1, hair: 'brown', hairStyle: 'long', shirt: 'teal', earrings: true },
+  maria: { skin: 0, hair: 'auburn', hairStyle: 'bob', shirt: 'coral' },
+  grace: { skin: 4, hair: 'black', hairStyle: 'puff', shirt: 'sun', earrings: true },
+  ewa: { skin: 1, hair: 'grey', hairStyle: 'bun', shirt: 'plum', glasses: true },
+  jan: { skin: 1, hair: 'blonde', hairStyle: 'short', shirt: 'sky' },
+  michal: { skin: 2, hair: 'dark', hairStyle: 'short', shirt: 'leaf', beard: true },
+  david: { skin: 3, hair: 'black', hairStyle: 'coils', shirt: 'navy' },
+  piotr: { skin: 0, hair: 'grey', hairStyle: 'short', shirt: 'sand', glasses: true, beard: true },
 }
 
 interface CharacterProps {
   id: CharacterId
-  pose?: Pose
-  halo?: boolean
+  expression?: Expression
+  wave?: boolean
   size?: number
   /** Decorative when a visible name is already next to it. */
   decorative?: boolean
@@ -26,15 +26,14 @@ interface CharacterProps {
   style?: CSSProperties
 }
 
-/** A user character from the cast, in any pose; eyes close in prayer. */
-export function Character({ id, pose = 'praying', halo = true, size = 200, decorative, className, style }: CharacterProps) {
+/** A member of the cast. */
+export function Character({ id, expression, wave, size = 200, decorative, className, style }: CharacterProps) {
   const { t } = useTranslation()
   return (
-    <Figure
+    <Portrait
       {...CAST[id]}
-      pose={pose}
-      eyes={pose === 'praying' ? 'closed' : 'open'}
-      halo={halo}
+      expression={expression}
+      wave={wave}
       size={size}
       title={decorative ? undefined : t(`characters.${id}`)}
       className={className}

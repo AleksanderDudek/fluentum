@@ -32,7 +32,7 @@ export function Segmented<T extends string>({
               className={cn(
                 'relative cursor-pointer rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-gold',
                 selected
-                  ? 'bg-surface text-ink shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--gold)_55%,transparent),0_1px_3px_rgb(0_0_0/0.1)]'
+                  ? 'bg-surface text-ink shadow-[inset_0_0_0_1px_var(--line-strong),0_1px_3px_rgb(0_0_0/0.1)]'
                   : 'text-ink-soft hover:text-ink',
               )}
             >

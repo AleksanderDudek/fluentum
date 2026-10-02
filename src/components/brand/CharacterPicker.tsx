@@ -13,7 +13,7 @@ interface CharacterPickerProps {
   size?: number
 }
 
-/** The eight characters as a radio group: portrait in a nimbus with the name as an inscription. */
+/** The eight characters as a radio group: a round portrait with the name under it. */
 export function CharacterPicker({ value, onChange, label, hideLabel, size = 58 }: CharacterPickerProps) {
   const { t } = useTranslation()
   const name = useId()
@@ -24,10 +24,10 @@ export function CharacterPicker({ value, onChange, label, hideLabel, size = 58 }
         {CHARACTER_IDS.map((id) => {
           const selected = id === value
           return (
-            <label key={id} className="group flex cursor-pointer flex-col items-center rounded-2xl p-1 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-gold">
+            <label key={id} className="group flex cursor-pointer flex-col items-center rounded-2xl p-1 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-primary">
               <input type="radio" name={name} value={id} checked={selected} onChange={() => onChange(id)} className="sr-only" />
               <Avatar id={id} size={size} selected={selected} decorative className="transition-transform group-hover:-translate-y-0.5" />
-              <span className={cn('inscription mt-1 text-[0.85rem]', selected ? 'text-primary' : 'text-ink-soft')}>{t(`characters.${id}`)}</span>
+              <span className={cn('mt-1 text-[0.85rem] font-semibold', selected ? 'text-primary' : 'text-ink-soft')}>{t(`characters.${id}`)}</span>
             </label>
           )
         })}

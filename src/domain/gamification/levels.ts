@@ -1,11 +1,11 @@
-/** Last level with its own name ("Teleo", spec §9.3); circles I, II, III… follow. */
+/** Last level with its own name ("Fluent"); circles I, II, III… follow. */
 export const MAX_NAMED_LEVEL = 20
 /** XP per circle after the last named level. */
 export const CIRCLE_XP = 25_000
 
 export interface LevelInfo {
   level: number
-  /** 0 up to level 20, then 1 for level 21 (Teleo I), 2 for level 22 (Teleo II)… */
+  /** 0 up to level 20, then 1 for level 21 (Fluent I), 2 for level 22 (Fluent II)… */
   circle: number
   /** Cumulative XP at which the current level starts. */
   currentThreshold: number

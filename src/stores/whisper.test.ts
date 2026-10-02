@@ -8,7 +8,7 @@ import { ORT_CACHE, ortRuntime } from '@/domain/speech/whisper/runtime'
 import { FakeCacheStorage } from '@/test/fakeCaches'
 import { createWhisperManager, useWhisperStore, type WhisperManagerDeps } from './whisper'
 
-const runtime = ortRuntime({ base: '/teleo/', version: '1.31.0', legacySafari: false })
+const runtime = ortRuntime({ base: '/fluentum/', version: '1.31.0', legacySafari: false })
 
 function seed(caches: FakeCacheStorage, model: WhisperModelId) {
   for (const url of modelFileUrls(model)) caches.cache(MODEL_CACHE).seed(url)

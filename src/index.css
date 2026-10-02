@@ -5,14 +5,9 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-serif: 'Alegreya Variable', 'Alegreya', ui-serif, Georgia, serif;
+  /* Lexend (made for easier reading) for headings and the lines a learner says; Instrument Sans for the UI. */
+  --font-display: 'Lexend Variable', 'Lexend', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Instrument Sans Variable', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
-  /* Lettering of icons and windows ("ΙC ΧC", "S^T MICHAEL"): lowercase set as even small caps. */
-  --font-inscription: 'Alegreya SC', 'Alegreya Variable', ui-serif, Georgia, serif;
-
-  /* Stained-glass window tops: segmental arch for wide panels, lancet for narrow tiles. */
-  --radius-arch: 50% 50% 1rem 1rem / 4.5rem 4.5rem 1rem 1rem;
-  --radius-lancet: 50% 50% 0.75rem 0.75rem / 38% 38% 0.75rem 0.75rem;
 
   --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -21,6 +16,7 @@
   --animate-breathe: breathe 2.6s ease-in-out infinite;
   --animate-unfurl: unfurl 0.9s var(--ease-soft) both;
   --animate-ink: ink 0.5s var(--ease-soft) both;
+  --animate-pop: pop 0.55s var(--ease-soft) both;
   --animate-spark: spark 0.9s var(--ease-soft) both;
   --animate-float-up: float-up 1.3s var(--ease-soft) both;
   --animate-sheet: sheet 0.35s var(--ease-soft) both;
@@ -74,7 +70,7 @@
       transform: none;
     }
   }
-  /* A gold spark flying out of a finished sentence (direction in --dx / --dy). */
+  /* A gold spark flying out of a finished line (direction in --dx / --dy). */
   @keyframes spark {
     from {
       opacity: 1;
@@ -88,7 +84,7 @@
       transform: translate(var(--dx), var(--dy)) scale(1) rotate(80deg);
     }
   }
-  /* "+XP" rising and fading above the sentence. */
+  /* "+XP" rising and fading above the line. */
   @keyframes float-up {
     from {
       opacity: 0;
@@ -106,6 +102,20 @@
       transform: translateY(-14px);
     }
   }
+  /* A star filling in: overshoot, then settle. */
+  @keyframes pop {
+    0% {
+      transform: scale(0.3) rotate(-30deg);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.25) rotate(8deg);
+      opacity: 1;
+    }
+    100% {
+      transform: none;
+    }
+  }
   @keyframes ink {
     from {
       color: var(--ink-faint);
@@ -117,9 +127,8 @@
 }
 
 /*
- * Palette — "the gilded icon", drawn from Byzantine icons and Arts & Crafts stained glass:
- * vellum ground, umber line-work, lapis (action), gold leaf (sacred and earned), cinnabar (the live
- * voice, errors), madder frame, verdigris (growth), azure (protection).
+ * Palette — "Lagoon": sea-glass paper, deep teal for actions (flowing water), coral for the live voice and the
+ * streak flame, sunny gold for what is earned (XP, stars), sky blue for a streak freeze; dark theme "Night swim".
  * Every text/background pair used by the UI is ≥ 4.5:1 (WCAG AA) in both themes.
  */
 :root {
@@ -127,144 +136,138 @@
   --strip-h: 2.25rem;
   --chrome-top: calc(env(safe-area-inset-top, 0px) + var(--strip-h));
   --appbar-h: 3rem;
-  /* The stained-glass support window: fixed pigments, like a painted panel (the same in both themes). */
-  --window-lapis: #16296a;
-  --window-lapis-deep: #0c1740;
-  --window-ivory: #fbf3df;
-  --window-ivory-soft: #d9d3c2;
-  --window-gold: #d4a744;
-  --window-gold-ink: #1a1406;
+  /* The support panel: fixed pigments, the same deep lagoon in both themes. */
+  --panel-deep: #06363a;
+  --panel-mid: #0b5458;
+  --panel-ink: #f2fbf8;
+  --panel-ink-soft: #bfe0da;
+  --panel-gold: #ffc95c;
+  --panel-gold-ink: #2b1d00;
 
   /* pigments */
-  --lapis: #1f3b8c;
-  --lapis-soft: #dce2f2;
-  --cinnabar: #b53a24;
-  --cinnabar-soft: #f5d8cc;
-  --madder: #6e1a1a;
-  --verdigris: #3c6b4a;
-  --azure: #3c6e9e;
+  --sea: #1f5f8b;
+  --sea-soft: #d9e9f2;
+  --coral: #c94a33;
+  --coral-bright: #ef6a4e;
+  --coral-soft: #fbe0d8;
+  --on-coral: #ffffff;
   /* surfaces and ink */
-  --paper: #f4ecda;
-  --paper-deep: #eadfc6;
-  --surface: #fbf6ea;
-  --surface-sunk: #efe5cf;
-  --ink: #231a14;
-  --ink-soft: #54463a;
-  --ink-faint: #6b5e52;
-  --line: #ddcdaa;
-  --line-strong: #c3aa74;
+  --paper: #eef4f1;
+  --surface: #ffffff;
+  --surface-sunk: #e3ece8;
+  --ink: #10282c;
+  --ink-soft: #3d5a5e;
+  --ink-faint: #4e6a6f;
+  --line: #d3e1dc;
+  --line-strong: #a9c4bd;
   /* roles */
-  --primary: #1f3b8c;
-  --primary-hover: #182f72;
-  --on-primary: #fbf3df;
-  --leaf: #3c6b4a;
-  --gold: #b8862a;
-  --gold-ink: #7a5410;
-  --gold-soft: #f1dfae;
-  --ok: #2f6a40;
-  --ok-soft: #dceada;
-  --near: #7f5300;
-  --near-soft: #f3e1ae;
-  --bad: #a8321f;
-  --bad-soft: #f6d7cd;
-  --frost: #3c6e9e;
-  --frost-soft: #dce8f3;
-  /* activity = gilding intensity: a practised day is a gilded day */
-  --heat-0: #e6dac0;
-  --heat-1: #ecd59c;
-  --heat-2: #dbb35a;
-  --heat-3: #b8862a;
-  --heat-4: #7a5410;
-  --heat-frozen: #a3c0dc;
-  /* achievement metals (fixed, like a painting) */
-  --tier-bronze: #b7773f;
+  --primary: #0b6b66;
+  --primary-hover: #095753;
+  --on-primary: #ffffff;
+  --leaf: #2b7a4b;
+  --gold: #f2b33d;
+  --gold-ink: #855600;
+  --gold-soft: #fbe7b4;
+  --ok: #1b6e43;
+  --ok-soft: #d7efe1;
+  --near: #7a5300;
+  --near-soft: #f8e6b5;
+  --bad: #b3321f;
+  --bad-soft: #f9dcd5;
+  --frost: #2a6aa5;
+  --frost-soft: #dbe9f6;
+  /* activity = depth of the water: a practised day is a deeper day */
+  --heat-0: #dde8e4;
+  --heat-1: #b5e0d6;
+  --heat-2: #6cc4b4;
+  --heat-3: #1f9488;
+  --heat-4: #0b6b66;
+  --heat-frozen: #a9cdee;
+  /* achievement metals (fixed) */
+  --tier-bronze: #c27c45;
   --tier-bronze-ring: #8a5327;
-  --tier-silver: #aab4bd;
+  --tier-silver: #b2bcc4;
   --tier-silver-ring: #77828c;
-  --tier-gold: #d6ad45;
-  --tier-gold-ring: #9c7a1c;
+  --tier-gold: #f2b33d;
+  --tier-gold-ring: #a8761a;
   --tier-platinum: #a9c6d6;
   --tier-platinum-ring: #6f94a8;
   --tier-diamond: #8fdbe8;
   --tier-diamond-ring: #3f9fb2;
-  /* the gold-leaf layer under every icon outline */
-  --icon-gild: #d4a744;
-  --backdrop: rgb(16 20 44 / 0.55);
-  /* Grammatical roles in language dialogues (≥ 4.5:1 on surface and gold-soft): lapis subject, crimson predicate,
-     verdigris adjective, violet object. */
-  --role-subject: #1f3b8c;
-  --role-predicate: #a3244f;
-  --role-adjective: #2f6a40;
-  --role-object: #6a3d8f;
+  /* the colour layer under every duotone icon outline */
+  --icon-fill: #f2b33d;
+  --backdrop: rgb(4 30 32 / 0.55);
+  /* Grammatical roles of a line (≥ 4.5:1 on surface and sea-soft): blue subject, raspberry predicate, green
+     adjective, violet object. */
+  --role-subject: #1d5c9e;
+  --role-predicate: #b02a57;
+  --role-adjective: #2b6b3f;
+  --role-object: #6b3fa0;
 
-  --shadow-card: 0 1px 0 rgb(0 0 0 / 0.02), 0 8px 24px -18px rgb(40 30 10 / 0.35);
-  --shadow-card-hover: 0 18px 30px -22px rgb(40 30 10 / 0.45);
-  /* Gilt edge plus a long lapis drop. */
-  --shadow-primary: inset 0 0 0 1px rgb(212 167 68 / 0.45), 0 10px 24px -14px rgb(20 30 80 / 0.7);
-  /* Icon frame: a gilded hairline inset inside the card edge, like the double rule round a painted panel. */
-  --shadow-frame:
-    inset 0 0 0 4px var(--surface), inset 0 0 0 5px color-mix(in oklab, var(--gold) 55%, transparent),
-    0 1px 0 rgb(0 0 0 / 0.02), 0 8px 24px -18px rgb(40 30 10 / 0.35);
+  --shadow-card: 0 1px 0 rgb(0 0 0 / 0.02), 0 10px 26px -20px rgb(6 54 58 / 0.4);
+  --shadow-card-hover: 0 18px 30px -22px rgb(6 54 58 / 0.5);
+  --shadow-primary: 0 1px 0 rgb(255 255 255 / 0.25) inset, 0 10px 22px -12px rgb(11 107 102 / 0.75);
+  /* The hero card of a screen: a teal hairline inside the edge. */
+  --shadow-hero:
+    inset 0 0 0 1px color-mix(in oklab, var(--primary) 30%, transparent), 0 1px 0 rgb(0 0 0 / 0.02),
+    0 16px 34px -24px rgb(6 54 58 / 0.55);
 
-  --paper-glow: radial-gradient(120% 60% at 50% -10%, color-mix(in oklab, var(--gold-soft) 55%, transparent), transparent 70%);
-  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .38 0 0 0 0 .25 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  --halo-rays: repeating-conic-gradient(from 0deg, color-mix(in oklab, var(--gold) 28%, transparent) 0deg 2deg, transparent 2deg 15deg);
+  /* Light through water at the top of the page, and a faint current of waves. */
+  --paper-glow: radial-gradient(120% 55% at 50% -12%, color-mix(in oklab, #9fe3d5 45%, transparent), transparent 70%);
+  --paper-waves: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='72'%3E%3Cpath d='M0 36c30 0 30-14 60-14s30 14 60 14 30-14 60-14 30 14 60 14' fill='none' stroke='%230b6b66' stroke-opacity='.05' stroke-width='2'/%3E%3C/svg%3E");
   color-scheme: light;
 }
 
-/* "Vigil": the night-blue mandorla behind Christ Enthroned — lapis ground, gold becomes the action colour. */
+/* "Night swim": a dark lagoon; turquoise becomes the action colour. */
 .dark {
-  --lapis: #8fa6e8;
-  --lapis-soft: #1c2550;
-  --cinnabar: #ee8a6e;
-  --cinnabar-soft: #3d201a;
-  --madder: #c9635a;
-  --paper: #0d1128;
-  --paper-deep: #090c1e;
-  --surface: #151a38;
-  --surface-sunk: #10142d;
-  --ink: #f1e7cf;
-  --ink-soft: #c3b89d;
-  --ink-faint: #9d947f;
-  --line: #262c52;
-  --line-strong: #3b4272;
-  --primary: #d9b056;
-  --primary-hover: #e7c271;
-  --on-primary: #1a1406;
-  --leaf: #8cc7a0;
-  --gold: #d9b056;
-  --gold-ink: #e6c77e;
-  --gold-soft: #3a3120;
-  --ok: #8fd0a0;
-  --ok-soft: #1b3326;
-  --near: #e7bf63;
+  --sea: #8cc4f2;
+  --sea-soft: #16304a;
+  --coral: #ff8b72;
+  --coral-bright: #ff8b72;
+  --coral-soft: #3e1f1a;
+  --on-coral: #2b0d06;
+  --paper: #0a1a1c;
+  --surface: #11272a;
+  --surface-sunk: #0d2124;
+  --ink: #e6f2ef;
+  --ink-soft: #a7c1bf;
+  --ink-faint: #86a3a0;
+  --line: #1e3a3d;
+  --line-strong: #2f5257;
+  --primary: #46d0c2;
+  --primary-hover: #6fdccf;
+  --on-primary: #032321;
+  --leaf: #7fd7a2;
+  --gold: #ffc95c;
+  --gold-ink: #ffd27a;
+  --gold-soft: #3b3018;
+  --ok: #7fd7a2;
+  --ok-soft: #14352a;
+  --near: #f2c766;
   --near-soft: #3a3019;
-  --bad: #f0907b;
-  --bad-soft: #3d201a;
-  --frost: #9ec3e8;
-  --frost-soft: #1a2a44;
+  --bad: #ff9a86;
+  --bad-soft: #3e1f1a;
+  --frost: #8cc4f2;
+  --frost-soft: #16304a;
   /* Sequential ramp flips its anchor in dark mode: low values sit near the surface. */
-  --heat-0: #1a1f3e;
-  --heat-1: #3a3321;
-  --heat-2: #6b5725;
-  --heat-3: #a9843a;
-  --heat-4: #e3c476;
-  --heat-frozen: #45688f;
-  --icon-gild: #d9b056;
-  --role-subject: #8fa6e8;
-  --role-predicate: #f28bb0;
-  --role-adjective: #8cc7a0;
-  --role-object: #c7a4e8;
-  --paper-glow: radial-gradient(120% 60% at 50% -10%, color-mix(in oklab, var(--lapis) 22%, transparent), transparent 70%);
-  /* A sparse field of four-point stars, from the mandorla. */
-  --star-field: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cg fill='%23d9b056' fill-opacity='.13'%3E%3Cpath d='M20 19L21.1 22.9L25 24L21.1 25.1L20 29L18.9 25.1L15 24L18.9 22.9Z'/%3E%3Cpath d='M96 11L96.66 13.34L99 14L96.66 14.66L96 17L95.34 14.66L93 14L95.34 13.34Z'/%3E%3Cpath d='M64 64L65.32 68.68L70 70L65.32 71.32L64 76L62.68 71.32L58 70L62.68 68.68Z'/%3E%3Cpath d='M122 88L122.88 91.12L126 92L122.88 92.88L122 96L121.12 92.88L118 92L121.12 91.12Z'/%3E%3Cpath d='M30 109L30.66 111.34L33 112L30.66 112.66L30 115L29.34 112.66L27 112L29.34 111.34Z'/%3E%3Cpath d='M86 121.5L86.55 123.45L88.5 124L86.55 124.55L86 126.5L85.45 124.55L83.5 124L85.45 123.45Z'/%3E%3C/g%3E%3C/svg%3E");
-  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .8 0 0 0 0 .75 0 0 0 0 .6 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --heat-0: #13292c;
+  --heat-1: #124541;
+  --heat-2: #17706a;
+  --heat-3: #2aa79a;
+  --heat-4: #5fe0d1;
+  --heat-frozen: #3e6a96;
+  --icon-fill: #ffc95c;
+  --role-subject: #8fb9ef;
+  --role-predicate: #f590b5;
+  --role-adjective: #8fd6a5;
+  --role-object: #c9a6f0;
+  --paper-glow: radial-gradient(120% 55% at 50% -12%, color-mix(in oklab, #46d0c2 18%, transparent), transparent 70%);
+  --paper-waves: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='72'%3E%3Cpath d='M0 36c30 0 30-14 60-14s30 14 60 14 30-14 60-14 30 14 60 14' fill='none' stroke='%2346d0c2' stroke-opacity='.06' stroke-width='2'/%3E%3C/svg%3E");
   color-scheme: dark;
 }
 
 @theme inline {
   --color-paper: var(--paper);
-  --color-paper-deep: var(--paper-deep);
   --color-surface: var(--surface);
   --color-sunk: var(--surface-sunk);
   --color-ink: var(--ink);
@@ -287,11 +290,10 @@
   --color-bad-soft: var(--bad-soft);
   --color-frost: var(--frost);
   --color-frost-soft: var(--frost-soft);
-  --color-lapis: var(--lapis);
-  --color-lapis-soft: var(--lapis-soft);
-  --color-cinnabar: var(--cinnabar);
-  --color-cinnabar-soft: var(--cinnabar-soft);
-  --color-madder: var(--madder);
+  --color-sea: var(--sea);
+  --color-sea-soft: var(--sea-soft);
+  --color-coral: var(--coral);
+  --color-coral-soft: var(--coral-soft);
 }
 
 @layer base {
@@ -308,17 +310,12 @@
     @apply bg-paper font-sans text-ink antialiased;
     min-height: 100dvh;
     font-feature-settings: 'kern', 'liga';
-    /* Vellum: a warm gold light-pool at the top plus a faint fibre grain. */
-    background-image: var(--paper-glow), var(--paper-grain);
+    background-image: var(--paper-glow), var(--paper-waves);
     background-attachment: fixed;
   }
 
-  .dark body {
-    background-image: var(--paper-glow), var(--star-field), var(--paper-grain);
-  }
-
   :focus-visible {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--primary);
     outline-offset: 3px;
     border-radius: 6px;
   }
@@ -331,7 +328,8 @@
   h1,
   h2,
   h3 {
-    @apply font-serif;
+    @apply font-display;
+    letter-spacing: -0.015em;
     text-wrap: balance;
   }
 
@@ -354,34 +352,26 @@
 }
 
 @layer components {
-  /* The rubric above titles: gold-ink inscription in small caps (written in sentence case, set lowercase). */
-  .rubric {
-    font-family: var(--font-inscription);
-    font-size: 0.9rem;
-    font-weight: 700;
+  /* The small label above titles: teal capitals with open tracking. */
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 600;
     line-height: 1.2;
-    letter-spacing: 0.08em;
-    color: var(--gold-ink);
-    text-transform: lowercase;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--primary);
   }
 
-  /* Inscription lettering for names (characters, the Guardian). */
-  .inscription {
-    font-family: var(--font-inscription);
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: lowercase;
-  }
-
-  /* Hairline gilded rule used as a section divider. */
-  .gilt-rule {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
-    opacity: 0.55;
+  /* A hairline wave used as a section divider. */
+  .divider {
+    height: 8px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='8'%3E%3Cpath d='M0 4c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3' fill='none' stroke='%230b6b66' stroke-opacity='.35' stroke-width='1.2'/%3E%3C/svg%3E")
+      repeat-x center;
   }
 
   .card {
-    border-radius: 1rem;
+    border-radius: 1.25rem;
     border: 1px solid var(--line);
     background: var(--surface);
     box-shadow: var(--shadow-card);
@@ -392,10 +382,10 @@
     padding: 1.25rem;
   }
 
-  /* The one hero card per screen: gilded inner double rule of a painted panel. */
-  .card-framed {
+  /* The one hero card per screen. */
+  .card-hero {
     border-color: var(--line-strong);
-    box-shadow: var(--shadow-frame);
+    box-shadow: var(--shadow-hero);
   }
 
   /* Tappable cards rise 2px. */
@@ -409,8 +399,8 @@
     box-shadow: var(--shadow-card-hover);
   }
 
-  /* Nimbus: a disc with a gold ring and an inner hairline that holds an icon. */
-  .halo {
+  /* A disc that holds an icon. */
+  .disc {
     position: relative;
     display: inline-flex;
     flex-shrink: 0;
@@ -419,37 +409,31 @@
     border-radius: 9999px;
     background: var(--gold-soft);
     color: var(--gold-ink);
-    box-shadow:
-      inset 0 0 0 1.5px color-mix(in oklab, var(--gold) 70%, transparent),
-      inset 0 0 0 4px var(--gold-soft),
-      inset 0 0 0 4.75px color-mix(in oklab, var(--gold) 35%, transparent);
+    box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--gold) 60%, transparent);
   }
-  .halo-lapis {
+  .disc-sea {
     background: var(--primary);
     color: var(--on-primary);
-    box-shadow:
-      inset 0 0 0 1.5px var(--gold),
-      inset 0 0 0 4px var(--primary),
-      inset 0 0 0 4.75px color-mix(in oklab, var(--gold) 50%, transparent);
+    box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--on-primary) 30%, transparent);
   }
-  .halo-sunk {
+  .disc-sunk {
     background: var(--surface-sunk);
     color: var(--primary);
     box-shadow: inset 0 0 0 1px var(--line-strong);
   }
-  .halo-cinnabar {
-    background: var(--cinnabar-soft);
-    color: var(--cinnabar);
-    box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--cinnabar) 50%, transparent);
+  .disc-coral {
+    background: var(--coral-soft);
+    color: var(--coral);
+    box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--coral) 45%, transparent);
   }
-  .halo-frost {
+  .disc-frost {
     background: var(--frost-soft);
     color: var(--frost);
     box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--frost) 45%, transparent);
   }
 
-  /* Soft gold glow behind the spoken sentence. */
-  .mandorla {
+  /* Soft light behind the line being said. */
+  .glow {
     background: radial-gradient(60% 55% at 50% 50%, color-mix(in oklab, var(--gold-soft) 70%, transparent), transparent 72%);
   }
 
@@ -457,12 +441,11 @@
     font-variant-numeric: lining-nums tabular-nums;
   }
 
-  /* Spoken text: the literary serif at reading sizes, controlled by the font-size preference. */
-  .scripture {
-    @apply font-serif text-ink;
-    font-size: var(--segment-size, 1.75rem);
+  /* Spoken text: the display face at reading sizes, controlled by the font-size preference. */
+  .spoken {
+    @apply font-display text-ink;
+    font-size: var(--segment-size, 1.6rem);
     line-height: 1.35;
-    font-variant-numeric: oldstyle-nums;
     hyphens: manual;
   }
 
@@ -475,11 +458,11 @@
     transform: scale(0.99);
   }
 
-  /* The support ribbon: a thin band of gold leaf under the status bar, closed by a gilt hairline. */
+  /* The support ribbon: a thin band of warm sun under the status bar, closed by a hairline. */
   .support-strip {
     background:
-      linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 16%, transparent) 50%, transparent),
-      color-mix(in oklab, var(--gold-soft) 88%, var(--paper));
+      linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 18%, transparent) 50%, transparent),
+      color-mix(in oklab, var(--gold-soft) 85%, var(--paper));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     view-transition-name: support-strip;
@@ -490,10 +473,10 @@
     inset: auto 0 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold) 15%, var(--gold) 85%, transparent);
-    opacity: 0.6;
+    opacity: 0.7;
   }
 
-  /* The compact app bar: clear over the large title, a vellum pane once the title has scrolled away. */
+  /* The compact app bar: clear over the large title, a paper pane once the title has scrolled away. */
   .app-bar {
     transition:
       background-color 0.2s,
@@ -503,29 +486,26 @@
     background: color-mix(in oklab, var(--paper) 95%, transparent);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 1px 0 color-mix(in oklab, var(--gold) 35%, transparent);
+    box-shadow: 0 1px 0 var(--line);
   }
 
-  /* The support window: night lapis with sparse gold stars, a gold light-pool behind the Guardian. */
-  .support-window {
-    color: var(--window-ivory);
+  /* The support panel: a deep lagoon with sunlight from above and slow waves. */
+  .support-panel {
+    color: var(--panel-ink);
     background:
-      radial-gradient(60% 55% at 50% 0%, color-mix(in oklab, var(--window-gold) 38%, transparent), transparent 70%),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg fill='%23d4a744' fill-opacity='.22'%3E%3Cpath d='M18 17L19 20.5L22.5 21.5L19 22.5L18 26L17 22.5L13.5 21.5L17 20.5Z'/%3E%3Cpath d='M84 10L84.6 12.1L86.7 12.7L84.6 13.3L84 15.4L83.4 13.3L81.3 12.7L83.4 12.1Z'/%3E%3Cpath d='M57 58L58.2 62.2L62.4 63.4L58.2 64.6L57 68.8L55.8 64.6L51.6 63.4L55.8 62.2Z'/%3E%3Cpath d='M106 80L106.8 82.8L109.6 83.6L106.8 84.4L106 87.2L105.2 84.4L102.4 83.6L105.2 82.8Z'/%3E%3Cpath d='M26 96L26.6 98.1L28.7 98.7L26.6 99.3L26 101.4L25.4 99.3L23.3 98.7L25.4 98.1Z'/%3E%3C/g%3E%3C/svg%3E"),
-      linear-gradient(180deg, var(--window-lapis), var(--window-lapis-deep));
-    box-shadow:
-      inset 0 0 0 4px var(--window-lapis-deep),
-      inset 0 0 0 5px color-mix(in oklab, var(--window-gold) 70%, transparent),
-      0 18px 40px -24px rgb(12 23 64 / 0.8);
+      radial-gradient(70% 60% at 80% 0%, color-mix(in oklab, var(--panel-gold) 30%, transparent), transparent 70%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='48'%3E%3Cpath d='M0 24c20 0 20-10 40-10s20 10 40 10 20-10 40-10 20 10 40 10' fill='none' stroke='%23ffffff' stroke-opacity='.07' stroke-width='2'/%3E%3C/svg%3E"),
+      linear-gradient(160deg, var(--panel-mid), var(--panel-deep));
+    box-shadow: 0 18px 40px -24px rgb(6 54 58 / 0.8);
   }
-  .support-window .rubric {
-    color: var(--window-gold);
+  .support-panel .eyebrow {
+    color: var(--panel-gold);
   }
 
   /*
-   * A linked word of a dialogue line: its role's colour and a soft tint of it, underlined the way Polish
-   * schools mark a sentence (subject one line, predicate two, adjective wavy, object dashed) — a second cue
-   * that does not rely on colour. Lit (with its counterpart) while pointed at.
+   * A linked word of a line: its role's colour and a soft tint of it, underlined the way Polish schools mark a
+   * sentence (subject one line, predicate two, adjective wavy, object dashed) — a second cue that does not rely
+   * on colour. Lit (with its counterpart) while pointed at. `.gloss-plain` turns the colours off (a setting).
    */
   .gloss-word {
     --role: var(--ink);
@@ -563,13 +543,23 @@
     background: color-mix(in oklab, var(--role) 22%, transparent);
     box-shadow: 0 0 0 2px color-mix(in oklab, var(--role) 50%, transparent);
   }
-  /* Live mode: a word of the line already heard is gilded (as in the player). */
+  .gloss-plain .gloss-word:not([data-active]) {
+    --role: var(--ink);
+    background: none;
+    text-decoration-line: none;
+  }
+  /* Live mode: a word of the line already heard gets a sunny marker. */
   .gloss-heard {
     background: var(--gold-soft);
     box-shadow: 0 2px 0 var(--gold);
     border-radius: 3px;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
+  }
+  /* Prompt / recall: a word still hidden — its letters are dots, kept in the line's rhythm. */
+  .gloss-masked {
+    color: var(--ink-faint);
+    letter-spacing: 0.06em;
   }
   .gloss-swatch {
     display: inline-block;
@@ -578,23 +568,23 @@
     border-radius: 3px;
   }
 
-  /* Chat bubbles of the dialogue player: the partner on the left, the user on the right. */
+  /* Chat bubbles: the partner on the left, the learner on the right. */
   .bubble {
     border: 1px solid var(--line);
     background: var(--surface);
     box-shadow: var(--shadow-card);
   }
   .bubble-bot {
-    border-radius: 1.25rem 1.25rem 1.25rem 0.35rem;
+    border-radius: 1.35rem 1.35rem 1.35rem 0.4rem;
   }
   .bubble-you {
-    border-radius: 1.25rem 1.25rem 0.35rem 1.25rem;
-    background: color-mix(in oklab, var(--lapis-soft) 55%, var(--surface));
-    border-color: color-mix(in oklab, var(--lapis) 22%, var(--line));
+    border-radius: 1.35rem 1.35rem 0.4rem 1.35rem;
+    background: color-mix(in oklab, var(--sea-soft) 60%, var(--surface));
+    border-color: color-mix(in oklab, var(--sea) 22%, var(--line));
   }
   .bubble-current {
-    border-color: var(--gold);
-    box-shadow: var(--shadow-frame);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-hero);
     background: var(--surface);
   }
   .typing-dot {
@@ -618,14 +608,19 @@
     }
   }
 
-  /* The thin gold line while the next screen loads (shown only when it takes a moment). */
+  /* The course path: stepping stones joined by a flowing current. */
+  .current-line {
+    background: repeating-linear-gradient(180deg, color-mix(in oklab, var(--primary) 35%, transparent) 0 6px, transparent 6px 12px);
+  }
+
+  /* The thin teal line while the next screen loads (shown only when it takes a moment). */
   .nav-progress {
     position: fixed;
     inset: env(safe-area-inset-top, 0px) 0 auto;
     z-index: 60;
     height: 2px;
     transform-origin: left;
-    background: linear-gradient(90deg, transparent, var(--gold), var(--gold));
+    background: linear-gradient(90deg, transparent, var(--primary), var(--primary));
     animation: nav-progress 2.4s var(--ease-soft) 0.15s both;
   }
   @keyframes nav-progress {
@@ -650,13 +645,13 @@
 }
 
 html[data-font='sm'] {
-  --segment-size: 1.45rem;
+  --segment-size: 1.3rem;
 }
 html[data-font='md'] {
-  --segment-size: 1.8rem;
+  --segment-size: 1.6rem;
 }
 html[data-font='lg'] {
-  --segment-size: 2.25rem;
+  --segment-size: 2rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

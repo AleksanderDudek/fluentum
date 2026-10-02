@@ -5,7 +5,7 @@ import { Icon } from '@/components/icons/Icon'
 import { cn } from '@/lib/cn'
 
 interface PageHeaderProps {
-  rubric?: string
+  eyebrow?: string
   title: string
   subtitle?: ReactNode
   backTo?: string
@@ -41,10 +41,10 @@ function useCondensed(bar: RefObject<HTMLElement | null>, marker: RefObject<HTML
 /**
  * Screen title, the large-title way of native apps: a compact bar sticks under the support ribbon — with
  * the back button on sub-screens, always within reach (an installed app has no browser back button) — and
- * the title moves into it once the large one below has scrolled away. Then the gilded rubric, the serif
- * title, optional actions and a gilt rule.
+ * the title moves into it once the large one below has scrolled away. Then the eyebrow, the display title,
+ * optional actions and a wave rule.
  */
-export function PageHeader({ rubric, title, subtitle, backTo, actions }: PageHeaderProps) {
+export function PageHeader({ eyebrow, title, subtitle, backTo, actions }: PageHeaderProps) {
   const { t } = useTranslation()
   const bar = useRef<HTMLDivElement>(null)
   const marker = useRef<HTMLDivElement>(null)
@@ -74,25 +74,25 @@ export function PageHeader({ rubric, title, subtitle, backTo, actions }: PageHea
         ) : (
           <span className="w-3 shrink-0" />
         )}
-        <p aria-hidden className={cn('min-w-0 flex-1 truncate font-serif text-lg font-semibold text-ink transition-opacity duration-200', condensed ? 'opacity-100' : 'opacity-0')}>
+        <p aria-hidden className={cn('min-w-0 flex-1 truncate font-display text-lg font-semibold text-ink transition-opacity duration-200', condensed ? 'opacity-100' : 'opacity-0')}>
           {title}
         </p>
       </div>
       <header className={cn('mb-6', backTo ? 'pt-1' : 'pt-6')}>
         <div className="flex items-end justify-between gap-4">
           <div className="min-w-0">
-            {rubric && (
-              <p className="rubric mb-1.5 flex items-center gap-1.5">
-                <Icon name="mandorla-star" size={13} />
-                {rubric}
+            {eyebrow && (
+              <p className="eyebrow mb-1.5 flex items-center gap-1.5">
+                <Icon name="sparkle" size={13} />
+                {eyebrow}
               </p>
             )}
-            <h1 className="text-[2.1rem] leading-[1.05] font-semibold text-ink">{title}</h1>
+            <h1 className="text-[2rem] leading-[1.08] font-semibold text-ink">{title}</h1>
             {subtitle && <div className="mt-2 text-ink-soft">{subtitle}</div>}
           </div>
           {actions && <div className="flex shrink-0 items-center gap-2">{actions}</div>}
         </div>
-        <div ref={marker} aria-hidden className="gilt-rule mt-3.5" />
+        <div ref={marker} aria-hidden className="divider mt-3.5" />
       </header>
     </>
   )

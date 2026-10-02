@@ -2,22 +2,18 @@ import { describe, expect, it } from 'vitest'
 import { tabOf } from './tabs'
 
 describe('tabOf', () => {
-  it('lights the tab of a section and of its sub-screens', () => {
-    expect(tabOf('/')).toBe('today')
-    expect(tabOf('/library')).toBe('library')
-    expect(tabOf('/library/abc/edit')).toBe('library')
-    expect(tabOf('/sessions/new')).toBe('sessions')
+  it('maps every screen to its tab', () => {
+    expect(tabOf('/')).toBe('home')
+    expect(tabOf('/conversations')).toBe('conversations')
+    expect(tabOf('/conversations/cafe')).toBe('conversations')
+    expect(tabOf('/progress')).toBe('progress')
+    expect(tabOf('/settings')).toBe('settings')
     expect(tabOf('/settings/mic-test')).toBe('settings')
-  })
-
-  it('puts the Bible and the language dialogues under the library', () => {
-    expect(tabOf('/bible')).toBe('library')
-    expect(tabOf('/bible/pbg/GEN')).toBe('library')
-    expect(tabOf('/dialogues')).toBe('library')
+    expect(tabOf('/settings/data')).toBe('settings')
   })
 
   it('does not match a mere prefix or an unknown screen', () => {
-    expect(tabOf('/libraryx')).toBeNull()
-    expect(tabOf('/friend')).toBeNull()
+    expect(tabOf('/conversationsx')).toBeNull()
+    expect(tabOf('/play/abc')).toBeNull()
   })
 })

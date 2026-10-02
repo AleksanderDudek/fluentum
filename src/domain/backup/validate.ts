@@ -1,27 +1,14 @@
-import type {
-  AchievementRow,
-  Attempt,
-  BibleReadingRow,
-  FriendRow,
-  DailyStats,
-  Segment,
-  SessionRun,
-  SessionTemplate,
-  SettingsRow,
-  TextItem,
-  TextStats,
-  XpLedgerRow,
-} from '@/db/types'
-import { BIBLE_TRANSLATIONS } from '@/domain/bible/types'
+import type { AchievementRow, Attempt, DailyStats, FriendRow, Segment, SessionRun, SettingsRow, TextItem, TextStats, XpLedgerRow } from '@/db/types'
+import { PRACTICE_MODES } from '@/domain/mastery'
 import { CHARACTER_IDS } from '@/domain/types'
 
-export const BACKUP_APP = 'teleo'
+/** Teleo backups carry `app: 'teleo'` and are refused (`wrongApp`): the two apps never read each other's files. */
+export const BACKUP_APP = 'fluentum'
 export const BACKUP_SCHEMA_VERSION = 1
 
 export const BACKUP_TABLES = [
   'texts',
   'segments',
-  'sessionTemplates',
   'sessionRuns',
   'attempts',
   'dailyStats',
@@ -29,18 +16,18 @@ export const BACKUP_TABLES = [
   'achievements',
   'xpLedger',
   'settings',
+  'friends',
 ] as const
 
 export type BackupTable = (typeof BACKUP_TABLES)[number]
 
-/** Tables added after the first backup format: optional on import (read as empty when missing). */
-export const OPTIONAL_BACKUP_TABLES = ['bibleReadings', 'friends'] as const
+/** Tables added after the first backup format: optional on import (read as empty when missing). None yet. */
+export const OPTIONAL_BACKUP_TABLES = [] as const
 export type OptionalBackupTable = (typeof OPTIONAL_BACKUP_TABLES)[number]
 
 export interface BackupData {
   texts: TextItem[]
   segments: Segment[]
-  sessionTemplates: SessionTemplate[]
   sessionRuns: SessionRun[]
   attempts: Attempt[]
   dailyStats: DailyStats[]
@@ -48,8 +35,7 @@ export interface BackupData {
   achievements: AchievementRow[]
   xpLedger: XpLedgerRow[]
   settings: SettingsRow[]
-  bibleReadings?: BibleReadingRow[]
-  friends?: FriendRow[]
+  friends: FriendRow[]
 }
 
 export interface BackupFile {
@@ -73,7 +59,7 @@ export type BackupValidation = { ok: true; backup: BackupFile } | { ok: false; c
 // (objects, arrays, optionality) is what lets every row/field validator
 // below stay a short declaration instead of a wall of hand-written ifs,
 // while still reporting a precise path like `data.texts[3].lang` or
-// `data.sessionTemplates[0].items[1].repeat`.
+// `data.sessionRuns[0].entries[1].status`.
 
 type Checker = (value: unknown) => string | undefined
 
@@ -144,18 +130,9 @@ const objectFields =
 
 // --- Shapes nested inside a row ---------------------------------------------
 
-const templateItem: Checker = objectFields([
-  ['textId', string_],
-  ['repeat', finiteNumber],
-  ['segmentIds', optional(stringArray)],
-])
-
 const planEntry: Checker = objectFields([
   ['segmentId', string_],
   ['textId', string_],
-  ['block', nonNegativeInt],
-  ['fullText', boolean_],
-  ['item', nonNegativeInt],
 ])
 
 const entryState: Checker = objectFields([
@@ -163,7 +140,10 @@ const entryState: Checker = objectFields([
   ['attempts', nonNegativeInt],
   ['firstTry', boolean_],
   ['xp', finiteNumber],
+  ['hinted', optional(boolean_)],
 ])
+
+const mode: Checker = enumOf(...PRACTICE_MODES)
 
 const appSettings: Checker = objectFields([
   ['uiLang', enumOf('pl', 'en')],
@@ -176,22 +156,19 @@ const appSettings: Checker = objectFields([
   ['saveTranscripts', boolean_],
   ['fontSize', enumOf('sm', 'md', 'lg')],
   ['listenFirst', boolean_],
-  ['grammaticalForm', enumOf('m', 'f', 'n')],
-  ['contentFocus', enumOf('prayers', 'affirmations', 'both', 'own')],
+  ['wordColours', boolean_],
   ['reminderTime', string_],
   ['onboardingCompleted', boolean_],
   ['speechPrivacyAcknowledged', boolean_],
-  // Added in v1.2; older backups omit it and get the default on import.
-  ['character', optional(enumOf(...CHARACTER_IDS))],
-  ['sounds', optional(boolean_)],
-  ['displayName', optional(string_)],
+  ['character', enumOf(...CHARACTER_IDS)],
+  ['sounds', boolean_],
+  ['displayName', string_],
 ])
 
 const gameState: Checker = objectFields([
   ['freezesAvailable', finiteNumber],
   ['lastFreezeAwardStreak', finiteNumber],
-  ['perfectSessions', finiteNumber],
-  ['fullSessions', finiteNumber],
+  ['perfectConversations', finiteNumber],
   ['comebacks', finiteNumber],
   ['totalXp', finiteNumber],
   ['pendingFreezeNotice', arrayOf(dayKey)],
@@ -199,7 +176,6 @@ const gameState: Checker = objectFields([
 
 const metaState: Checker = objectFields([
   ['schemaVersion', finiteNumber],
-  ['seedVersion', finiteNumber],
   ['installedAt', finiteNumber],
   ['lastBackupAt', optional(finiteNumber)],
   ['backupReminderSnoozedAt', optional(finiteNumber)],
@@ -212,26 +188,9 @@ const texts: Checker = objectFields([
   ['id', string_],
   ['title', string_],
   ['body', string_],
-  ['type', enumOf('affirmation', 'prayer', 'text')],
   ['lang', enumOf('pl', 'en')],
-  ['source', enumOf('builtin', 'user', 'bible', 'dialogue')],
-  ['archived', boolean_],
-  ['splitMode', enumOf('sentence', 'line')],
   ['createdAt', finiteNumber],
   ['updatedAt', finiteNumber],
-  ['tags', stringArray],
-  ['builtinKey', optional(string_)],
-  [
-    'bible',
-    optional(
-      objectFields([
-        ['translation', enumOf(...BIBLE_TRANSLATIONS)],
-        ['book', string_],
-        ['index', nonNegativeInt],
-        ['ofBook', nonNegativeInt],
-      ]),
-    ),
-  ],
 ])
 
 const segments: Checker = objectFields([
@@ -241,20 +200,6 @@ const segments: Checker = objectFields([
   ['order', finiteNumber],
   ['wordCount', finiteNumber],
   ['archived', boolean_],
-])
-
-const sessionTemplates: Checker = objectFields([
-  ['id', string_],
-  ['name', string_],
-  ['pinned', boolean_],
-  ['items', arrayOf(templateItem)],
-  ['createdAt', finiteNumber],
-  ['updatedAt', finiteNumber],
-  ['source', enumOf('builtin', 'user')],
-  ['archived', boolean_],
-  ['lang', optional(enumOf('pl', 'en'))],
-  ['builtinKey', optional(string_)],
-  ['lastUsedAt', optional(finiteNumber)],
 ])
 
 /** `cursor` and the plan/entries length match are cross-field, so this row is hand-composed. */
@@ -269,10 +214,11 @@ const sessionRuns: Checker = (v) => {
     ['entries', arrayOf(entryState)],
     ['xpEarned', finiteNumber],
     ['lastActivityAt', finiteNumber],
-    ['mode', enumOf('read', 'memory')],
-    ['templateId', optional(string_)],
-    ['textId', optional(string_)],
+    ['mode', mode],
+    ['textId', string_],
     ['endedAt', optional(finiteNumber)],
+    ['unlocked', optional(stringArray)],
+    ['newStar', optional(mode)],
   ])(v)
   if (flat !== undefined) return flat
 
@@ -294,8 +240,7 @@ const attempts: Checker = objectFields([
   ['wrong', finiteNumber],
   ['accepted', boolean_],
   ['firstTry', boolean_],
-  // The coverage the attempt needed; attempts before the coverage ladder (2026-09-27) kept a strictness instead.
-  ['threshold', optional(finiteNumber)],
+  ['threshold', finiteNumber],
   ['engine', enumOf('webspeech', 'whisper')],
   ['durationMs', finiteNumber],
   ['transcript', optional(string_)],
@@ -305,16 +250,14 @@ const dailyStats: Checker = objectFields([
   ['dayKey', dayKey],
   ['segmentsAccepted', finiteNumber],
   ['attempts', finiteNumber],
-  ['textsCompleted', finiteNumber],
-  ['sessionsCompleted', finiteNumber],
+  ['conversationsCompleted', finiteNumber],
   ['xp', finiteNumber],
-  ['langs', arrayOf(enumOf('pl', 'en'))],
   ['goalReached', boolean_],
   ['frozen', boolean_],
   ['morning', boolean_],
   ['evening', boolean_],
   ['firstTryAccepted', finiteNumber],
-  ['readingMs', optional(finiteNumber)],
+  ['readingMs', finiteNumber],
   ['firstActivityAt', optional(finiteNumber)],
   ['lastActivityAt', optional(finiteNumber)],
 ])
@@ -323,13 +266,8 @@ const textStats: Checker = objectFields([
   ['textId', string_],
   ['repetitions', finiteNumber],
   ['segmentsAccepted', finiteNumber],
-  ['currentDayStreak', finiteNumber],
-  ['bestDayStreak', finiteNumber],
   ['perfectRuns', finiteNumber],
-  ['consecutiveFirstTry', finiteNumber],
-  ['bestConsecutiveFirstTry', finiteNumber],
-  ['memoryRuns', finiteNumber],
-  ['lastDayKey', optional(dayKey)],
+  ['stars', arrayOf(mode)],
   ['lastPracticedAt', optional(finiteNumber)],
 ])
 
@@ -339,13 +277,12 @@ const achievements: Checker = objectFields([
   ['tier', enumOf('bronze', 'silver', 'gold', 'platinum', 'diamond')],
   ['xp', finiteNumber],
   ['unlockedAt', finiteNumber],
-  ['textId', optional(string_)],
 ])
 
 const xpLedger: Checker = objectFields([
   ['timestamp', finiteNumber],
   ['dayKey', dayKey],
-  ['reason', enumOf('segment', 'textComplete', 'sessionComplete', 'dailyGoal', 'achievement')],
+  ['reason', enumOf('line', 'conversation', 'star', 'dailyGoal', 'achievement')],
   ['amount', finiteNumber],
   ['id', optional(finiteNumber)],
   ['refId', optional(string_)],
@@ -359,17 +296,6 @@ const settings: Checker = (v) => {
   if (!valueChecker) return 'key'
   return withPrefix('value', valueChecker(v.value))
 }
-
-const bibleReadings: Checker = objectFields([
-  ['readingId', string_],
-  ['translation', enumOf(...BIBLE_TRANSLATIONS)],
-  ['book', string_],
-  ['index', nonNegativeInt],
-  ['ofBook', nonNegativeInt],
-  ['completedAt', finiteNumber],
-  ['dayKey', dayKey],
-  ['skipped', nonNegativeInt],
-])
 
 const periodPoints = (key: Checker): Checker => objectFields([['k', key], ['p', finiteNumber]])
 
@@ -386,12 +312,11 @@ const friends: Checker = objectFields([
   ['receivedAt', finiteNumber],
 ])
 
-const OPTIONAL_ROW_CHECKERS: Record<OptionalBackupTable, Checker> = { bibleReadings, friends }
+const OPTIONAL_ROW_CHECKERS: Record<OptionalBackupTable, Checker> = {}
 
 const ROW_CHECKERS: Record<BackupTable, Checker> = {
   texts,
   segments,
-  sessionTemplates,
   sessionRuns,
   attempts,
   dailyStats,
@@ -399,6 +324,7 @@ const ROW_CHECKERS: Record<BackupTable, Checker> = {
   achievements,
   xpLedger,
   settings,
+  friends,
 }
 
 // --- Top-level validation -------------------------------------------------

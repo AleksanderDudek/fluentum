@@ -4,7 +4,7 @@ import { deleteModel, inspectModel, loadRuntimeFile, MODEL_CACHE, pruneRuntime }
 import { modelBytes, modelFileUrls, WHISPER_MODELS, type WhisperModelId } from './models'
 import { ORT_CACHE, ortRuntime } from './runtime'
 
-const runtime = ortRuntime({ base: '/teleo/', version: '1.31.0', legacySafari: false })
+const runtime = ortRuntime({ base: '/fluentum/', version: '1.31.0', legacySafari: false })
 
 function seedModel(caches: FakeCacheStorage, model: WhisperModelId) {
   for (const url of modelFileUrls(model)) caches.cache(MODEL_CACHE).seed(url)
@@ -103,9 +103,9 @@ describe('pruneRuntime', () => {
   it('deletes runtime files of other versions', async () => {
     const caches = new FakeCacheStorage()
     seedRuntime(caches)
-    caches.cache(ORT_CACHE).seed('/teleo/ort/1.30.0/ort-wasm-simd-threaded.asyncify.wasm')
+    caches.cache(ORT_CACHE).seed('/fluentum/ort/1.30.0/ort-wasm-simd-threaded.asyncify.wasm')
     await pruneRuntime({ caches, runtime })
-    expect(await caches.cache(ORT_CACHE).keys()).toEqual([{ url: new URL(runtime.wasm, 'https://teleo.test/').href }])
+    expect(await caches.cache(ORT_CACHE).keys()).toEqual([{ url: new URL(runtime.wasm, 'https://fluentum.test/').href }])
   })
 
   it('does nothing without a runtime cache', async () => {

@@ -51,7 +51,7 @@ export function BackupCard({ lastBackupAt }: { lastBackupAt?: number }) {
       const backup = await prepareBackup({ password: protect ? password : undefined })
       setPrepared({ file: new File([backup.blob], backup.fileName, { type: 'application/json' }), size: backup.size, encrypted: backup.encrypted })
     } catch (error) {
-      console.error('[teleo] creating a backup failed', error)
+      console.error('[fluentum] creating a backup failed', error)
       toast({ kind: 'error', title: t('data.createFailed') })
     } finally {
       setPreparing(false)

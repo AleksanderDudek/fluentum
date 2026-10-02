@@ -100,6 +100,106 @@
     ]
   },
   {
+    "key": "bakery",
+    "level": "A1",
+    "icon": "bread",
+    "partner": "anna",
+    "title": { "pl": "W piekarni", "en": "At the bakery" },
+    "scene": { "pl": "Kupujesz chleb i bułki na śniadanie.", "en": "Buy bread and rolls for breakfast." },
+    "lines": [
+      {
+        "who": "bot",
+        "text": { "en": "Good morning! The {bread|s1} {is|v1} still {warm|a1}.", "pl": "Dzień dobry! {Chleb|s1} {jest|v1} jeszcze {ciepły|a1}." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "{It|s1} {smells|v1} {wonderful|a1}! {I|s2}{’d like|v2} a {loaf|o1}, please.", "pl": "{Pięknie|a1} {pachnie|v1,s1}! {Poproszę|v2,s2} jeden {bochenek|o1}." },
+        "say": { "en": "it smelz ŁAN-der-ful! ajd lajk e louf, pliiz.", "pl": "PYENK-nyeh PAH-nyeh! po-PRO-sheh YE-den bo-HE-nek." }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Anything else? {We|s1} {have|v1} {fresh|a1} {rolls|o1} too.", "pl": "Coś jeszcze? {Mamy|v1,s1} też {świeże|a1} {bułki|o1}." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Yes, {I|s1}{’ll take|v1} four {rolls|o1} too.", "pl": "Tak, {wezmę|v1,s1} też cztery {bułki|o1}." },
+        "say": { "en": "jes, ajl tejk for roulz tuu.", "pl": "tahk, VEZ-meh tesh CHTE-ri BOOW-kee." }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "{Do|v1} {you|s1} {need|v1} a {bag|o1}?", "pl": "{Potrzebujesz|v1,s1} {torebki|o1}?" }
+      },
+      {
+        "who": "you",
+        "text": { "en": "No, thanks. How much {is|v1} {it|s1} altogether?", "pl": "Nie, dzięki. Ile {to|s1} razem {kosztuje|v1}?" },
+        "say": { "en": "nou, thenks. hał macz iz it ol-tu-GE-ther?", "pl": "nyeh, JEN-kee. EE-leh to RA-zem kosh-TOO-yeh?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "{That|s1}{’ll be|v1} nine zlotys forty.", "pl": "{To|s1} {będzie|v1} dziewięć złotych czterdzieści." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "{Can|v1} {I|s1} {pay|v1} with my {phone|o1}?", "pl": "Czy {mogę|v1,s1} {zapłacić|v1} {telefonem|o1}?" },
+        "say": { "en": "ken aj pej łith maj foun?", "pl": "chi MO-geh za-PWA-cheech te-le-FO-nem?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Sure! Thank you, and enjoy your breakfast!", "pl": "Jasne! Dziękuję i smacznego!" }
+      }
+    ]
+  },
+  {
+    "key": "weather",
+    "level": "A1",
+    "icon": "cloud-sun",
+    "partner": "grace",
+    "title": { "pl": "Rozmowa o pogodzie", "en": "Talking about the weather" },
+    "scene": { "pl": "Rozmawiasz z sąsiadką o pogodzie.", "en": "Chat with a neighbor about the weather." },
+    "lines": [
+      {
+        "who": "bot",
+        "text": { "en": "Good morning! What a {beautiful|a1} day!", "pl": "Dzień dobry! Co za {piękny|a1} dzień!" }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Yes, it{’s|v1} so {warm|a1} today!", "pl": "Tak, dziś {jest|v1} tak {ciepło|a1}!" },
+        "say": { "en": "jes, its sou łorm tu-DEJ!", "pl": "tahk, jeesh yest tahk CHEP-wo!" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "But the {forecast|s1} {says|v1} {rain|o1} tomorrow.", "pl": "Ale {prognoza|s1} {zapowiada|v1} na jutro {deszcz|o1}." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Oh no! {I|s1} {don’t like|v1} {rain|o1}.", "pl": "O nie! {Nie lubię|v1,s1} {deszczu|o1}." },
+        "say": { "en": "ou nou! aj dount lajk rejn.", "pl": "o nyeh! nyeh LOO-byeh DESH-choo." }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Me neither. {I|s1} {prefer|v1} {sunny|a1} {days|o1}.", "pl": "Ja też nie. {Wolę|v1,s1} {słoneczne|a1} {dni|o1}." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "{Will|v1} it {be|v1} {cold|a1} this weekend?", "pl": "Czy w weekend {będzie|v1} {zimno|a1}?" },
+        "say": { "en": "łil it bii kould this ŁII-kend?", "pl": "chi v WEE-kent BEN-jeh ZHEEM-no?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Yes, cold and windy. {Dress|v1} warmly!", "pl": "Tak, zimno i wietrznie. {Ubierz się|v1} ciepło!" }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Then {I|s1}{’ll stay|v1} home and {read|v2} a {book|o1}.", "pl": "W takim razie {zostanę|v1,s1} w domu i {poczytam|v2} {książkę|o1}." },
+        "say": { "en": "then ajl stej houm end riid e buk.", "pl": "f TA-keem RA-zheh zo-STA-neh v DO-moo ee po-CHI-tam KSHONSH-keh." }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Good plan! Have a {nice|a1} {day|o1}!", "pl": "Dobry plan! {Miłego|a1} {dnia|o1}!" }
+      }
+    ]
+  },
+  {
     "key": "directions",
     "level": "A1",
     "icon": "signpost",
@@ -196,6 +296,56 @@
       {
         "who": "bot",
         "text": { "en": "Thank you! See you next week!", "pl": "Dziękuję! Do zobaczenia za tydzień!" }
+      }
+    ]
+  },
+  {
+    "key": "taxi",
+    "level": "A1",
+    "icon": "taxi",
+    "partner": "piotr",
+    "title": { "pl": "Taksówką na dworzec", "en": "A taxi to the station" },
+    "scene": { "pl": "Jedziesz taksówką na pociąg i płacisz kartą.", "en": "Take a taxi to catch a train and pay by card." },
+    "lines": [
+      {
+        "who": "bot",
+        "text": { "en": "Hello! Where {are|v1} {we|s1} {going|v1}?", "pl": "Dzień dobry! Dokąd {jedziemy|v1,s1}?" }
+      },
+      {
+        "who": "you",
+        "text": { "en": "To the {main|a1} station, please.", "pl": "Na dworzec {główny|a1}, poproszę." },
+        "say": { "en": "tu the mejn STEJ-szyn, pliiz.", "pl": "na DVO-zhets GWOOV-ni, po-PRO-sheh." }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Okay. {Are|v1} {you|s1} in a hurry?", "pl": "Dobrze. {Spieszysz się|v1,s1}?" }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Yes, a little. How long {will|v1} {it|s1} {take|v1}?", "pl": "Tak, trochę. Ile {to|s1} {potrwa|v1}?" },
+        "say": { "en": "jes, e LI-tel. hał long łil it tejk?", "pl": "tahk, TRO-heh. EE-leh to PO-trfa?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "About twenty minutes. The {traffic|s1} {is|v1} {light|a1} today.", "pl": "Jakieś dwadzieścia minut. Dziś {jest|v1} {mały|a1} {ruch|s1}." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Perfect. {My|a1} {train|s1} {leaves|v1} at noon.", "pl": "Idealnie. {Mój|a1} {pociąg|s1} {odjeżdża|v1} w południe." },
+        "say": { "en": "PER-fikt. maj trejn liivz et nuun.", "pl": "ee-de-AL-nyeh. mooy PO-chonk od-YEZH-ja f po-WOOD-nyeh." }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Here we are. {That|s1}{’ll be|v1} forty-five zlotys.", "pl": "Jesteśmy na miejscu. {To|s1} {będzie|v1} czterdzieści pięć złotych." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "{I|s1}{’ll pay|v1} by card, if that’s okay.", "pl": "{Zapłacę|v1,s1} kartą, jeśli można." },
+        "say": { "en": "ajl pej baj kard, if thets ou-KEJ.", "pl": "za-PWA-tseh KAR-tom, YESH-lee MOZH-na." }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Sure, just {tap|v1} {it|o1} here. Have a good trip!", "pl": "Jasne, {przyłóż|v1} {ją|o1} tutaj. Szerokiej drogi!" }
       }
     ]
   },
@@ -300,6 +450,56 @@
     ]
   },
   {
+    "key": "booking",
+    "level": "A2",
+    "icon": "phone-call",
+    "partner": "jan",
+    "title": { "pl": "Rezerwacja stolika", "en": "Booking a table" },
+    "scene": { "pl": "Dzwonisz do restauracji, żeby zarezerwować stolik na sobotę.", "en": "Call a restaurant to book a table for Saturday." },
+    "lines": [
+      {
+        "who": "bot",
+        "text": { "en": "Good afternoon! How {can|v1} {I|s1} {help|v1} you?", "pl": "Dzień dobry! W czym {mogę|v1,s1} {pomóc|v1}?" }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Hi! {Can|v1} {I|s1} {book|v1} a {table|o1} for Saturday?", "pl": "Dzień dobry! Czy {mogę|v1,s1} {zarezerwować|v1} {stolik|o1} na sobotę?" },
+        "say": { "en": "haj! ken aj buk e TEJ-bel for SE-ter-dej?", "pl": "jen DOB-ri! chi MO-geh za-re-zer-VO-vach STO-leek na so-BO-teh?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Of course. For how many {people|o1}?", "pl": "Oczywiście. Dla ilu {osób|o1}?" }
+      },
+      {
+        "who": "you",
+        "text": { "en": "For four {people|o1}, at seven in the evening.", "pl": "Dla czterech {osób|o1}, na siódmą wieczorem." },
+        "say": { "en": "for for PII-pel, et SE-wen in thi IIW-ning.", "pl": "dla CHTE-reh O-soop, na SHOOD-mom vye-CHO-rem." }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "One moment… Sorry, {we|s1} {don’t have|v1} any {tables|o1} at seven. How about eight?", "pl": "Chwileczkę… Niestety, o siódmej {nie mamy|v1,s1} wolnych {stolików|o1}. Może o ósmej?" }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Okay, eight {works|v1} for us. {Can|v2} {we|s1} {sit|v2} by the window?", "pl": "Dobrze, ósma nam {pasuje|v1}. Czy {możemy|v2,s1} {usiąść|v2} przy oknie?" },
+        "say": { "en": "ou-KEJ, ejt łerks for as. ken łi sit baj the ŁIN-dou?", "pl": "DOB-zheh, OOS-ma nam pa-SOO-yeh. chi mo-ZHE-mi oo-SHONSHCH pshi OK-nyeh?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Yes, no problem. {I|s1} {have|v1} {your|a1} {number|o1}, so {I|s2}{’ll send|v2} you a {confirmation|o2}.", "pl": "Tak, nie ma problemu. {Mam|v1,s1} {twój|a1} {numer|o1}, więc {wyślę|v2,s2} ci {potwierdzenie|o2}." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Great, thank you! {Do|v1} {you|s1} {have|v1} any {vegetarian|a1} {dishes|o1}?", "pl": "Świetnie, dziękuję! {Macie|v1,s1} jakieś {dania|o1} {wegetariańskie|a1}?" },
+        "say": { "en": "grejt, thenk ju! du ju hew E-ni we-dże-TE-ri-en DI-szyz?", "pl": "SHFYET-nyeh, jen-KOO-yeh! MA-cheh YA-kyesh DA-nya ve-ge-ta-RYAN-skyeh?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Yes, {we|s1} {have|v1} several. See you on Saturday!", "pl": "Tak, {mamy|v1,s1} kilka. Do zobaczenia w sobotę!" }
+      }
+    ]
+  },
+  {
     "key": "station",
     "level": "A2",
     "icon": "train",
@@ -350,6 +550,174 @@
     ]
   },
   {
+    "key": "airport",
+    "level": "A2",
+    "icon": "airplane-takeoff",
+    "partner": "david",
+    "title": { "pl": "Odprawa na lotnisku", "en": "Airport check-in" },
+    "scene": { "pl": "Odprawiasz się na lot i nadajesz jedną walizkę.", "en": "Check in for your flight with one bag." },
+    "lines": [
+      {
+        "who": "bot",
+        "text": { "en": "Good morning! {Can|v1} {I|s1} {have|v1} your {passport|o1}, please?", "pl": "Dzień dobry! {Poproszę|v1,s1} {paszport|o1}." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Here you go. {I|s1} {have|v1} one {bag|o1} to {check|v2}.", "pl": "Proszę bardzo. {Mam|v1,s1} jedną {walizkę|o1} do {nadania|v2}." },
+        "say": { "en": "hiir ju gou. aj hew łan beg tu czek.", "pl": "PRO-sheh BAR-dzo. mam YED-nom va-LEES-keh do na-DA-nya." }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Thank you. {Put|v1} {it|o1} on the scale, please.", "pl": "Dziękuję. {Postaw|v1} {ją|o1} na wadze." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "{Is|v1} {it|s1} too {heavy|a1}? {It|s2}{’s|v2} {full|a2} of {gifts|o1}.", "pl": "Czy {jest|v1,s1} za {ciężka|a1}? {Jest|v2,s2} {pełna|a2} {prezentów|o1}." },
+        "say": { "en": "iz it tuu HE-wi? its ful ow gifts.", "pl": "chi yest za CHENSH-ka? yest PEW-na pre-ZEN-toof." }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "No, it’s fine. {Would|v1} {you|s1} {like|v1} a {window|a1} or an {aisle|a2} {seat|o1}?", "pl": "Nie, w porządku. {Wolisz|v1,s1} {miejsce|o1} {przy oknie|a1} czy {przy przejściu|a2}?" }
+      },
+      {
+        "who": "you",
+        "text": { "en": "{I|s1}{’d like|v1} a {window|a1} {seat|o1}, please. {I|s2} {love|v2} the {view|o2} from above.", "pl": "{Poproszę|v1,s1} {miejsce|o1} {przy oknie|a1}. {Uwielbiam|v2,s2} {widok|o2} z góry." },
+        "say": { "en": "ajd lajk e ŁIN-dou siit, pliiz. aj law the wjuu from e-BAW.", "pl": "po-PRO-sheh MYEY-stseh pshi OK-nyeh. oo-VYEL-byam VEE-dok z GOO-ri." }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Here’s {your|a1} {boarding pass|s1}. {Boarding|s2} {starts|v2} at nine.", "pl": "Proszę, {twoja|a1} {karta pokładowa|s1}. {Wejście na pokład|s2} {zaczyna się|v2} o dziewiątej." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Thank you! Which {gate|o1} {do|v1} {I|s1} {go|v1} to?", "pl": "Dziękuję! Do którego {wyjścia|o1} {mam|v1,s1} {iść|v1}?" },
+        "say": { "en": "thenk ju! łicz gejt du aj gou tu?", "pl": "jen-KOO-yeh! do ktoo-RE-go VIY-shcha mam eeshch?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Gate twelve, on the left. Have a {nice|a1} {flight|o1}!", "pl": "Wyjście numer dwanaście, po lewej. {Miłego|a1} {lotu|o1}!" }
+      }
+    ]
+  },
+  {
+    "key": "clothes",
+    "level": "A2",
+    "icon": "t-shirt",
+    "partner": "michal",
+    "title": { "pl": "Nowa kurtka", "en": "A new jacket" },
+    "scene": { "pl": "Przymierzasz kurtkę w sklepie i prosisz o większy rozmiar.", "en": "Try on a jacket in a store and ask for a bigger size." },
+    "lines": [
+      {
+        "who": "bot",
+        "text": { "en": "Hello! {Are|v1} {you|s1} {looking for|v1} {anything|o1} in particular?", "pl": "Dzień dobry! {Szukasz|v1,s1} {czegoś|o1} konkretnego?" }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Yes, {I|s1} {need|v1} a {light|a1} {jacket|o1} for spring.", "pl": "Tak, {potrzebuję|v1,s1} {lekkiej|a1} {kurtki|o1} na wiosnę." },
+        "say": { "en": "jes, aj niid e lajt DŻE-kit for spring.", "pl": "tahk, po-tsheh-BOO-yeh LEK-kyey KOORT-kee na VYOS-neh." }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "How about this one? {We|s1} {have|v1} {it|o1} in {blue|a1} and {green|a2}.", "pl": "Może ta? {Mamy|v1,s1} {ją|o1} w kolorze {niebieskim|a1} i {zielonym|a2}." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "{I|s1} {like|v1} the {blue|a1} one. {Can|v2} {I|s2} {try|v2} {it|o1} {on|v2}?", "pl": "{Podoba|v1} {mi|s1} {się|v1} {niebieska|a1}. Czy {mogę|v2,s2} {ją|o1} {przymierzyć|v2}?" },
+        "say": { "en": "aj lajk the bluu łan. ken aj traj it on?", "pl": "po-DO-ba mee sheh nye-BYES-ka. chi MO-geh yom pshi-MYE-zhich?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Sure. The {fitting rooms|s1} {are|v1} over there.", "pl": "Jasne. {Przymierzalnie|s1} {są|v1} tam." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "{It|s1}{’s|v1} too {small|a1}. {Do|v2} {you|s2} {have|v2} a {bigger|a2} {size|o1}?", "pl": "{Jest|v1,s1} za {mała|a1}. {Macie|v2,s2} {większy|a2} {rozmiar|o1}?" },
+        "say": { "en": "its tuu smol. du ju hew e BI-ger sajz?", "pl": "yest za MA-wa. MA-cheh VYENK-shi ROZ-myar?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Of course. Here’s a {bigger|a1} one.", "pl": "Oczywiście. Tu jest {większa|a1}." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Much better! {This one|s1} {fits|v1} perfectly.", "pl": "Dużo lepiej! {Ta|s1} {pasuje|v1} idealnie." },
+        "say": { "en": "macz BE-ter! this łan fits PER-fikt-li.", "pl": "DOO-zho LE-pyey! ta pa-SOO-yeh ee-de-AL-nyeh." }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "{You|s1} {look|v1} {great|a1} in it!", "pl": "{Wyglądasz|v1,s1} w niej {świetnie|a1}!" }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Thanks! {I|s1}{’ll take|v1} {it|o1}. Where {do|v2} I {pay|v2}?", "pl": "Dzięki! {Biorę|v1,s1} {ją|o1}. Gdzie się {płaci|v2}?" },
+        "say": { "en": "thenks! ajl tejk it. łer du aj pej?", "pl": "JEN-kee! BYO-reh yom. gjeh sheh PWA-chee?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "The {register|s1} {is|v1} by the door.", "pl": "{Kasa|s1} {jest|v1} przy drzwiach." }
+      }
+    ]
+  },
+  {
+    "key": "pharmacy",
+    "level": "A2",
+    "icon": "pill",
+    "partner": "maria",
+    "title": { "pl": "W aptece", "en": "At the pharmacy" },
+    "scene": { "pl": "Boli Cię głowa, więc prosisz o coś na przeziębienie.", "en": "You have a headache and ask for something for your cold." },
+    "lines": [
+      {
+        "who": "bot",
+        "text": { "en": "Good morning! What {can|v1} {I|s1} {do|v1} for you?", "pl": "Dzień dobry! Czym {mogę|v1,s1} {służyć|v1}?" }
+      },
+      {
+        "who": "you",
+        "text": { "en": "My {head|s1} {hurts|v1} and {I|s2} {have|v2} a {runny nose|o1}.", "pl": "{Boli|v1} mnie {głowa|s1} i {mam|v2,s2} {katar|o1}." },
+        "say": { "en": "maj hed herts end aj hew e RA-ni nouz.", "pl": "BO-lee mnyeh GWO-va ee mam KA-tar." }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "{Do|v1} {you|s1} {have|v1} a {fever|o1}?", "pl": "{Masz|v1,s1} {gorączkę|o1}?" }
+      },
+      {
+        "who": "you",
+        "text": { "en": "No, but {I|s1}{’m not sleeping|v1} well.", "pl": "Nie, ale źle {śpię|v1,s1}." },
+        "say": { "en": "nou, bat ajm not SLII-ping łel.", "pl": "nyeh, A-leh zhleh shpyeh." }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "{Take|v1} these {tablets|o1}. {They|s1}{’ll help|v2} with the {pain|o2}.", "pl": "{Weź|v1} te {tabletki|o1}. {Pomogą|v2,s1} na {ból|o2}." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "How often {should|v1} {I|s1} {take|v1} {them|o1}?", "pl": "Jak często {mam|v1,s1} {je|o1} {brać|v1}?" },
+        "say": { "en": "hał O-fen szud aj tejk them?", "pl": "yak CHENS-to mam yeh brach?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "One tablet every six hours, after a meal.", "pl": "Jedną tabletkę co sześć godzin, po jedzeniu." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "{Is|v1} there {anything|s1} for a {runny nose|o1} too?", "pl": "Czy {jest|v1} też {coś|s1} na {katar|o1}?" },
+        "say": { "en": "iz ther E-ni-thing for e RA-ni nouz tuu?", "pl": "chi yest tesh tsosh na KA-tar?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Yes, these {nose drops|s1} {work|v1} very well.", "pl": "Tak, te {krople do nosa|s1} bardzo dobrze {działają|v1}." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Okay, {I|s1}{’ll take|v1} {both|o1}. How much {is|v2} {that|s2}?", "pl": "Dobrze, {wezmę|v1,s1} {jedno i drugie|o1}. Ile {to|s2} {kosztuje|v2}?" },
+        "say": { "en": "ou-KEJ, ajl tejk bouth. hał macz iz thet?", "pl": "DOB-zheh, VEZ-meh YED-no ee DROO-gyeh. EE-leh to kosh-TOO-yeh?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Twenty-eight zlotys. Get well soon!", "pl": "Dwadzieścia osiem złotych. Szybkiego powrotu do zdrowia!" }
+      }
+    ]
+  },
+  {
     "key": "weekend",
     "level": "A2",
     "icon": "sun",
@@ -396,6 +764,56 @@
       {
         "who": "bot",
         "text": { "en": "Perfect. See you on Saturday!", "pl": "Super. Do zobaczenia w sobotę!" }
+      }
+    ]
+  },
+  {
+    "key": "birthday",
+    "level": "A2",
+    "icon": "cake",
+    "partner": "ewa",
+    "title": { "pl": "Zaproszenie na urodziny", "en": "A birthday invitation" },
+    "scene": { "pl": "Koleżanka zaprasza Cię na swoje urodziny.", "en": "A friend invites you to her birthday party." },
+    "lines": [
+      {
+        "who": "bot",
+        "text": { "en": "Hi! {I|s1}{’m having|v1} a {birthday|a1} {party|o1} on Friday. {Can|v2} {you|s2} {come|v2}?", "pl": "Cześć! W piątek {robię|v1,s1} {imprezę|o1} {urodzinową|a1}. {Przyjdziesz|v2,s2}?" }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Of course, {I|s1}{’d love|v1} to {come|v1}! What time {does|v2} {it|s2} {start|v2}?", "pl": "Oczywiście, chętnie {przyjdę|v1,s1}! O której {się zaczyna|v2,s2}?" },
+        "say": { "en": "ow kors, ajd law tu kam! łot tajm daz it start?", "pl": "o-chi-VEESH-cheh, HENT-nyeh PSHIY-deh! o KTOO-rey sheh za-CHI-na?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "At seven. {I|s1}{’ll bake|v1} a {big|a1} {cake|o1}!", "pl": "O siódmej. {Upiekę|v1,s1} {duży|a1} {tort|o1}!" }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Wonderful! {Should|v1} {I|s1} {bring|v1} {anything|o1}?", "pl": "Wspaniale! {Mam|v1,s1} {coś|o1} {przynieść|v1}?" },
+        "say": { "en": "ŁAN-der-ful! szud aj bring E-ni-thing?", "pl": "fspa-NYA-leh! mam tsosh PSHI-nyeshch?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Maybe some {juice|o1} or {fruit|o2}. {We|s1}{’ll order|v1} {pizza|o3} too.", "pl": "Może {sok|o1} albo {owoce|o2}. {Zamówimy|v1,s1} też {pizzę|o3}." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "No problem. {I|s1}{’ll bring|v1} {apple|a1} {juice|o1}.", "pl": "Nie ma sprawy. {Przyniosę|v1,s1} {sok|o1} {jabłkowy|a1}." },
+        "say": { "en": "nou PRO-blem. ajl bring E-pel dżuus.", "pl": "nyeh ma SPRA-vi. pshi-NYO-seh sok yap-KO-vi." }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Thanks! {My|a1} {friends|s1} from work {are coming|v1} too.", "pl": "Dzięki! {Przyjdą|v1} też {moi|a1} {znajomi|s1} z pracy." }
+      },
+      {
+        "who": "you",
+        "text": { "en": "Great! What {would|v1} {you|s1} {like|v1} for your {birthday|o1}?", "pl": "Świetnie! Co {chcesz|v1,s1} {dostać|v1} na {urodziny|o1}?" },
+        "say": { "en": "grejt! łot łud ju lajk for jor BERTH-dej?", "pl": "SHFYET-nyeh! tso htsesh DOS-tach na oo-ro-JEE-ni?" }
+      },
+      {
+        "who": "bot",
+        "text": { "en": "Nothing! Just {come|v1} and {have fun|v2}!", "pl": "Nic! Po prostu {przyjdź|v1} i dobrze {się baw|v2}!" }
       }
     ]
   }

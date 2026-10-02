@@ -3,13 +3,15 @@ import { isStaleRuntimeUrl, ORT_CACHE, type OrtRuntime } from './runtime'
 
 /**
  * Offline storage of the Whisper engine, all in Cache Storage:
- * - model files in transformers.js' own cache ({@link MODEL_CACHE}, keyed by
- *   their Hugging Face URL), written only by an explicit download;
+ * - model files in transformers.js' cache, named {@link MODEL_CACHE} (keyed by
+ *   their Hugging Face URL), written only by an explicit download. Not the library's
+ *   default name: Teleo shares this origin, and deleting a model in one app must
+ *   never delete it from the other;
  * - the onnxruntime-web runtime in {@link ORT_CACHE} (keyed by its URL on this
  *   site), shared by both models.
  * Works on the real `CacheStorage` in a page or a worker.
  */
-export const MODEL_CACHE = 'transformers-cache'
+export const MODEL_CACHE = 'fluentum-models'
 
 export interface CacheLike {
   match(request: string): Promise<Response | undefined>

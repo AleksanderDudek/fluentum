@@ -1,27 +1,17 @@
+import { DIALOGUES, dialogueOfText } from '@/content/dialogues'
 import { db } from '@/db/schema'
-import type { AchievementRow, DailyStats, GameState } from '@/db/types'
-import {
-  ACHIEVEMENT_RULES,
-  buildGlobalMetrics,
-  buildTextMetrics,
-  evaluateAchievements,
-  levelInfo,
-  TIER_XP,
-  type TextMetric,
-} from '@/domain/gamification'
-import { bibleMetrics } from '@/domain/bible/progress'
-import { dayKeyFor } from '@/domain/time/dayKey'
+import type { AchievementRow, DailyStats, GameState, TextStats } from '@/db/types'
+import { ACHIEVEMENT_RULES, buildCourseMetrics, buildGlobalMetrics, evaluateAchievements, levelInfo, TIER_XP } from '@/domain/gamification'
 import type { DayKey } from '@/domain/types'
-import { useSettingsStore } from '@/stores/settings'
-import { readSettings } from './settings'
 
 /** Tables an achievement evaluation reads or writes — include them in the caller's transaction. */
-export const PROGRESS_TABLES = [db.achievements, db.xpLedger, db.dailyStats, db.textStats, db.texts, db.segments, db.settings, db.bibleReadings] as const
+export const PROGRESS_TABLES = [db.achievements, db.xpLedger, db.dailyStats, db.textStats, db.texts, db.segments, db.settings] as const
+
+const LEVELS = new Map(DIALOGUES.map((dialogue) => [dialogue.key, dialogue.level]))
 
 export interface UnlockedAchievement {
   key: string
   ruleId: string
-  textId?: string
   tier: AchievementRow['tier']
   xp: number
 }
@@ -31,10 +21,8 @@ export function emptyDailyStats(dayKey: DayKey): DailyStats {
     dayKey,
     segmentsAccepted: 0,
     attempts: 0,
-    textsCompleted: 0,
-    sessionsCompleted: 0,
+    conversationsCompleted: 0,
     xp: 0,
-    langs: [],
     goalReached: false,
     frozen: false,
     morning: false,
@@ -44,43 +32,36 @@ export function emptyDailyStats(dayKey: DayKey): DailyStats {
   }
 }
 
+/** Course metrics of achievements from the stats of every conversation started so far (in either language). */
+export function courseMetricsOf(textStats: readonly TextStats[]) {
+  const rows = []
+  for (const stats of textStats) {
+    const found = dialogueOfText(stats.textId)
+    if (found) rows.push({ key: found.dialogue.key, lang: found.lang, stars: stats.stars })
+  }
+  return buildCourseMetrics(rows, LEVELS)
+}
+
 /**
- * Evaluates the achievement rules against the current aggregates and stores new
- * unlocks with their XP (spec §9.8). Achievement XP can raise the level, which can
- * unlock `level.*` rules, so evaluation repeats until nothing new unlocks.
- * Must run inside a transaction over {@link PROGRESS_TABLES}; mutates `game` and
- * the day's stats row (both persisted here).
+ * Evaluates the achievement rules against the current aggregates and stores new unlocks with their XP.
+ * Achievement XP can raise the level, which can unlock `level.*` rules, so evaluation repeats until nothing new
+ * unlocks. Must run inside a transaction over {@link PROGRESS_TABLES}; mutates `game` and the day's stats row (both
+ * persisted here).
  */
-export async function unlockAchievements(input: {
-  game: GameState
-  dayKey: DayKey
-  now: number
-  /** Texts whose per-text metrics may have changed (per-text rules are only checked for these). */
-  textIds: readonly string[]
-}): Promise<UnlockedAchievement[]> {
+export async function unlockAchievements(input: { game: GameState; dayKey: DayKey; now: number }): Promise<UnlockedAchievement[]> {
   const { game, dayKey, now } = input
   const unlockedKeys = new Set((await db.achievements.toCollection().primaryKeys()) as string[])
-  const ownTexts = await db.texts.where('source').equals('user').count()
-  const bible = bibleMetrics(await db.bibleReadings.toArray())
-  const texts: Array<{ textId: string; metrics: Record<TextMetric, number> }> = []
-  for (const textId of input.textIds) {
-    const stats = await db.textStats.get(textId)
-    if (!stats) continue
-    const segmentCount = await db.segments.where('textId').equals(textId).filter((s) => !s.archived).count()
-    texts.push({ textId, metrics: buildTextMetrics(stats, segmentCount) })
-  }
-
+  const course = courseMetricsOf(await db.textStats.toArray())
   const all: UnlockedAchievement[] = []
   for (let round = 0; round < 5; round++) {
     const daily = await db.dailyStats.toArray()
-    const global = buildGlobalMetrics({ daily, game, ownTexts, level: levelInfo(game.totalXp).level, today: dayKey, bible })
-    const fresh = evaluateAchievements({ rules: ACHIEVEMENT_RULES, global, texts, unlocked: unlockedKeys })
+    const global = buildGlobalMetrics({ daily, game, course, level: levelInfo(game.totalXp).level, today: dayKey })
+    const fresh = evaluateAchievements({ rules: ACHIEVEMENT_RULES, global, unlocked: unlockedKeys })
     if (fresh.length === 0) break
-
     const day = (await db.dailyStats.get(dayKey)) ?? emptyDailyStats(dayKey)
     for (const unlock of fresh) {
       const xp = TIER_XP[unlock.tier]
-      const row: AchievementRow = { key: unlock.key, ruleId: unlock.ruleId, textId: unlock.textId, tier: unlock.tier, xp, unlockedAt: now }
+      const row: AchievementRow = { key: unlock.key, ruleId: unlock.ruleId, tier: unlock.tier, xp, unlockedAt: now }
       await db.achievements.add(row)
       await db.xpLedger.add({ timestamp: now, dayKey, reason: 'achievement', amount: xp, refId: unlock.key })
       unlockedKeys.add(unlock.key)
@@ -92,17 +73,4 @@ export async function unlockAchievements(input: {
   }
   await db.settings.put({ key: 'game', value: game })
   return all
-}
-
-/**
- * Re-checks global achievements outside a practice event (e.g. `create.*` after
- * adding a text). Opens its own transaction.
- */
-export async function evaluateGlobalAchievements(now = Date.now()): Promise<UnlockedAchievement[]> {
-  const unlocked = await db.transaction('rw', PROGRESS_TABLES, async () => {
-    const { app, game } = await readSettings()
-    return unlockAchievements({ game, dayKey: dayKeyFor(now, app.dayStartHour), now, textIds: [] })
-  })
-  useSettingsStore.setState({ game: (await readSettings()).game })
-  return unlocked
 }

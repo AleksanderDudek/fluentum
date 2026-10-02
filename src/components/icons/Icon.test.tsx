@@ -3,14 +3,11 @@ import { describe, expect, it } from 'vitest'
 import { Icon } from './Icon'
 
 describe('Icon', () => {
-  it('draws a Teleo Glyph as a gilded fill under a stroked outline', () => {
-    const { container } = render(<Icon name="candle" />)
-    const svg = container.querySelector('svg')!
-    expect(svg.getAttribute('viewBox')).toBe('0 0 24 24')
-    const [fill, line] = svg.querySelectorAll('g')
-    expect(fill!.getAttribute('fill')).toBe('var(--icon-gild)')
+  it('draws the fill layer in the accent colour by default', () => {
+    const { container } = render(<Icon name="flame" />)
+    const [fill] = container.querySelector('svg')!.querySelectorAll('g')
+    expect(fill!.getAttribute('fill')).toBe('var(--icon-fill)')
     expect(fill!.getAttribute('fill-opacity')).toBe('0.6')
-    expect(line!.getAttribute('stroke')).toBe('currentColor')
   })
 
   it('draws a Phosphor icon on its 256 grid with a filled outline', () => {

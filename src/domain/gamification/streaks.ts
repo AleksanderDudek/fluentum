@@ -157,30 +157,3 @@ export function weeklyRhythmBest(days: DayMarks): number {
   }
   return best
 }
-
-export interface TextDayStreak {
-  current: number
-  best: number
-  lastDayKey: DayKey
-}
-
-/**
- * Per-text "said N days in a row" (no freezes), updated when the text is said on `today`:
- * the day after `lastDayKey` → +1; the same day, or a day before `lastDayKey` (the day-start
- * hour or the time zone changed) → unchanged; otherwise → 1.
- */
-export function nextTextDayStreak(
-  prev: { current: number; best: number; lastDayKey?: DayKey },
-  today: DayKey,
-): TextDayStreak {
-  const { current, best, lastDayKey } = prev
-  const saidToday = (next: number): TextDayStreak => ({
-    current: next,
-    best: Math.max(best, next),
-    lastDayKey: today,
-  })
-  if (lastDayKey === undefined) return saidToday(1)
-  const days = diffDays(today, lastDayKey)
-  if (days <= 0) return { current, best, lastDayKey }
-  return saidToday(days === 1 ? current + 1 : 1)
-}

@@ -7,7 +7,7 @@ const MINUTE = 60_000
 const pct = (ms: number) => `${(Math.min(Math.max(ms, 0), GOLDEN_WINDOW.endMs) / GOLDEN_WINDOW.endMs) * 100}%`
 
 /**
- * Today's reading time on a 0–15 minute track: lapis up to minute 5, gold leaf through the golden
+ * Today's speaking time on a 0–15 minute track: teal up to minute 5, gold through the golden
  * quarter-hour (5–15 min, ×2 points), a check once it is complete.
  */
 export function GoldenQuarterHour({ readingMs, className }: { readingMs: number; className?: string }) {
@@ -24,8 +24,8 @@ export function GoldenQuarterHour({ readingMs, className }: { readingMs: number;
   return (
     <div className={className}>
       <div className="flex items-center justify-between gap-2">
-        <p className="rubric flex items-center gap-1.5">
-          <Icon name="mandorla-star" size={14} />
+        <p className="eyebrow flex items-center gap-1.5">
+          <Icon name="sparkle" size={14} />
           {t('golden.title')}
         </p>
         {inside && (
@@ -41,9 +41,9 @@ export function GoldenQuarterHour({ readingMs, className }: { readingMs: number;
         aria-valuemin={0}
         aria-valuemax={15}
         aria-valuenow={Math.min(minutes, 15)}
-        className="relative mt-2 h-2.5 overflow-hidden rounded-full bg-sunk shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--gold)_30%,transparent)]"
+        className="relative mt-2 h-2.5 overflow-hidden rounded-full bg-sunk"
       >
-        {/* The golden zone itself, faintly gilded before it is reached. */}
+        {/* The golden zone itself, faintly sunny before it is reached. */}
         <span aria-hidden className="absolute inset-y-0 right-0 bg-gold-soft" style={{ left: start }} />
         <span aria-hidden className="absolute inset-y-0 left-0 rounded-full bg-primary transition-[width] duration-700" style={{ width: pct(Math.min(readingMs, GOLDEN_WINDOW.startMs)) }} />
         <span

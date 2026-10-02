@@ -8,7 +8,6 @@ import {
   freezeAward,
   isComeback,
   MAX_FREEZES,
-  nextTextDayStreak,
   reconcileFreezes,
   weeklyRhythmBest,
 } from './streaks'
@@ -287,53 +286,5 @@ describe('weeklyRhythmBest', () => {
     expect(weeklyRhythmBest(weeks('2026-12-21', 5, 5, 5, 5))).toBe(4)
     // 2026-W52 and 2027-W01 are not adjacent: 2026-W53 lies between them
     expect(weeklyRhythmBest(weeks('2026-12-21', 5, 3, 5))).toBe(1)
-  })
-})
-
-describe('nextTextDayStreak', () => {
-  it('starts at 1 the first time a text is said', () => {
-    expect(nextTextDayStreak({ current: 0, best: 0 }, '2026-09-25')).toEqual({
-      current: 1,
-      best: 1,
-      lastDayKey: '2026-09-25',
-    })
-  })
-
-  it('grows by one on the next day and raises the best', () => {
-    const prev = { current: 3, best: 5, lastDayKey: '2026-09-24' }
-    expect(nextTextDayStreak(prev, '2026-09-25')).toEqual({
-      current: 4,
-      best: 5,
-      lastDayKey: '2026-09-25',
-    })
-    expect(nextTextDayStreak({ ...prev, current: 5 }, '2026-09-25')).toMatchObject({
-      current: 6,
-      best: 6,
-    })
-  })
-
-  it('stays unchanged when said again the same day', () => {
-    const prev = { current: 3, best: 5, lastDayKey: '2026-09-25' }
-    expect(nextTextDayStreak(prev, '2026-09-25')).toEqual(prev)
-  })
-
-  it('restarts at 1 after a missed day, keeping the best', () => {
-    const prev = { current: 9, best: 9, lastDayKey: '2026-09-23' }
-    expect(nextTextDayStreak(prev, '2026-09-25')).toEqual({
-      current: 1,
-      best: 9,
-      lastDayKey: '2026-09-25',
-    })
-  })
-
-  it('continues across a year boundary', () => {
-    const prev = { current: 2, best: 2, lastDayKey: '2026-12-31' }
-    expect(nextTextDayStreak(prev, '2027-01-01')).toMatchObject({ current: 3, best: 3 })
-  })
-
-  it('stays unchanged when today lies before the last day (day start or time zone changed)', () => {
-    const prev = { current: 4, best: 6, lastDayKey: '2026-09-25' }
-    expect(nextTextDayStreak(prev, '2026-09-24')).toEqual(prev)
-    expect(nextTextDayStreak(prev, '2026-08-01')).toEqual(prev)
   })
 })

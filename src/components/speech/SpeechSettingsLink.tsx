@@ -7,7 +7,7 @@ export function SpeechSettingsLink() {
   const { t } = useTranslation()
   return (
     <Link to="/settings?section=speech" className="mt-2 flex w-fit items-center gap-1.5 font-semibold underline underline-offset-4">
-      <Icon name="sliders-halo" size={16} />
+      <Icon name="gear-six" size={16} />
       {t('speech.openSettings')}
     </Link>
   )

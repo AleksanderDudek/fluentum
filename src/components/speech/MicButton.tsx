@@ -10,12 +10,9 @@ interface MicButtonProps {
   size?: 'md' | 'lg'
 }
 
-/** Ring of short gold rays radiating from the medallion while the voice is live. */
-const RAYS_MASK = 'radial-gradient(circle, transparent 38%, #000 42%, #000 58%, transparent 70%)'
-
 /**
- * The medallion: a lapis disc in a gold nimbus (3px ring, inner hairline, pale outer halo). While
- * listening it turns cinnabar — the voice is live — with radiating gold halos.
+ * The microphone: a deep teal disc with a light ring. While listening it turns coral — the voice is live — and
+ * ripples spread from it like rings on water.
  */
 export function MicButton({ listening, busy, disabled, onClick, size = 'lg' }: MicButtonProps) {
   const { t } = useTranslation()
@@ -24,13 +21,8 @@ export function MicButton({ listening, busy, disabled, onClick, size = 'lg' }: M
     <div className="relative inline-grid place-items-center">
       {listening && (
         <>
-          <span
-            aria-hidden
-            className={cn('absolute rounded-full bg-(image:--halo-rays)', size === 'lg' ? 'size-[10.2rem]' : 'size-[7.65rem]')}
-            style={{ maskImage: RAYS_MASK, WebkitMaskImage: RAYS_MASK }}
-          />
-          <span aria-hidden className={cn('absolute rounded-full bg-gold/35 animate-breathe', dimension)} />
-          <span aria-hidden className={cn('absolute rounded-full bg-gold/25 animate-breathe [animation-delay:1.3s]', dimension)} />
+          <span aria-hidden className={cn('absolute rounded-full bg-(--coral-bright)/30 animate-breathe', dimension)} />
+          <span aria-hidden className={cn('absolute rounded-full bg-(--coral-bright)/20 animate-breathe [animation-delay:1.3s]', dimension)} />
         </>
       )}
       <button
@@ -40,18 +32,18 @@ export function MicButton({ listening, busy, disabled, onClick, size = 'lg' }: M
         aria-pressed={listening}
         aria-label={listening ? t('speech.stop') : t('speech.speak')}
         className={cn(
-          'relative inline-flex items-center justify-center rounded-full border-[3px] border-gold',
-          'shadow-[0_0_0_6px_var(--gold-soft),0_18px_40px_-18px_rgb(20_30_80/0.8)] transition-[transform,background-color] duration-200 active:scale-95 disabled:opacity-50',
+          'relative inline-flex items-center justify-center rounded-full',
+          'shadow-[0_0_0_6px_color-mix(in_oklab,var(--primary)_14%,transparent),0_18px_36px_-16px_rgb(6_54_58/0.8)] transition-[transform,background-color] duration-200 active:scale-95 disabled:opacity-50',
           dimension,
-          listening ? 'bg-cinnabar text-paper' : 'bg-primary text-on-primary hover:bg-primary-hover',
+          listening ? 'bg-(--coral-bright) text-(--on-coral)' : 'bg-primary text-on-primary hover:bg-primary-hover',
         )}
       >
-        {/* Inner gold hairline of the nimbus (a span, so the focus outline stays free). */}
-        <span aria-hidden className="absolute inset-[4px] rounded-full border border-gold/55" />
+        {/* Inner light ring (a span, so the focus outline stays free). */}
+        <span aria-hidden className="absolute inset-[5px] rounded-full border border-white/30" />
         {listening ? (
           <Icon name="stop" size={size === 'lg' ? 34 : 28} tone="plain" fillOpacity={1} />
         ) : (
-          <Icon name="mic-halo" size={size === 'lg' ? 46 : 36} fillOpacity={0.9} />
+          <Icon name="microphone" size={size === 'lg' ? 46 : 36} fillOpacity={0.9} />
         )}
       </button>
     </div>

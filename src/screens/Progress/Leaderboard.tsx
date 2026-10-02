@@ -74,7 +74,7 @@ export function Leaderboard() {
       <Card>
         <div className="flex items-end justify-between gap-4">
           <div>
-            <p className="rubric">{t(CURRENT[period])}</p>
+            <p className="eyebrow">{t(CURRENT[period])}</p>
             <p className="mt-1 leading-none whitespace-nowrap">
               <span className="text-4xl font-semibold tabular">{number.format(Math.round(board.current))}</span>{' '}
               <span className="text-base font-semibold text-ink-soft">{t('leaderboard.unit')}</span>
@@ -86,7 +86,7 @@ export function Leaderboard() {
           </div>
         </div>
 
-        <div aria-hidden className="gilt-rule my-4" />
+        <div aria-hidden className="divider my-4" />
         <h3 className="text-lg font-semibold">{t('leaderboard.friendsHeading')}</h3>
         <ol className="mt-2 space-y-1.5">
           {rows.map((row, index) => (
@@ -116,7 +116,7 @@ export function Leaderboard() {
             {t('leaderboard.challenge')}
           </Button>
           <p className="flex gap-2 text-xs text-ink-faint">
-            <Icon name="shield-cross" size={14} className="mt-0.5 text-primary" />
+            <Icon name="shield-check" size={14} className="mt-0.5 text-primary" />
             {t('leaderboard.challengeHint')}
           </p>
         </div>

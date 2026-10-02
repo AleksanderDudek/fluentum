@@ -16,7 +16,7 @@ export function detectUiLang(languages: readonly string[] = globalThis.navigator
 function snapshotFrom(rows: readonly SettingsRow[]): SettingsSnapshot {
   let app = DEFAULT_SETTINGS
   let game = DEFAULT_GAME
-  let meta: MetaState = { schemaVersion: SCHEMA_VERSION, seedVersion: 0, installedAt: 0 }
+  let meta: MetaState = { schemaVersion: SCHEMA_VERSION, installedAt: 0 }
   for (const row of rows) {
     // Spread over defaults so rows written by older versions gain new fields.
     if (row.key === 'app') app = { ...DEFAULT_SETTINGS, ...row.value }
@@ -41,7 +41,7 @@ export async function ensureSettings(now = Date.now()): Promise<SettingsSnapshot
     if (!keys.has('meta')) {
       await db.settings.put({
         key: 'meta',
-        value: { schemaVersion: SCHEMA_VERSION, seedVersion: 0, installedAt: now },
+        value: { schemaVersion: SCHEMA_VERSION, installedAt: now },
       })
     }
     return readSettings()

@@ -10,7 +10,7 @@ export function LevelBar({ totalXp }: { totalXp: number }) {
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3">
-        <p className="font-serif text-lg font-semibold">
+        <p className="font-display text-lg font-semibold">
           {levelName(t, info.level)} <span className="text-sm font-sans font-semibold text-ink-soft">· {t('level.label', { level: info.level })}</span>
         </p>
         <p className="tabular text-sm font-semibold text-gold-ink">{t('level.xp', { xp: totalXp })}</p>

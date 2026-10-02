@@ -97,7 +97,7 @@ export function buildDailyReminderIcs(options: DailyReminderOptions): string {
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//Teleo//Daily reminder//EN',
+    'PRODID:-//Fluentum//Daily reminder//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'BEGIN:VEVENT',

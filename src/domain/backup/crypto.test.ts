@@ -5,15 +5,13 @@ import { createBackupFile, type BackupData } from './validate'
 const data = (): BackupData => ({
   texts: [],
   segments: [],
-  sessionTemplates: [],
   sessionRuns: [],
   attempts: [],
   dailyStats: [],
   textStats: [],
   achievements: [],
-  xpLedger: [{ timestamp: 1, dayKey: '2026-09-30', reason: 'segment', amount: 12 }],
+  xpLedger: [{ timestamp: 1, dayKey: '2026-09-30', reason: 'conversation', amount: 12 }],
   settings: [],
-  bibleReadings: [],
   friends: [],
 })
 
@@ -21,12 +19,12 @@ const FAST = { iterations: 1_000 }
 
 describe('encryptBackup / decryptBackup', () => {
   it('round-trips a backup with the right password and keeps the date and version readable', async () => {
-    const file = { ...createBackupFile(data(), 1_700_000_000_000), appVersion: '1.2.0' }
-    const envelope = await encryptBackup(file, 'zdrowaś maryjo', FAST)
-    expect(envelope).toMatchObject({ app: 'teleo', schemaVersion: 1, exportedAt: 1_700_000_000_000, appVersion: '1.2.0' })
+    const file = { ...createBackupFile(data(), 1_700_000_000_000), appVersion: '1.0.0' }
+    const envelope = await encryptBackup(file, 'dzień dobry', FAST)
+    expect(envelope).toMatchObject({ app: 'fluentum', schemaVersion: 1, exportedAt: 1_700_000_000_000, appVersion: '1.0.0' })
     expect(envelope.encrypted).toMatchObject({ v: 1, kdf: 'PBKDF2-SHA-256', cipher: 'AES-256-GCM', iterations: 1_000 })
-    expect(JSON.stringify(envelope)).not.toContain('segment')
-    expect(JSON.parse(await decryptBackup(envelope, 'zdrowaś maryjo'))).toEqual(file)
+    expect(JSON.stringify(envelope)).not.toContain('conversation')
+    expect(JSON.parse(await decryptBackup(envelope, 'dzień dobry'))).toEqual(file)
   })
 
   it('uses a fresh salt and nonce every time', async () => {
@@ -54,7 +52,7 @@ describe('encryptBackup / decryptBackup', () => {
     expect(BACKUP_KDF_ITERATIONS).toBe(600_000)
     const envelope = await encryptBackup(createBackupFile(data(), 1), 'pw')
     expect(envelope.encrypted.iterations).toBe(600_000)
-    expect(JSON.parse(await decryptBackup(envelope, 'pw'))).toMatchObject({ app: 'teleo' })
+    expect(JSON.parse(await decryptBackup(envelope, 'pw'))).toMatchObject({ app: 'fluentum' })
   }, 20_000)
 })
 

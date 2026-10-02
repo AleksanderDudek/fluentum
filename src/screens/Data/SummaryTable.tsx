@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import type { BackupSummary } from '@/domain/backup'
 import { dayKeyToLocalDate } from '@/domain/time/dayKey'
 
-const ROWS = ['sentences', 'activeDays', 'xp', 'lastActiveDay', 'ownTexts', 'achievements', 'bibleReadings'] as const
+const ROWS = ['lines', 'activeDays', 'xp', 'lastActiveDay', 'stars', 'achievements'] as const
 
 /** A backup's contents (or the data kept for undo), next to this device's when there is anything to compare with. */
 export function SummaryTable({ file, device, fileLabel }: { file: BackupSummary; device?: BackupSummary; fileLabel?: string }) {

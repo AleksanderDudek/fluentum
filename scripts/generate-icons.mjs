@@ -1,10 +1,10 @@
-// Rasterizes the Teleo mark into the PNG icons referenced by the web manifest.
-// Run once after changing public/icons/teleo-mark.svg: `npm run icons` (outputs are committed).
+// Rasterizes the Fluentum mark into the PNG icons referenced by the web manifest.
+// Run once after changing public/icons/fluentum-mark.svg: `npm run icons` (outputs are committed).
 import { readFile } from 'node:fs/promises'
 import sharp from 'sharp'
 
 const OUT = new URL('../public/icons/', import.meta.url)
-const master = await readFile(new URL('teleo-mark.svg', OUT))
+const master = await readFile(new URL('fluentum-mark.svg', OUT))
 
 /** Regular icons get rounded corners; maskable/Apple icons must be full-bleed squares. */
 function rounded(size) {
@@ -24,7 +24,7 @@ async function render(file, size, { mask = false, scale = 1 } = {}) {
       bottom: size - inner - pad,
       left: pad,
       right: size - inner - pad,
-      background: '#1f4a3a',
+      background: '#0b6b66',
     })
   }
   let buffer = await image.png().toBuffer()

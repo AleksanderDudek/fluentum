@@ -2,14 +2,14 @@
  * The onnxruntime-web WebAssembly runtime that transformers.js runs Whisper on.
  * It is self-hosted (copied from `node_modules/onnxruntime-web/dist` into
  * `dist/ort/<version>/` by the build — see `vite.config.ts`): the production
- * CSP allows scripts from 'self' only, and no CDN may learn who uses Teleo.
+ * CSP allows scripts from 'self' only, and no CDN may learn who uses Fluentum.
  * The version in the path keeps cache-first caching safe across upgrades.
  *
  * Kept free of imports: `vite.config.ts` reads the file list from here.
  */
 
 /** Cache Storage bucket for the runtime (also used by the service worker's cache-first route). */
-export const ORT_CACHE = 'teleo-ort'
+export const ORT_CACHE = 'fluentum-ort'
 
 const ASYNCIFY_WASM = { name: 'ort-wasm-simd-threaded.asyncify.wasm', bytes: 26_861_777 }
 const PLAIN_MJS = { name: 'ort-wasm-simd-threaded.mjs', bytes: 24_381 }
@@ -57,7 +57,7 @@ export function isSafariBelow26(userAgent: string): boolean {
 
 /** A cached runtime file that the current app no longer uses (older version or other variant). */
 export function isStaleRuntimeUrl(url: string, runtime: OrtRuntime): boolean {
-  const path = (value: string) => new URL(value, 'https://teleo.invalid').pathname
+  const path = (value: string) => new URL(value, 'https://fluentum.invalid').pathname
   const current = new Set(runtime.urls.map(path))
   return !current.has(path(url))
 }

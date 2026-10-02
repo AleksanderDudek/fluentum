@@ -4,7 +4,7 @@ export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'gold
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'hero'
 
 const VARIANTS: Record<ButtonVariant, string> = {
-  // Lapis with a gilt edge and a long lapis drop shadow.
+  // Deep teal with a soft teal drop shadow.
   primary: 'bg-primary text-on-primary shadow-(--shadow-primary) hover:bg-primary-hover',
   secondary: 'border border-line-strong bg-surface text-ink hover:bg-sunk',
   ghost: 'text-ink-soft hover:bg-sunk hover:text-ink',

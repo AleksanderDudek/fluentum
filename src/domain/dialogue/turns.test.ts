@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { dialogueSegments, historyEnd, nextDialogueKey, turnAt, userLines } from './turns'
+import { dialogueSegments, historyEnd, turnAt, userLines } from './turns'
 import type { Dialogue } from './types'
 
 const line = (who: 'bot' | 'you', en: string, pl: string) => ({
@@ -69,25 +69,5 @@ describe('historyEnd', () => {
     expect(historyEnd(cafe, 1)).toBe(3)
     expect(historyEnd(cafe, 2)).toBe(5)
     expect(historyEnd(cafe, 3)).toBe(6)
-  })
-})
-
-describe('nextDialogueKey', () => {
-  const keys = ['a', 'b', 'c', 'd']
-
-  it('goes to the next dialogue not finished yet, wrapping round', () => {
-    expect(nextDialogueKey(keys, 'a', new Set(['a']))).toBe('b')
-    expect(nextDialogueKey(keys, 'b', new Set(['a', 'b', 'c']))).toBe('d')
-    expect(nextDialogueKey(keys, 'd', new Set(['b', 'c', 'd']))).toBe('a')
-  })
-
-  it('simply goes to the next one once every dialogue was finished', () => {
-    expect(nextDialogueKey(keys, 'b', new Set(keys))).toBe('c')
-    expect(nextDialogueKey(keys, 'd', new Set(keys))).toBe('a')
-  })
-
-  it('starts at the beginning for an unknown key and has nothing to offer for an empty list', () => {
-    expect(nextDialogueKey(keys, 'x', new Set())).toBe('a')
-    expect(nextDialogueKey([], 'x', new Set())).toBeUndefined()
   })
 })

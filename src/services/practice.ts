@@ -1,20 +1,8 @@
 import { db } from '@/db/schema'
 import type { Attempt, DailyStats, GameState, SessionRun, TextStats } from '@/db/types'
-import {
-  computeStreak,
-  dayMarksFrom,
-  freezeAward,
-  isComeback,
-  levelInfo,
-  nextTextDayStreak,
-  reconcileFreezes,
-  segmentXp,
-  textCompletionXp,
-  XP_RULES,
-} from '@/domain/gamification'
+import { computeStreak, dayMarksFrom, freezeAward, isComeback, levelInfo, reconcileFreezes, segmentXp, XP_RULES } from '@/domain/gamification'
+import { earnsStar, STAR_XP, withStar, type PracticeMode } from '@/domain/mastery'
 import { readingMs } from '@/domain/reading/pace'
-import { blockEntries, isBlockComplete } from '@/domain/session'
-import { isHiddenText } from '@/domain/text/visibility'
 import { dayKeyFor } from '@/domain/time/dayKey'
 import type { DayKey, EngineId } from '@/domain/types'
 import { newId } from '@/lib/id'
@@ -30,7 +18,7 @@ export interface Evaluation {
   wrong: number
   transcript: string
   /** The coverage the attempt needed (its rung of the coverage ladder), stored with it. */
-  threshold?: number
+  threshold: number
 }
 
 export interface AttemptInput {
@@ -62,16 +50,16 @@ export interface AttemptOutcome extends ProgressOutcome {
   /** Today's estimated reading time after this attempt. */
   readingMs: number
   run: SessionRun
-  textCompleted?: { textId: string; bonusXp: number; perfect: boolean }
+  /** Set when this line finished the conversation with every line said. */
+  conversationCompleted?: { bonusXp: number; perfect: boolean; newStar?: PracticeMode; starXp: number }
   /** Failed attempts on this entry so far (drives the "skip after 3" rule). */
   failedAttempts: number
 }
 
-export interface FinishOutcome extends ProgressOutcome {
+export interface FinishOutcome {
   run: SessionRun
+  /** Every line said: no skips. */
   clean: boolean
-  /** Set when the run finished a Bible reading (`first`: counted now, not read before). */
-  bibleReading?: { readingId: string; first: boolean }
 }
 
 export type PracticeErrorCode = 'runNotFound' | 'notRunning' | 'outOfOrder' | 'segmentMissing'
@@ -88,17 +76,7 @@ export class PracticeError extends Error {
 const TABLES = [db.sessionRuns, db.attempts, ...PROGRESS_TABLES]
 
 function emptyTextStats(textId: string): TextStats {
-  return {
-    textId,
-    repetitions: 0,
-    segmentsAccepted: 0,
-    currentDayStreak: 0,
-    bestDayStreak: 0,
-    perfectRuns: 0,
-    consecutiveFirstTry: 0,
-    bestConsecutiveFirstTry: 0,
-    memoryRuns: 0,
-  }
+  return { textId, repetitions: 0, segmentsAccepted: 0, perfectRuns: 0, stars: [] }
 }
 
 /** Morning = before 08:00 (after the day start); evening = 21:00 until the day start (DECISIONS #19). */
@@ -147,9 +125,9 @@ function publishGame(game: GameState) {
 }
 
 /**
- * Records one spoken attempt and applies every consequence in ONE transaction:
- * attempt row, run progress, daily/text aggregates, XP ledger (segment, text
- * completion, daily goal), streak freezes, comeback and achievements.
+ * Records one spoken attempt and applies every consequence in ONE transaction: attempt row, run progress, daily and
+ * conversation aggregates, XP ledger (line, finished conversation, first star of a way, daily goal), streak freezes,
+ * comeback and achievements.
  */
 export async function recordAttempt(input: AttemptInput): Promise<AttemptOutcome> {
   const now = input.now ?? Date.now()
@@ -212,7 +190,6 @@ export async function recordAttempt(input: AttemptInput): Promise<AttemptOutcome
     }
 
     if (!accepted) {
-      textStats.consecutiveFirstTry = 0
       await db.dailyStats.put(daily)
       await db.textStats.put(textStats)
       await db.sessionRuns.put(run)
@@ -234,7 +211,6 @@ export async function recordAttempt(input: AttemptInput): Promise<AttemptOutcome
     const { morning, evening } = timeOfDay(now, app.dayStartHour)
     daily.segmentsAccepted += 1
     daily.firstTryAccepted += firstTry ? 1 : 0
-    daily.langs = daily.langs.includes(text.lang) ? daily.langs : [...daily.langs, text.lang]
     daily.firstActivityAt ??= now
     daily.lastActivityAt = now
     daily.morning ||= morning
@@ -249,11 +225,11 @@ export async function recordAttempt(input: AttemptInput): Promise<AttemptOutcome
       result.freezeEarned = award.award > 0
     }
 
-    const readBefore = daily.readingMs ?? 0
+    const readBefore = daily.readingMs
     const breakdown = segmentXp(segment.wordCount, firstTry, streak, readBefore)
     const xp = breakdown.total
     daily.readingMs = readBefore + readingMs(segment.wordCount, text.lang)
-    await db.xpLedger.add({ timestamp: now, dayKey, reason: 'segment', amount: xp, refId: attempt.id })
+    await db.xpLedger.add({ timestamp: now, dayKey, reason: 'line', amount: xp, refId: attempt.id })
     let gained = xp
     entry.status = 'accepted'
     entry.firstTry = firstTry
@@ -261,30 +237,32 @@ export async function recordAttempt(input: AttemptInput): Promise<AttemptOutcome
 
     textStats.segmentsAccepted += 1
     textStats.lastPracticedAt = now
-    textStats.consecutiveFirstTry = firstTry ? textStats.consecutiveFirstTry + 1 : 0
-    textStats.bestConsecutiveFirstTry = Math.max(textStats.bestConsecutiveFirstTry, textStats.consecutiveFirstTry)
+    run.cursor = nextPending(run, input.entryIndex + 1)
 
-    if (planEntry.fullText && isBlockComplete(run.plan, run.entries, planEntry.block)) {
-      const indices = blockEntries(run.plan, planEntry.block)
-      const bonusXp = textCompletionXp(indices.reduce((sum, i) => sum + (run.entries[i]?.xp ?? 0), 0))
-      const perfect = indices.length > 1 && indices.every((i) => run.entries[i]?.firstTry)
+    // The last line said and every line accepted: the conversation is finished (a skip anywhere breaks it).
+    if (run.cursor >= run.entries.length && run.entries.every((e) => e.status === 'accepted')) {
+      const perfect = run.entries.every((e) => e.firstTry)
       textStats.repetitions += 1
-      if (perfect) textStats.perfectRuns += 1
-      // Memory credit: said entirely from memory at the hardest level, without revealing it.
-      if (run.mode === 'memory' && run.memoryLevel === 'hidden' && indices.every((i) => !run.entries[i]?.hinted)) {
-        textStats.memoryRuns += 1
+      daily.conversationsCompleted += 1
+      if (perfect) {
+        textStats.perfectRuns += 1
+        game.perfectConversations += 1
       }
-      const dayStreak = nextTextDayStreak(
-        { current: textStats.currentDayStreak, best: textStats.bestDayStreak, lastDayKey: textStats.lastDayKey },
-        dayKey,
-      )
-      textStats.currentDayStreak = dayStreak.current
-      textStats.bestDayStreak = dayStreak.best
-      textStats.lastDayKey = dayStreak.lastDayKey
-      daily.textsCompleted += 1
-      if (bonusXp > 0) await db.xpLedger.add({ timestamp: now, dayKey, reason: 'textComplete', amount: bonusXp, refId: `${run.id}:${planEntry.block}` })
+      const bonusXp = XP_RULES.conversationComplete
+      await db.xpLedger.add({ timestamp: now, dayKey, reason: 'conversation', amount: bonusXp, refId: run.id })
       gained += bonusXp
-      result.textCompleted = { textId: text.id, bonusXp, perfect }
+      // A way's star: earned the first time the conversation is finished in it without revealing a line.
+      let newStar: PracticeMode | undefined
+      let starXp = 0
+      if (earnsStar(run.entries) && !textStats.stars.includes(run.mode)) {
+        newStar = run.mode
+        starXp = STAR_XP[run.mode]
+        textStats.stars = withStar(textStats.stars, run.mode)
+        run.newStar = run.mode
+        await db.xpLedger.add({ timestamp: now, dayKey, reason: 'star', amount: starXp, refId: `${run.id}:${run.mode}` })
+        gained += starXp
+      }
+      result.conversationCompleted = { bonusXp, perfect, newStar, starXp }
     }
 
     if (!daily.goalReached && daily.segmentsAccepted >= app.dailyGoal) {
@@ -297,12 +275,10 @@ export async function recordAttempt(input: AttemptInput): Promise<AttemptOutcome
     daily.xp += gained
     game.totalXp += gained
     run.xpEarned += gained
-    run.cursor = nextPending(run, input.entryIndex + 1)
     await db.dailyStats.put(daily)
     await db.textStats.put(textStats)
 
-    // Bible readings and dialogues are not texts one repeats: no per-text achievements (they would flood the gallery).
-    const unlocked = await unlockAchievements({ game, dayKey, now, textIds: isHiddenText(text) ? [] : [text.id] })
+    const unlocked = await unlockAchievements({ game, dayKey, now })
     const achievementXp = unlocked.reduce((sum, u) => sum + u.xp, 0)
     run.xpEarned += achievementXp
     if (unlocked.length > 0) run.unlocked = [...(run.unlocked ?? []), ...unlocked.map((u) => u.key)]
@@ -325,9 +301,9 @@ export async function recordAttempt(input: AttemptInput): Promise<AttemptOutcome
   return outcome
 }
 
-/** Skips the current entry after failed attempts (spec §8.3/5): no XP, breaks the text repetition. */
+/** Skips the current line after three failed attempts: no XP, and the conversation does not count as finished. */
 export async function skipEntry(runId: string, entryIndex: number, now = Date.now()): Promise<SessionRun> {
-  return db.transaction('rw', [db.sessionRuns, db.textStats], async () => {
+  return db.transaction('rw', db.sessionRuns, async () => {
     const run = await loadRunning(runId)
     const entry = run.entries[entryIndex]
     const planEntry = run.plan[entryIndex]
@@ -336,13 +312,11 @@ export async function skipEntry(runId: string, entryIndex: number, now = Date.no
     run.cursor = nextPending(run, entryIndex + 1)
     run.lastActivityAt = now
     await db.sessionRuns.put(run)
-    const stats = await db.textStats.get(planEntry.textId)
-    if (stats) await db.textStats.put({ ...stats, consecutiveFirstTry: 0 })
     return run
   })
 }
 
-/** Memory mode: the user revealed the current sentence (press-and-hold hint). */
+/** Prompt / recall: the learner revealed the current line with "Show" (that run earns no star). */
 export async function markHinted(runId: string, entryIndex: number): Promise<void> {
   await db.transaction('rw', db.sessionRuns, async () => {
     const run = await db.sessionRuns.get(runId)
@@ -353,81 +327,28 @@ export async function markHinted(runId: string, entryIndex: number): Promise<voi
   })
 }
 
-/** Leaves a session midway; it can be resumed the same day (spec §8.3/6). */
+/** Leaves a conversation midway; it can be resumed the same day. */
 export async function pauseRun(runId: string, now = Date.now()): Promise<void> {
   await db.sessionRuns.where('id').equals(runId).filter((r) => r.status === 'in_progress').modify({ status: 'partial', lastActivityAt: now })
 }
 
 /**
- * Ends a session that reached its last entry. Only a run with ≥ 1 accepted and
- * no skipped entries is "completed" for XP and statistics (DECISIONS #21).
+ * Ends a run that reached its last line. Everything a finished conversation earns was already recorded with its
+ * last accepted line (`recordAttempt`); this only closes the run. Idempotent.
  */
 export async function finishRun(runId: string, now = Date.now()): Promise<FinishOutcome> {
-  const outcome = await db.transaction('rw', TABLES, async (): Promise<FinishOutcome> => {
-    const { app, game } = await readSettings()
+  return db.transaction('rw', db.sessionRuns, async () => {
     const run = await db.sessionRuns.get(runId)
     if (!run) throw new PracticeError('runNotFound')
-    const dayKey = dayKeyFor(now, app.dayStartHour)
-    const daily = (await db.dailyStats.get(dayKey)) ?? emptyDailyStats(dayKey)
-    const levelBefore = levelInfo(game.totalXp).level
-    const alreadyCompleted = run.status === 'completed'
-    const accepted = run.entries.filter((e) => e.status === 'accepted').length
-    const skipped = run.entries.filter((e) => e.status === 'skipped').length
-    const clean = accepted > 0 && skipped === 0 && run.entries.every((e) => e.status !== 'pending')
-
-    run.status = 'completed'
-    run.endedAt = now
-    run.lastActivityAt = now
-    let gained = 0
-    let unlocked: UnlockedAchievement[] = []
-
-    // A Bible reading counts once every sentence was said or skipped (skips need three failed tries:
-    // unusual names can defeat a recogniser). It still earns XP only for the sentences said.
-    const text = run.textId ? await db.texts.get(run.textId) : undefined
-    let bibleReading: FinishOutcome['bibleReading']
-    if (text?.bible && accepted > 0 && run.entries.every((e) => e.status !== 'pending')) {
-      const readingId = text.id.replace(/^bible:/, '')
-      const first = !(await db.bibleReadings.get(readingId))
-      if (first) {
-        await db.bibleReadings.add({ readingId, ...text.bible, completedAt: now, dayKey, skipped })
-      }
-      bibleReading = { readingId, first }
+    const clean = run.entries.length > 0 && run.entries.every((e) => e.status === 'accepted')
+    if (run.status !== 'completed') {
+      run.status = 'completed'
+      run.endedAt = now
+      run.lastActivityAt = now
+      await db.sessionRuns.put(run)
     }
-
-    if (clean && !alreadyCompleted) {
-      await db.xpLedger.add({ timestamp: now, dayKey, reason: 'sessionComplete', amount: XP_RULES.sessionComplete, refId: run.id })
-      gained = XP_RULES.sessionComplete
-      daily.sessionsCompleted += 1
-      daily.xp += gained
-      game.totalXp += gained
-      if (run.plan.length >= 10 && run.entries.every((e) => e.firstTry)) game.perfectSessions += 1
-      if (run.plan.length >= 150) game.fullSessions += 1
-      await db.dailyStats.put(daily)
-      unlocked = await unlockAchievements({ game, dayKey, now, textIds: [] })
-    } else if (bibleReading?.first) {
-      unlocked = await unlockAchievements({ game, dayKey, now, textIds: [] })
-    }
-    const achievementXp = unlocked.reduce((sum, u) => sum + u.xp, 0)
-    run.xpEarned += gained + achievementXp
-    if (unlocked.length > 0) run.unlocked = [...(run.unlocked ?? []), ...unlocked.map((u) => u.key)]
-    await db.sessionRuns.put(run)
-    await db.settings.put({ key: 'game', value: game })
-    const levelAfter = levelInfo(game.totalXp).level
-    return {
-      run,
-      clean,
-      bibleReading,
-      xpGained: gained + achievementXp,
-      unlocked,
-      levelUp: levelAfter > levelBefore ? { from: levelBefore, to: levelAfter } : undefined,
-      streak: await currentStreak(dayKey),
-      goalReached: false,
-      goalProgress: { done: daily.segmentsAccepted, goal: app.dailyGoal },
-      freezeEarned: false,
-    }
+    return { run, clean }
   })
-  publishGame((await readSettings()).game)
-  return outcome
 }
 
 /**

@@ -11,11 +11,11 @@ import { Stepper } from '@/components/ui/Stepper'
 import { Switch } from '@/components/ui/Switch'
 import type { AppSettings, FontSize, ThemePreference } from '@/db/types'
 import { buildDailyReminderIcs } from '@/domain/reminders/ics'
-import type { ContentFocus, GrammaticalForm, Lang } from '@/domain/types'
+import { learningLang } from '@/domain/dialogue'
+import type { Lang } from '@/domain/types'
 import { downloadText } from '@/lib/download'
 import { newId } from '@/lib/id'
 import { promptInstall, useInstallState } from '@/lib/install'
-import { applyContentPreferences, applyGrammaticalForm, applyLanguage } from '@/services/seed'
 import { DAILY_GOAL, DAY_START_HOURS, updateAppSettings } from '@/services/settings'
 import { useSettingsStore } from '@/stores/settings'
 import { toast } from '@/stores/ui'
@@ -32,7 +32,7 @@ function Section({ id, title, children }: { id: string; title: string; children:
   )
 }
 
-/** "Install Teleo": the browser's own dialog where it has one, the Share-menu steps on iPhone and iPad. */
+/** "Install Fluentum": the browser's own dialog where it has one, the Share-menu steps on iPhone and iPad. */
 function InstallSection() {
   const { t } = useTranslation()
   const state = useInstallState()
@@ -52,13 +52,13 @@ function InstallSection() {
       ) : (
         <ol className="space-y-2 text-sm text-ink">
           <li className="flex items-center gap-2.5">
-            <span className="halo size-7 text-xs font-bold">1</span>
+            <span className="disc size-7 text-xs font-bold">1</span>
             <span>
               {t('settings.installIos1')} <Icon name="export" size={18} label={t('settings.installIosShare')} className="inline align-text-bottom text-primary" />
             </span>
           </li>
           <li className="flex items-center gap-2.5">
-            <span className="halo size-7 text-xs font-bold">2</span>
+            <span className="disc size-7 text-xs font-bold">2</span>
             <span>{t('settings.installIos2')}</span>
           </li>
         </ol>
@@ -118,15 +118,15 @@ export default function Settings() {
       title: t('settings.reminderTitle'),
       description: t('settings.reminderBody'),
       url: new URL(import.meta.env.BASE_URL, window.location.origin).href,
-      uid: `teleo-daily-${newId()}@teleo`,
+      uid: `fluentum-daily-${newId()}@fluentum`,
       now: new Date(),
     })
-    downloadText('teleo-reminder.ics', ics, 'text/calendar')
+    downloadText('fluentum-reminder.ics', ics, 'text/calendar')
   }
 
   return (
     <>
-      <PageHeader rubric={t('settings.rubric')} title={t('settings.title')} />
+      <PageHeader eyebrow={t('settings.eyebrow')} title={t('settings.title')} />
       <div className="space-y-10">
         <Section id="character" title={t('settings.sectionCharacter')}>
           <p className="text-sm text-ink-soft">{t('settings.characterHint')}</p>
@@ -136,19 +136,26 @@ export default function Settings() {
 
         <InstallSection />
 
+        <Section id="languages" title={t('settings.sectionLanguages')}>
+          <div>
+            <Segmented<Lang>
+              label={t('settings.language')}
+              value={app.uiLang}
+              options={[
+                { value: 'pl', label: 'Polski' },
+                { value: 'en', label: 'English' },
+              ]}
+              onChange={(uiLang) => set({ uiLang })}
+            />
+            <p className="mt-2 flex items-center gap-2 text-sm font-medium text-ink">
+              <Icon name="translate" size={18} className="text-primary" />
+              {t(`settings.learning.${learningLang(app.uiLang)}`)}
+            </p>
+            <p className="mt-1 text-sm text-ink-soft">{t('settings.languageHint')}</p>
+          </div>
+        </Section>
+
         <Section id="appearance" title={t('settings.sectionAppearance')}>
-          <Segmented<Lang>
-            label={t('settings.language')}
-            value={app.uiLang}
-            options={[
-              { value: 'pl', label: 'Polski' },
-              { value: 'en', label: 'English' },
-            ]}
-            onChange={async (uiLang) => {
-              await updateAppSettings({ uiLang })
-              await applyLanguage(uiLang, app.contentFocus)
-            }}
-          />
           <Segmented<ThemePreference>
             label={t('settings.theme')}
             value={app.theme}
@@ -170,7 +177,7 @@ export default function Settings() {
               ]}
               onChange={(fontSize) => set({ fontSize })}
             />
-            <p className="scripture mt-3">{t('settings.fontPreview')}</p>
+            <p className="spoken mt-3">{t('settings.fontPreview')}</p>
           </div>
         </Section>
 
@@ -202,7 +209,7 @@ export default function Settings() {
               description={t('settings.saveTranscriptsHint')}
             />
           </div>
-          <ButtonLink to="/settings/mic-test" variant="secondary" icon="mic-halo">
+          <ButtonLink to="/settings/mic-test" variant="secondary" icon="microphone">
             {t('settings.micTest')}
           </ButtonLink>
         </Section>
@@ -230,46 +237,8 @@ export default function Settings() {
             <p className="mt-1.5 text-sm text-ink-soft">{t('settings.dayStartHint')}</p>
           </div>
           <Switch checked={app.listenFirst} onChange={(listenFirst) => set({ listenFirst })} label={t('settings.listenFirst')} description={t('settings.listenFirstHint')} />
+          <Switch checked={app.wordColours} onChange={(wordColours) => set({ wordColours })} label={t('settings.wordColours')} description={t('settings.wordColoursHint')} />
           <Switch checked={app.sounds} onChange={(sounds) => set({ sounds })} label={t('settings.sounds')} description={t('settings.soundsHint')} />
-        </Section>
-
-        <Section id="content" title={t('settings.sectionContent')}>
-          <div>
-            <Segmented<ContentFocus>
-              label={t('settings.focus')}
-              value={app.contentFocus}
-              options={[
-                { value: 'prayers', label: t('settings.focusPrayers') },
-                { value: 'affirmations', label: t('settings.focusAffirmations') },
-                { value: 'both', label: t('settings.focusBoth') },
-                { value: 'own', label: t('settings.focusOwn') },
-              ]}
-              onChange={async (contentFocus) => {
-                await updateAppSettings({ contentFocus })
-                await applyContentPreferences(app.uiLang, contentFocus)
-              }}
-            />
-            <p className="mt-1.5 text-sm text-ink-soft">{t('settings.focusHint')}</p>
-          </div>
-          {/* Only Polish affirmations are gendered. */}
-          {app.uiLang === 'pl' && (
-            <div>
-              <Segmented<GrammaticalForm>
-                label={t('settings.form')}
-                value={app.grammaticalForm}
-                options={[
-                  { value: 'm', label: t('settings.formM') },
-                  { value: 'f', label: t('settings.formF') },
-                  { value: 'n', label: t('settings.formN') },
-                ]}
-                onChange={async (grammaticalForm) => {
-                  await updateAppSettings({ grammaticalForm })
-                  await applyGrammaticalForm(grammaticalForm)
-                }}
-              />
-              <p className="mt-1.5 text-sm text-ink-soft">{t('settings.formHint')}</p>
-            </div>
-          )}
         </Section>
 
         <Section id="reminders" title={t('settings.sectionReminders')}>
@@ -298,7 +267,7 @@ export default function Settings() {
 
         <Section id="privacy" title={t('settings.sectionPrivacy')}>
           <p className="flex gap-3 text-sm text-ink-soft">
-            <Icon name="shield-cross" size={20} className="mt-0.5 shrink-0 text-primary" />
+            <Icon name="shield-check" size={20} className="mt-0.5 shrink-0 text-primary" />
             {t('settings.privacyHint')}
           </p>
           <a className="inline-block font-semibold text-primary underline underline-offset-4" href={`${import.meta.env.BASE_URL}privacy.html`} target="_blank" rel="noreferrer">

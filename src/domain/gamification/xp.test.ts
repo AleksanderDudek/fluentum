@@ -1,19 +1,18 @@
 import { describe, expect, it } from 'vitest'
-import { GOLDEN_WINDOW, goldenMultiplier, segmentXp, streakMultiplier, textCompletionXp, TIER_XP, XP_RULES } from './xp'
+import { GOLDEN_WINDOW, goldenMultiplier, segmentXp, streakMultiplier, TIER_XP, XP_RULES } from './xp'
 
 describe('XP constants', () => {
-  it('match the XP table of spec §9.2', () => {
+  it('match the XP table of the spec', () => {
     expect(XP_RULES).toEqual({
       segmentBase: 5,
       segmentCap: 30,
       firstTryBonus: 2,
-      textCompleteRatio: 0.2,
-      sessionComplete: 25,
+      conversationComplete: 25,
       dailyGoal: 50,
     })
   })
 
-  it('reward achievement tiers per spec §9.4', () => {
+  it('reward achievement tiers', () => {
     expect(TIER_XP).toEqual({ bronze: 50, silver: 100, gold: 250, platinum: 500, diamond: 1000 })
   })
 })
@@ -84,13 +83,5 @@ describe('segmentXp in the golden quarter-hour', () => {
   it('is plain XP before and after the window', () => {
     expect(segmentXp(5, false, 0, 60_000).total).toBe(10)
     expect(segmentXp(5, false, 0, 20 * 60_000).total).toBe(10)
-  })
-})
-
-describe('textCompletionXp', () => {
-  it('awards 20% of the segment XP of the completed text, rounded', () => {
-    expect(textCompletionXp(47)).toBe(9)
-    expect(textCompletionXp(48)).toBe(10)
-    expect(textCompletionXp(0)).toBe(0)
   })
 })

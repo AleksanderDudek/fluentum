@@ -26,13 +26,13 @@ export function resultMessage(result: MatchResult, t: TFunction): string {
 }
 
 /**
- * What the Guardian says after a rejected attempt: warm and never scolding, while the precise
+ * What Lori says after a rejected attempt: warm and never scolding, while the precise
  * reason stays in the feedback card. `null` when there is nothing to encourage (nothing was heard).
  */
-export function guardianLine(result: MatchResult, failedAttempts: number, t: TFunction): string | null {
+export function guideLine(result: MatchResult, failedAttempts: number, t: TFunction): string | null {
   if (result.accepted || result.reason === 'empty' || result.reason === 'emptySource') return null
-  if (failedAttempts >= 3) return t('guardian.stuck')
-  if (result.reason === 'extra') return t('guardian.extra')
-  if (result.wrong === 1 && result.missing === 0) return t('guardian.wrong')
-  return t('guardian.missing')
+  if (failedAttempts >= 3) return t('guide.stuck')
+  if (result.reason === 'extra') return t('guide.extra')
+  if (result.wrong === 1 && result.missing === 0) return t('guide.wrong')
+  return t('guide.missing')
 }

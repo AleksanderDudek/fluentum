@@ -18,10 +18,10 @@ export type DialogueLevel = 'A1' | 'A2'
 
 /** A scripted conversation (DECISIONS #101): one bilingual script serves learners of either language. */
 export interface Dialogue {
-  /** Stable id: the hidden text is `dialogue:<key>`. */
+  /** Stable id: the text is `dialogue:<lang>:<key>`. */
   key: string
   level: DialogueLevel
-  /** Icon name (Teleo Glyph or Phosphor, see `components/icons`). */
+  /** Phosphor icon name (see `components/icons`). */
   icon: string
   /** The figure who speaks the bot's lines. */
   partner: CharacterId

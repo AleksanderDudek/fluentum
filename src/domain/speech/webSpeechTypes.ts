@@ -1,6 +1,6 @@
 /**
  * Minimal typing of the Web Speech API (not part of TypeScript's DOM lib).
- * Only the members Teleo uses.
+ * Only the members Fluentum uses.
  */
 export interface RecognitionAlternativeLike {
   readonly transcript: string

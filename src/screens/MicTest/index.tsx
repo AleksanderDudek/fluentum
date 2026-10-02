@@ -11,6 +11,7 @@ import { isIosStandalone } from '@/components/speech/vendor'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { PageHeader } from '@/components/ui/PageHeader'
+import { learningLang } from '@/domain/dialogue'
 import { buildDiff, evaluate, type MatchResult } from '@/domain/matcher'
 import type { OnDeviceStatus, SpeechResult } from '@/domain/speech/SpeechEngine'
 import { SPEECH_LANG, type Lang } from '@/domain/types'
@@ -22,16 +23,17 @@ import { updateAppSettings } from '@/services/settings'
 import { useAppSettings } from '@/stores/settings'
 import { toast } from '@/stores/ui'
 
+/** Phrases in the language being learnt: the recogniser listens in it during conversations. */
 const PHRASES: Record<Lang, string[]> = {
-  pl: ['Teleo', 'Dzień dobry', 'Jestem spokojny i skupiony.', 'Chleba naszego powszedniego daj nam dzisiaj.'],
-  en: ['Teleo', 'Good morning', 'I am calm and focused.', 'Give us this day our daily bread.'],
+  pl: ['Fluentum', 'Dzień dobry', 'Poproszę kawę.', 'Gdzie jest dworzec?'],
+  en: ['Fluentum', 'Good morning', 'I’d like a coffee, please.', 'Where is the train station?'],
 }
 
 export default function MicTest() {
   const { t } = useTranslation()
   const app = useAppSettings()
-  const lang: Lang = app.uiLang
-  const [phrase, setPhrase] = useState(PHRASES[app.uiLang][1] ?? '')
+  const lang: Lang = learningLang(app.uiLang)
+  const [phrase, setPhrase] = useState(PHRASES[lang][1] ?? '')
   const [custom, setCustom] = useState('')
   const [outcome, setOutcome] = useState<{ result: MatchResult; speech: SpeechResult } | null>(null)
   const [askPrivacy, setAskPrivacy] = useState(false)
@@ -68,7 +70,7 @@ export default function MicTest() {
 
   return (
     <>
-      <PageHeader backTo="/settings" rubric={t('micTest.rubric')} title={t('micTest.title')} subtitle={t('micTest.intro')} />
+      <PageHeader backTo="/settings" eyebrow={t('micTest.eyebrow')} title={t('micTest.title')} subtitle={t('micTest.intro')} />
 
       <Card className="space-y-5">
         <fieldset>
@@ -85,7 +87,7 @@ export default function MicTest() {
                   setOutcome(null)
                 }}
                 className={cn(
-                  'rounded-full border px-3 py-1.5 font-serif text-base',
+                  'rounded-full border px-3 py-1.5 font-display text-base',
                   !custom && phrase === p ? 'border-primary bg-primary text-on-primary' : 'border-line bg-paper hover:border-line-strong',
                 )}
               >
@@ -102,21 +104,21 @@ export default function MicTest() {
                 setOutcome(null)
               }}
               placeholder={t('micTest.customPlaceholder')}
-              className="h-11 w-full rounded-xl border border-line-strong bg-paper px-4 font-serif placeholder:font-sans placeholder:text-ink-faint focus:outline-2 focus:outline-gold"
+              className="h-11 w-full rounded-xl border border-line-strong bg-paper px-4 font-display placeholder:font-sans placeholder:text-ink-faint focus:outline-2 focus:outline-gold"
             />
           </label>
         </fieldset>
       </Card>
 
       <section className="mt-6 flex flex-col items-center text-center">
-        <p className="scripture max-w-xl">{target}</p>
+        <p className="spoken max-w-xl">{target}</p>
         <div className="mt-8">
           <MicButton listening={listening} busy={capture.phase === 'starting' || capture.phase === 'stopping'} disabled={!engine} onClick={toggle} />
         </div>
         <p className="mt-3 h-6 text-sm font-medium text-ink-soft" aria-live="polite">
           {capture.phase === 'starting' ? t('speech.starting') : listening ? t('speech.listening') : capture.phase === 'stopping' ? t('speech.checking') : t('speech.spaceHint')}
         </p>
-        {listening && capture.transcript && <p className="mt-2 max-w-xl font-serif text-lg text-ink-soft italic">{capture.transcript}</p>}
+        {listening && capture.transcript && <p className="mt-2 max-w-xl font-display text-lg text-ink-soft italic">{capture.transcript}</p>}
       </section>
 
       {engineState.status === 'unsupported' && (
@@ -139,7 +141,7 @@ export default function MicTest() {
           <DiffLegend />
           <div className="border-t border-line pt-3 text-sm text-ink-soft">
             <p className="font-semibold text-ink">{t('micTest.heard')}</p>
-            <p className="font-serif text-base">{outcome.speech.alternatives[0] ?? '—'}</p>
+            <p className="font-display text-base">{outcome.speech.alternatives[0] ?? '—'}</p>
             {outcome.speech.alternatives.length > 1 && (
               <p className="mt-1">
                 {t('micTest.alternatives')}: {outcome.speech.alternatives.slice(1).join(' · ')}

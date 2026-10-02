@@ -50,7 +50,7 @@ export function friendLinkCode(card: FriendCard): string {
   return encodeFriendCard(card)
 }
 
-/** The link that opens a card in Teleo (this build's own address, so it works in any deployment). */
+/** The link that opens a card in Fluentum (this build's own address, so it works in any deployment). */
 export function friendLink(card: FriendCard, origin = window.location.origin): string {
   return new URL(`${import.meta.env.BASE_URL}#/friend?c=${friendLinkCode(card)}`, origin).href
 }

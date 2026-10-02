@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate, useSearchParams } from 'react-router'
 import { Character } from '@/components/brand/Character'
 import { Icon } from '@/components/icons/Icon'
-import { ArchFrame } from '@/components/ui/ArchFrame'
+import { Pool } from '@/components/ui/Pool'
 import { Button, ButtonLink } from '@/components/ui/Button'
 import { db } from '@/db/schema'
 import { decodeFriendCard } from '@/domain/leaderboard/friends'
@@ -55,14 +55,14 @@ export default function Friend() {
 
   return (
     <main className="mx-auto flex min-h-dvh max-w-md flex-col px-6 pt-[max(env(safe-area-inset-top),2rem)] pb-10 text-center">
-      <ArchFrame glow className="px-5 pt-6 pb-6">
-        <Character id={card.character} pose="orans" size={170} decorative className="mx-auto" />
-        <p className="rubric mt-2">{t('friend.rubric')}</p>
+      <Pool glow className="px-5 pt-6 pb-9">
+        <Character id={card.character} wave size={170} decorative className="mx-auto" />
+        <p className="eyebrow mt-2">{t('friend.eyebrow')}</p>
         <h1 className="mt-1 text-3xl font-semibold">{t('friend.title', { name: card.name })}</h1>
         <p className="mt-1 text-sm text-ink-soft">
           {t('friend.cardFrom', { date: new Intl.DateTimeFormat(i18n.language, { dateStyle: 'medium', timeStyle: 'short' }).format(card.at) })}
         </p>
-      </ArchFrame>
+      </Pool>
 
       <dl className="mt-6 grid grid-cols-2 gap-3">
         {stats.map((stat) => (
@@ -82,7 +82,7 @@ export default function Friend() {
         </Button>
       </div>
       <p className="mt-6 flex justify-center gap-2 text-xs text-ink-faint">
-        <Icon name="shield-cross" size={14} className="mt-0.5 text-primary" />
+        <Icon name="shield-check" size={14} className="mt-0.5 text-primary" />
         {t('friend.privacy')}
       </p>
     </main>

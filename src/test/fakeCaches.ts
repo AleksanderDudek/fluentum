@@ -1,6 +1,6 @@
 import type { CacheLike, CacheStorageLike } from '@/domain/speech/whisper/cache'
 
-const absolute = (url: string) => new URL(url, 'https://teleo.test/').href
+const absolute = (url: string) => new URL(url, 'https://fluentum.test/').href
 
 /** In-memory Cache Storage (unit tests). Keys are resolved like the real API resolves request strings. */
 export class FakeCache implements CacheLike {

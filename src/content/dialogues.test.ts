@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { GLYPHS } from '@/components/icons/glyphs'
 import { PHOSPHOR } from '@/components/icons/phosphor'
+import { ACHIEVEMENT_RULES } from '@/domain/gamification'
 import { dialogueSegments, glossIds, parseGloss, userLines } from '@/domain/dialogue'
 import { evaluate, normalize } from '@/domain/matcher'
 import { CHARACTER_IDS, LANGS } from '@/domain/types'
@@ -8,12 +8,23 @@ import { DIALOGUES, dialogueOfText, dialogueTextId } from './dialogues'
 
 const MARKUP = /[{}|]/
 
-describe('builtin dialogues', () => {
+describe('the course', () => {
   it('have unique, url-safe keys', () => {
     const keys = DIALOGUES.map((d) => d.key)
     expect(new Set(keys).size).toBe(keys.length)
     for (const key of keys) expect(key).toMatch(/^[a-z][a-z0-9-]*$/)
-    expect(DIALOGUES.length).toBeGreaterThanOrEqual(8)
+    expect(DIALOGUES.length).toBeGreaterThanOrEqual(16)
+  })
+
+  it('runs from A1 to A2 (course order)', () => {
+    const levels = DIALOGUES.map((d) => d.level)
+    expect(levels).toEqual([...levels].sort())
+  })
+
+  it('offers every star and every fully mastered conversation the achievements ask for', () => {
+    const top = (metric: string) => Math.max(...ACHIEVEMENT_RULES.filter((rule) => rule.metric === metric).map((rule) => rule.threshold))
+    expect(top('stars')).toBeLessThanOrEqual(DIALOGUES.length * 3)
+    expect(top('mastered')).toBeLessThanOrEqual(DIALOGUES.length)
   })
 
   it.each(DIALOGUES.map((d) => [d.key, d] as const))('%s: has a title, scene, level, icon and partner', (_, dialogue) => {
@@ -22,7 +33,7 @@ describe('builtin dialogues', () => {
       expect(dialogue.scene[lang]?.trim()).toBeTruthy()
     }
     expect(['A1', 'A2']).toContain(dialogue.level)
-    expect(Object.hasOwn(PHOSPHOR, dialogue.icon) || Object.hasOwn(GLYPHS, dialogue.icon)).toBe(true)
+    expect(Object.hasOwn(PHOSPHOR, dialogue.icon)).toBe(true)
     expect(CHARACTER_IDS).toContain(dialogue.partner)
   })
 
@@ -70,14 +81,14 @@ describe('builtin dialogues', () => {
 })
 
 describe('dialogueOfText', () => {
-  it('finds the dialogue and the language being learnt behind its hidden text id', () => {
+  it('finds the conversation and the language being learnt behind its text id', () => {
     expect(dialogueTextId('cafe', 'en')).toBe('dialogue:en:cafe')
     const found = dialogueOfText(dialogueTextId('cafe', 'pl'))
     expect(found?.dialogue.key).toBe('cafe')
     expect(found?.lang).toBe('pl')
     expect(dialogueOfText('dialogue:en:nope')).toBeUndefined()
     expect(dialogueOfText('dialogue:de:cafe')).toBeUndefined()
-    expect(dialogueOfText('builtin:en.lords-prayer')).toBeUndefined()
+    expect(dialogueOfText('something-else')).toBeUndefined()
     expect(dialogueOfText(undefined)).toBeUndefined()
   })
 })

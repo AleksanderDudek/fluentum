@@ -16,7 +16,7 @@ export function PwaUpdatePrompt() {
     offlineReady: [offlineReady],
     updateServiceWorker,
   } = useRegisterSW({
-    onRegisterError: (error: unknown) => console.warn('[teleo] service worker registration failed', error),
+    onRegisterError: (error: unknown) => console.warn('[fluentum] service worker registration failed', error),
   })
 
   useEffect(() => {

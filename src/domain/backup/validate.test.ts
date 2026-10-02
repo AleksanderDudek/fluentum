@@ -6,7 +6,6 @@ function emptyData(): BackupData {
   return {
     texts: [],
     segments: [],
-    sessionTemplates: [],
     sessionRuns: [],
     attempts: [],
     dailyStats: [],
@@ -14,70 +13,59 @@ function emptyData(): BackupData {
     achievements: [],
     xpLedger: [],
     settings: [],
+    friends: [],
   }
 }
 
+const appSettings = () => ({
+  uiLang: 'pl' as const,
+  theme: 'system' as const,
+  engine: 'auto' as const,
+  whisperModel: 'tiny' as const,
+  dayStartHour: 3,
+  dailyGoal: 20,
+  handsFree: false,
+  saveTranscripts: true,
+  fontSize: 'md' as const,
+  listenFirst: false,
+  wordColours: true,
+  reminderTime: '19:00',
+  onboardingCompleted: true,
+  speechPrivacyAcknowledged: true,
+  character: 'michal' as const,
+  sounds: true,
+  displayName: '',
+})
+
 function realisticData(): BackupData {
   return {
-    texts: [
-      {
-        id: 't1',
-        title: 'Ojcze nasz',
-        body: 'Ojcze nasz, któryś jest w niebie...',
-        type: 'prayer',
-        lang: 'pl',
-        source: 'builtin',
-        tags: ['classic'],
-        archived: false,
-        splitMode: 'sentence',
-        createdAt: 1,
-        updatedAt: 2,
-      },
-    ],
-    segments: [
-      {
-        id: 's1',
-        textId: 't1',
-        content: 'Ojcze nasz, któryś jest w niebie.',
-        order: 0,
-        wordCount: 6,
-        archived: false,
-      },
-    ],
-    sessionTemplates: [
-      {
-        id: 'st1',
-        name: 'Rosary',
-        pinned: true,
-        archived: false,
-        items: [{ textId: 't1', repeat: 1 }],
-        createdAt: 1,
-        updatedAt: 2,
-        source: 'builtin',
-      },
-    ],
+    texts: [{ id: 'dialogue:en:cafe', title: 'W kawiarni', body: 'I’d like a coffee.', lang: 'en', createdAt: 1, updatedAt: 2 }],
+    segments: [{ id: 's1', textId: 'dialogue:en:cafe', content: 'I’d like a coffee.', order: 0, wordCount: 4, archived: false }],
     sessionRuns: [
       {
         id: 'sr1',
-        dayKey: '2026-09-25',
-        title: 'Morning',
+        textId: 'dialogue:en:cafe',
+        dayKey: '2026-10-02',
+        title: 'W kawiarni',
         status: 'completed',
-        plan: [{ segmentId: 's1', textId: 't1', block: 0, fullText: true, item: 0 }],
-        entries: [{ status: 'accepted', attempts: 1, firstTry: true, xp: 5 }],
+        plan: [{ segmentId: 's1', textId: 'dialogue:en:cafe' }],
+        entries: [{ status: 'accepted', attempts: 1, firstTry: true, xp: 11 }],
         cursor: 1,
         startedAt: 1000,
-        xpEarned: 5,
+        xpEarned: 51,
         lastActivityAt: 1000,
-        mode: 'read',
+        mode: 'prompt',
+        newStar: 'prompt',
+        unlocked: ['conversation.1'],
       },
     ],
     attempts: [
       {
         id: 'a1',
         segmentId: 's1',
-        textId: 't1',
+        textId: 'dialogue:en:cafe',
         sessionRunId: 'sr1',
-        dayKey: '2026-09-25',
+        dayKey: '2026-10-02',
         timestamp: 1000,
         coverage: 1,
         extra: 0,
@@ -91,37 +79,23 @@ function realisticData(): BackupData {
     ],
     dailyStats: [
       {
-        dayKey: '2026-09-25',
+        dayKey: '2026-10-02',
         segmentsAccepted: 1,
         attempts: 1,
-        textsCompleted: 0,
-        sessionsCompleted: 0,
-        xp: 5,
-        langs: ['pl'],
+        conversationsCompleted: 1,
+        xp: 61,
         goalReached: false,
         frozen: false,
         morning: true,
         evening: false,
         firstTryAccepted: 1,
+        readingMs: 1700,
       },
     ],
-    textStats: [
-      {
-        textId: 't1',
-        repetitions: 1,
-        segmentsAccepted: 1,
-        currentDayStreak: 1,
-        bestDayStreak: 1,
-        perfectRuns: 0,
-        consecutiveFirstTry: 1,
-        bestConsecutiveFirstTry: 1,
-        memoryRuns: 0,
-      },
-    ],
-    achievements: [{ key: 'k1', ruleId: 'r1', tier: 'bronze', xp: 10, unlockedAt: 1000 }],
-    xpLedger: [{ timestamp: 1000, dayKey: '2026-09-25', reason: 'segment', amount: 5 }],
-    settings: [{ key: 'meta', value: { schemaVersion: 1, seedVersion: 1, installedAt: 1000 } }],
-    bibleReadings: [{ readingId: 'kjv.GEN.0', translation: 'kjv', book: 'GEN', index: 0, ofBook: 60, completedAt: 1000, dayKey: '2026-09-25', skipped: 0 }],
+    textStats: [{ textId: 'dialogue:en:cafe', repetitions: 1, segmentsAccepted: 1, perfectRuns: 1, stars: ['prompt'], lastPracticedAt: 1000 }],
+    achievements: [{ key: 'conversation.1', ruleId: 'conversation.1', tier: 'bronze', xp: 50, unlockedAt: 1000 }],
+    xpLedger: [{ timestamp: 1000, dayKey: '2026-10-02', reason: 'line', amount: 11 }],
+    settings: [{ key: 'meta', value: { schemaVersion: 1, installedAt: 1000 } }],
     friends: [
       {
         v: 1,
@@ -130,9 +104,9 @@ function realisticData(): BackupData {
         character: 'jan',
         at: 900,
         streak: 2,
-        day: { k: '2026-09-25', p: 40 },
-        week: { k: '2026-09-21', p: 120 },
-        month: { k: '2026-09', p: 400 },
+        day: { k: '2026-10-02', p: 40 },
+        week: { k: '2026-09-28', p: 120 },
+        month: { k: '2026-10', p: 400 },
         receivedAt: 950,
       },
     ],
@@ -147,50 +121,19 @@ function backupWith(data: BackupData): unknown {
   return cloneJson({ app: BACKUP_APP, schemaVersion: BACKUP_SCHEMA_VERSION, exportedAt: 1000, data })
 }
 
-describe('validateBackup: tables added later (v1.3)', () => {
-  const reading = { readingId: 'kjv.GEN.1', translation: 'kjv', book: 'GEN', index: 0, ofBook: 64, completedAt: 1000, dayKey: '2026-09-27', skipped: 0 }
-  const friend = {
-    v: 1,
-    id: 'f7c1a2b3',
-    name: 'Michał',
-    character: 'michal',
-    at: 1000,
-    streak: 3,
-    day: { k: '2026-09-27', p: 10 },
-    week: { k: '2026-09-21', p: 50 },
-    month: { k: '2026-09', p: 90 },
-    receivedAt: 2000,
-  }
-
-  it('reads backups made before they existed as empty', () => {
-    const result = validateBackup(backupWith(emptyData()))
-    expect(result.ok && result.backup.data.bibleReadings).toEqual([])
-    expect(result.ok && result.backup.data.friends).toEqual([])
-  })
-
+describe('validateBackup: file header', () => {
   it('accepts the app version that wrote the file, and only as text', () => {
-    const file = { ...(backupWith(realisticData()) as object), appVersion: '1.2.0' }
-    expect(validateBackup(file)).toMatchObject({ ok: true, backup: { appVersion: '1.2.0' } })
+    const file = { ...(backupWith(realisticData()) as object), appVersion: '1.0.0' }
+    expect(validateBackup(file)).toMatchObject({ ok: true, backup: { appVersion: '1.0.0' } })
     expect(validateBackup({ ...file, appVersion: 12 })).toEqual({ ok: false, code: 'invalidShape', path: 'appVersion' })
   })
 
-  it('accepts the hidden texts of Bible readings and dialogues', () => {
-    const data = realisticData()
-    const text = data.texts[0]!
-    const result = validateBackup(
-      backupWith({ ...data, texts: [{ ...text, id: 'bible:kjv.GEN.0', source: 'bible' }, { ...text, id: 'dialogue:en:cafe', source: 'dialogue' }] }),
-    )
-    expect(result.ok).toBe(true)
+  it('refuses a Teleo backup: the two apps never read each other’s files', () => {
+    expect(validateBackup({ app: 'teleo', schemaVersion: 1, exportedAt: 1, data: emptyData() })).toEqual({ ok: false, code: 'wrongApp' })
   })
 
-  it('accepts valid Bible readings and friends', () => {
-    const result = validateBackup(backupWith({ ...emptyData(), bibleReadings: [reading], friends: [friend] } as BackupData))
-    expect(result.ok).toBe(true)
-  })
-
-  it('rejects malformed rows with a precise path', () => {
-    const badReading = validateBackup(backupWith({ ...emptyData(), bibleReadings: [{ ...reading, translation: 'nrsv' }] } as unknown as BackupData))
-    expect(badReading).toEqual({ ok: false, code: 'invalidShape', path: 'data.bibleReadings[0].translation' })
+  it('rejects malformed friend cards with a precise path', () => {
+    const friend = realisticData().friends[0]!
     const badFriend = validateBackup(backupWith({ ...emptyData(), friends: [{ ...friend, week: { k: 3 } }] } as unknown as BackupData))
     expect(badFriend).toMatchObject({ ok: false, path: 'data.friends[0].week.k' })
     const notArray = validateBackup(backupWith({ ...emptyData(), friends: {} } as unknown as BackupData))
@@ -236,62 +179,7 @@ describe('validateBackup: acceptance', () => {
 
   it('accepts a full AppSettings settings row', () => {
     const data = realisticData()
-    data.settings = [
-      {
-        key: 'app',
-        value: {
-          uiLang: 'pl',
-          theme: 'system',
-          engine: 'auto',
-          whisperModel: 'tiny',
-          dayStartHour: 3,
-          dailyGoal: 20,
-          handsFree: false,
-          saveTranscripts: true,
-          fontSize: 'md',
-          listenFirst: false,
-          grammaticalForm: 'm',
-          contentFocus: 'both',
-          reminderTime: '07:00',
-          onboardingCompleted: true,
-          speechPrivacyAcknowledged: true,
-          character: 'michal',
-          sounds: true,
-          displayName: '',
-        },
-      },
-    ]
-    expect(validateBackup(backupWith(data)).ok).toBe(true)
-  })
-
-  it('accepts attempts exported before the coverage ladder (a strictness, no threshold)', () => {
-    const data = realisticData()
-    const { threshold: _threshold, ...rest } = data.attempts[0]!
-    data.attempts = [{ ...rest, strictness: 'strict' } as never]
-    expect(validateBackup(backupWith(data)).ok).toBe(true)
-  })
-
-  it('accepts AppSettings exported before characters existed', () => {
-    const data = realisticData()
-    const legacy = {
-      uiLang: 'en',
-      theme: 'dark',
-      engine: 'webspeech',
-      whisperModel: 'base',
-      strictness: 'lenient',
-      dayStartHour: 0,
-      dailyGoal: 5,
-      handsFree: true,
-      saveTranscripts: false,
-      fontSize: 'lg',
-      listenFirst: true,
-      grammaticalForm: 'f',
-      contentFocus: 'prayers',
-      reminderTime: '21:30',
-      onboardingCompleted: true,
-      speechPrivacyAcknowledged: false,
-    }
-    data.settings = [{ key: 'app', value: legacy as never }]
+    data.settings = [{ key: 'app', value: appSettings() }]
     expect(validateBackup(backupWith(data)).ok).toBe(true)
   })
 
@@ -303,11 +191,10 @@ describe('validateBackup: acceptance', () => {
         value: {
           freezesAvailable: 1,
           lastFreezeAwardStreak: 0,
-          perfectSessions: 0,
-          fullSessions: 0,
+          perfectConversations: 0,
           comebacks: 0,
           totalXp: 0,
-          pendingFreezeNotice: ['2026-09-24'],
+          pendingFreezeNotice: ['2026-10-01'],
         },
       },
     ]
@@ -386,27 +273,17 @@ describe('validateBackup: per-table field rejection', () => {
       },
     },
     {
-      name: 'sessionTemplates: nested items[1].repeat',
-      path: 'data.sessionTemplates[0].items[1].repeat',
+      name: 'sessionRuns: plan[0].segmentId missing',
+      path: 'data.sessionRuns[0].plan[0].segmentId',
       mutate: (d) => {
-        d.sessionTemplates[0]!.items = [
-          { textId: 't1', repeat: 1 },
-          { textId: 't1', repeat: 'lots' as never },
-        ]
+        d.sessionRuns[0]!.plan[0] = { textId: 'dialogue:en:cafe' } as never
       },
     },
     {
-      name: 'sessionRuns: plan[0].block negative',
-      path: 'data.sessionRuns[0].plan[0].block',
+      name: 'sessionRuns: unknown way',
+      path: 'data.sessionRuns[0].mode',
       mutate: (d) => {
-        d.sessionRuns[0]!.plan[0]!.block = -1
-      },
-    },
-    {
-      name: 'sessionRuns: plan[0].item negative',
-      path: 'data.sessionRuns[0].plan[0].item',
-      mutate: (d) => {
-        d.sessionRuns[0]!.plan[0]!.item = -1
+        d.sessionRuns[0]!.mode = 'memory' as never
       },
     },
     {
@@ -434,14 +311,21 @@ describe('validateBackup: per-table field rejection', () => {
       name: 'dailyStats: dayKey not YYYY-MM-DD',
       path: 'data.dailyStats[0].dayKey',
       mutate: (d) => {
-        d.dailyStats[0] = { ...d.dailyStats[0]!, dayKey: '2026/09/25' as never }
+        d.dailyStats[0] = { ...d.dailyStats[0]!, dayKey: '2026/10/02' as never }
       },
     },
     {
       name: 'textStats: counter not finite',
-      path: 'data.textStats[0].bestConsecutiveFirstTry',
+      path: 'data.textStats[0].perfectRuns',
       mutate: (d) => {
-        d.textStats[0] = { ...d.textStats[0]!, bestConsecutiveFirstTry: 'nope' as never }
+        d.textStats[0] = { ...d.textStats[0]!, perfectRuns: 'nope' as never }
+      },
+    },
+    {
+      name: 'textStats: unknown star',
+      path: 'data.textStats[0].stars[1]',
+      mutate: (d) => {
+        d.textStats[0] = { ...d.textStats[0]!, stars: ['read', 'gold'] as never }
       },
     },
     {
@@ -478,26 +362,7 @@ describe('validateBackup: per-table field rejection', () => {
       mutate: (d) => {
         d.settings[0] = {
           key: 'app',
-          value: {
-            uiLang: 'pl',
-            theme: 'system',
-            engine: 'auto',
-            whisperModel: 'tiny',
-            dayStartHour: 3,
-            dailyGoal: 20,
-            handsFree: false,
-            saveTranscripts: true,
-            fontSize: 'md',
-            listenFirst: false,
-            grammaticalForm: 'm',
-            contentFocus: 'both',
-            reminderTime: '07:00',
-            onboardingCompleted: true,
-            speechPrivacyAcknowledged: true,
-            character: 'zeus' as never,
-            sounds: true,
-            displayName: '',
-          },
+          value: { ...appSettings(), character: 'zeus' as never },
         }
       },
     },
@@ -507,26 +372,7 @@ describe('validateBackup: per-table field rejection', () => {
       mutate: (d) => {
         d.settings[0] = {
           key: 'app',
-          value: {
-            uiLang: 'pl',
-            theme: 'purple' as never,
-            engine: 'auto',
-            whisperModel: 'tiny',
-            dayStartHour: 3,
-            dailyGoal: 20,
-            handsFree: false,
-            saveTranscripts: true,
-            fontSize: 'md',
-            listenFirst: false,
-            grammaticalForm: 'm',
-            contentFocus: 'both',
-            reminderTime: '07:00',
-            onboardingCompleted: true,
-            speechPrivacyAcknowledged: true,
-            character: 'anna',
-            sounds: true,
-            displayName: '',
-          },
+          value: { ...appSettings(), theme: 'purple' as never },
         }
       },
     },

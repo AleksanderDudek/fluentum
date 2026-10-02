@@ -6,7 +6,7 @@ import { defineConfig, type Plugin } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import { ORT_CACHE, ORT_RUNTIME_FILES } from './src/domain/speech/whisper/runtime.ts'
 
-const BASE = '/teleo/'
+const BASE = '/fluentum/'
 const readJson = <T>(path: string) => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8')) as T
 const { version } = readJson<{ version: string }>('./package.json')
 const ORT_VERSION = readJson<{ version: string }>('./node_modules/onnxruntime-web/package.json').version
@@ -42,7 +42,7 @@ function selfHostedOrtRuntime(): Plugin {
   const prefix = `${BASE}ort/${ORT_VERSION}/`
   const contentType = (file: string) => (file.endsWith('.wasm') ? 'application/wasm' : 'text/javascript')
   return {
-    name: 'teleo:ort-runtime',
+    name: 'fluentum:ort-runtime',
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const path = req.url?.split('?')[0] ?? ''
@@ -62,12 +62,12 @@ function selfHostedOrtRuntime(): Plugin {
 
 /**
  * onnxruntime-web points at its .wasm with `new URL('ort-wasm-…', import.meta.url)`, which makes
- * Vite emit another 27 MB copy into assets/. Teleo always hands the binary over itself (see
+ * Vite emit another 27 MB copy into assets/. Fluentum always hands the binary over itself (see
  * `whisper.worker.ts`), so those references are marked `@vite-ignore` (worker build only).
  */
 function ignoreBundledOrtWasm(): Plugin {
   return {
-    name: 'teleo:ignore-bundled-ort-wasm',
+    name: 'fluentum:ignore-bundled-ort-wasm',
     enforce: 'pre',
     transform(code, id) {
       if (!/onnxruntime-web[\\/]dist[\\/]/.test(id)) return null
@@ -78,7 +78,7 @@ function ignoreBundledOrtWasm(): Plugin {
 
 function contentSecurityPolicy(): Plugin {
   return {
-    name: 'teleo:csp',
+    name: 'fluentum:csp',
     apply: 'build',
     // Right after <meta charset> (which must stay first) and before any script or style.
     transformIndexHtml: (html) =>
@@ -109,18 +109,18 @@ export default defineConfig({
       includeAssets: ['favicon.svg', 'privacy.html', 'icons/*.png', 'icons/*.svg'],
       manifest: {
         id: BASE,
-        name: 'Teleo – modlitwy i afirmacje',
-        short_name: 'Teleo',
+        name: 'Fluentum – rozmowy po angielsku i po polsku',
+        short_name: 'Fluentum',
         description:
-          'Wypowiadaj modlitwy i afirmacje na głos – Teleo sprawdza każde zdanie i śledzi Twoją regularność. / Speak prayers and affirmations aloud – Teleo verifies every sentence and tracks your consistency.',
+          'Mów w nowym języku – krótkie rozmowy na głos, każde zdanie sprawdzone, postępy, gwiazdki i seria dni. / Speak a new language – short conversations aloud, every line checked, progress, stars and streaks.',
         lang: 'pl',
         dir: 'ltr',
         start_url: BASE,
         scope: BASE,
         display: 'standalone',
-        theme_color: '#1f3b8c',
-        background_color: '#f4ecda',
-        categories: ['lifestyle', 'education', 'health'],
+        theme_color: '#0b6b66',
+        background_color: '#eef4f1',
+        categories: ['education', 'lifestyle'],
         icons: [
           { src: 'icons/pwa-64x64.png', sizes: '64x64', type: 'image/png' },
           { src: 'icons/pwa-192x192.png', sizes: '192x192', type: 'image/png' },
@@ -134,10 +134,10 @@ export default defineConfig({
         ],
         // Richer install sheet on Android/desktop Chrome.
         screenshots: [
-          { src: 'screenshots/player-narrow.png', sizes: '780x1688', type: 'image/png', form_factor: 'narrow', label: 'Live checking, sentence by sentence' },
-          { src: 'screenshots/today-narrow.png', sizes: '780x1688', type: 'image/png', form_factor: 'narrow', label: 'Streak, daily goal and level' },
-          { src: 'screenshots/progress-narrow.png', sizes: '780x1688', type: 'image/png', form_factor: 'narrow', label: 'Your garden grows with every level' },
-          { src: 'screenshots/library-wide.png', sizes: '1280x800', type: 'image/png', form_factor: 'wide', label: 'Library of prayers and affirmations' },
+          { src: 'screenshots/chat-narrow.png', sizes: '780x1688', type: 'image/png', form_factor: 'narrow', label: 'A conversation: your partner speaks, you answer aloud' },
+          { src: 'screenshots/home-narrow.png', sizes: '780x1688', type: 'image/png', form_factor: 'narrow', label: 'Streak, daily goal and the next conversation' },
+          { src: 'screenshots/course-narrow.png', sizes: '780x1688', type: 'image/png', form_factor: 'narrow', label: 'The course: three stars for every conversation' },
+          { src: 'screenshots/progress-wide.png', sizes: '1280x800', type: 'image/png', form_factor: 'wide', label: 'Progress, achievements and friends' },
         ],
       },
       workbox: {
@@ -158,13 +158,6 @@ export default defineConfig({
             urlPattern: new RegExp(`${BASE}ort/`.replaceAll('/', '\\/')),
             handler: 'CacheFirst',
             options: { cacheName: ORT_CACHE, cacheableResponse: { statuses: [200] } },
-          },
-          {
-            // Bible texts (≈ 9 MB in all) are fetched book by book when read and kept for offline use;
-            // never precached. Stale-while-revalidate picks up a regenerated file on a later visit.
-            urlPattern: new RegExp(`${BASE}bible/`.replaceAll('/', '\\/')),
-            handler: 'StaleWhileRevalidate',
-            options: { cacheName: 'teleo-bible', cacheableResponse: { statuses: [200] } },
           },
         ],
       },

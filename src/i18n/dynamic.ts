@@ -14,15 +14,15 @@ export function achievementName(t: TFunction, ruleId: string): string {
   return tKey(t, `achievements.${ruleId}.name`)
 }
 
-export function achievementDescription(t: TFunction, ruleId: string, textTitle?: string): string {
-  return tKey(t, `achievements.${ruleId}.desc`, { title: textTitle ?? '' })
+export function achievementDescription(t: TFunction, ruleId: string): string {
+  return tKey(t, `achievements.${ruleId}.desc`)
 }
 
 export function tierName(t: TFunction, tier: AchievementRule['tier']): string {
   return tKey(t, `tiers.${tier}`)
 }
 
-/** "Sprout", or "Teleo II" past level 20. */
+/** "Sprout", or "Fluent II" past level 20. */
 export function levelName(t: TFunction, level: number): string {
   if (level <= 20) return tKey(t, `levelNames.${level}`)
   return t('level.circle', { roman: toRoman(level - 20) })

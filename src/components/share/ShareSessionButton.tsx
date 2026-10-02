@@ -2,9 +2,9 @@ import { useTranslation } from 'react-i18next'
 import type { ButtonSize, ButtonVariant } from '@/components/ui/buttonClasses'
 import type { CharacterId } from '@/domain/types'
 import { ShareButton } from './ShareButton'
-import { formatShare, sessionShareText, type SessionShare } from './shareText'
+import { sessionShareText, type SessionShare } from './shareText'
 
-/** "Share your result" after a session: its title, sentences said, first-try rate, points and streak. */
+/** "Share your result" after a conversation: its title, lines said, first-try rate, points, streak and stars. */
 export function ShareSessionButton({
   session,
   character,
@@ -32,18 +32,18 @@ export function ShareSessionButton({
       size={size}
       block={block}
       payload={{
-        text: sessionShareText(session, t, i18n.language),
+        text: sessionShareText(session, t),
         fileName: t('share.sessionFileName'),
         card: {
-          rubric: date,
+          eyebrow: date,
           title: session.title,
           stats: [
-            { value: `${session.accepted}/${session.total}`, label: t('share.cardSentences') },
+            { value: `${session.accepted}/${session.total}`, label: t('share.cardLines') },
             { value: `${Math.round(session.firstTryRate * 100)}%`, label: t('share.cardFirstTry') },
             { value: `+${number.format(session.xp)}`, label: t('share.cardPoints') },
             { value: String(session.streak), label: t('share.cardStreak') },
           ],
-          note: session.bibleShare ? `${formatShare(session.bibleShare, i18n.language)} ${t('share.cardBible')}` : undefined,
+          note: t('share.cardStars', { count: session.stars }),
         },
       }}
     />

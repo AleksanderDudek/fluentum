@@ -108,7 +108,7 @@ export function ShareButton({
       )}
       {/* The figure drawn into the card; its SVG uses fixed pigments, so it renders on its own. */}
       <div ref={figureBox} hidden aria-hidden>
-        <Character id={character} pose="praying" size={300} decorative />
+        <Character id={character} wave size={300} decorative />
       </div>
     </div>
   )

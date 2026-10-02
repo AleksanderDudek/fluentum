@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, Outlet, useLocation, useMatches, useNavigation } from 'react-router'
 import { Icon } from '@/components/icons/Icon'
-import { TeleoMark } from '@/components/Ornaments'
+import { FluentumMark } from '@/components/brand/Mark'
 import { SupportBanner } from '@/components/support/SupportBanner'
 import { SupportStrip } from '@/components/support/SupportStrip'
 import { dayKeyFor } from '@/domain/time/dayKey'
@@ -24,9 +24,9 @@ function TabBar({ active, hidden }: { active: TabKey | null; hidden: boolean }) 
         hidden && 'max-lg:hidden',
       )}
     >
-      <div className="mb-8 hidden flex-col items-center gap-1 text-primary lg:flex">
-        <TeleoMark className="size-9" />
-        <span className="rubric text-[0.8rem]">{t('app.name')}</span>
+      <div className="mb-8 hidden flex-col items-center gap-1.5 lg:flex">
+        <FluentumMark className="size-10" />
+        <span className="font-display text-[0.8rem] font-semibold text-primary">{t('app.name')}</span>
       </div>
       <ul className="mx-auto flex max-w-lg justify-around px-2 pt-1.5 lg:flex-col lg:items-center lg:gap-3">
         {TABS.map(({ to, key, icon }) => {
@@ -51,18 +51,18 @@ function TabBar({ active, hidden }: { active: TabKey | null; hidden: boolean }) 
                 <span
                   aria-hidden
                   className={cn(
-                    'absolute -top-1.5 h-0.5 w-7 rounded-full bg-gold transition-opacity lg:top-1/2 lg:-left-3 lg:h-7 lg:w-0.5 lg:-translate-y-1/2',
+                    'absolute -top-1.5 h-0.5 w-7 rounded-full bg-primary transition-opacity lg:top-1/2 lg:-left-3 lg:h-7 lg:w-0.5 lg:-translate-y-1/2',
                     isActive ? 'opacity-100' : 'opacity-0',
                   )}
                 />
-                {/* Active: a gold-soft halo pill and a gilded icon; inactive: a quiet same-colour fill. */}
+                {/* Active: a soft teal pill and a sunny icon fill; inactive: a quiet same-colour fill. */}
                 <span
                   className={cn(
                     'grid h-8 w-12 place-items-center rounded-full transition-[background-color,box-shadow,transform] duration-200 group-active:scale-90',
-                    isActive && 'bg-gold-soft shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--gold)_55%,transparent)]',
+                    isActive && 'bg-[color-mix(in_oklab,var(--primary)_14%,transparent)]',
                   )}
                 >
-                  <Icon name={icon} size={24} tone={isActive ? 'gilded' : 'plain'} fillOpacity={isActive ? 0.8 : 0.14} />
+                  <Icon name={icon} size={24} tone={isActive ? 'accent' : 'plain'} fillOpacity={isActive ? 0.8 : 0.14} />
                 </span>
                 <span>{t(`nav.${key}`)}</span>
               </Link>
@@ -74,7 +74,7 @@ function TabBar({ active, hidden }: { active: TabKey | null; hidden: boolean }) 
   )
 }
 
-/** A thin gold line at the top while the next screen's code loads (only when that takes a moment). */
+/** A thin teal line at the top while the next screen's code loads (only when that takes a moment). */
 function NavProgress() {
   const navigation = useNavigation()
   return navigation.state === 'loading' ? <div aria-hidden className="nav-progress" /> : null
@@ -99,15 +99,15 @@ function useFocusOnNavigate() {
 }
 
 /**
- * Layout of every screen outside a session: the support ribbon on top, the content column, the support
- * window at its end, the bottom tab bar (a left rail on desktop). Editing forms hide the tab bar and the
- * window on phones — a focused task, no accidental leave.
+ * Layout of every screen outside a conversation: the support ribbon on top, the content column, the support
+ * panel at its end, the bottom tab bar (a left rail on desktop). Editing forms hide the tab bar and the
+ * panel on phones — a focused task, no accidental leave.
  */
 export function TabsLayout() {
   const { pathname } = useLocation()
   const form = useMatches().some((match) => (match.handle as RouteHandle | undefined)?.form === true)
   const dayStartHour = useAppSettings().dayStartHour
-  // The Guardian's word follows the day the layout opened on (it stays mounted across screens).
+  // Lori's tip follows the day the layout opened on (it stays mounted across screens).
   const [openedAt] = useState(() => Date.now())
   useFocusOnNavigate()
   return (

@@ -36,7 +36,7 @@ export function startSettingsSync(initial: SettingsSnapshot): void {
       }
       useSettingsStore.setState(patch)
     },
-    error: (error: unknown) => console.error('[teleo] settings sync failed', error),
+    error: (error: unknown) => console.error('[fluentum] settings sync failed', error),
   })
 }
 

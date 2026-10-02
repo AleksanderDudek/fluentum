@@ -9,7 +9,7 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? 'github' : 'list',
   use: {
-    baseURL: `http://localhost:${PORT}/teleo/`,
+    baseURL: `http://localhost:${PORT}/fluentum/`,
     trace: 'on-first-retry',
   },
   projects: [
@@ -21,7 +21,7 @@ export default defineConfig({
   ],
   webServer: {
     command: `npm run build && npm run preview -- --port ${PORT} --strictPort`,
-    url: `http://localhost:${PORT}/teleo/`,
+    url: `http://localhost:${PORT}/fluentum/`,
     reuseExistingServer: !process.env.CI,
     timeout: 240_000,
   },

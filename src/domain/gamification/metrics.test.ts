@@ -1,246 +1,102 @@
-import { describe, expect, expectTypeOf, it } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import type { DayKey } from '@/domain/types'
-import {
-  buildGlobalMetrics,
-  buildTextMetrics,
-  type DailyStatsLike,
-  dayMarksFrom,
-  GLOBAL_METRICS,
-  type GlobalMetric,
-  isGlobalMetric,
-  isTextMetric,
-  TEXT_METRICS,
-  type TextMetric,
-  type TextStatsLike,
-} from './metrics'
+import { buildCourseMetrics, buildGlobalMetrics, type DailyStatsLike, dayMarksFrom, GLOBAL_METRICS, isGlobalMetric } from './metrics'
 
 function dayRow(dayKey: DayKey, overrides: Partial<DailyStatsLike> = {}): DailyStatsLike {
-  return {
-    dayKey,
-    segmentsAccepted: 0,
-    sessionsCompleted: 0,
-    goalReached: false,
-    frozen: false,
-    langs: [],
-    morning: false,
-    evening: false,
-    ...overrides,
-  }
+  return { dayKey, segmentsAccepted: 0, conversationsCompleted: 0, goalReached: false, frozen: false, morning: false, evening: false, ...overrides }
 }
 
-function textStats(overrides: Partial<TextStatsLike> = {}): TextStatsLike {
-  return {
-    repetitions: 0,
-    bestDayStreak: 0,
-    perfectRuns: 0,
-    bestConsecutiveFirstTry: 0,
-    memoryRuns: 0,
-    ...overrides,
-  }
-}
-
-const NO_COUNTERS = { perfectSessions: 0, fullSessions: 0, comebacks: 0 }
+const NO_COUNTERS = { perfectConversations: 0, comebacks: 0 }
+const NO_COURSE = { stars: 0, mastered: 0, courseA1: 0, courseA2: 0 }
 
 describe('metric names', () => {
-  it('lists the global metrics of the rule engine', () => {
-    expect(GLOBAL_METRICS).toEqual([
-      'bestStreak',
-      'weeklyRhythmBest',
-      'goalDays',
-      'dailyMax',
-      'totalSegments',
-      'sessionsCompleted',
-      'perfectSessions',
-      'fullSessions',
-      'morningDays',
-      'eveningDays',
-      'ownTexts',
-      'bilingualDays',
-      'comebacks',
-      'level',
-      'goldenDays',
-      'bibleReadings',
-      'bibleBooks',
-      'bibleOldTestament',
-      'bibleNewTestament',
-      'bibleWhole',
-    ])
-    expectTypeOf<GlobalMetric>().toEqualTypeOf<
-      | 'bestStreak'
-      | 'weeklyRhythmBest'
-      | 'goalDays'
-      | 'dailyMax'
-      | 'totalSegments'
-      | 'sessionsCompleted'
-      | 'perfectSessions'
-      | 'fullSessions'
-      | 'morningDays'
-      | 'eveningDays'
-      | 'ownTexts'
-      | 'bilingualDays'
-      | 'comebacks'
-      | 'level'
-      | 'goldenDays'
-      | 'bibleReadings'
-      | 'bibleBooks'
-      | 'bibleOldTestament'
-      | 'bibleNewTestament'
-      | 'bibleWhole'
-    >()
-  })
-
-  it('lists the per-text metrics', () => {
-    expect(TEXT_METRICS).toEqual([
-      'textRepetitions',
-      'textBestDayStreak',
-      'textFlawless',
-      'textMemoryRuns',
-    ])
-    expectTypeOf<TextMetric>().toEqualTypeOf<
-      'textRepetitions' | 'textBestDayStreak' | 'textFlawless' | 'textMemoryRuns'
-    >()
-  })
-
-  it('tells global and text metrics apart', () => {
-    expect(isGlobalMetric('bestStreak')).toBe(true)
+  it('recognises the metrics of the rule engine only', () => {
+    expect(GLOBAL_METRICS.every(isGlobalMetric)).toBe(true)
     expect(isGlobalMetric('textRepetitions')).toBe(false)
-    expect(isTextMetric('textRepetitions')).toBe(true)
-    expect(isTextMetric('level')).toBe(false)
-    expect(isGlobalMetric('toString')).toBe(false)
-    expect(isTextMetric(7)).toBe(false)
+    expect(isGlobalMetric(3)).toBe(false)
   })
 })
 
 describe('dayMarksFrom', () => {
-  it('marks days with accepted segments as active and keeps the frozen flag', () => {
-    const marks = dayMarksFrom([
-      dayRow('2026-09-20', { segmentsAccepted: 3 }),
-      dayRow('2026-09-21', { frozen: true }),
-      dayRow('2026-09-22'),
-    ])
-    expect([...marks]).toEqual([
-      ['2026-09-20', { active: true, frozen: false }],
-      ['2026-09-21', { active: false, frozen: true }],
-      ['2026-09-22', { active: false, frozen: false }],
-    ])
+  it('marks days with accepted lines as active and keeps the frozen flag', () => {
+    const marks = dayMarksFrom([dayRow('2026-10-01', { segmentsAccepted: 3 }), dayRow('2026-10-02', { frozen: true })])
+    expect(marks.get('2026-10-01')).toEqual({ active: true, frozen: false })
+    expect(marks.get('2026-10-02')).toEqual({ active: false, frozen: true })
   })
 })
 
 describe('buildGlobalMetrics', () => {
-  it('aggregates daily stats and passes counters through', () => {
+  it('aggregates daily stats and passes counters and course progress through', () => {
     const daily = [
-      dayRow('2026-09-20', {
-        segmentsAccepted: 12,
-        sessionsCompleted: 1,
-        goalReached: true,
-        langs: ['pl'],
-        morning: true,
-      }),
-      dayRow('2026-09-21', {
-        segmentsAccepted: 40,
-        sessionsCompleted: 2,
-        goalReached: true,
-        langs: ['en', 'pl'],
-        evening: true,
-      }),
-      dayRow('2026-09-22', { frozen: true }),
-      dayRow('2026-09-23', { segmentsAccepted: 3, langs: ['en'], morning: true, evening: true }),
-    ]
-    const game = { perfectSessions: 2, fullSessions: 1, comebacks: 3 }
-    const metrics = buildGlobalMetrics({ daily, game, ownTexts: 4, level: 7, today: '2026-09-23' })
-    expect(metrics).toEqual({
-      bestStreak: 3, // 20, 21, 22 (frozen), 23
-      weeklyRhythmBest: 0,
-      goalDays: 2,
-      dailyMax: 40,
-      totalSegments: 55,
-      sessionsCompleted: 3,
-      perfectSessions: 2,
-      fullSessions: 1,
-      morningDays: 2,
-      eveningDays: 2,
-      ownTexts: 4,
-      bilingualDays: 1,
-      comebacks: 3,
-      level: 7,
-      goldenDays: 0,
-      bibleReadings: 0,
-      bibleBooks: 0,
-      bibleOldTestament: 0,
-      bibleNewTestament: 0,
-      bibleWhole: 0,
-    })
-  })
-
-  it('counts golden days: days with at least 15 minutes of reading', () => {
-    const daily = [
-      dayRow('2026-09-20', { segmentsAccepted: 40, readingMs: 15 * 60_000 }),
-      dayRow('2026-09-21', { segmentsAccepted: 30, readingMs: 14 * 60_000 }),
-      dayRow('2026-09-22', { segmentsAccepted: 90, readingMs: 40 * 60_000 }),
-      dayRow('2026-09-23', { segmentsAccepted: 5 }), // written before reading time was tracked
-    ]
-    expect(buildGlobalMetrics({ daily, game: NO_COUNTERS, ownTexts: 0, level: 1, today: '2026-09-23' }).goldenDays).toBe(2)
-  })
-
-  it('passes the Bible progress through', () => {
-    const bible = { readings: 120, books: 3, oldTestament: 0, newTestament: 1, whole: 0 }
-    const metrics = buildGlobalMetrics({ daily: [], game: NO_COUNTERS, ownTexts: 0, level: 1, today: '2026-09-23', bible })
-    expect(metrics).toMatchObject({ bibleReadings: 120, bibleBooks: 3, bibleOldTestament: 0, bibleNewTestament: 1, bibleWhole: 0 })
-  })
-
-  it('derives the streak metrics from active and frozen days', () => {
-    const active = ['2026-09-07', '2026-09-08', '2026-09-09', '2026-09-10', '2026-09-11']
-    const daily = [
-      ...active.map((dayKey) => dayRow(dayKey, { segmentsAccepted: 5 })), // Mon–Fri
-      dayRow('2026-09-12', { frozen: true }), // Sat
-      dayRow('2026-09-13', { segmentsAccepted: 2 }), // Sun
-      dayRow('2026-09-14'), // attempts but nothing accepted: breaks the chain
-      dayRow('2026-09-15', { segmentsAccepted: 1 }),
+      dayRow('2026-09-30', { segmentsAccepted: 12, conversationsCompleted: 2, goalReached: true, morning: true }),
+      dayRow('2026-10-01', { segmentsAccepted: 4, conversationsCompleted: 1, evening: true, readingMs: 16 * 60_000 }),
+      dayRow('2026-10-02', { segmentsAccepted: 20, conversationsCompleted: 3, goalReached: true }),
     ]
     const metrics = buildGlobalMetrics({
       daily,
-      game: NO_COUNTERS,
-      ownTexts: 0,
-      level: 1,
-      today: '2026-09-15',
+      game: { perfectConversations: 2, comebacks: 1 },
+      course: { stars: 7, mastered: 1, courseA1: 1, courseA2: 0 },
+      level: 4,
+      today: '2026-10-02',
     })
-    expect(metrics.bestStreak).toBe(6)
-    expect(metrics.weeklyRhythmBest).toBe(1)
+    expect(metrics).toEqual({
+      bestStreak: 3,
+      weeklyRhythmBest: 0,
+      goalDays: 2,
+      dailyMax: 20,
+      totalSegments: 36,
+      conversations: 6,
+      perfectConversations: 2,
+      stars: 7,
+      mastered: 1,
+      courseA1: 1,
+      courseA2: 0,
+      morningDays: 1,
+      eveningDays: 1,
+      comebacks: 1,
+      level: 4,
+      goldenDays: 1,
+    })
   })
 
-  it('is all zeros for a new user', () => {
-    const metrics = buildGlobalMetrics({
-      daily: [],
-      game: NO_COUNTERS,
-      ownTexts: 0,
-      level: 1,
-      today: '2026-09-25',
-    })
-    expect(metrics).toEqual({ ...Object.fromEntries(GLOBAL_METRICS.map((m) => [m, 0])), level: 1 })
+  it('is all zeros for a new user (level 1)', () => {
+    const metrics = buildGlobalMetrics({ daily: [], game: NO_COUNTERS, course: NO_COURSE, level: 1, today: '2026-10-02' })
+    expect(Object.entries(metrics).filter(([, value]) => value !== 0)).toEqual([['level', 1]])
   })
 })
 
-describe('buildTextMetrics', () => {
-  it('passes the per-text counters through', () => {
-    const stats = textStats({ repetitions: 88, bestDayStreak: 12, memoryRuns: 2 })
-    expect(buildTextMetrics(stats, 4)).toEqual({
-      textRepetitions: 88,
-      textBestDayStreak: 12,
-      textFlawless: 0,
-      textMemoryRuns: 2,
-    })
+describe('buildCourseMetrics', () => {
+  const levels = new Map([
+    ['a', 'A1'],
+    ['b', 'A1'],
+    ['c', 'A2'],
+  ])
+
+  it('counts stars and fully mastered conversations, and completes a level once each of its conversations has a star', () => {
+    const metrics = buildCourseMetrics(
+      [
+        { key: 'a', lang: 'en', stars: ['read', 'prompt', 'recall'] },
+        { key: 'b', lang: 'en', stars: ['read'] },
+        { key: 'c', lang: 'en', stars: [] },
+      ],
+      levels,
+    )
+    expect(metrics).toEqual({ stars: 4, mastered: 1, courseA1: 1, courseA2: 0 })
   })
 
-  it('makes a multi-segment text flawless after one perfect run', () => {
-    expect(buildTextMetrics(textStats({ perfectRuns: 1 }), 3).textFlawless).toBe(1)
-    expect(buildTextMetrics(textStats({ perfectRuns: 4 }), 3).textFlawless).toBe(1)
-    const noRun = textStats({ perfectRuns: 0, bestConsecutiveFirstTry: 25 })
-    expect(buildTextMetrics(noRun, 3).textFlawless).toBe(0)
+  it('keeps the languages apart and counts the one with the most progress', () => {
+    const metrics = buildCourseMetrics(
+      [
+        { key: 'a', lang: 'en', stars: ['read'] },
+        { key: 'b', lang: 'pl', stars: ['read'] },
+        { key: 'c', lang: 'pl', stars: ['read', 'prompt'] },
+      ],
+      levels,
+    )
+    expect(metrics).toEqual({ stars: 3, mastered: 0, courseA1: 0, courseA2: 1 })
   })
 
-  it('makes a one-sentence text flawless after 10 consecutive first-try accepts', () => {
-    const nine = textStats({ bestConsecutiveFirstTry: 9, perfectRuns: 9 })
-    expect(buildTextMetrics(nine, 1).textFlawless).toBe(0)
-    expect(buildTextMetrics(textStats({ bestConsecutiveFirstTry: 10 }), 1).textFlawless).toBe(1)
+  it('is empty without any conversation started', () => {
+    expect(buildCourseMetrics([], levels)).toEqual(NO_COURSE)
   })
 })

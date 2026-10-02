@@ -41,7 +41,7 @@ let client: WhisperClient | undefined
 /** The one Whisper worker of the app, shared by recognition and model downloads. */
 export function whisperClient(): WhisperClient {
   client ??= new WhisperClient((onMessage, onFailure) => {
-    const worker = new Worker(new URL('./whisper.worker.ts', import.meta.url), { type: 'module', name: 'teleo-whisper' })
+    const worker = new Worker(new URL('./whisper.worker.ts', import.meta.url), { type: 'module', name: 'fluentum-whisper' })
     worker.onmessage = (event) => onMessage(event.data)
     worker.onmessageerror = () => onFailure('Unreadable message from the Whisper worker')
     worker.onerror = (event) => {

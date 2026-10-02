@@ -6,7 +6,7 @@ const baseOptions = {
   title: 'Teleo reminder',
   description: 'Say your daily prayer',
   url: 'https://teleo.app/s/abc',
-  uid: 'teleo-daily-reminder',
+  uid: 'fluentum-daily-reminder',
   now: new Date(Date.UTC(2026, 8, 25, 5, 3, 9)),
   startDate: new Date(2026, 0, 15), // local 2026-01-15, Europe/Warsaw
 }
@@ -21,11 +21,11 @@ describe('buildDailyReminderIcs', () => {
     expect(content).toEqual([
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
-      'PRODID:-//Teleo//Daily reminder//EN',
+      'PRODID:-//Fluentum//Daily reminder//EN',
       'CALSCALE:GREGORIAN',
       'METHOD:PUBLISH',
       'BEGIN:VEVENT',
-      'UID:teleo-daily-reminder',
+      'UID:fluentum-daily-reminder',
       'DTSTAMP:20260925T050309Z',
       'DTSTART:20260115T070000',
       'DURATION:PT10M',

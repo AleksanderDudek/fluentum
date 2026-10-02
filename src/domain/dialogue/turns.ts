@@ -40,12 +40,3 @@ export function historyEnd(dialogue: Dialogue, turn: number): number {
   const { line, opening } = turnAt(dialogue, turn)
   return opening[0] ?? line ?? dialogue.lines.length
 }
-
-/** The dialogue to offer after `current`: the next one not finished yet (wrapping round), else simply the next. */
-export function nextDialogueKey(keys: readonly string[], current: string, finished: ReadonlySet<string>): string | undefined {
-  if (keys.length === 0) return undefined
-  const start = keys.indexOf(current)
-  const after = Array.from({ length: keys.length }, (_, i) => keys[(start + 1 + i) % keys.length]!)
-  if (start === -1) return after.find((key) => !finished.has(key)) ?? keys[0]
-  return after.find((key) => key !== current && !finished.has(key)) ?? after[0]
-}

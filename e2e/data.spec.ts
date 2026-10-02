@@ -42,7 +42,7 @@ test('backup → delete everything → restore brings the history back, after sh
 
   const file = testInfo.outputPath('backup.json')
   await downloadBackup(page, file)
-  expect(JSON.parse(await readFile(file, 'utf8'))).toMatchObject({ app: 'teleo', schemaVersion: 1 })
+  expect(JSON.parse(await readFile(file, 'utf8'))).toMatchObject({ app: 'fluentum', schemaVersion: 1 })
 
   await page.getByRole('button', { name: 'Usuń wszystkie dane' }).click()
   await page.getByRole('dialog').getByRole('textbox').fill('USUŃ')
@@ -69,7 +69,7 @@ test('a password-protected backup needs its password, and a restore can be undon
   const file = testInfo.outputPath('protected.json')
   await downloadBackup(page, file, 'modlitwa-123')
   const sealed = await readFile(file, 'utf8')
-  expect(JSON.parse(sealed)).toMatchObject({ app: 'teleo', encrypted: { cipher: 'AES-256-GCM' } })
+  expect(JSON.parse(sealed)).toMatchObject({ app: 'fluentum', encrypted: { cipher: 'AES-256-GCM' } })
   expect(sealed).not.toContain('Chwała')
 
   await page.locator('input[type="file"]').setInputFiles(file)

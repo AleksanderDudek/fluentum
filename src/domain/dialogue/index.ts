@@ -2,5 +2,5 @@
 
 export { GLOSS_ROLES, GlossError, glossIds, linkPairs, parseGloss, roleOf, type Gloss, type GlossPart, type GlossRole, type LinkPair } from './gloss'
 export { learningLang, nativeLang } from './languages'
-export { dialogueSegments, historyEnd, nextDialogueKey, turnAt, userLines, type Turn } from './turns'
+export { dialogueSegments, historyEnd, turnAt, userLines, type Turn } from './turns'
 export type { Dialogue, DialogueLevel, DialogueLine, Speaker } from './types'

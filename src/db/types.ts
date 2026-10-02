@@ -1,43 +1,24 @@
 import type { BackupFile, BackupSummary } from '@/domain/backup'
-import type { BibleTranslation } from '@/domain/bible/types'
 import type { FriendCard } from '@/domain/leaderboard/friends'
-import type { MemoryLevel } from '@/domain/memory/mask'
-import type { EntryState, PlanEntry, TemplateItem } from '@/domain/session/types'
-import type {
-  CharacterId,
-  ContentFocus,
-  DayKey,
-  EngineId,
-  GrammaticalForm,
-  Lang,
-  SplitMode,
-  TextType,
-  Tier,
-} from '@/domain/types'
+import type { PracticeMode } from '@/domain/mastery'
+import type { EntryState, PlanEntry } from '@/domain/session/types'
+import type { CharacterId, DayKey, EngineId, Lang, Tier } from '@/domain/types'
 
-/** Row types stored in IndexedDB (spec §10, additions documented in docs/DECISIONS.md). */
+/*
+ * Row types stored in IndexedDB. Engine vocabulary (docs/FLUENTUM_SPEC.md §Glossary): a *text* is the learner's lines
+ * of one conversation in the language being learnt, each line a *segment*; one go through a conversation is a run.
+ */
 
+/** The learner's lines of a conversation, materialised when it is first started (`dialogue:<lang>:<key>`). */
 export interface TextItem {
   id: string
+  /** The conversation's title in the interface language at the time it was last started. */
   title: string
-  type: TextType
+  /** The language being learnt (the lines are said in it). */
   lang: Lang
   body: string
-  /**
-   * `bible`: a Bible-challenge reading; `dialogue`: the user's lines of a language dialogue (`dialogue:<lang>:<key>`).
-   * Both are materialised when started and hidden from the library and pickers.
-   */
-  source: 'builtin' | 'user' | 'bible' | 'dialogue'
-  tags: string[]
-  /** Hidden from the library and pickers (builtin texts can only be hidden, never deleted). */
-  archived: boolean
-  splitMode: SplitMode
   createdAt: number
   updatedAt: number
-  /** Stable identifier of builtin content, used for idempotent seeding. */
-  builtinKey?: string
-  /** Where a Bible reading comes from. */
-  bible?: { translation: BibleTranslation; book: string; index: number; ofBook: number }
 }
 
 export interface Segment {
@@ -46,32 +27,16 @@ export interface Segment {
   order: number
   content: string
   wordCount: number
-  /** Replaced by an edit after it had been spoken — kept for history, never practiced again. */
+  /** Replaced by a later script after it had been spoken — kept for history, never practised again. */
   archived: boolean
-}
-
-export interface SessionTemplate {
-  id: string
-  name: string
-  pinned: boolean
-  items: TemplateItem[]
-  createdAt: number
-  updatedAt: number
-  source: 'builtin' | 'user'
-  archived: boolean
-  /** Language of builtin sessions (used for default visibility). */
-  lang?: Lang
-  builtinKey?: string
-  lastUsedAt?: number
 }
 
 export type SessionRunStatus = 'in_progress' | 'completed' | 'partial'
 
+/** One go through a conversation in one way (read / prompt / recall). */
 export interface SessionRun {
   id: string
-  templateId?: string
-  /** Set for ad-hoc "say it now" runs started from a single text. */
-  textId?: string
+  textId: string
   title: string
   dayKey: DayKey
   startedAt: number
@@ -83,11 +48,11 @@ export interface SessionRun {
   cursor: number
   xpEarned: number
   lastActivityAt: number
-  mode: 'read' | 'memory'
-  /** Memory mode difficulty (spec §7.3); only the "hidden" level earns `text.memory`. */
-  memoryLevel?: MemoryLevel
+  mode: PracticeMode
   /** Achievement keys unlocked by this run (listed on its summary). */
   unlocked?: string[]
+  /** The star this run earned for the first time (shown on the summary). */
+  newStar?: PracticeMode
 }
 
 export interface Attempt {
@@ -104,82 +69,58 @@ export interface Attempt {
   wrong: number
   accepted: boolean
   firstTry: boolean
-  /** The coverage this attempt needed (spec §6.4: stored for honest statistics); absent before 2026-09-27. */
-  threshold?: number
+  /** The coverage this attempt needed (its rung of the coverage ladder). */
+  threshold: number
   engine: EngineId
   durationMs: number
 }
 
 export interface DailyStats {
   dayKey: DayKey
+  /** Lines said (accepted). */
   segmentsAccepted: number
   attempts: number
-  textsCompleted: number
-  sessionsCompleted: number
+  /** Conversations finished with every line said. */
+  conversationsCompleted: number
   xp: number
-  langs: Lang[]
   goalReached: boolean
   /** Inactive day bridged by a streak freeze. */
   frozen: boolean
   firstActivityAt?: number
   lastActivityAt?: number
-  /** Had an accepted segment before 08:00 (after the day start). */
+  /** Had an accepted line before 08:00 (after the day start). */
   morning: boolean
-  /** Had an accepted segment at/after 21:00 (or after midnight, before the day start). */
+  /** Had an accepted line at/after 21:00 (or after midnight, before the day start). */
   evening: boolean
   firstTryAccepted: number
-  /** Estimated time spent reading aloud (accepted sentences); missing on rows from before v1.3. */
-  readingMs?: number
+  /** Estimated time spent speaking (accepted lines). */
+  readingMs: number
 }
 
 export interface TextStats {
   textId: string
+  /** Times the conversation was finished with every line said, in any way. */
   repetitions: number
   segmentsAccepted: number
-  currentDayStreak: number
-  bestDayStreak: number
-  lastDayKey?: DayKey
-  /** Full-text blocks where every segment was accepted on the first try. */
+  /** Finished with every line accepted on the first try. */
   perfectRuns: number
-  /** Consecutive first-try accepts (drives `text.perfect` for one-sentence texts). */
-  consecutiveFirstTry: number
-  bestConsecutiveFirstTry: number
-  /** Full-text repetitions completed in memory mode at the "hidden" level (v1.1). */
-  memoryRuns: number
+  /** The ways this conversation was finished cleanly (one star each), in course order. */
+  stars: PracticeMode[]
   lastPracticedAt?: number
 }
 
 export interface AchievementRow {
-  /** `ruleId` for global rules, `ruleId:textId` for per-text rules. */
   key: string
   ruleId: string
-  textId?: string
   tier: Tier
   xp: number
   unlockedAt: number
 }
 
-/** A Bible reading said to the end (every sentence accepted, or skipped after three tries). */
-export interface BibleReadingRow {
-  /** `<translation>.<BOOK>.<index>` */
-  readingId: string
-  translation: BibleTranslation
-  /** Book code, e.g. `GEN`. */
-  book: string
-  /** 0-based reading within the book. */
-  index: number
-  /** Readings in the whole book (lets book completion be counted without the book file). */
-  ofBook: number
-  completedAt: number
-  dayKey: DayKey
-  /** Sentences skipped after three failed tries. */
-  skipped: number
-}
-
 /**
- * The other version of the data, kept on this device (DECISIONS #113): what the latest restore replaced
- * (`beforeRestore`) or, after switching back, the restored data with everything done since (`beforeUndo`).
- * Switching exchanges it with the current data, so neither is ever lost.
+ * The other version of the data, kept on this device: what the latest restore replaced (`beforeRestore`) or,
+ * after switching back, the restored data with everything done since (`beforeUndo`). Switching exchanges it with
+ * the current data, so neither is ever lost.
  */
 export interface RestorePointRow {
   key: 'previous'
@@ -195,7 +136,7 @@ export interface FriendRow extends FriendCard {
   receivedAt: number
 }
 
-export type XpReason = 'segment' | 'textComplete' | 'sessionComplete' | 'dailyGoal' | 'achievement'
+export type XpReason = 'line' | 'conversation' | 'star' | 'dailyGoal' | 'achievement'
 
 export interface XpLedgerRow {
   id?: number
@@ -211,27 +152,28 @@ export type ThemePreference = 'system' | 'light' | 'dark'
 export type FontSize = 'sm' | 'md' | 'lg'
 
 export interface AppSettings {
+  /** The user's own language; the other one is learnt. */
   uiLang: Lang
   theme: ThemePreference
   engine: 'auto' | EngineId
   whisperModel: 'tiny' | 'base'
   /** Hour (0–6) at which a new day starts. */
   dayStartHour: number
-  /** Accepted segments per day (1–150). */
+  /** Lines said per day (1–150). */
   dailyGoal: number
   handsFree: boolean
   saveTranscripts: boolean
   fontSize: FontSize
   listenFirst: boolean
-  grammaticalForm: GrammaticalForm
-  contentFocus: ContentFocus
+  /** Colour the subject, predicate, adjectives and objects of every line. */
+  wordColours: boolean
   /** `HH:MM`, used for the calendar reminder. */
   reminderTime: string
   onboardingCompleted: boolean
   speechPrivacyAcknowledged: boolean
   /** The figure shown as the user's avatar. */
   character: CharacterId
-  /** Chime for every accepted sentence. */
+  /** Chime for every accepted line. */
   sounds: boolean
   /** Name on shared cards and friends' leaderboards; empty = the character's name. */
   displayName: string
@@ -241,8 +183,8 @@ export interface GameState {
   freezesAvailable: number
   /** Streak value that last earned a freeze (prevents double awards). */
   lastFreezeAwardStreak: number
-  perfectSessions: number
-  fullSessions: number
+  /** Conversations finished with every line accepted on the first try. */
+  perfectConversations: number
   comebacks: number
   /** Cached sum of the XP ledger. */
   totalXp: number
@@ -252,7 +194,6 @@ export interface GameState {
 
 export interface MetaState {
   schemaVersion: number
-  seedVersion: number
   installedAt: number
   lastBackupAt?: number
   backupReminderSnoozedAt?: number

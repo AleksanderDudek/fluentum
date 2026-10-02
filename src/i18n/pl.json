@@ -1,909 +1,369 @@
 {
   "app": {
-    "name": "Teleo"
+    "name": "Fluentum",
+    "tagline": "Mów w nowym języku – jedna rozmowa dziennie."
   },
   "nav": {
+    "conversations": "Rozmowy",
+    "home": "Start",
     "main": "Główna nawigacja",
-    "today": "Dziś",
-    "library": "Biblioteka",
-    "sessions": "Sesje",
     "progress": "Postępy",
     "settings": "Ustawienia"
   },
   "common": {
+    "add": "Dodaj",
     "back": "Wstecz",
     "cancel": "Anuluj",
-    "save": "Zapisz",
-    "delete": "Usuń",
-    "edit": "Edytuj",
     "close": "Zamknij",
-    "continue": "Dalej",
-    "done": "Gotowe",
-    "skip": "Pomiń",
-    "retry": "Spróbuj ponownie",
-    "loading": "Wczytywanie…",
-    "add": "Dodaj",
-    "remove": "Usuń",
-    "search": "Szukaj",
-    "all": "Wszystkie",
     "hide": "Ukryj",
-    "unhide": "Pokaż ponownie",
-    "start": "Rozpocznij",
-    "confirm": "Potwierdź",
-    "moveUp": "Przesuń wyżej",
-    "moveDown": "Przesuń niżej",
-    "more": "Więcej"
-  },
-  "pwa": {
-    "updateAvailable": "Nowa wersja Teleo jest gotowa.",
-    "reload": "Odśwież",
-    "later": "Później",
-    "offlineReady": "Teleo jest gotowe do pracy offline."
-  },
-  "errors": {
-    "title": "Coś poszło nie tak",
-    "body": "Twoje dane są bezpieczne na tym urządzeniu. Spróbuj ponownie lub wróć do ekranu Dziś.",
-    "notFound": "Ta strona nie istnieje.",
-    "home": "Wróć do ekranu Dziś"
-  },
-  "today": {
-    "greetingMorning": "Dzień dobry",
-    "greetingDay": "Dobrze, że jesteś",
-    "greetingEvening": "Dobry wieczór",
-    "start": "Rozpocznij",
-    "resume": "Wznów",
-    "startHint": "{{name}} · zdań: {{count}}",
-    "resumeHint": "{{name}} · {{done}} z {{total}}",
-    "streak_one": "{{count}} dzień z rzędu",
-    "streak_few": "{{count}} dni z rzędu",
-    "streak_many": "{{count}} dni z rzędu",
-    "streak_other": "{{count}} dnia z rzędu",
-    "streakZero": "Zacznij dziś serię",
-    "atRisk": "Powiedz dziś choć jedno zdanie, by utrzymać serię.",
-    "freezes": "Zamrożenia serii: {{count}}",
-    "goal": "Cel na dziś",
-    "goalDone": "Cel osiągnięty – pięknie.",
-    "goalLeft_one": "jeszcze {{count}} zdanie",
-    "goalLeft_few": "jeszcze {{count}} zdania",
-    "goalLeft_many": "jeszcze {{count}} zdań",
-    "goalLeft_other": "jeszcze {{count}} zdania",
-    "pinned": "Przypięte sesje",
-    "daily": "Sesja dnia",
-    "dailyTitle": "Sesja dnia",
-    "dailyBody": "Teksty, których dziś jeszcze nie wypowiedziano – najdawniej ćwiczone najpierw.",
-    "dailyStart": "Rozpocznij sesję dnia",
-    "freezeNotice_one": "Twoja seria jest bezpieczna – użyliśmy zamrożenia ({{days}}).",
-    "freezeNotice_few": "Twoja seria jest bezpieczna – użyliśmy {{count}} zamrożeń ({{days}}).",
-    "freezeNotice_many": "Twoja seria jest bezpieczna – użyliśmy {{count}} zamrożeń ({{days}}).",
-    "freezeNotice_other": "Twoja seria jest bezpieczna – użyliśmy zamrożeń ({{days}}).",
-    "backupTitle": "Czas na kopię zapasową",
-    "backupBody": "Wszystko jest zapisane tylko na tym urządzeniu. Raz w miesiącu wyeksportuj kopię, by nic nie przepadło.",
-    "backupAction": "Eksportuj kopię",
-    "later": "Później",
-    "nothingToStart": "Dodaj tekst lub sesję, aby zacząć.",
-    "yourCharacter": "Twoja postać: {{name}}",
-    "guideStart": "Powiedz pierwsze zdanie, gdy tylko zechcesz. Będę słuchać.",
-    "guideLeft_one": "Jeszcze jedno zdanie i dzisiejszy cel będzie wypełniony. Będę słuchać.",
-    "guideLeft_few": "Jeszcze {{count}} zdania i dzisiejszy cel będzie wypełniony. Będę słuchać.",
-    "guideLeft_many": "Jeszcze {{count}} zdań i dzisiejszy cel będzie wypełniony. Będę słuchać.",
-    "guideLeft_other": "Jeszcze {{count}} zdania i dzisiejszy cel będzie wypełniony. Będę słuchać.",
-    "guideDone": "Cel na dziś wypełniony. Odpocznij – albo mów dalej, jeśli serce tego chce.",
-    "guideEmpty": "Dodaj tekst, który chcesz mówić na głos, a pomogę Ci liczyć."
-  },
-  "library": {
-    "rubric": "Biblioteka",
-    "title": "Teksty",
-    "add": "Nowy tekst",
-    "searchPlaceholder": "Szukaj w tytułach i słowach",
-    "filterType": "Rodzaj",
-    "filterSource": "Źródło",
-    "sourceAll": "Wszystkie",
-    "sourceBuiltin": "Wbudowane",
-    "sourceUser": "Moje",
-    "showHidden": "Pokaż ukryte",
-    "hidden": "Ukryty",
-    "builtin": "Wbudowany",
-    "own": "Mój",
-    "repetitionsLabel": "powtórzeń",
-    "emptyTitle": "Jeszcze tu pusto",
-    "emptyBody": "Dodaj własną modlitwę, afirmację lub fragment – albo zmień filtry.",
-    "noResults": "Żaden tekst nie pasuje do filtrów.",
-    "milestone": "jeszcze {{remaining}} do „{{name}}”"
-  },
-  "editor": {
-    "titleNew": "Nowy tekst",
-    "titleEdit": "Edycja tekstu",
-    "fieldTitle": "Tytuł",
-    "titlePlaceholder": "np. Moje poranne afirmacje",
-    "fieldType": "Rodzaj",
-    "fieldSplit": "Podział na",
-    "splitSentence": "Zdania",
-    "splitLine": "Linie",
-    "splitLineHint": "Każda linia to osobny segment – wygodne dla list afirmacji i wierszy.",
-    "fieldBody": "Treść",
-    "bodyPlaceholder": "Wklej lub wpisz tekst, który chcesz wypowiadać na głos…",
-    "preview": "Segmenty",
-    "previewHint": "Każdy segment wypowiadasz i sprawdzamy osobno. Popraw podział, jeśli trzeba.",
-    "previewEmpty": "Segmenty pojawią się tutaj, gdy zaczniesz pisać.",
-    "segmentCount": "{{count}} / {{max}}",
-    "splitHere": "Podziel tutaj",
-    "chooseSplit": "Wybierz miejsce podziału",
-    "splitBefore": "Podziel przed „{{word}}”",
-    "mergeNext": "Scal z następnym",
-    "mergePrevious": "Scal z poprzednim",
-    "editSegment": "Edytuj",
-    "applySuggestion": "Podziel w sugerowanym miejscu",
-    "segmentLabel": "Segment {{n}}",
-    "issueLong": "Długie zdanie ({{words}} słów) – rozpoznawanie mowy lepiej radzi sobie z krótszymi częściami.",
-    "issueTooLong": "Za długie ({{words}} słów, maks. {{max}}) – podziel przed zapisaniem.",
-    "issueShort": "Bardzo krótki – rozważ scalenie.",
-    "issueDigits": "Zawiera cyfry – dla pewnego rozpoznawania zapisz liczby słownie.",
-    "issueTooMany": "Za dużo segmentów ({{count}}, maks. {{max}}).",
-    "resplitNotice": "Treść się zmieniła, więc podzieliliśmy ją ponownie.",
-    "save": "Zapisz tekst",
-    "saved": "Tekst zapisany",
-    "errors": {
-      "titleEmpty": "Nadaj tekstowi tytuł.",
-      "titleTooLong": "Tytuł jest za długi.",
-      "noSegments": "Najpierw dodaj treść.",
-      "tooManySegments": "Za dużo segmentów (maks. 150).",
-      "segmentTooLong": "Jeden z segmentów jest za długi (maks. 80 słów).",
-      "segmentEmpty": "Segment nie zawiera słów.",
-      "notEditable": "Tego tekstu nie można edytować."
-    }
-  },
-  "textDetail": {
-    "sayNow": "Powiedz teraz",
-    "copy": "Kopiuj jako własny",
-    "copyTitle": "{{title}} (kopia)",
-    "copied": "Skopiowano do Twoich tekstów",
-    "hide": "Ukryj tekst",
-    "unhide": "Pokaż tekst",
-    "hiddenNote": "Ten tekst jest ukryty w bibliotece i przy wyborze.",
-    "delete": "Usuń tekst",
-    "deleteTitle": "Usunąć „{{title}}”?",
-    "deleteBody": "Tekst, jego statystyki i osiągnięcia zostaną usunięte. Twoja ogólna historia i XP pozostaną.",
-    "deleted": "Tekst usunięty",
-    "segmentsHeading": "Segmenty",
-    "statsHeading": "Statystyki",
-    "achievementsHeading": "Osiągnięcia tego tekstu",
-    "statRepetitions": "Powtórzenia",
-    "statSegments": "Wypowiedziane zdania",
-    "statStreak": "Dni z rzędu",
-    "statBestStreak": "Najdłuższa seria",
-    "statPerfect": "Bez zająknięcia",
-    "statLast": "Ostatnio",
-    "never": "Jeszcze nie",
-    "builtinNote": "Tekstów wbudowanych nie można edytować – zrób kopię, aby coś zmienić.",
-    "notFound": "Ten tekst już nie istnieje."
-  },
-  "sessions": {
-    "rubric": "Sesje",
-    "title": "Twoje sesje",
-    "add": "Nowa sesja",
-    "start": "Rozpocznij",
-    "pin": "Przypnij do ekranu Dziś",
-    "unpin": "Odepnij",
-    "pinned": "Przypięta",
-    "edit": "Edytuj",
-    "duplicate": "Duplikuj",
-    "duplicateName": "{{name}} (kopia)",
-    "hide": "Ukryj",
-    "unhide": "Pokaż ponownie",
-    "delete": "Usuń",
-    "deleteTitle": "Usunąć „{{name}}”?",
-    "deleteBody": "Wcześniejsze przebiegi tej sesji zostaną w historii.",
-    "deleted": "Sesja usunięta",
-    "showHidden": "Pokaż ukryte",
-    "builtin": "Wbudowana",
-    "own": "Moja",
-    "emptyTitle": "Nie masz jeszcze sesji",
-    "emptyBody": "Sesja to lista tekstów do wypowiedzenia za jednym razem, z powtórzeniami – do 150 segmentów.",
-    "resumeTitle": "Niedokończona sesja",
-    "resume": "Wznów",
-    "progressOf": "{{done}} z {{total}}",
-    "cantStart": "W tej sesji nie ma nic do powiedzenia – jej teksty usunięto lub ukryto.",
-    "someSegments": "{{count}} z {{total}} segmentów",
-    "missingText": "brak tekstu"
-  },
-  "builder": {
-    "titleNew": "Nowa sesja",
-    "titleEdit": "Edycja sesji",
-    "fieldName": "Nazwa",
-    "namePlaceholder": "np. Modlitwa wieczorna",
-    "items": "Teksty w tej sesji",
-    "addText": "Dodaj tekst",
-    "pickTitle": "Dodaj tekst",
-    "pickSearch": "Szukaj tekstów",
-    "pickEmpty": "Brak tekstów do dodania.",
-    "repeat": "Powtórzenia",
-    "repeatValue": "×{{count}}",
-    "remove": "Usuń",
-    "segments": "Segmenty",
-    "allSegments": "Cały tekst",
-    "chooseSegments": "Wybierz segmenty",
-    "dragHandle": "Przeciągnij, aby zmienić kolejność",
-    "counter": "{{count}} / {{max}} segmentów",
-    "overLimit": "Sesja może mieć najwyżej {{max}} segmentów.",
-    "save": "Zapisz sesję",
-    "saved": "Sesja zapisana",
-    "noItems": "Dodaj przynajmniej jeden tekst.",
-    "errors": {
-      "nameEmpty": "Nadaj sesji nazwę.",
-      "noItems": "Dodaj przynajmniej jeden tekst.",
-      "overLimit": "Za dużo segmentów (maks. 150).",
-      "empty": "Wybrane teksty nie mają segmentów.",
-      "notFound": "Ta sesja już nie istnieje.",
-      "notEditable": "Sesji wbudowanych nie można edytować – najpierw ją zduplikuj."
-    }
-  },
-  "player": {
-    "close": "Wyjdź z sesji",
-    "progress": "Zdanie {{current}} z {{total}}",
-    "xp": "{{xp}} XP",
-    "retry": "Spróbuj ponownie",
-    "skip": "Pomiń to zdanie",
-    "skipHint": "Utknęło? Możesz pominąć – bez punktów XP.",
-    "tapToSpeak": "Dotknij mikrofonu i powiedz zdanie",
-    "previous": "Poprzednie zdanie",
-    "next": "Następne zdanie",
-    "great": "Świetnie!",
-    "leaveTitle": "Wstrzymać sesję?",
-    "leaveBody": "Postęp jest zapisany. Możesz ją dziś wznowić z ekranu Dziś lub Sesje.",
-    "leaveConfirm": "Wstrzymaj i wyjdź",
-    "stay": "Kontynuuj",
-    "notFound": "Ta sesja już nie istnieje.",
-    "repetition": "{{current}}/{{total}}",
-    "liveMode": "Na żywo",
-    "liveOn": "Słuchanie na żywo: po prostu mów dalej – każde zdanie sprawdzamy na bieżąco.",
-    "liveOff": "Tryb dotyku: dotknij mikrofonu przy każdym zdaniu.",
-    "listeningLive": "Słucham – mów we własnym tempie",
-    "pausedLive": "Słuchanie wstrzymane",
-    "listen": "Posłuchaj zdania",
-    "listening": "Czytam na głos…",
-    "segmentMissing": "Tego zdania już nie ma (jego tekst zmieniono lub usunięto). Pomiń je, aby kontynuować.",
-    "praiseGreat": "Świetnie!",
-    "praiseBeautiful": "Pięknie!",
-    "praiseWellSaid": "Dobrze powiedziane!",
-    "praiseYes": "Tak!",
-    "praiseLovely": "Wspaniale!",
-    "combo_one": "{{count}} z rzędu",
-    "combo_few": "{{count}} z rzędu",
-    "combo_many": "{{count}} z rzędu",
-    "combo_other": "{{count}} z rzędu",
-    "nextTry": "Następna próba: wystarczy {{percent}}% słów."
-  },
-  "summary": {
-    "title": "Pięknie",
-    "titleIncomplete": "Sesja zapisana",
-    "accepted": "Wypowiedziane zdania",
-    "texts": "Ukończone teksty",
-    "firstTry": "Za pierwszym razem",
-    "xp": "Zdobyte XP",
-    "streak": "Seria dni",
-    "goal": "Cel dzienny",
-    "goalValue": "{{done}} / {{goal}}",
-    "newAchievements": "Nowe osiągnięcia",
-    "again": "Jeszcze raz",
-    "home": "Wróć do ekranu Dziś",
-    "skipped_one": "{{count}} zdanie pominięte",
-    "skipped_few": "{{count}} zdania pominięte",
-    "skipped_many": "{{count}} zdań pominiętych",
-    "skipped_other": "{{count}} zdania pominiętego",
-    "nextReading": "Następne czytanie",
-    "biblePercent": "{{percent}} Biblii przeczytane na głos",
-    "nextDialogue": "Następna rozmowa"
-  },
-  "progress": {
-    "rubric": "Postępy",
-    "title": "Twój ogród",
-    "metricsHeading": "W skrócie",
-    "firstTry": "Za pierwszym razem",
-    "firstTryHint": "Cel: co najmniej 80%",
-    "goalDays": "Dni z osiągniętym celem",
-    "bestStreak": "Najdłuższa seria",
-    "totalSegments": "Wypowiedziane zdania",
-    "repetitions": "Teksty wypowiedziane w całości",
-    "sessions": "Ukończone sesje",
-    "noValue": "—",
-    "heatmapTitle": "Aktywność z ostatnich 26 tygodni",
-    "heatmapSummary": "{{active}} aktywnych dni i {{frozen}} dni zamrożonych w ostatnich 26 tygodniach.",
-    "less": "mniej",
-    "more": "więcej",
-    "frozen": "zamrożony",
-    "todayLabel": "dziś",
-    "cellLabel": "{{date}}: zdań {{count}}",
-    "cellFrozen": "{{date}}: dzień zamrożony",
-    "firstTryTitle": "Skuteczność pierwszej próby w tygodniach",
-    "firstTrySubtitle": "Odsetek zdań zaliczonych za pierwszym razem, ostatnie 12 tygodni.",
-    "weekOf": "Tydzień od {{date}}",
-    "noActivity": "brak aktywności",
-    "showTable": "Pokaż jako tabelę",
-    "colWeek": "Tydzień",
-    "colRate": "Za pierwszym razem",
-    "colSentences": "Zdania",
-    "achievementsHeading": "Osiągnięcia",
-    "general": "Ogólne",
-    "perText": "Dla tekstów",
-    "unlockedCount": "Odblokowane: {{count}} z {{total}}",
-    "unlockedOn": "Odblokowano {{date}}",
-    "hiddenBody": "Ćwicz dalej, aby je odkryć.",
-    "categories": {
-      "streak": "Serie",
-      "consistency": "Konsekwencja",
-      "daily": "W jednym dniu",
-      "volume": "Łącznie",
-      "sessions": "Sesje",
-      "time": "Pora dnia",
-      "other": "Inne",
-      "level": "Poziomy",
-      "text": "Teksty",
-      "golden": "Złoty kwadrans",
-      "bible": "Biblia"
-    },
-    "textsHeading": "Teksty",
-    "colText": "Tekst",
-    "colReps": "Powtórzenia",
-    "colBestStreak": "Najdłuższa seria",
-    "colLast": "Ostatnio",
-    "emptyTexts": "Wypowiedz tekst w całości, aby pojawił się tutaj."
-  },
-  "settings": {
-    "rubric": "Ustawienia",
-    "title": "Ustawienia",
-    "language": "Język interfejsu",
-    "theme": "Wygląd",
-    "themeSystem": "Systemowy",
-    "themeLight": "Jasny",
-    "themeDark": "Ciemny",
-    "privacyPolicy": "Polityka prywatności",
-    "sectionAppearance": "Język i wygląd",
-    "fontSize": "Rozmiar zdania",
-    "fontSm": "Mały",
-    "fontMd": "Średni",
-    "fontLg": "Duży",
-    "fontPreview": "Ojcze nasz, któryś jest w niebie",
-    "sectionSpeech": "Mowa",
-    "engine": "Silnik rozpoznawania",
-    "engineAuto": "Automatycznie",
-    "engineWeb": "Przeglądarka",
-    "engineWhisper": "Whisper offline",
-    "checking": "Jak sprawdzamy",
-    "checkingHint": "Każda kolejna próba zdania jest łagodniejsza: za pierwszym razem potrzeba 90% jego słów, za drugim 80%, a od trzeciej próby 70%. Słowo usłyszane jako inne liczy się jako pominięte; słowo dodane spoza tekstu nadal nie zalicza próby.",
-    "handsFree": "Słuchanie na żywo (bez rąk)",
-    "handsFreeHint": "Słuchaj przez całą sesję i sprawdzaj każde zdanie na bieżąco.",
-    "saveTranscripts": "Zapisuj transkrypcje",
-    "saveTranscriptsHint": "Przechowuj rozpoznany tekst każdej próby. Gdy wyłączone – tylko wynik. Nagrania nigdy nie są zapisywane.",
-    "micTest": "Sprawdź mikrofon",
-    "onDevice": "Rozpoznawanie na urządzeniu",
-    "sectionPractice": "Codzienna praktyka",
-    "dailyGoal": "Cel dzienny (zdania)",
-    "dayStart": "Nowy dzień zaczyna się o",
-    "dayStartHint": "Modlitwa po północy liczy się do poprzedniego dnia aż do tej godziny.",
-    "sectionContent": "Treści",
-    "focus": "Co chcesz praktykować?",
-    "focusPrayers": "Modlitwy",
-    "focusAffirmations": "Afirmacje",
-    "focusBoth": "Jedno i drugie",
-    "focusOwn": "Tylko moje teksty",
-    "focusHint": "Pokazuje lub ukrywa teksty i sesje wbudowane oraz przypina pasującą sesję.",
-    "form": "Forma afirmacji",
-    "formM": "Męska",
-    "formF": "Żeńska",
-    "formN": "Neutralna",
-    "formHint": "Wbudowane polskie afirmacje używają tej formy (np. „spokojny” / „spokojna”).",
-    "sectionReminders": "Przypomnienia",
-    "reminderTime": "Codzienne przypomnienie o",
-    "reminderDownload": "Dodaj do kalendarza (.ics)",
-    "reminderHint": "Teleo nie ma serwera do wysyłania powiadomień, więc przypomnienie trafia do kalendarza w telefonie – niezawodnie i za darmo.",
-    "reminderTitle": "Czas na Teleo",
-    "reminderBody": "Wypowiedz swoje modlitwy i afirmacje na głos.",
-    "sectionBackup": "Kopia zapasowa",
-    "backupHint": "Wszystkie dane są tylko na tym urządzeniu. Kopia zapasowa pozwala je zachować i przenieść.",
-    "lastBackup": "Ostatnia kopia: {{date}}",
-    "neverBackedUp": "Nie ma jeszcze kopii.",
-    "dataLink": "Twoje dane: kopia, przywracanie, usuwanie",
-    "openData": "Kopia i przywracanie",
-    "sectionPrivacy": "Prywatność i dane",
-    "privacyHint": "Bez konta, bez serwera, bez śledzenia. Twoje teksty i historia zostają w tej przeglądarce.",
-    "sectionAbout": "O aplikacji",
-    "about": "Teleo {{version}} – bezpłatne i otwarte, działa w całości w Twojej przeglądarce.",
-    "specLink": "Jak działa Teleo",
-    "listenFirst": "Najpierw posłuchaj",
-    "listenFirstHint": "Teleo czyta każde zdanie na głos, zanim je powiesz – pomocne przy nauce nowego tekstu.",
-    "engineHint": "Automatycznie: rozpoznawanie wbudowane w przeglądarkę (Web Speech), a tam, gdzie go nie ma (np. w Firefoksie), Whisper offline.",
-    "whisperTitle": "Whisper offline",
-    "whisperIntro": "Rozpoznaje mowę bezpośrednio na tym urządzeniu: w 100% prywatnie – nagranie nigdy go nie opuszcza – i działa także w Firefoksie. Jest wolniejszy od rozpoznawania przeglądarki, zwłaszcza na starszych telefonach, i sprawdza zdanie dopiero po jego wypowiedzeniu (bez słuchania na żywo).",
-    "whisperModel": "Model Whisper",
-    "whisperTiny": "Tiny · {{size}}",
-    "whisperBase": "Base · {{size}}",
-    "whisperModelHint": "Base (zalecany) znacznie lepiej rozpoznaje polski; Tiny jest mniejszy i szybszy, ale częściej się myli.",
-    "whisperChecking": "Sprawdzam…",
-    "whisperUnavailable": "Ta przeglądarka nie uruchomi Whispera (potrzebne są Web Workers, WebAssembly, pamięć offline i nagrywanie z mikrofonu).",
-    "whisperMissing": "Model nie jest jeszcze pobrany.",
-    "whisperDownloading": "Pobieranie… {{percent}}%",
-    "whisperProgress": "Pobieranie modelu",
-    "whisperReady": "Pobrany – działa offline.",
-    "whisperNeedsDownload": "Aby używać Whispera, pobierz model.",
-    "whisperDownload": "Pobierz ({{size}})",
-    "whisperCancel": "Przerwij pobieranie",
-    "whisperDelete": "Usuń pobrany model",
-    "whisperDeleted": "Model usunięty",
-    "whisperDone": "Whisper gotowy – działa już offline",
-    "whisperFailed": "Pobieranie nie powiodło się. Sprawdź połączenie i spróbuj ponownie.",
-    "whisperNoSpace": "Na tym urządzeniu brakuje miejsca na model.",
-    "whisperAlsoDownloaded": "Pobrany jest też model {{model}} ({{size}}).",
-    "whisperDeleteOther": "Usuń {{model}}",
-    "whisperConfirmTitle": "Pobrać model Whisper?",
-    "whisperConfirmBody": "Teleo jednorazowo pobierze ok. {{size}}: model z Hugging Face (huggingface.co) i silnik rozpoznawania ze strony Teleo. Przy transmisji komórkowej może to być kosztowne – jeśli możesz, użyj Wi-Fi. Potem rozpoznawanie działa offline, a nagranie nigdy nie opuszcza urządzenia.",
-    "whisperConfirm": "Pobierz",
-    "sectionCharacter": "Twoja postać",
-    "characterHint": "Wybierz postać, która reprezentuje Cię w Teleo.",
-    "character": "Postać",
-    "sounds": "Efekty dźwiękowe",
-    "soundsHint": "Delikatny złoty dzwonek po każdym wypowiedzianym zdaniu; pełniejszy po ukończeniu tekstu lub celu.",
-    "displayName": "Imię na udostępnianych kartach",
-    "displayNameHint": "Znajomi zobaczą je na swojej tablicy. Puste = imię Twojej postaci.",
-    "sectionInstall": "Teleo jako aplikacja",
-    "installBody": "Dodaj Teleo do ekranu głównego: otwiera się na pełnym ekranie jak aplikacja, startuje szybciej i działa bez internetu.",
-    "installButton": "Zainstaluj Teleo",
-    "installDone": "Teleo jest na ekranie głównym.",
-    "installIos1": "W Safari stuknij Udostępnij",
-    "installIosShare": "Udostępnij",
-    "installIos2": "Wybierz „Do ekranu początkowego”, a potem „Dodaj”."
-  },
-  "micTest": {
-    "rubric": "Test mikrofonu",
-    "title": "Sprawdź mikrofon",
-    "intro": "Powiedz zdanie poniżej. Teleo pokaże, co usłyszało i czy zdanie zostałoby zaliczone.",
-    "phrase": "Zdanie do powiedzenia",
-    "custom": "Własne zdanie",
-    "customPlaceholder": "Wpisz dowolne zdanie…",
-    "heard": "Co usłyszeliśmy",
-    "alternatives": "Inne hipotezy",
-    "engine": "Silnik",
-    "engineWeb": "Rozpoznawanie mowy przeglądarki (Web Speech API)",
-    "onDevice": "Rozpoznawanie na urządzeniu",
-    "onDeviceAvailable": "dostępne – używane automatycznie",
-    "onDeviceDownloadable": "można pobrać",
-    "onDeviceUnavailable": "niedostępne",
-    "onDeviceInstall": "Pobierz pakiet językowy",
-    "onDeviceInstalled": "Pakiet językowy zainstalowany",
-    "engineWhisper": "Whisper offline ({{model}}) – na tym urządzeniu"
-  },
-  "onboarding": {
-    "start": "Zaczynamy",
-    "skip": "Pomiń",
-    "next": "Dalej",
-    "back": "Wstecz",
-    "step": "Krok {{current}} z {{total}}",
-    "welcomeTitle": "Wypowiedz. Wypełnij.",
-    "welcomeBody": "Jestem Twoim Aniołem Stróżem. Będę słuchać, gdy wypowiadasz modlitwy i afirmacje na głos, sprawdzę każde zdanie i policzę powtórzenia – prywatnie, na tym urządzeniu.",
-    "focusTitle": "Co chcesz praktykować?",
-    "focusPrayers": "Modlitwy",
-    "focusPrayersBody": "Ojcze nasz, Zdrowaś Maryjo, dziesiątka różańca",
-    "focusAffirmations": "Afirmacje",
-    "focusAffirmationsBody": "Spokojny poranny zestaw krótkich zdań",
-    "focusBoth": "Jedno i drugie",
-    "focusBothBody": "Modlitwy i afirmacje",
-    "focusOwn": "Własne teksty",
-    "focusOwnBody": "Zacznij od pustej biblioteki",
-    "formTitle": "Polskie afirmacje mają rodzaj – która forma do Ciebie pasuje?",
-    "micTitle": "Sprawdźmy mikrofon",
-    "micBody": "Dotknij mikrofonu i powiedz zdanie poniżej.",
-    "micPhrase": "Dzień dobry",
-    "micOk": "Słyszę Cię – wszystko działa.",
-    "micRetry": "Jeszcze nie – spróbuj ponownie albo pomiń ten krok.",
-    "goalTitle": "Ile zdań dziennie?",
-    "goalBody": "Mały cel dzienny podtrzymuje nawyk. Zmienisz go w każdej chwili.",
-    "goalSentences_one": "{{count}} zdanie",
-    "goalSentences_few": "{{count}} zdania",
-    "goalSentences_many": "{{count}} zdań",
-    "goalSentences_other": "{{count}} zdania",
-    "privacyNote": "Bez konta i bez serwera: Twoje dane zostają na tym urządzeniu.",
-    "privacyLink": "Polityka prywatności",
-    "characterTitle": "Wybierz swoją postać",
-    "characterGuide": "Wybierz postać, która będzie Cię reprezentować. Zmienisz ją w każdej chwili.",
-    "focusGuide": "Co chcesz praktykować? Przygotuję Twoją bibliotekę.",
-    "begin": "Rozpocznij"
-  },
-  "textTypes": {
-    "affirmation": "Afirmacja",
-    "prayer": "Modlitwa",
-    "text": "Tekst"
-  },
-  "textTypesPlural": {
-    "affirmation": "Afirmacje",
-    "prayer": "Modlitwy",
-    "text": "Teksty"
+    "show": "Pokaż"
   },
   "counts": {
-    "segments_one": "{{count}} segment",
-    "segments_few": "{{count}} segmenty",
-    "segments_many": "{{count}} segmentów",
-    "segments_other": "{{count}} segmentu",
-    "days_one": "{{count}} dzień",
     "days_few": "{{count}} dni",
     "days_many": "{{count}} dni",
+    "days_one": "{{count}} dzień",
     "days_other": "{{count}} dnia"
   },
-  "speech": {
-    "speak": "Mów",
-    "stop": "Stop",
-    "listening": "Słucham…",
-    "starting": "Włączam mikrofon…",
-    "checking": "Sprawdzam…",
-    "spaceHint": "Spacja: start / stop",
-    "result": {
-      "great": "Świetnie!",
-      "acceptedNear": "Zaliczone – kilka słów zabrzmiało nieco inaczej.",
-      "empty": "Nic nie usłyszałem. Spróbuj jeszcze raz, trochę głośniej.",
-      "emptySource": "Ten segment nie zawiera słów do wypowiedzenia.",
-      "extra_one": "Dodatkowe słowo: „{{words}}”. Spróbuj jeszcze raz.",
-      "extra_few": "Dodatkowe słowa: „{{words}}”. Spróbuj jeszcze raz.",
-      "extra_many": "Dodatkowe słowa: „{{words}}”. Spróbuj jeszcze raz.",
-      "extra_other": "Dodatkowe słowa: „{{words}}”. Spróbuj jeszcze raz.",
-      "wrong": "Usłyszałem „{{spoken}}” zamiast „{{expected}}”. Spróbuj jeszcze raz.",
-      "missing_one": "Pominięte słowo: „{{words}}”. Spróbuj jeszcze raz.",
-      "missing_few": "Pominięte słowa: „{{words}}”. Spróbuj jeszcze raz.",
-      "missing_many": "Pominięte słowa: „{{words}}”. Spróbuj jeszcze raz.",
-      "missing_other": "Pominięte słowa: „{{words}}”. Spróbuj jeszcze raz.",
-      "coverage": "Dopasowano {{percent}}% słów – potrzeba {{needed}}%."
-    },
-    "howWeCount": "Jak liczymy?",
-    "howWeCountBody": "Zdanie jest zaliczone, gdy wypowiesz wystarczająco dużo jego słów i nie dodasz żadnego słowa. Za pierwszym razem potrzeba 90% słów, za drugim 80%, a przy każdej kolejnej próbie 70% – w krótkim zdaniu na początku oznacza to wszystkie słowa. Potknięcia rozpoznawania wybaczamy: brak polskich znaków, jedną literę w dłuższym słowie, inną pisownię tego samego dźwięku („Bóg” → „bug”) oraz słowa zapisane razem lub osobno („w niebie” → „wniebie”); słowo usłyszane jako inne liczy się tylko jako pominięte, a dźwięki typu „yyy” pomijamy.",
-    "legendMatch": "powiedziane",
-    "legendNear": "prawie",
-    "legendMissing": "pominięte",
-    "legendExtra": "dodatkowe / inne",
-    "errors": {
-      "not-supported": "Ta przeglądarka nie rozpoznaje mowy. Użyj Chrome, Edge lub Safari – albo pobierz silnik offline Whisper w Ustawieniach.",
-      "permission-denied": "Dostęp do mikrofonu jest zablokowany. Zezwól na niego w ustawieniach witryny i spróbuj ponownie.",
-      "no-microphone": "Nie znaleziono mikrofonu.",
-      "network": "Rozpoznawanie mowy w tej przeglądarce wymaga połączenia z internetem.",
-      "language-not-supported": "Ta przeglądarka nie rozpoznaje tego języka.",
-      "busy": "Mikrofon jest zajęty – spróbuj za chwilę.",
-      "model-missing": "Model offline Whisper nie jest jeszcze pobrany – pobierz go w Ustawieniach.",
-      "unknown": "Rozpoznawanie mowy nieoczekiwanie się zatrzymało. Spróbuj ponownie.",
-      "iosStandalone": "Na iPhonie rozpoznawanie mowy w zainstalowanej aplikacji bywa zawodne. Jeśli problem się powtarza, otwórz Teleo w Safari albo włącz Whisper offline w Ustawieniach.",
-      "aborted": "Słuchanie zostało przerwane."
-    },
-    "privacy": {
-      "title": "Zanim zaczniesz mówić",
-      "body": "Teleo nigdy nie zapisuje Twojego głosu i niczego nam nie wysyła. Wbudowane w przeglądarkę rozpoznawanie mowy może jednak przesyłać nagranie do firmy {{vendor}}, aby zamienić je na tekst.",
-      "onDevice": "Dobra wiadomość: Twoja przeglądarka rozpoznaje ten język na urządzeniu.",
-      "whisper": "Wolisz w pełni prywatne rozpoznawanie? Włącz Whisper offline w Ustawieniach – nagranie nie opuści wtedy urządzenia.",
-      "accept": "Rozumiem – dalej",
-      "vendorGoogle": "Google",
-      "vendorMicrosoft": "Microsoft",
-      "vendorApple": "Apple",
-      "vendorGeneric": "dostawca przeglądarki",
-      "bodyOnDevice": "Teleo nigdy nie zapisuje Twojego głosu i niczego nam nie wysyła. Mowa jest rozpoznawana bezpośrednio na tym urządzeniu, więc nagranie go nie opuszcza."
-    },
-    "offline": "Jesteś offline. Ta przeglądarka potrzebuje internetu do rozpoznawania mowy – połącz się ponownie lub użyj rozpoznawania na urządzeniu, jeśli jest dostępne.",
-    "openSettings": "Ustawienia mowy"
+  "errors": {
+    "body": "Twoje dane są bezpieczne na tym urządzeniu. Spróbuj ponownie lub wróć na start.",
+    "home": "Wróć na start",
+    "notFound": "Ta strona nie istnieje.",
+    "title": "Coś poszło nie tak"
   },
-  "achievements": {
-    "text": {
-      "reps": {
-        "1": {
-          "name": "Pierwsze słowo",
-          "desc": "{{title}} – wypowiedziany w całości"
-        },
-        "7": {
-          "name": "Tydzień słów",
-          "desc": "{{title}} – 7 powtórzeń"
-        },
-        "21": {
-          "name": "Nawyk w drodze",
-          "desc": "{{title}} – 21 powtórzeń"
-        },
-        "50": {
-          "name": "Pół setki",
-          "desc": "{{title}} – 50 powtórzeń"
-        },
-        "100": {
-          "name": "Setka",
-          "desc": "{{title}} – 100 powtórzeń"
-        },
-        "365": {
-          "name": "Rok słów",
-          "desc": "{{title}} – 365 powtórzeń"
-        },
-        "1000": {
-          "name": "Tysiąc razy",
-          "desc": "{{title}} – 1000 powtórzeń"
-        }
-      },
-      "streak": {
-        "3": {
-          "name": "Trzy dni wierności",
-          "desc": "{{title}} – 3 dni z rzędu"
-        },
-        "7": {
-          "name": "Tydzień wierności",
-          "desc": "{{title}} – 7 dni z rzędu"
-        },
-        "30": {
-          "name": "Miesiąc wierności",
-          "desc": "{{title}} – 30 dni z rzędu"
-        },
-        "100": {
-          "name": "Sto dni",
-          "desc": "{{title}} – 100 dni z rzędu"
-        }
-      },
-      "perfect": {
-        "name": "Bez zająknięcia",
-        "desc": "{{title}} – cały tekst bez żadnej poprawki"
-      },
-      "memory": {
-        "name": "Na pamięć",
-        "desc": "{{title}} – wypowiedziany z pamięci, w pełni ukryty"
-      }
+  "pwa": {
+    "offlineReady": "Fluentum jest gotowe do pracy offline.",
+    "reload": "Odśwież",
+    "updateAvailable": "Nowa wersja Fluentum jest gotowa."
+  },
+  "languages": {
+    "en": {
+      "in": "po angielsku"
     },
-    "streak": {
-      "2": {
-        "name": "Drugi dzień",
-        "desc": "2 dni z rzędu"
-      },
-      "5": {
-        "name": "Pięć dni",
-        "desc": "5 dni z rzędu"
-      },
-      "7": {
-        "name": "Pełny tydzień",
-        "desc": "7 dni z rzędu"
-      },
-      "14": {
-        "name": "Dwa tygodnie",
-        "desc": "14 dni z rzędu"
-      },
-      "30": {
-        "name": "Miesiąc",
-        "desc": "30 dni z rzędu"
-      },
-      "60": {
-        "name": "Dwa miesiące",
-        "desc": "60 dni z rzędu"
-      },
-      "100": {
-        "name": "Setka dni",
-        "desc": "100 dni z rzędu"
-      },
-      "365": {
-        "name": "Rok",
-        "desc": "365 dni z rzędu"
-      }
-    },
-    "weekly": {
-      "5of7": {
-        "x4": {
-          "name": "Stały rytm",
-          "desc": "4 tygodnie z rzędu, w każdym co najmniej 5 aktywnych dni"
-        }
-      }
-    },
-    "goal": {
-      "days": {
-        "30": {
-          "name": "Cel osiągnięty ×30",
-          "desc": "Cel dzienny osiągnięty 30 razy"
-        }
-      }
-    },
-    "daily": {
-      "10": {
-        "name": "Dziesiątka",
-        "desc": "10 zdań w jednym dniu"
-      },
-      "25": {
-        "name": "Ćwierć setki",
-        "desc": "25 zdań w jednym dniu"
-      },
-      "50": {
-        "name": "Pięćdziesiątka",
-        "desc": "50 zdań w jednym dniu"
-      },
-      "100": {
-        "name": "Setka dnia",
-        "desc": "100 zdań w jednym dniu"
-      },
-      "150": {
-        "name": "Maraton",
-        "desc": "150 zdań w jednym dniu"
-      }
-    },
-    "total": {
-      "100": {
-        "name": "Pierwsza setka",
-        "desc": "100 zdań łącznie"
-      },
-      "500": {
-        "name": "Pięćset",
-        "desc": "500 zdań łącznie"
-      },
-      "1000": {
-        "name": "Tysiąc",
-        "desc": "1000 zdań łącznie"
-      },
-      "5000": {
-        "name": "Pięć tysięcy",
-        "desc": "5000 zdań łącznie"
-      },
-      "10000": {
-        "name": "Dziesięć tysięcy",
-        "desc": "10 000 zdań łącznie"
-      },
-      "50000": {
-        "name": "Legenda",
-        "desc": "50 000 zdań łącznie"
-      }
-    },
-    "session": {
-      "first": {
-        "name": "Pierwsza sesja",
-        "desc": "Twoja pierwsza ukończona sesja"
-      },
-      "10": {
-        "name": "Sesje ×10",
-        "desc": "10 ukończonych sesji"
-      },
-      "50": {
-        "name": "Sesje ×50",
-        "desc": "50 ukończonych sesji"
-      },
-      "100": {
-        "name": "Sesje ×100",
-        "desc": "100 ukończonych sesji"
-      },
-      "perfect": {
-        "name": "Czysta sesja",
-        "desc": "Sesja z 10+ zdaniami, każde za pierwszym razem"
-      },
-      "long": {
-        "name": "Pełna setka i pół",
-        "desc": "Sesja 150 zdań bez pominięć"
-      }
-    },
-    "time": {
-      "morning": {
-        "7": {
-          "name": "Ranny ptaszek",
-          "desc": "7 dni z praktyką przed 8:00"
-        }
-      },
-      "evening": {
-        "7": {
-          "name": "Wieczorna cisza",
-          "desc": "7 dni z praktyką po 21:00"
-        }
-      }
-    },
-    "create": {
-      "1": {
-        "name": "Własne słowa",
-        "desc": "Dodany pierwszy własny tekst"
-      },
-      "5": {
-        "name": "Autor",
-        "desc": "Dodanych 5 własnych tekstów"
-      }
-    },
-    "bilingual": {
-      "name": "Dwujęzyczny",
-      "desc": "Polski i angielski tego samego dnia"
-    },
-    "comeback": {
-      "name": "Powrót",
-      "desc": "Powrót po co najmniej 3 dniach przerwy"
-    },
-    "level": {
-      "5": {
-        "name": "Poziom 5",
-        "desc": "Osiągnięty poziom 5"
-      },
-      "10": {
-        "name": "Poziom 10",
-        "desc": "Osiągnięty poziom 10"
-      },
-      "20": {
-        "name": "Poziom 20",
-        "desc": "Osiągnięty poziom 20 – Teleo"
-      }
-    },
-    "golden": {
-      "days": {
-        "1": {
-          "name": "Złoty kwadrans",
-          "desc": "15 minut czytania na głos w jeden dzień"
-        },
-        "7": {
-          "name": "Siedem złotych dni",
-          "desc": "Złoty kwadrans w 7 dni"
-        },
-        "30": {
-          "name": "Złoty miesiąc",
-          "desc": "Złoty kwadrans w 30 dni"
-        },
-        "100": {
-          "name": "Sto złotych dni",
-          "desc": "Złoty kwadrans w 100 dni"
-        },
-        "365": {
-          "name": "Złoty rok",
-          "desc": "Złoty kwadrans w 365 dni"
-        }
-      }
-    },
-    "bible": {
-      "readings": {
-        "1": {
-          "name": "Weź i czytaj",
-          "desc": "Pierwsze czytanie Biblii na głos"
-        },
-        "7": {
-          "name": "Siedem czytań",
-          "desc": "7 czytań Biblii na głos"
-        },
-        "30": {
-          "name": "Miesiąc ze Słowem",
-          "desc": "30 czytań Biblii na głos"
-        },
-        "100": {
-          "name": "Sto czytań",
-          "desc": "100 czytań Biblii na głos"
-        },
-        "365": {
-          "name": "Rok z Pismem",
-          "desc": "365 czytań Biblii na głos"
-        },
-        "1000": {
-          "name": "Tysiąc czytań",
-          "desc": "1000 czytań Biblii na głos"
-        }
-      },
-      "books": {
-        "1": {
-          "name": "Pierwsza księga",
-          "desc": "Cała księga Biblii przeczytana na głos"
-        },
-        "10": {
-          "name": "Dziesięć ksiąg",
-          "desc": "10 ksiąg Biblii przeczytanych na głos"
-        }
-      },
-      "nt": {
-        "name": "Nowy Testament",
-        "desc": "Wszystkie 27 ksiąg Nowego Testamentu przeczytane na głos"
-      },
-      "ot": {
-        "name": "Stary Testament",
-        "desc": "Wszystkie 39 ksiąg Starego Testamentu przeczytane na głos"
-      },
-      "whole": {
-        "name": "Całe Pismo Święte",
-        "desc": "Każda księga Biblii przeczytana na głos"
-      }
+    "pl": {
+      "in": "po polsku"
     }
   },
-  "tiers": {
-    "bronze": "Brąz",
-    "silver": "Srebro",
-    "gold": "Złoto",
-    "platinum": "Platyna",
-    "diamond": "Diament"
+  "guide": {
+    "extra": "Blisko! Wkradło się słowo, którego nie ma w zdaniu. Weź oddech i powiedz je jeszcze raz.",
+    "missing": "Blisko! Jedno słowo zostało niewypowiedziane. Bez pośpiechu – powiedz je jeszcze raz.",
+    "name": "Lori",
+    "stuck": "To zdanie jest wyjątkowo podchwytliwe. Spróbuj jeszcze raz – albo je pomiń i rozmawiaj dalej; to też jest w porządku.",
+    "wrong": "Blisko! Jedno słowo zabrzmiało inaczej. Posłuchaj zdania i powiedz je jeszcze raz."
+  },
+  "home": {
+    "atRisk": "Powiedz dziś choć jedno zdanie, by utrzymać serię.",
+    "backupAction": "Zrób kopię",
+    "backupBody": "Wszystko jest zapisane tylko na tym urządzeniu. Co jakiś czas zapisz kopię, by żadna gwiazdka nie przepadła.",
+    "backupTitle": "Czas na kopię zapasową",
+    "chooseAnother": "Wybierz inną rozmowę",
+    "courseFinished_few": "Ukończone rozmowy: {{count}} z {{total}}",
+    "courseFinished_many": "Ukończone rozmowy: {{count}} z {{total}}",
+    "courseFinished_one": "Ukończone rozmowy: {{count}} z {{total}}",
+    "courseFinished_other": "Ukończone rozmowy: {{count}} z {{total}}",
+    "courseStars": "Gwiazdki: {{earned}} z {{total}}",
+    "courseTitle": {
+      "en": "Twój kurs angielskiego",
+      "pl": "Twój kurs polskiego"
+    },
+    "freezeNotice_few": "Twoja seria jest bezpieczna – {{count}} zamrożenia objęły {{days}}.",
+    "freezeNotice_many": "Twoja seria jest bezpieczna – {{count}} zamrożeń objęło {{days}}.",
+    "freezeNotice_one": "Twoja seria jest bezpieczna – zamrożenie objęło {{days}}.",
+    "freezeNotice_other": "Twoja seria jest bezpieczna – zamrożenia objęły {{days}}.",
+    "freezes_few": "{{count}} zamrożenia serii",
+    "freezes_many": "{{count}} zamrożeń serii",
+    "freezes_one": "{{count}} zamrożenie serii",
+    "freezes_other": "{{count}} zamrożenia serii",
+    "goal": "Cel na dziś",
+    "goalDone": "Cel osiągnięty – brawo!",
+    "goalLeft_few": "jeszcze {{count}} zdania",
+    "goalLeft_many": "jeszcze {{count}} zdań",
+    "goalLeft_one": "jeszcze {{count}} zdanie",
+    "goalLeft_other": "jeszcze {{count}} zdania",
+    "greetingDay": "Dobrze, że jesteś",
+    "greetingEvening": "Dobry wieczór",
+    "greetingMorning": "Dzień dobry",
+    "guideDone": "Cel osiągnięty! Wszystko, co teraz powiesz, to bonus – a w złotym kwadransie liczy się podwójnie.",
+    "guideFirst": "Cześć, jestem Lori! Porozmawiajmy {{language}} – rozmówca zaczyna, a Ty odpowiadasz na głos. Gotowe?",
+    "guideLeft_few": "Jeszcze tylko {{count}} zdania do dzisiejszego celu – dasz radę!",
+    "guideLeft_many": "Jeszcze tylko {{count}} zdań do dzisiejszego celu – dasz radę!",
+    "guideLeft_one": "Jeszcze tylko {{count}} zdanie do dzisiejszego celu – dasz radę!",
+    "guideLeft_other": "Jeszcze tylko {{count}} zdania do dzisiejszego celu – dasz radę!",
+    "guideStart": "Kilka zdań dziennie wystarczy, żeby słowa płynęły. Zaczynamy?",
+    "later": "Później",
+    "nextTitle": "Następna rozmowa",
+    "resume": "Kontynuuj",
+    "resumeHint": "Zdanie {{done}} z {{total}} · {{mode}}",
+    "resumeTitle": "Dokończ rozmowę",
+    "start": "Zacznij rozmowę",
+    "streakZero": "Zacznij dziś serię",
+    "streak_few": "{{count}} dni z rzędu",
+    "streak_many": "{{count}} dni z rzędu",
+    "streak_one": "{{count}} dzień z rzędu",
+    "streak_other": "{{count}} dnia z rzędu",
+    "yourCharacter": "Twoja postać: {{name}}"
+  },
+  "course": {
+    "back": "Wszystkie rozmowy",
+    "eyebrow": "Kurs",
+    "lead": "Krótkie rozmowy z życia codziennego, od A1 do A2. Każda ma trzy gwiazdki: przeczytaj ją, powiedz z podpowiedzi, a potem z pamięci.",
+    "level": {
+      "A1": "A1 · Pierwsze kroki",
+      "A2": "A2 · Na co dzień"
+    },
+    "levelStars": "gwiazdki: {{earned}} / {{total}}",
+    "stars": "Gwiazdki w kursie",
+    "title": {
+      "en": "Rozmowy po angielsku",
+      "pl": "Rozmowy po polsku"
+    },
+    "upNext": "Następna · {{mode}}"
+  },
+  "conversation": {
+    "chat": "Rozmowa – {{name}}",
+    "done_few": "Ukończona {{count}} razy",
+    "done_many": "Ukończona {{count}} razy",
+    "done_one": "Ukończona {{count}} raz",
+    "done_other": "Ukończona {{count}} razy",
+    "finished": "Koniec rozmowy",
+    "howToRead": "zapisujemy ją polskimi literami, a WIELKIE litery to sylaba akcentowana. „th” – czubek języka lekko między zębami; „ł” – jak w „łódka”; „ii”, „uu” – długie „i” i „u”; „e” brzmi często jak dźwięk między „a” i „e”.",
+    "howToReadTitle": "Jak czytać wymowę:",
+    "leaveBody": "Postęp jest zapisany. Możesz ją dziś dokończyć z ekranu startowego.",
+    "leaveTitle": "Przerwać rozmowę?",
+    "legendHint": "Wskaż lub dotknij słowa, a podświetli się jego odpowiednik w tłumaczeniu.",
+    "legendTitle": "Kolory słów",
+    "level": "Poziom {{level}}",
+    "lines_few": "{{count}} Twoje kwestie",
+    "lines_many": "{{count}} Twoich kwestii",
+    "lines_one": "{{count}} Twoja kwestia",
+    "lines_other": "{{count}} Twojej kwestii",
+    "listenLine": "Posłuchaj",
+    "masked": {
+      "prompt": "Zdanie jest ukryte poza pierwszymi literami – powiedz je na podstawie znaczenia poniżej.",
+      "read": "Powiedz pokazane zdanie.",
+      "recall": "Zdanie jest ukryte – powiedz je na podstawie znaczenia poniżej."
+    },
+    "noWords": "W tym zdaniu nie zaznaczono słów.",
+    "notFound": "Ta rozmowa nie istnieje.",
+    "partnerSpeaking": "Mówi {{name}}…",
+    "progress": "Kwestia {{current}} z {{total}}",
+    "pronunciation": "Wymowa",
+    "roles": {
+      "adjective": "Przymiotnik",
+      "object": "Dopełnienie",
+      "predicate": "Orzeczenie",
+      "subject": "Podmiot"
+    },
+    "said": "Powiedziane",
+    "show": "Pokaż zdanie",
+    "showHint": "Podejrzenie kosztuje gwiazdkę za ten sposób.",
+    "skip": "Pomiń tę kwestię",
+    "skipped": "Pominięte",
+    "starEarned": "Gwiazdka zdobyta",
+    "starOpen": "Gwiazdka jeszcze do zdobycia",
+    "start": "Start",
+    "startError": "Nie udało się rozpocząć rozmowy.",
+    "startWay": "Start: {{mode}}",
+    "suggested": "Proponowana teraz",
+    "toSummary": "Podsumowanie",
+    "typing": "{{name}} pisze…",
+    "waysTitle": "Trzy sposoby, trzy gwiazdki",
+    "with": "Rozmówca: {{name}}",
+    "words": "Słówka",
+    "you": "Ty",
+    "yourLines": "Twoje kwestie",
+    "yourTurn": "Twoja kolej – powiedz na głos"
+  },
+  "modes": {
+    "prompt": {
+      "desc": "Każde zdanie pokazuje tylko pierwsze litery słów i znaczenie. Słowa pojawiają się, gdy je mówisz.",
+      "during": "Tylko pierwsze litery: mów zdania z pamięci, z małą pomocą.",
+      "name": "Podpowiedzi",
+      "short": "Tylko pierwsze litery i znaczenie."
+    },
+    "read": {
+      "desc": "Widzisz każde zdanie z wymową i znaczeniem i mówisz je na głos. Najlepszy sposób, by poznać rozmowę.",
+      "during": "Czytaj każde zdanie na głos.",
+      "name": "Czytaj",
+      "short": "Zdanie, jego wymowa i znaczenie."
+    },
+    "recall": {
+      "desc": "Widzisz tylko, co znaczy zdanie. Powiedz je w języku, którego się uczysz – to już prawdziwa rozmowa.",
+      "during": "Tylko znaczenie: mów zdania z pamięci.",
+      "name": "Z pamięci",
+      "short": "Tylko znaczenie: powiedz z pamięci."
+    }
+  },
+  "stars": {
+    "label": "Gwiazdki: {{count}} z 3 ({{ways}})",
+    "none": "Jeszcze bez gwiazdek (0 z 3)"
+  },
+  "player": {
+    "close": "Wyjdź z rozmowy",
+    "leaveConfirm": "Wstrzymaj i wyjdź",
+    "listening": "Mówię…",
+    "listeningLive": "Słucham – odpowiadaj we własnym tempie",
+    "liveMode": "Na żywo",
+    "liveOff": "Tryb dotyku: dotknij mikrofonu przy każdym zdaniu.",
+    "liveOn": "Słuchanie na żywo: po prostu odpowiadaj – każde zdanie sprawdzamy na bieżąco.",
+    "nextTry": "Następna próba: wystarczy {{percent}}% słów.",
+    "notFound": "Ta rozmowa już nie istnieje.",
+    "retry": "Spróbuj ponownie",
+    "skipHint": "Utknęło? Możesz pominąć – bez punktów i gwiazdki.",
+    "stay": "Kontynuuj",
+    "tapToSpeak": "Dotknij mikrofonu i powiedz zdanie",
+    "xp": "{{xp}} XP"
+  },
+  "speech": {
+    "checking": "Sprawdzam…",
+    "errors": {
+      "aborted": "Słuchanie zostało przerwane.",
+      "busy": "Mikrofon jest zajęty – spróbuj za chwilę.",
+      "iosStandalone": "Na iPhonie rozpoznawanie mowy w zainstalowanej aplikacji bywa zawodne. Jeśli problem się powtarza, otwórz Fluentum w Safari albo włącz Whisper offline w Ustawieniach.",
+      "language-not-supported": "Ta przeglądarka nie rozpoznaje tego języka.",
+      "model-missing": "Model offline Whisper nie jest jeszcze pobrany – pobierz go w Ustawieniach.",
+      "network": "Rozpoznawanie mowy w tej przeglądarce wymaga połączenia z internetem.",
+      "no-microphone": "Nie znaleziono mikrofonu.",
+      "not-supported": "Ta przeglądarka nie rozpoznaje mowy. Użyj Chrome, Edge lub Safari – albo pobierz silnik offline Whisper w Ustawieniach.",
+      "permission-denied": "Dostęp do mikrofonu jest zablokowany. Zezwól na niego w ustawieniach witryny i spróbuj ponownie.",
+      "unknown": "Rozpoznawanie mowy nieoczekiwanie się zatrzymało. Spróbuj ponownie."
+    },
+    "howWeCount": "Jak liczymy?",
+    "howWeCountBody": "Zdanie się liczy, gdy powiesz dość jego słów i nie dodasz żadnych. Pierwsza próba wymaga 90% słów, druga 80%, a każda kolejna 70% – krótkie zdanie może więc na początku wymagać wszystkich słów. Wybaczamy potknięcia rozpoznawania: brak polskich znaków, jedną literę różnicy w dłuższym słowie, słowo rozdzielone na dwa albo dwa zlane w jedno.",
+    "legendExtra": "dodatkowe / inne",
+    "legendMatch": "powiedziane",
+    "legendMissing": "pominięte",
+    "legendNear": "prawie",
+    "listening": "Słucham…",
+    "offline": "Jesteś offline. Ta przeglądarka potrzebuje internetu do rozpoznawania mowy – połącz się ponownie lub użyj rozpoznawania na urządzeniu, jeśli jest dostępne.",
+    "openSettings": "Ustawienia mowy",
+    "privacy": {
+      "accept": "Rozumiem – dalej",
+      "body": "Fluentum nigdy nie zapisuje Twojego głosu i niczego nam nie wysyła. Wbudowane w przeglądarkę rozpoznawanie mowy może jednak wysyłać nagranie do: {{vendor}}, by zamienić je na tekst.",
+      "bodyOnDevice": "Fluentum nigdy nie zapisuje Twojego głosu i niczego nam nie wysyła. Mowa jest rozpoznawana bezpośrednio na tym urządzeniu, więc nagranie go nie opuszcza.",
+      "onDevice": "Dobra wiadomość: Twoja przeglądarka rozpoznaje ten język na urządzeniu.",
+      "title": "Zanim zaczniesz mówić",
+      "vendorApple": "Apple",
+      "vendorGeneric": "dostawca przeglądarki",
+      "vendorGoogle": "Google",
+      "vendorMicrosoft": "Microsoft",
+      "whisper": "Wolisz w pełni prywatne rozpoznawanie? Włącz Whisper offline w Ustawieniach – nagranie nie opuści wtedy urządzenia."
+    },
+    "result": {
+      "acceptedNear": "Zaliczone – kilka słów zabrzmiało nieco inaczej.",
+      "coverage": "Dopasowano {{percent}}% słów – potrzeba {{needed}}%.",
+      "empty": "Nic nie usłyszałam. Spróbuj jeszcze raz, trochę głośniej.",
+      "emptySource": "To zdanie nie zawiera słów do wypowiedzenia.",
+      "extra_few": "Dodatkowe słowa: „{{words}}”. Spróbuj jeszcze raz.",
+      "extra_many": "Dodatkowe słowa: „{{words}}”. Spróbuj jeszcze raz.",
+      "extra_one": "Dodatkowe słowo: „{{words}}”. Spróbuj jeszcze raz.",
+      "extra_other": "Dodatkowe słowa: „{{words}}”. Spróbuj jeszcze raz.",
+      "great": "Świetnie!",
+      "missing_few": "Pominięte słowa: „{{words}}”. Spróbuj jeszcze raz.",
+      "missing_many": "Pominięte słowa: „{{words}}”. Spróbuj jeszcze raz.",
+      "missing_one": "Pominięte słowo: „{{words}}”. Spróbuj jeszcze raz.",
+      "missing_other": "Pominięte słowa: „{{words}}”. Spróbuj jeszcze raz.",
+      "wrong": "Usłyszałam „{{spoken}}” zamiast „{{expected}}”. Spróbuj jeszcze raz."
+    },
+    "spaceHint": "Spacja: start / stop",
+    "speak": "Mów",
+    "starting": "Włączam mikrofon…",
+    "stop": "Stop"
+  },
+  "celebrate": {
+    "freezeEarned": "Zdobywasz zamrożenie serii ❄",
+    "goalReached": "Cel dzienny osiągnięty! +{{xp}} XP",
+    "unlocked": "Nowe osiągnięcie"
+  },
+  "summary": {
+    "accepted": "Powiedziane zdania",
+    "again": "Poćwicz tę rozmowę jeszcze raz",
+    "firstTry": "Za pierwszym razem",
+    "goal": "Cel dzienny",
+    "goalValue": "{{done}} / {{goal}}",
+    "home": "Start",
+    "newAchievements": "Nowe osiągnięcia",
+    "newStar": "Nowa gwiazdka: {{mode}}! +{{xp}} XP",
+    "next": "Następna rozmowa",
+    "noStar": "Gwiazdka wymaga powiedzenia każdego zdania – bez pomijania i podglądania.",
+    "skipped_few": "{{count}} zdania pominięte",
+    "skipped_many": "{{count}} zdań pominiętych",
+    "skipped_one": "{{count}} zdanie pominięte",
+    "skipped_other": "{{count}} zdania pominiętego",
+    "starHint": "Spróbuj następnego sposobu, by zdobyć kolejną gwiazdkę.",
+    "streak": "Seria dni",
+    "title": "Brawo!",
+    "titleIncomplete": "Rozmowa zapisana",
+    "xp": "Zdobyte XP"
+  },
+  "progress": {
+    "achievementsHeading": "Osiągnięcia",
+    "bestStreak": "Najdłuższa seria",
+    "categories": {
+      "consistency": "Konsekwencja",
+      "conversations": "Rozmowy",
+      "course": "Kurs",
+      "daily": "W jednym dniu",
+      "golden": "Złoty kwadrans",
+      "level": "Poziomy",
+      "mastery": "Gwiazdki",
+      "other": "Inne",
+      "streak": "Serie",
+      "time": "Pora dnia",
+      "volume": "Łącznie"
+    },
+    "cellFrozen": "{{date}}: dzień zamrożony",
+    "cellLabel": "{{date}}: zdań {{count}}",
+    "colConversation": "Rozmowa",
+    "colDone": "Ukończona",
+    "colLast": "Ostatnio",
+    "colRate": "Za pierwszym razem",
+    "colSentences": "Zdania",
+    "colStars": "Gwiazdki",
+    "colWeek": "Tydzień",
+    "conversations": "Ukończone rozmowy",
+    "conversationsHeading": "Twoje rozmowy",
+    "courseHeading": {
+      "en": "Twój kurs angielskiego",
+      "pl": "Twój kurs polskiego"
+    },
+    "emptyConversations": "Ukończ rozmowę, a pojawi się tu ze swoimi gwiazdkami.",
+    "eyebrow": "Postępy",
+    "firstTry": "Za pierwszym razem",
+    "firstTryHint": "Cel: co najmniej 80%",
+    "firstTrySubtitle": "Odsetek zdań zaliczonych za pierwszym razem, ostatnie 12 tygodni.",
+    "firstTryTitle": "Skuteczność pierwszej próby w tygodniach",
+    "frozen": "zamrożony",
+    "goalDays": "Dni z osiągniętym celem",
+    "heatmapSummary": "{{active}} aktywnych dni i {{frozen}} dni zamrożonych w ostatnich 26 tygodniach.",
+    "heatmapTitle": "Aktywność z ostatnich 26 tygodni",
+    "hiddenBody": "Ćwicz dalej, aby je odkryć.",
+    "less": "mniej",
+    "mastered_few": "Opanowane rozmowy (wszystkie trzy gwiazdki): {{count}} z {{total}}.",
+    "mastered_many": "Opanowane rozmowy (wszystkie trzy gwiazdki): {{count}} z {{total}}.",
+    "mastered_one": "Opanowane rozmowy (wszystkie trzy gwiazdki): {{count}} z {{total}}.",
+    "mastered_other": "Opanowane rozmowy (wszystkie trzy gwiazdki): {{count}} z {{total}}.",
+    "metricsHeading": "W skrócie",
+    "more": "więcej",
+    "noActivity": "brak aktywności",
+    "noValue": "—",
+    "perfect": "Rozmowy bez potknięcia",
+    "showTable": "Pokaż jako tabelę",
+    "title": "Twoje słowa rosną",
+    "todayLabel": "dziś",
+    "totalLines": "Powiedziane zdania",
+    "unlockedCount": "Odblokowane: {{count}} z {{total}}",
+    "unlockedOn": "Odblokowano {{date}}",
+    "weekOf": "Tydzień od {{date}}"
+  },
+  "level": {
+    "circle": "Biegłość {{roman}}",
+    "label": "Poziom {{level}}",
+    "toNext": "{{xp}} XP do: {{name}}",
+    "up": "Nowy poziom: {{name}}",
+    "xp": "{{xp}} XP"
   },
   "levelNames": {
     "1": "Ziarno",
-    "2": "Kiełek",
-    "3": "Siewka",
-    "4": "Pęd",
-    "5": "Łodyga",
-    "6": "Liść",
-    "7": "Pąk",
-    "8": "Kwiat",
-    "9": "Owoc",
     "10": "Krzew",
     "11": "Młode drzewo",
     "12": "Drzewo",
@@ -914,425 +374,642 @@
     "17": "Las",
     "18": "Stary las",
     "19": "Ogród",
-    "20": "Teleo"
+    "2": "Kiełek",
+    "20": "Biegłość",
+    "3": "Siewka",
+    "4": "Pęd",
+    "5": "Łodyga",
+    "6": "Liść",
+    "7": "Pąk",
+    "8": "Kwiat",
+    "9": "Owoc"
   },
-  "level": {
-    "label": "Poziom {{level}}",
-    "circle": "Teleo {{roman}}",
-    "xp": "{{xp}} XP",
-    "toNext": "{{xp}} XP do: {{name}}",
-    "up": "Nowy poziom: {{name}}"
+  "tiers": {
+    "bronze": "Brąz",
+    "diamond": "Diament",
+    "gold": "Złoto",
+    "platinum": "Platyna",
+    "silver": "Srebro"
   },
-  "celebrate": {
-    "unlocked": "Nowe osiągnięcie",
-    "freezeEarned": "Zdobywasz zamrożenie serii ❄",
-    "goalReached": "Cel dzienny osiągnięty! +{{xp}} XP"
-  },
-  "memory": {
-    "button": "Z pamięci",
-    "title": "Powiedz z pamięci",
-    "body": "Wybierz, ile tekstu ma zostać widoczne. Słowa pojawiają się, gdy wypowiadasz je poprawnie.",
-    "start": "Rozpocznij",
-    "badge": "Z pamięci · {{level}}",
-    "hint": "Pokaż tekst (przytrzymaj)",
-    "hintNote": "Podejrzeć można – zdanie z podpowiedzią nie liczy się do osiągnięcia „Na pamięć”.",
-    "levels": {
-      "initials": {
-        "name": "Pierwsze litery",
-        "desc": "Widać tylko pierwszą literę każdego słowa."
+  "achievements": {
+    "comeback": {
+      "desc": "Wróć po przerwie trwającej co najmniej trzy dni.",
+      "name": "Witaj z powrotem"
+    },
+    "conversation": {
+      "1": {
+        "desc": "Ukończ rozmowę, mówiąc każde zdanie.",
+        "name": "Pierwsza rozmowa"
       },
-      "alternate": {
-        "name": "Co drugie słowo",
-        "desc": "Co drugie słowo jest ukryte."
+      "10": {
+        "desc": "Ukończ 10 rozmów.",
+        "name": "Gaduła"
       },
-      "hidden": {
-        "name": "Tekst ukryty",
-        "desc": "Nic nie widać. Ukończenie tekstu w tym trybie daje osiągnięcie „Na pamięć”."
+      "100": {
+        "desc": "Ukończ 100 rozmów.",
+        "name": "Mistrz konwersacji"
+      },
+      "365": {
+        "desc": "Ukończ 365 rozmów.",
+        "name": "Rok rozmów"
+      },
+      "50": {
+        "desc": "Ukończ 50 rozmów.",
+        "name": "Dobre towarzystwo"
+      }
+    },
+    "course": {
+      "a1": {
+        "desc": "Ukończ każdą rozmowę A1 przynajmniej raz.",
+        "name": "A1 ukończone"
+      },
+      "a2": {
+        "desc": "Ukończ każdą rozmowę A2 przynajmniej raz.",
+        "name": "A2 ukończone"
+      }
+    },
+    "daily": {
+      "10": {
+        "desc": "Powiedz 10 zdań w jeden dzień.",
+        "name": "Rozgrzewka"
+      },
+      "100": {
+        "desc": "Powiedz 100 zdań w jeden dzień.",
+        "name": "Maraton"
+      },
+      "25": {
+        "desc": "Powiedz 25 zdań w jeden dzień.",
+        "name": "W rytmie"
+      },
+      "50": {
+        "desc": "Powiedz 50 zdań w jeden dzień.",
+        "name": "Rozgadany dzień"
+      }
+    },
+    "goal": {
+      "days": {
+        "100": {
+          "desc": "Osiągnij cel dzienny przez 100 dni.",
+          "name": "Sto celów"
+        },
+        "30": {
+          "desc": "Osiągnij cel dzienny przez 30 dni.",
+          "name": "Trzydzieści celów"
+        },
+        "7": {
+          "desc": "Osiągnij cel dzienny przez 7 dni.",
+          "name": "Strażnik celu"
+        }
+      }
+    },
+    "golden": {
+      "days": {
+        "1": {
+          "desc": "Wypełnij złoty kwadrans: 15 minut mówienia w ciągu dnia.",
+          "name": "Złoty kwadrans"
+        },
+        "100": {
+          "desc": "Wypełnij złoty kwadrans przez 100 dni.",
+          "name": "Złota setka"
+        },
+        "30": {
+          "desc": "Wypełnij złoty kwadrans przez 30 dni.",
+          "name": "Złoty miesiąc"
+        },
+        "365": {
+          "desc": "Wypełnij złoty kwadrans przez 365 dni.",
+          "name": "Złoty rok"
+        },
+        "7": {
+          "desc": "Wypełnij złoty kwadrans przez 7 dni.",
+          "name": "Złoty tydzień"
+        }
+      }
+    },
+    "level": {
+      "10": {
+        "desc": "Osiągnij poziom 10.",
+        "name": "Poziom 10"
+      },
+      "20": {
+        "desc": "Osiągnij poziom 20.",
+        "name": "Biegłość"
+      },
+      "5": {
+        "desc": "Osiągnij poziom 5.",
+        "name": "Poziom 5"
+      }
+    },
+    "mastered": {
+      "1": {
+        "desc": "Zdobądź wszystkie trzy gwiazdki jednej rozmowy.",
+        "name": "Na pamięć"
+      },
+      "16": {
+        "desc": "Opanuj wszystkie 16 rozmów.",
+        "name": "Cały kurs opanowany"
+      },
+      "5": {
+        "desc": "Opanuj 5 rozmów – każdą na trzy gwiazdki.",
+        "name": "Pięć na pamięć"
+      }
+    },
+    "perfect": {
+      "1": {
+        "desc": "Ukończ rozmowę, mówiąc każde zdanie poprawnie za pierwszym razem.",
+        "name": "Bez potknięcia"
+      },
+      "10": {
+        "desc": "Ukończ 10 rozmów bez jednego potknięcia.",
+        "name": "Gładka mowa"
+      }
+    },
+    "stars": {
+      "1": {
+        "desc": "Zdobądź pierwszą gwiazdkę.",
+        "name": "Pierwsza gwiazdka"
+      },
+      "10": {
+        "desc": "Zdobądź 10 gwiazdek.",
+        "name": "Gwiaździście"
+      },
+      "25": {
+        "desc": "Zdobądź 25 gwiazdek.",
+        "name": "Gwiazdozbiór"
+      },
+      "48": {
+        "desc": "Zdobądź wszystkie 48 gwiazdek kursu.",
+        "name": "Galaktyka"
+      }
+    },
+    "streak": {
+      "100": {
+        "desc": "Ćwicz 100 dni z rzędu.",
+        "name": "Sto dni"
+      },
+      "14": {
+        "desc": "Ćwicz 14 dni z rzędu.",
+        "name": "Dwa tygodnie"
+      },
+      "2": {
+        "desc": "Ćwicz dwa dni z rzędu.",
+        "name": "Dwa dni"
+      },
+      "30": {
+        "desc": "Ćwicz 30 dni z rzędu.",
+        "name": "Miesiąc słów"
+      },
+      "365": {
+        "desc": "Ćwicz codziennie przez rok.",
+        "name": "Rok bez przerwy"
+      },
+      "5": {
+        "desc": "Ćwicz pięć dni z rzędu.",
+        "name": "Pięć dni"
+      },
+      "60": {
+        "desc": "Ćwicz 60 dni z rzędu.",
+        "name": "Nie do zatrzymania"
+      },
+      "7": {
+        "desc": "Ćwicz siedem dni z rzędu.",
+        "name": "Cały tydzień"
+      }
+    },
+    "time": {
+      "evening": {
+        "7": {
+          "desc": "Ćwicz po 21:00 przez 7 dni.",
+          "name": "Nocny marek"
+        }
+      },
+      "morning": {
+        "7": {
+          "desc": "Ćwicz przed 8:00 przez 7 dni.",
+          "name": "Ranny ptaszek"
+        }
+      }
+    },
+    "total": {
+      "1000": {
+        "desc": "Powiedz łącznie 1000 zdań.",
+        "name": "Tysiąc zdań"
+      },
+      "10000": {
+        "desc": "Powiedz łącznie 10 000 zdań.",
+        "name": "Dziesięć tysięcy"
+      },
+      "250": {
+        "desc": "Powiedz łącznie 250 zdań.",
+        "name": "Coraz płynniej"
+      },
+      "50": {
+        "desc": "Powiedz łącznie 50 zdań.",
+        "name": "Pierwsza pięćdziesiątka"
+      },
+      "5000": {
+        "desc": "Powiedz łącznie 5000 zdań.",
+        "name": "Pięć tysięcy"
+      },
+      "50000": {
+        "desc": "Powiedz łącznie 50 000 zdań.",
+        "name": "Rzeka słów"
+      }
+    },
+    "weekly": {
+      "5of7": {
+        "x4": {
+          "desc": "Ćwicz co najmniej 5 dni w tygodniu przez 4 tygodnie z rzędu.",
+          "name": "Równy rytm"
+        }
       }
     }
   },
-  "guardian": {
-    "name": "Anioł Stróż",
-    "extra": "Prawie – wkradło się słowo, którego nie ma w tekście. Weź oddech i powiedz to jeszcze raz.",
-    "wrong": "Prawie – jedno słowo zabrzmiało inaczej. Weź oddech i powiedz to jeszcze raz.",
-    "missing": "Prawie – jedno słowo zostało niewypowiedziane. Nie spiesz się i powiedz to jeszcze raz.",
-    "stuck": "To zdanie jest wyjątkowo uparte. Spróbuj jeszcze raz – albo je pomiń i idź dalej; to też jest w porządku."
+  "leaderboard": {
+    "best": "Twój rekord: {{points}} pkt",
+    "bestDays": "Twoje najlepsze dni",
+    "bestMonths": "Twoje najlepsze miesiące",
+    "bestWeeks": "Twoje najlepsze tygodnie",
+    "challenge": "Rzuć wyzwanie znajomemu",
+    "challengeHint": "Twoja karta podróżuje w linku: bez kont i bez serwera. Gdy znajomy odeśle swoją, dołączy do tej tablicy.",
+    "challengeText": "Moje punkty w Fluentum – dziś {{day}}, w tym tygodniu {{week}}, w tym miesiącu {{month}}. Dodaj mnie do swojej tablicy i wyślij mi swoje:",
+    "copied": "Link skopiowany – wyślij go znajomemu.",
+    "currentDay": "Dziś",
+    "currentMonth": "Ten miesiąc",
+    "currentWeek": "Ten tydzień",
+    "friendsHeading": "Ty i znajomi",
+    "noFriends": "Nie ma tu jeszcze znajomych – rzuć wyzwanie, a ich karta pojawi się, gdy ją odeślą.",
+    "period": "Okres",
+    "periodDay": "Dzień",
+    "periodMonth": "Miesiąc",
+    "periodWeek": "Tydzień",
+    "points": "{{points}} pkt",
+    "rankDay_few": "{{rank}}. miejsce spośród {{count}} Twoich dni",
+    "rankDay_many": "{{rank}}. miejsce spośród {{count}} Twoich dni",
+    "rankDay_one": "{{rank}}. miejsce spośród {{count}} dnia",
+    "rankDay_other": "{{rank}}. miejsce spośród {{count}} Twoich dni",
+    "rankMonth_few": "{{rank}}. miejsce spośród {{count}} Twoich miesięcy",
+    "rankMonth_many": "{{rank}}. miejsce spośród {{count}} Twoich miesięcy",
+    "rankMonth_one": "{{rank}}. miejsce spośród {{count}} miesiąca",
+    "rankMonth_other": "{{rank}}. miejsce spośród {{count}} Twoich miesięcy",
+    "rankWeek_few": "{{rank}}. miejsce spośród {{count}} Twoich tygodni",
+    "rankWeek_many": "{{rank}}. miejsce spośród {{count}} Twoich tygodni",
+    "rankWeek_one": "{{rank}}. miejsce spośród {{count}} tygodnia",
+    "rankWeek_other": "{{rank}}. miejsce spośród {{count}} Twoich tygodni",
+    "remove": "Usuń: {{name}}",
+    "stale": "brak karty z tego okresu",
+    "title": "Tablica punktów",
+    "unit": "pkt",
+    "weekOf": "Tydzień od {{date}}",
+    "you": "Ty"
   },
-  "characters": {
-    "anna": "Anna",
-    "maria": "Maria",
-    "grace": "Grace",
-    "ewa": "Ewa",
-    "jan": "Jan",
-    "michal": "Michał",
-    "david": "Dawid",
-    "piotr": "Piotr"
-  },
-  "golden": {
-    "title": "Złoty kwadrans",
-    "before": "{{minutes}} z 5 min – od 5. minuty każde zdanie liczy się podwójnie.",
-    "inside": "Teraz ×2 punkty – zostało {{left}} min złotego kwadransu.",
-    "done": "Złoty kwadrans wypełniony – dziś {{minutes}} min czytania.",
-    "label": "Dziś na głos: {{minutes}} z 15 minut",
-    "badge": "×2",
-    "badgeTitle": "Złoty kwadrans: każde zdanie liczy się podwójnie",
-    "hint": "5–15 minut dziennie daje podwójne punkty – to złoty kwadrans.",
-    "tickStart": "0",
-    "tickGolden": "5",
-    "tickEnd": "15 min"
-  },
-  "support": {
-    "rubric": "Słowo na dziś",
-    "line": "Teleo jest darmowe, bez reklam i śledzenia. Jeśli Ci pomaga, możesz postawić autorowi kawę.",
-    "button": "Postaw kawę",
-    "buttonLabel": "Postaw autorowi kawę – otwiera buycoffee.to w nowej karcie",
-    "note": "buycoffee.to · otwiera się w nowej karcie",
-    "tip1": "Wypowiadaj każde zdanie we własnym tempie. To ja czekam na Ciebie – nigdy odwrotnie.",
-    "tip2": "Od pięciu do piętnastu minut dziennie to złoty kwadrans: dość, by wzrastać, i dość krótko, by wytrwać.",
-    "tip3": "Imię nie chce przejść? Powiedz je jeszcze raz, powoli. Po trzech próbach możesz je pominąć – to w porządku.",
-    "tip4": "Uczysz się nowego tekstu? Włącz „Posłuchaj najpierw” i usłysz zdanie, zanim je powiesz.",
-    "tip5": "Ta sama pora, to samo miejsce: nawyk najlepiej rośnie w tej samej glebie.",
-    "tip6": "Tryb pamięciowy ukrywa słowa po trochu – łagodny sposób, by nauczyć się na pamięć.",
-    "tip7": "Zamrożenie serii chroni dzień przerwy. Odpoczynek nie cofa przebytej drogi.",
-    "tip8": "Rano czy wieczorem – znajdź cichą część dnia i zachowaj ją na to.",
-    "tip9": "Długie zdania dzielimy za Ciebie. Weź oddech przy każdym przecinku.",
-    "tip10": "Słowa wypowiedziane na głos zostają z nami dłużej niż tylko przeczytane.",
-    "strip": "Teleo jest darmowe · postaw autorowi kawę",
-    "bannerTitle": "Pomóż Teleo trwać"
+  "friend": {
+    "add": "Dodaj do mojej tablicy",
+    "added": "{{name}} jest na Twojej tablicy.",
+    "cardFrom": "Karta z {{date}}",
+    "eyebrow": "Karta znajomego",
+    "invalid": "Ten link nie zawiera poprawnej karty.",
+    "month": "w tym miesiącu",
+    "notNow": "Nie teraz",
+    "older": "Masz już nowszą kartę: {{name}}.",
+    "privacy": "Nic nie jest nigdzie wysyłane: karta jest zapisana w linku i zostaje tylko na tym urządzeniu.",
+    "self": "To Twoja własna karta.",
+    "streak": "dni z rzędu",
+    "title": "Punkty w Fluentum: {{name}}",
+    "today": "dziś",
+    "update": "Zaktualizuj na mojej tablicy",
+    "week": "w tym tygodniu"
   },
   "share": {
     "button": "Udostępnij dzień",
+    "cardFirstTry": "za pierwszym razem",
+    "cardLines": "zdań na głos",
+    "cardMinutes": "min mówienia",
+    "cardPoints": "punkty",
+    "cardStars_few": "★ {{count}} z 3 gwiazdek w tej rozmowie",
+    "cardStars_many": "★ {{count}} z 3 gwiazdek w tej rozmowie",
+    "cardStars_one": "★ {{count}} z 3 gwiazdek w tej rozmowie",
+    "cardStars_other": "★ {{count}} z 3 gwiazdek w tej rozmowie",
+    "cardStreak": "dni z rzędu",
+    "cardTitle": "Mój dzień z Fluentum",
+    "copied": "Skopiowane – wklej, gdzie chcesz.",
+    "cta": "Mów w nowym języku – jedna rozmowa dziennie.",
+    "download": "Pobierz obrazek",
+    "facebook": "Facebook",
+    "fileName": "fluentum-dzis.png",
     "preparing": "Przygotowuję…",
     "preview": "Co zostanie udostępnione",
-    "copied": "Skopiowane – wklej, gdzie chcesz.",
-    "unsupported": "Ta przeglądarka nie udostępnia sama – wybierz serwis albo pobierz obrazek.",
-    "download": "Pobierz obrazek",
-    "x": "X",
-    "facebook": "Facebook",
-    "whatsapp": "WhatsApp",
-    "t1_one": "Dziś {{minutes}} min czytania na głos – {{count}} zdanie, sprawdzone słowo po słowie. {{points}} pkt.",
-    "t1_few": "Dziś {{minutes}} min czytania na głos – {{count}} zdania, każde sprawdzone słowo po słowie. {{points}} pkt.",
-    "t1_many": "Dziś {{minutes}} min czytania na głos – {{count}} zdań, każde sprawdzone słowo po słowie. {{points}} pkt.",
-    "t1_other": "Dziś {{minutes}} min czytania na głos – {{count}} zdania, każde sprawdzone słowo po słowie. {{points}} pkt.",
-    "t2_one": "{{streak}}. dzień z rzędu: {{count}} zdanie na głos, razem {{minutes}} min.",
+    "sessionButton": "Udostępnij wynik",
+    "sessionFileName": "fluentum-rozmowa.png",
+    "sessionInvite": "Zaproś znajomych do nauki: udostępnij tę rozmowę.",
+    "session_few": "Za mną rozmowa na głos: „{{title}}” – {{count}} zdania, {{firstTry}}% za pierwszym razem, gwiazdki: {{stars}}/3. Dzień serii: {{streak}}.",
+    "session_many": "Za mną rozmowa na głos: „{{title}}” – {{count}} zdań, {{firstTry}}% za pierwszym razem, gwiazdki: {{stars}}/3. Dzień serii: {{streak}}.",
+    "session_one": "Za mną rozmowa na głos: „{{title}}” – {{count}} zdanie, {{firstTry}}% za pierwszym razem, gwiazdki: {{stars}}/3. Dzień serii: {{streak}}.",
+    "session_other": "Za mną rozmowa na głos: „{{title}}” – {{count}} zdania, {{firstTry}}% za pierwszym razem, gwiazdki: {{stars}}/3. Dzień serii: {{streak}}.",
+    "t1_few": "Dziś {{minutes}} min mówienia w nowym języku – {{count}} zdania, każde sprawdzone słowo po słowie. {{points}} pkt.",
+    "t1_many": "Dziś {{minutes}} min mówienia w nowym języku – {{count}} zdań, każde sprawdzone słowo po słowie. {{points}} pkt.",
+    "t1_one": "Dziś {{minutes}} min mówienia w nowym języku – {{count}} zdanie, sprawdzone słowo po słowie. {{points}} pkt.",
+    "t1_other": "Dziś {{minutes}} min mówienia w nowym języku – {{count}} zdania, każde sprawdzone słowo po słowie. {{points}} pkt.",
     "t2_few": "{{streak}}. dzień z rzędu: {{count}} zdania na głos, razem {{minutes}} min.",
     "t2_many": "{{streak}}. dzień z rzędu: {{count}} zdań na głos, razem {{minutes}} min.",
+    "t2_one": "{{streak}}. dzień z rzędu: {{count}} zdanie na głos, razem {{minutes}} min.",
     "t2_other": "{{streak}}. dzień z rzędu: {{count}} zdania na głos, razem {{minutes}} min.",
-    "t3_one": "Dziś {{count}} zdanie na głos i {{points}} pkt. {{streak}}. dzień z rzędu.",
     "t3_few": "Dziś {{count}} zdania na głos i {{points}} pkt. {{streak}}. dzień z rzędu.",
     "t3_many": "Dziś {{count}} zdań na głos i {{points}} pkt. {{streak}}. dzień z rzędu.",
+    "t3_one": "Dziś {{count}} zdanie na głos i {{points}} pkt. {{streak}}. dzień z rzędu.",
     "t3_other": "Dziś {{count}} zdania na głos i {{points}} pkt. {{streak}}. dzień z rzędu.",
-    "bible": "Biblia przeczytana na głos: {{percent}}.",
-    "cta": "Wypowiedz. Wypełnij.",
-    "cardTitle": "Mój dzień z Teleo",
-    "cardMinutes": "min na głos",
-    "cardSentences": "zdania",
-    "cardStreak": "dni z rzędu",
-    "cardPoints": "punkty",
-    "cardBible": "Biblii przeczytane na głos",
-    "fileName": "teleo-dzis.png",
-    "sessionButton": "Udostępnij wynik",
-    "sessionInvite": "Zaproś innych, by też mówili na głos: udostępnij tę sesję.",
-    "session_one": "Za mną „{{title}}” na głos: {{count}} zdanie, {{firstTry}}% za pierwszym razem. Dzień serii: {{streak}}.",
-    "session_few": "Za mną „{{title}}” na głos: {{count}} zdania, {{firstTry}}% za pierwszym razem. Dzień serii: {{streak}}.",
-    "session_many": "Za mną „{{title}}” na głos: {{count}} zdań, {{firstTry}}% za pierwszym razem. Dzień serii: {{streak}}.",
-    "session_other": "Za mną „{{title}}” na głos: {{count}} zdania, {{firstTry}}% za pierwszym razem. Dzień serii: {{streak}}.",
-    "cardFirstTry": "za pierwszym razem",
-    "sessionFileName": "teleo-sesja.png"
+    "unsupported": "Ta przeglądarka nie udostępnia sama – wybierz serwis albo pobierz obrazek.",
+    "whatsapp": "WhatsApp",
+    "x": "X"
   },
-  "leaderboard": {
-    "title": "Tablica punktów",
-    "period": "Okres",
-    "periodDay": "Dzień",
-    "periodWeek": "Tydzień",
-    "periodMonth": "Miesiąc",
-    "currentDay": "Dziś",
-    "currentWeek": "Ten tydzień",
-    "currentMonth": "Ten miesiąc",
-    "points": "{{points}} pkt",
-    "best": "Twój rekord: {{points}} pkt",
-    "rankDay_one": "{{rank}}. miejsce spośród {{count}} dnia",
-    "rankDay_few": "{{rank}}. miejsce spośród {{count}} Twoich dni",
-    "rankDay_many": "{{rank}}. miejsce spośród {{count}} Twoich dni",
-    "rankDay_other": "{{rank}}. miejsce spośród {{count}} Twoich dni",
-    "rankWeek_one": "{{rank}}. miejsce spośród {{count}} tygodnia",
-    "rankWeek_few": "{{rank}}. miejsce spośród {{count}} Twoich tygodni",
-    "rankWeek_many": "{{rank}}. miejsce spośród {{count}} Twoich tygodni",
-    "rankWeek_other": "{{rank}}. miejsce spośród {{count}} Twoich tygodni",
-    "rankMonth_one": "{{rank}}. miejsce spośród {{count}} miesiąca",
-    "rankMonth_few": "{{rank}}. miejsce spośród {{count}} Twoich miesięcy",
-    "rankMonth_many": "{{rank}}. miejsce spośród {{count}} Twoich miesięcy",
-    "rankMonth_other": "{{rank}}. miejsce spośród {{count}} Twoich miesięcy",
-    "friendsHeading": "Ty i znajomi",
-    "you": "Ty",
-    "stale": "brak karty z tego okresu",
-    "noFriends": "Nie ma tu jeszcze znajomych – rzuć wyzwanie, a ich karta pojawi się, gdy ją odeślą.",
-    "challenge": "Rzuć wyzwanie znajomemu",
-    "challengeHint": "Twoja karta podróżuje w linku: bez kont i bez serwera. Gdy znajomy odeśle swoją, dołączy do tej tablicy.",
-    "challengeText": "Moje punkty w Teleo – dziś {{day}}, w tym tygodniu {{week}}, w tym miesiącu {{month}}. Dodaj mnie do swojej tablicy i odeślij swoje:",
-    "copied": "Link skopiowany – wyślij go znajomemu.",
-    "remove": "Usuń: {{name}}",
-    "bestDays": "Twoje najlepsze dni",
-    "bestWeeks": "Twoje najlepsze tygodnie",
-    "bestMonths": "Twoje najlepsze miesiące",
-    "weekOf": "Tydzień od {{date}}",
-    "unit": "pkt"
+  "golden": {
+    "badge": "×2",
+    "badgeTitle": "Złoty kwadrans: każde zdanie liczy się podwójnie",
+    "before": "{{minutes}} z 5 min – od 5. minuty każde zdanie liczy się podwójnie.",
+    "done": "Złoty kwadrans wypełniony – dziś {{minutes}} min mówienia.",
+    "hint": "5–15 minut dziennie daje podwójne punkty – to złoty kwadrans.",
+    "inside": "Teraz ×2 punkty – zostało {{left}} min złotego kwadransu.",
+    "label": "Dziś na głos: {{minutes}} z 15 minut",
+    "tickEnd": "15 min",
+    "tickGolden": "5",
+    "tickStart": "0",
+    "title": "Złoty kwadrans"
   },
-  "friend": {
-    "rubric": "Karta znajomego",
-    "title": "Punkty w Teleo: {{name}}",
-    "today": "dziś",
-    "week": "w tym tygodniu",
-    "month": "w tym miesiącu",
-    "streak": "dni z rzędu",
-    "cardFrom": "Karta z {{date}}",
-    "add": "Dodaj do mojej tablicy",
-    "update": "Zaktualizuj na mojej tablicy",
-    "notNow": "Nie teraz",
-    "added": "{{name}} jest na Twojej tablicy.",
-    "older": "Masz już nowszą kartę: {{name}}.",
-    "self": "To Twoja własna karta.",
-    "invalid": "Ten link nie zawiera poprawnej karty.",
-    "privacy": "Nic nie jest nigdzie wysyłane: karta jest zapisana w linku i zostaje tylko na tym urządzeniu.",
-    "sendBack": "Odeślij swoją kartę"
-  },
-  "bible": {
-    "rubric": "Wyzwanie biblijne",
-    "title": "Całe Pismo, na głos",
-    "lead": "Każde zdanie wypowiedziane na głos i sprawdzone – w czytaniach po około minucie, które zawsze kończą się na pełnym zdaniu.",
-    "yearHint": "Około {{days}} dni po 15 minut dziennie – złoty kwadrans.",
-    "progress": "{{done}} z {{total}} czytań",
-    "percent": "{{percent}} przeczytane na głos",
-    "left_one": "Jeszcze około {{count}} dzień po 15 min",
-    "left_few": "Jeszcze około {{count}} dni po 15 min",
-    "left_many": "Jeszcze około {{count}} dni po 15 min",
-    "left_other": "Jeszcze około {{count}} dnia po 15 min",
-    "readNext": "Czytaj dalej",
-    "nextHint": "{{title}} · około {{minutes}} min",
-    "allDone": "Wszystkie czytania za Tobą – całe Pismo, na głos.",
-    "ot": "Stary Testament",
-    "nt": "Nowy Testament",
-    "bookProgress": "{{done}}/{{total}}",
-    "bookDone": "Przeczytana do końca",
-    "readings": "Czytania",
-    "readingDone": "Przeczytane",
-    "readingNext": "Następne",
-    "minutes": "około {{minutes}} min",
-    "loadError": "Nie udało się wczytać tekstu. Połącz się raz z internetem, by pobrać tę księgę; potem działa bez sieci.",
-    "sourceNote": "{{name}} · domena publiczna",
-    "todayBody": "{{percent}} Biblii przeczytane na głos",
-    "todayStart": "Przeczytaj całą Biblię na głos – po minucie.",
-    "open": "Wyzwanie biblijne",
-    "libraryTitle": "Biblia",
-    "libraryBody": "Przeczytaj ją całą na głos, po minucie.",
-    "reference": "{{book}} {{range}}",
-    "books": {
-      "GEN": "Księga Rodzaju",
-      "EXO": "Księga Wyjścia",
-      "LEV": "Księga Kapłańska",
-      "NUM": "Księga Liczb",
-      "DEU": "Księga Powtórzonego Prawa",
-      "JOS": "Księga Jozuego",
-      "JDG": "Księga Sędziów",
-      "RUT": "Księga Rut",
-      "1SA": "1 Księga Samuela",
-      "2SA": "2 Księga Samuela",
-      "1KI": "1 Księga Królewska",
-      "2KI": "2 Księga Królewska",
-      "1CH": "1 Księga Kronik",
-      "2CH": "2 Księga Kronik",
-      "EZR": "Księga Ezdrasza",
-      "NEH": "Księga Nehemiasza",
-      "EST": "Księga Estery",
-      "JOB": "Księga Hioba",
-      "PSA": "Księga Psalmów",
-      "PRO": "Księga Przysłów",
-      "ECC": "Księga Koheleta",
-      "SNG": "Pieśń nad Pieśniami",
-      "ISA": "Księga Izajasza",
-      "JER": "Księga Jeremiasza",
-      "LAM": "Lamentacje",
-      "EZK": "Księga Ezechiela",
-      "DAN": "Księga Daniela",
-      "HOS": "Księga Ozeasza",
-      "JOL": "Księga Joela",
-      "AMO": "Księga Amosa",
-      "OBA": "Księga Abdiasza",
-      "JON": "Księga Jonasza",
-      "MIC": "Księga Micheasza",
-      "NAM": "Księga Nahuma",
-      "HAB": "Księga Habakuka",
-      "ZEP": "Księga Sofoniasza",
-      "HAG": "Księga Aggeusza",
-      "ZEC": "Księga Zachariasza",
-      "MAL": "Księga Malachiasza",
-      "MAT": "Ewangelia według Mateusza",
-      "MRK": "Ewangelia według Marka",
-      "LUK": "Ewangelia według Łukasza",
-      "JHN": "Ewangelia według Jana",
-      "ACT": "Dzieje Apostolskie",
-      "ROM": "List do Rzymian",
-      "1CO": "1 List do Koryntian",
-      "2CO": "2 List do Koryntian",
-      "GAL": "List do Galatów",
-      "EPH": "List do Efezjan",
-      "PHP": "List do Filipian",
-      "COL": "List do Kolosan",
-      "1TH": "1 List do Tesaloniczan",
-      "2TH": "2 List do Tesaloniczan",
-      "1TI": "1 List do Tymoteusza",
-      "2TI": "2 List do Tymoteusza",
-      "TIT": "List do Tytusa",
-      "PHM": "List do Filemona",
-      "HEB": "List do Hebrajczyków",
-      "JAS": "List Jakuba",
-      "1PE": "1 List Piotra",
-      "2PE": "2 List Piotra",
-      "1JN": "1 List Jana",
-      "2JN": "2 List Jana",
-      "3JN": "3 List Jana",
-      "JUD": "List Judy",
-      "REV": "Apokalipsa"
-    }
-  },
-  "dialogues": {
-    "rubric": "Nauka języka",
-    "titleIn": {
-      "en": "Rozmowy po angielsku",
-      "pl": "Rozmowy po polsku"
+  "onboarding": {
+    "back": "Wstecz",
+    "begin": "Rozpocznij",
+    "characterGuide": "Wybierz postać, która będzie Cię reprezentować. Zmienisz ją w każdej chwili.",
+    "characterTitle": "Wybierz swoją postać",
+    "goalBody": "Rozmowa to cztery–pięć Twoich zdań. Mały cel dzienny podtrzymuje nawyk – zmienisz go w każdej chwili.",
+    "goalLines_few": "{{count}} zdania",
+    "goalLines_many": "{{count}} zdań",
+    "goalLines_one": "{{count}} zdanie",
+    "goalLines_other": "{{count}} zdania",
+    "goalTitle": "Ile zdań dziennie?",
+    "how": {
+      "answer": "Ty odpowiadasz na głos. Pod Twoim zdaniem: jak je wymówić i co znaczy.",
+      "check": "Każde zdanie sprawdzamy na bieżąco – za nim idą punkty, cel dnia i seria.",
+      "partner": "Rozmówca mówi pierwszy – na głos, ze znaczeniem pod każdym zdaniem."
     },
-    "lead": "Krótkie rozmowy z życia codziennego. Rozmówca zaczyna, a Ty odpowiadasz na głos – każde Twoje zdanie jest sprawdzane, tak jak modlitwy i afirmacje.",
-    "libraryBody": "Ćwicz język w krótkich rozmowach – na głos.",
-    "howToReadTitle": "Jak czytać wymowę:",
-    "howToRead": "zapisujemy ją polskimi literami, a WIELKIE litery to sylaba akcentowana. „th” – czubek języka lekko między zębami; „ł” – jak w „łódka”; „ii”, „uu” – długie „i” i „u”; „e” brzmi często jak dźwięk między „a” i „e”.",
-    "legendTitle": "Kolory słów",
-    "legendHint": "Wskaż lub dotknij słowa, a podświetli się jego odpowiednik w tłumaczeniu.",
-    "roles": {
-      "subject": "Podmiot",
-      "predicate": "Orzeczenie",
-      "adjective": "Przymiotnik",
-      "object": "Dopełnienie"
+    "howGuide": "Każda rozmowa to scenka z życia. Wygląda tak:",
+    "howTitle": "Jak wygląda rozmowa",
+    "learning": {
+      "en": "Ćwiczysz angielski.",
+      "pl": "Ćwiczysz polski."
     },
-    "level": "Poziom {{level}}",
-    "lines_one": "{{count}} Twoja kwestia",
-    "lines_few": "{{count}} Twoje kwestie",
-    "lines_many": "{{count}} Twoich kwestii",
-    "lines_other": "{{count}} Twojej kwestii",
-    "done_one": "Ukończona {{count}} raz",
-    "done_few": "Ukończona {{count}} razy",
-    "done_many": "Ukończona {{count}} razy",
-    "done_other": "Ukończona {{count}} razy",
-    "startError": "Nie udało się rozpocząć rozmowy.",
-    "chat": "Rozmowa – {{name}}",
-    "typing": "{{name}} pisze…",
-    "partnerSpeaking": "Mówi {{name}}…",
-    "yourTurn": "Twoja kolej – powiedz na głos",
-    "you": "Ty",
-    "pronunciation": "Wymowa",
-    "listenLine": "Posłuchaj",
-    "words": "Słówka",
-    "noWords": "W tym zdaniu nie zaznaczono słów.",
-    "said": "Powiedziane",
-    "skipped": "Pominięte",
-    "skip": "Pomiń tę kwestię",
-    "finished": "Koniec rozmowy",
-    "toSummary": "Podsumowanie",
-    "progress": "Kwestia {{current}} z {{total}}",
-    "leaveTitle": "Przerwać rozmowę?",
-    "leaveBody": "Postęp jest zapisany. Możesz do niej dziś wrócić z ekranu Dziś."
+    "micBody": "Dotknij mikrofonu i powiedz zdanie poniżej.",
+    "micOk": "Słyszę Cię – wszystko działa.",
+    "micPhrase": "Good morning",
+    "micRetry": "Jeszcze nie – spróbuj ponownie albo pomiń ten krok.",
+    "micTitle": "Sprawdźmy mikrofon",
+    "next": "Dalej",
+    "privacyLink": "Polityka prywatności",
+    "privacyNote": "Bez konta i bez serwera: Twoje dane zostają na tym urządzeniu.",
+    "skip": "Pomiń",
+    "speakLabel": "Twój język",
+    "starsTitle": "Trzy gwiazdki za każdą rozmowę",
+    "start": "Zaczynamy",
+    "step": "Krok {{current}} z {{total}}",
+    "welcomeBody": "Jestem Lori i będę Twoją partnerką do rozmów: krótkie codzienne dialogi, na głos, każde zdanie sprawdzone – za darmo, prywatnie, na tym urządzeniu.",
+    "welcomeTitle": "Mów w nowym języku – jedna rozmowa dziennie."
+  },
+  "settings": {
+    "about": "Fluentum {{version}} – bezpłatne, bez reklam, działa w całości w Twojej przeglądarce.",
+    "backupHint": "Wszystkie dane są tylko na tym urządzeniu. Kopia zapasowa pozwala je zachować i przenieść.",
+    "character": "Postać",
+    "characterHint": "Wybierz postać, która reprezentuje Cię w Fluentum.",
+    "checking": "Jak sprawdzamy",
+    "checkingHint": "Każda kolejna próba zdania jest łagodniejsza: pierwsza wymaga 90% słów, druga 80%, a od trzeciej 70%. Słowo usłyszane jako inne liczy się jako niewypowiedziane; słowo dodane do zdania nadal oblewa próbę.",
+    "dailyGoal": "Cel dzienny (zdania)",
+    "dataLink": "Twoje dane: kopia, przywracanie, usuwanie",
+    "dayStart": "Nowy dzień zaczyna się o",
+    "dayStartHint": "Nauka po północy liczy się do poprzedniego dnia aż do tej godziny.",
+    "displayName": "Imię na udostępnianych kartach",
+    "displayNameHint": "Znajomi zobaczą je na swojej tablicy. Puste = imię Twojej postaci.",
+    "engine": "Silnik rozpoznawania",
+    "engineAuto": "Automatycznie",
+    "engineHint": "Automatycznie: rozpoznawanie wbudowane w przeglądarkę (Web Speech), a tam, gdzie go nie ma (np. w Firefoksie), Whisper offline.",
+    "engineWeb": "Przeglądarka",
+    "engineWhisper": "Whisper offline",
+    "eyebrow": "Ustawienia",
+    "fontLg": "Duży",
+    "fontMd": "Średni",
+    "fontPreview": "I’d like a large coffee, please.",
+    "fontSize": "Rozmiar zdań",
+    "fontSm": "Mały",
+    "handsFree": "Słuchanie na żywo (bez rąk)",
+    "handsFreeHint": "Słuchaj przez całą rozmowę i sprawdzaj każde zdanie na bieżąco.",
+    "installBody": "Dodaj Fluentum do ekranu głównego: otwiera się na pełnym ekranie jak aplikacja, startuje szybciej i działa bez internetu.",
+    "installButton": "Zainstaluj Fluentum",
+    "installDone": "Fluentum jest na ekranie głównym.",
+    "installIos1": "W Safari stuknij Udostępnij",
+    "installIos2": "Wybierz „Do ekranu początkowego”, a potem „Dodaj”.",
+    "installIosShare": "Udostępnij",
+    "language": "Twój język",
+    "languageHint": "Fluentum mówi do Ciebie w Twoim języku i ćwiczy z Tobą ten drugi.",
+    "lastBackup": "Ostatnia kopia: {{date}}",
+    "learning": {
+      "en": "Ćwiczysz angielski.",
+      "pl": "Ćwiczysz polski."
+    },
+    "listenFirst": "Najpierw posłuchaj",
+    "listenFirstHint": "Fluentum czyta każde Twoje zdanie na głos, zanim je powiesz – świetny sposób, by złapać wymowę.",
+    "micTest": "Sprawdź mikrofon",
+    "neverBackedUp": "Nie ma jeszcze kopii.",
+    "openData": "Kopia i przywracanie",
+    "privacyHint": "Bez konta, bez serwera, bez śledzenia. Twoje postępy zostają w tej przeglądarce.",
+    "privacyPolicy": "Polityka prywatności",
+    "reminderBody": "Jedna krótka rozmowa, na głos.",
+    "reminderDownload": "Dodaj do kalendarza (.ics)",
+    "reminderHint": "Fluentum nie ma serwera do wysyłania powiadomień, więc przypomnienie trafia do kalendarza w telefonie – niezawodnie i za darmo.",
+    "reminderTime": "Codzienne przypomnienie o",
+    "reminderTitle": "Czas na Fluentum",
+    "saveTranscripts": "Zapisuj transkrypcje",
+    "saveTranscriptsHint": "Przechowuj rozpoznany tekst każdej próby. Gdy wyłączone – tylko wynik. Nagrania nigdy nie są zapisywane.",
+    "sectionAbout": "O aplikacji",
+    "sectionAppearance": "Wygląd",
+    "sectionBackup": "Kopia zapasowa",
+    "sectionCharacter": "Twoja postać",
+    "sectionInstall": "Fluentum jako aplikacja",
+    "sectionLanguages": "Języki",
+    "sectionPractice": "Codzienna nauka",
+    "sectionPrivacy": "Prywatność i dane",
+    "sectionReminders": "Przypomnienia",
+    "sectionSpeech": "Mowa",
+    "sounds": "Efekty dźwiękowe",
+    "soundsHint": "Delikatny dzwonek po każdym zdaniu; pełniejszy po ukończonej rozmowie lub celu.",
+    "theme": "Wygląd",
+    "themeDark": "Ciemny",
+    "themeLight": "Jasny",
+    "themeSystem": "Systemowy",
+    "title": "Ustawienia",
+    "whisperAlsoDownloaded": "Pobrany jest też model {{model}} ({{size}}).",
+    "whisperBase": "Base · {{size}}",
+    "whisperCancel": "Przerwij pobieranie",
+    "whisperChecking": "Sprawdzam…",
+    "whisperConfirm": "Pobierz",
+    "whisperConfirmBody": "Fluentum pobierze jednorazowo około {{size}}: model z Hugging Face (huggingface.co) i silnik mowy ze strony Fluentum. Na danych komórkowych może to być kosztowne – jeśli możesz, użyj Wi-Fi. Potem rozpoznawanie działa offline, a nagranie nigdy nie opuszcza urządzenia.",
+    "whisperConfirmTitle": "Pobrać model Whisper?",
+    "whisperDelete": "Usuń pobrany model",
+    "whisperDeleteOther": "Usuń {{model}}",
+    "whisperDeleted": "Model usunięty",
+    "whisperDone": "Whisper gotowy – działa już offline",
+    "whisperDownload": "Pobierz ({{size}})",
+    "whisperDownloading": "Pobieranie… {{percent}}%",
+    "whisperFailed": "Pobieranie nie powiodło się. Sprawdź połączenie i spróbuj ponownie.",
+    "whisperIntro": "Rozpoznaje mowę bezpośrednio na tym urządzeniu: w 100% prywatnie – nagranie go nie opuszcza – i działa także w Firefoksie. Jest wolniejszy od rozpoznawania w przeglądarce, zwłaszcza na starszych telefonach, i sprawdza zdanie dopiero po jego wypowiedzeniu (bez słuchania na żywo).",
+    "whisperMissing": "Model nie jest jeszcze pobrany.",
+    "whisperModel": "Model Whisper",
+    "whisperModelHint": "Base (zalecany) znacznie lepiej rozpoznaje mowę; Tiny jest mniejszy i szybszy, ale częściej się myli.",
+    "whisperNeedsDownload": "Aby używać Whispera, pobierz model.",
+    "whisperNoSpace": "Na tym urządzeniu brakuje miejsca na model.",
+    "whisperProgress": "Pobieranie modelu",
+    "whisperReady": "Pobrany – działa offline.",
+    "whisperTiny": "Tiny · {{size}}",
+    "whisperTitle": "Whisper offline",
+    "whisperUnavailable": "Ta przeglądarka nie uruchomi Whispera (potrzebne są Web Workers, WebAssembly, pamięć offline i nagrywanie z mikrofonu).",
+    "wordColours": "Kolory słów",
+    "wordColoursHint": "Koloruj podmiot, orzeczenie, przymiotniki i dopełnienia w każdym zdaniu – razem z odpowiednikami w tłumaczeniu."
+  },
+  "micTest": {
+    "alternatives": "Inne hipotezy",
+    "custom": "Własne zdanie",
+    "customPlaceholder": "Wpisz dowolne zdanie…",
+    "engine": "Silnik",
+    "engineWeb": "Rozpoznawanie mowy przeglądarki (Web Speech API)",
+    "engineWhisper": "Whisper offline ({{model}}) – na tym urządzeniu",
+    "eyebrow": "Test mikrofonu",
+    "heard": "Co usłyszeliśmy",
+    "intro": "Powiedz zdanie w języku, który ćwiczysz. Fluentum pokaże, co usłyszało i czy zdanie zostałoby zaliczone.",
+    "onDevice": "Rozpoznawanie na urządzeniu",
+    "onDeviceAvailable": "dostępne – używane automatycznie",
+    "onDeviceDownloadable": "można pobrać",
+    "onDeviceInstall": "Pobierz pakiet językowy",
+    "onDeviceInstalled": "Pakiet językowy zainstalowany",
+    "onDeviceUnavailable": "niedostępne",
+    "phrase": "Zdanie do powiedzenia",
+    "title": "Sprawdź mikrofon"
   },
   "data": {
-    "rubric": "Ustawienia",
-    "title": "Twoje dane",
-    "lead": "Wszystko, co robisz w Teleo, jest zapisane tylko w tej przeglądarce na tym urządzeniu – bez konta i bez serwera. Kopia zapasowa to plik, który zachowasz gdzie indziej i przywrócisz na dowolnym urządzeniu.",
-    "deviceTitle": "Na tym urządzeniu",
-    "stats": {
-      "sentences": "Wypowiedziane zdania",
-      "activeDays": "Aktywne dni",
-      "xp": "Punkty XP",
-      "lastActiveDay": "Ostatnia aktywność",
-      "ownTexts": "Własne teksty",
-      "achievements": "Osiągnięcia",
-      "bibleReadings": "Czytania Biblii"
-    },
-    "what": "Co",
-    "storageOn": "Przeglądarka chroni te dane – sama ich nie usunie. Kopia nadal się przyda: przy zmianie telefonu, czyszczeniu przeglądarki lub awarii.",
-    "storageOff": "Przeglądarka może usunąć te dane, gdy zabraknie miejsca – a Safari także wtedy, gdy przez 7 dni nie otworzysz strony. Zainstaluj Teleo na ekranie początkowym i rób kopie.",
-    "storageUnknown": "Ta przeglądarka nie mówi, czy chroni dane. Rób kopie regularnie.",
-    "storageUsage": "Teleo zajmuje {{size}} (z aplikacją, pobranymi księgami i modelami mowy).",
-    "storageAsk": "Poproś o ochronę danych",
-    "storageGranted": "Przeglądarka chroni teraz dane Teleo",
-    "storageRefused": "Przeglądarka na razie odmówiła – zwykle zgadza się, gdy Teleo jest zainstalowane",
-    "backupTitle": "Kopia zapasowa",
     "backupHint": "Zachowaj kopię poza tym urządzeniem: w Plikach lub iCloud, na Dysku Google albo w e-mailu do siebie. Najlepiej raz w tygodniu.",
-    "lastBackup": "Ostatnia kopia: {{date}}",
-    "neverBackedUp": "Nie masz jeszcze żadnej kopii.",
-    "protect": "Chroń hasłem",
-    "protectHint": "Kopia zawiera Twoje modlitwy i całą historię. Z hasłem nikt jej nie odczyta – także w chmurze czy w poczcie.",
-    "password": "Hasło",
-    "passwordRepeat": "Powtórz hasło",
-    "passwordTooShort_one": "Co najmniej {{count}} znak.",
-    "passwordTooShort_few": "Co najmniej {{count}} znaki.",
-    "passwordTooShort_many": "Co najmniej {{count}} znaków.",
-    "passwordTooShort_other": "Co najmniej {{count}} znaku.",
-    "passwordMismatch": "Hasła się różnią.",
-    "passwordWarning": "Zapisz hasło w bezpiecznym miejscu. Bez niego kopii nie da się przywrócić – nikt, także autor Teleo, nie odzyska go za Ciebie.",
-    "create": "Utwórz kopię",
-    "preparing": "Przygotowuję kopię…",
-    "ready": "Kopia gotowa",
-    "protectedFile": "chroniona hasłem",
-    "share": "Zapisz w chmurze lub wyślij",
-    "download": "Pobierz plik",
-    "whereToKeep": "„Zapisz w chmurze lub wyślij” otwiera menu udostępniania: Pliki, iCloud, Dysk Google, e-mail.",
-    "whereToKeepDownload": "Plik trafi do pobranych. Przenieś go potem w bezpieczne miejsce poza tym urządzeniem.",
-    "saved": "Kopia zapisana",
-    "shareTitle": "Kopia zapasowa Teleo",
-    "shareFailed": "Nie udało się otworzyć udostępniania – pobierz plik.",
-    "createFailed": "Nie udało się utworzyć kopii.",
-    "restoreTitle": "Przywróć z kopii",
-    "restoreHint": "Zastępuje dane na tym urządzeniu zawartością pliku kopii. Przed zastąpieniem zobaczysz, co jest w pliku, a dane sprzed przywrócenia zostaną tu zachowane – możesz to cofnąć.",
+    "backupTitle": "Kopia zapasowa",
     "choose": "Wybierz plik kopii",
-    "unlockTitle": "Kopia chroniona hasłem",
-    "unlockBody": "Podaj hasło ustawione przy tworzeniu kopii z {{date}}.",
-    "unlock": "Odblokuj",
-    "unlocking": "Sprawdzam hasło…",
-    "previewTitle": "Przywrócić tę kopię?",
-    "previewFrom": "Kopia z {{date}}",
-    "previewVersion": "Teleo {{version}}",
+    "create": "Utwórz kopię",
+    "createFailed": "Nie udało się utworzyć kopii.",
+    "deleteAll": "Usuń wszystkie dane",
+    "deleteBody": "Postępy, gwiazdki, historia, osiągnięcia i ustawienia zostaną usunięte z tego urządzenia. Wpisz {{word}}, aby potwierdzić.",
+    "deleteConfirm": "Usuń wszystko",
+    "deleteConfirmTitle": "Usunąć wszystko?",
+    "deleteHint": "Usuwa postępy, gwiazdki, historię, osiągnięcia i ustawienia z tego urządzenia. Zrób wcześniej kopię, jeśli możesz ich kiedyś potrzebować.",
+    "deleteTitle": "Usuń wszystko",
+    "deleteWord": "USUŃ",
+    "deviceTitle": "Na tym urządzeniu",
+    "download": "Pobierz plik",
+    "errors": {
+      "invalidShape": "Kopia jest uszkodzona i nie można jej przywrócić. Nic nie zostało zmienione.",
+      "noRestorePoint": "Nie ma już danych do przywrócenia.",
+      "notJson": "Nie da się odczytać tego pliku – to nie jest kopia Fluentum albo plik jest uszkodzony.",
+      "unsupportedVersion": "Ta kopia pochodzi z nowszej wersji Fluentum. Zaktualizuj aplikację (odśwież stronę) i spróbuj ponownie.",
+      "wrongApp": "Ten plik nie jest kopią Fluentum (kopię Teleo przywróć w Teleo).",
+      "wrongPassword": "Nieprawidłowe hasło (albo plik został zmieniony)."
+    },
+    "eyebrow": "Ustawienia",
     "inBackup": "W kopii",
     "kept": "Zachowane",
+    "lastBackup": "Ostatnia kopia: {{date}}",
+    "lead": "Wszystko, co robisz w Fluentum, jest zapisane tylko w tej przeglądarce na tym urządzeniu – bez konta i bez serwera. Kopia zapasowa to plik, który trzymasz gdzie indziej i możesz przywrócić na dowolnym urządzeniu.",
+    "neverBackedUp": "Nie masz jeszcze żadnej kopii.",
     "onDevice": "Teraz",
-    "previewOlder": "Ta kopia jest starsza niż dane na tym urządzeniu – późniejsze dni zostaną zastąpione.",
+    "password": "Hasło",
+    "passwordMismatch": "Hasła się różnią.",
+    "passwordRepeat": "Powtórz hasło",
+    "passwordTooShort_few": "Co najmniej {{count}} znaki.",
+    "passwordTooShort_many": "Co najmniej {{count}} znaków.",
+    "passwordTooShort_one": "Co najmniej {{count}} znak.",
+    "passwordTooShort_other": "Co najmniej {{count}} znaku.",
+    "passwordWarning": "Zapisz hasło w bezpiecznym miejscu. Bez niego kopii nie da się przywrócić – nikt, także autor Fluentum, nie odzyska go za Ciebie.",
+    "preparing": "Przygotowuję kopię…",
+    "previewFrom": "Kopia z {{date}}",
     "previewLess": "W tej kopii jest mniej postępów niż na tym urządzeniu.",
-    "previewUndo": "Obecne dane zostaną zachowane na tym urządzeniu – przywrócenie można cofnąć w „Twoje dane”.",
+    "previewOlder": "Ta kopia jest starsza niż dane na tym urządzeniu – późniejsze dni zostaną zastąpione.",
     "previewReplace": "Dane na tym urządzeniu zostaną zastąpione zawartością kopii.",
-    "restore": "Zastąp i przywróć",
-    "restored": "Kopia przywrócona",
-    "undoTitle": "Cofnij przywrócenie",
-    "undoBody": "Dane sprzed przywrócenia kopii ({{date}}) są zachowane na tym urządzeniu:",
-    "undo": "Przywróć poprzednie dane",
-    "undoConfirmTitle": "Wrócić do danych sprzed przywrócenia?",
-    "undoConfirmBody": "Obecne dane – razem ze wszystkim, co zrobiono od tamtej pory – zostaną zachowane, więc możesz do nich wrócić.",
-    "undone": "Poprzednie dane przywrócone",
-    "redone": "Dane z kopii przywrócone",
-    "redoConfirmTitle": "Wrócić do danych z przywróconej kopii?",
+    "previewTitle": "Przywrócić tę kopię?",
+    "previewUndo": "Obecne dane zostaną zachowane na tym urządzeniu – przywrócenie można cofnąć w „Twoje dane”.",
+    "previewVersion": "Fluentum {{version}}",
+    "protect": "Chroń hasłem",
+    "protectHint": "Kopia zawiera całą historię Twojej nauki. Z hasłem nikt jej nie odczyta – także w chmurze czy w poczcie.",
+    "protectedFile": "chroniona hasłem",
+    "ready": "Kopia gotowa",
     "redo": "Wróć do danych z kopii",
     "redoBody": "Dane z przywróconej kopii – razem z tym, co zrobiono później – zachowane {{date}}:",
+    "redoConfirmTitle": "Wrócić do danych z przywróconej kopii?",
     "redoTitle": "Wróć do danych z kopii",
-    "deleteTitle": "Usuń wszystko",
-    "deleteHint": "Usuwa teksty, sesje, historię, osiągnięcia i ustawienia z tego urządzenia. Zrób wcześniej kopię, jeśli chcesz kiedyś do nich wrócić.",
-    "deleteAll": "Usuń wszystkie dane",
-    "deleteConfirmTitle": "Usunąć wszystko?",
-    "deleteBody": "Teksty, sesje, historia, osiągnięcia i ustawienia zostaną usunięte z tego urządzenia. Wpisz {{word}}, aby potwierdzić.",
-    "deleteWord": "USUŃ",
-    "deleteConfirm": "Usuń wszystko",
-    "errors": {
-      "notJson": "Nie da się odczytać tego pliku – to nie jest kopia Teleo albo plik jest uszkodzony.",
-      "wrongApp": "Ten plik nie jest kopią Teleo.",
-      "unsupportedVersion": "Ta kopia pochodzi z nowszej wersji Teleo. Zaktualizuj aplikację (odśwież stronę) i spróbuj ponownie.",
-      "invalidShape": "Kopia jest uszkodzona i nie można jej przywrócić. Nic nie zostało zmienione.",
-      "wrongPassword": "Nieprawidłowe hasło (albo plik został zmieniony).",
-      "noRestorePoint": "Nie ma już danych do przywrócenia."
-    }
+    "redone": "Dane z kopii przywrócone",
+    "restore": "Zastąp i przywróć",
+    "restoreHint": "Zastępuje dane na tym urządzeniu zawartością pliku kopii. Przed zastąpieniem zobaczysz, co jest w pliku, a dane sprzed przywrócenia zostaną tu zachowane – możesz to cofnąć.",
+    "restoreTitle": "Przywróć z kopii",
+    "restored": "Kopia przywrócona",
+    "saved": "Kopia zapisana",
+    "share": "Zapisz w chmurze lub wyślij",
+    "shareFailed": "Nie udało się otworzyć udostępniania – pobierz plik.",
+    "shareTitle": "Kopia zapasowa Fluentum",
+    "stats": {
+      "achievements": "Osiągnięcia",
+      "activeDays": "Aktywne dni",
+      "lastActiveDay": "Ostatnia aktywność",
+      "lines": "Powiedziane zdania",
+      "stars": "Gwiazdki",
+      "xp": "Punkty XP"
+    },
+    "storageAsk": "Poproś o ochronę danych",
+    "storageGranted": "Przeglądarka chroni teraz dane Fluentum",
+    "storageOff": "Przeglądarka może usunąć te dane, gdy zabraknie miejsca – a Safari także po 7 dniach bez otwierania strony. Zainstaluj Fluentum na ekranie początkowym i rób kopie.",
+    "storageOn": "Przeglądarka chroni te dane – sama ich nie usunie. Kopia nadal się przyda: przy zmianie telefonu, czyszczeniu przeglądarki lub awarii.",
+    "storageRefused": "Przeglądarka na razie odmówiła – zwykle zgadza się, gdy Fluentum jest zainstalowane",
+    "storageUnknown": "Ta przeglądarka nie mówi, czy chroni dane. Rób kopie regularnie.",
+    "storageUsage": "Ta strona zajmuje {{size}} (aplikacja, modele mowy – oraz Teleo, jeśli go używasz: obie aplikacje mają ten sam adres).",
+    "title": "Twoje dane",
+    "undo": "Przywróć poprzednie dane",
+    "undoBody": "Dane sprzed przywrócenia kopii ({{date}}) są zachowane na tym urządzeniu:",
+    "undoConfirmBody": "Obecne dane – razem ze wszystkim, co zrobiono od tamtej pory – zostaną zachowane, więc możesz do nich wrócić.",
+    "undoConfirmTitle": "Wrócić do danych sprzed przywrócenia?",
+    "undoTitle": "Cofnij przywrócenie",
+    "undone": "Poprzednie dane przywrócone",
+    "unlock": "Odblokuj",
+    "unlockBody": "Podaj hasło ustawione przy tworzeniu kopii z {{date}}.",
+    "unlockTitle": "Kopia chroniona hasłem",
+    "unlocking": "Sprawdzam hasło…",
+    "what": "Co",
+    "whereToKeep": "„Zapisz w chmurze lub wyślij” otwiera menu udostępniania: Pliki, iCloud, Dysk Google, e-mail.",
+    "whereToKeepDownload": "Plik trafi do pobranych. Przenieś go potem w bezpieczne miejsce poza tym urządzeniem."
+  },
+  "support": {
+    "bannerTitle": "Pomóż, by Fluentum zostało darmowe",
+    "button": "Postaw kawę",
+    "buttonLabel": "Postaw autorowi kawę – otwiera buycoffee.to w nowej karcie",
+    "eyebrow": "Rada na dziś",
+    "line": "Fluentum jest darmowe, bez reklam i śledzenia. Jeśli Ci pomaga, możesz postawić autorowi kawę.",
+    "note": "buycoffee.to · otwiera się w nowej karcie",
+    "strip": "Fluentum jest darmowe · postaw autorowi kawę",
+    "tip1": "Mów każde zdanie we własnym tempie. To ja czekam na Ciebie – nigdy odwrotnie.",
+    "tip10": "Słowa wypowiedziane na głos zostają z nami dłużej niż tylko przeczytane.",
+    "tip2": "Od pięciu do piętnastu minut dziennie to złoty kwadrans: dość, by robić postępy, i dość krótko, by wytrwać.",
+    "tip3": "Słowo nie wychodzi? Stuknij „Posłuchaj”, powtórz melodię i powiedz je jeszcze raz. Papugi też tak się uczą.",
+    "tip4": "Najpierw przeczytaj rozmowę, a z podpowiedziami spróbuj następnego dnia: pamięć lubi krótką przerwę.",
+    "tip5": "Ta sama pora, to samo miejsce: nawyk najlepiej rośnie w tej samej glebie.",
+    "tip6": "Tryb z pamięci to już prawdziwa rozmowa: wiesz, co chcesz powiedzieć – teraz powiedz to w drugim języku.",
+    "tip7": "Zamrożenie serii chroni dzień przerwy. Odpoczynek nie cofa przebytej drogi.",
+    "tip8": "Dotknij kolorowego słowa, a zobaczysz jego odpowiednik w tłumaczeniu: gramatykę łatwiej zrozumieć, gdy ją widać.",
+    "tip9": "Mów zdanie tak, jak w prawdziwej rozmowie. Żywa intonacja zostaje w głowie lepiej niż ostrożny szept."
+  },
+  "characters": {
+    "anna": "Anna",
+    "david": "Dawid",
+    "ewa": "Ewa",
+    "grace": "Grace",
+    "jan": "Jan",
+    "maria": "Maria",
+    "michal": "Michał",
+    "piotr": "Piotr"
   }
 }
