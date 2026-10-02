@@ -36,12 +36,12 @@
       },
       {
         "who": "bot",
-        "text": { "en": "{Visit|v1} {me|o1} there sometime!", "pl": "{Odwiedź|v1} {mnie|o1} tam kiedyś!" }
+        "text": { "en": "Come {visit|v1} {me|o1} there sometime!", "pl": "{Odwiedź|v1} {mnie|o1} tam kiedyś!" }
       },
       {
         "who": "you",
-        "text": { "en": "With pleasure. See you soon!", "pl": "Z przyjemnością. Do zobaczenia!" },
-        "say": { "en": "łith PLE-żer. sii ju suun!", "pl": "s pshi-yem-NOSH-chom. do zo-ba-CHE-nya!" }
+        "text": { "en": "I’d love to! See you soon!", "pl": "Z przyjemnością. Do zobaczenia!" },
+        "say": { "en": "ajd law tu! sii ju suun!", "pl": "s pshi-yem-NOSH-chom. do zo-ba-CHE-nya!" }
       },
       {
         "who": "bot",
@@ -91,7 +91,7 @@
       {
         "who": "you",
         "text": { "en": "{Thank|v1} you! Have a {nice|a1} {day|o1}!", "pl": "{Dziękuję|v1}! {Miłego|a1} {dnia|o1}!" },
-        "say": { "en": "thenk ju! hew e najs dej!", "pl": "jen-KOO-yeh! mee-WE-go dnya!" }
+        "say": { "en": "thenk ju! hew e najs dej!", "pl": "jen-KOO-yeh! mee-WEH-go dnya!" }
       },
       {
         "who": "bot",
@@ -131,8 +131,8 @@
       },
       {
         "who": "you",
-        "text": { "en": "No, thanks. How much {is|v1} {it|s1} altogether?", "pl": "Nie, dzięki. Ile {to|s1} razem {kosztuje|v1}?" },
-        "say": { "en": "nou, thenks. hał macz iz it ol-tu-GE-ther?", "pl": "nyeh, JEN-kee. EE-leh to RA-zem kosh-TOO-yeh?" }
+        "text": { "en": "No, thanks. How much {is|v1} {that|s1} altogether?", "pl": "Nie, dzięki. Ile {to|s1} razem {kosztuje|v1}?" },
+        "say": { "en": "nou, thenks. hał macz iz thet ol-tu-GE-ther?", "pl": "nyeh, JEN-kee. EE-leh to RA-zem kosh-TOO-yeh?" }
       },
       {
         "who": "bot",
@@ -195,7 +195,7 @@
       },
       {
         "who": "bot",
-        "text": { "en": "Good plan! Have a {nice|a1} {day|o1}!", "pl": "Dobry plan! {Miłego|a1} {dnia|o1}!" }
+        "text": { "en": "Good plan! Have a {nice|a1} {day|o1}!", "pl": "Dobry pomysł! {Miłego|a1} {dnia|o1}!" }
       }
     ]
   },
@@ -204,8 +204,8 @@
     "level": "A1",
     "icon": "signpost",
     "partner": "piotr",
-    "title": { "pl": "Pytanie o drogę", "en": "Asking the way" },
-    "scene": { "pl": "Szukasz dworca w nieznanym mieście.", "en": "You are looking for the station in a town you do not know." },
+    "title": { "pl": "Pytanie o drogę", "en": "Asking for directions" },
+    "scene": { "pl": "Szukasz dworca w nieznanym mieście.", "en": "Find your way to the station in a town you don’t know." },
     "lines": [
       {
         "who": "bot",
@@ -227,7 +227,7 @@
       },
       {
         "who": "bot",
-        "text": { "en": "No, only five minutes on foot.", "pl": "Nie, tylko pięć minut pieszo." }
+        "text": { "en": "No, it’s only a five-minute walk.", "pl": "Nie, tylko pięć minut pieszo." }
       },
       {
         "who": "you",
@@ -332,7 +332,7 @@
       {
         "who": "you",
         "text": { "en": "Perfect. {My|a1} {train|s1} {leaves|v1} at noon.", "pl": "Idealnie. {Mój|a1} {pociąg|s1} {odjeżdża|v1} w południe." },
-        "say": { "en": "PER-fikt. maj trejn liivz et nuun.", "pl": "ee-de-AL-nyeh. mooy PO-chonk od-YEZH-ja f po-WOOD-nyeh." }
+        "say": { "en": "PER-fikt. maj trejn liiwz et nuun.", "pl": "ee-de-AL-nyeh. mooy PO-chonk od-YEZH-ja f po-WOOD-nyeh." }
       },
       {
         "who": "bot",
@@ -381,8 +381,8 @@
       },
       {
         "who": "you",
-        "text": { "en": "Great. {Is|v1} there a {quiet|a1} {room|s1}?", "pl": "Świetnie. Czy {jest|v1} {cichy|a1} {pokój|s1}?" },
-        "say": { "en": "grejt. iz ther e KŁAJ-et ruum?", "pl": "SHFYET-nyeh. chi yest CHEE-hi PO-kooy?" }
+        "text": { "en": "Great. {Do|v1} {you|s1} {have|v1} a {quiet|a1} {room|o1}?", "pl": "Świetnie. Czy {macie|v1,s1} {cichy|a1} {pokój|o1}?" },
+        "say": { "en": "grejt. du ju hew e KŁAJ-et ruum?", "pl": "SHFYET-nyeh. chi MA-cheh CHEE-hi PO-kooy?" }
       },
       {
         "who": "bot",
@@ -395,7 +395,7 @@
       },
       {
         "who": "bot",
-        "text": { "en": "Right next to the reception. Good night!", "pl": "Tuż obok recepcji. Dobranoc!" }
+        "text": { "en": "Right next to the front desk. Good night!", "pl": "Tuż obok recepcji. Dobranoc!" }
       }
     ]
   },
@@ -405,7 +405,7 @@
     "icon": "fork-knife",
     "partner": "david",
     "title": { "pl": "W restauracji", "en": "At the restaurant" },
-    "scene": { "pl": "Zamawiasz obiad i prosisz o rachunek.", "en": "Order dinner and ask for the check." },
+    "scene": { "pl": "Zamawiasz kolację i prosisz o rachunek.", "en": "Order dinner and ask for the check." },
     "lines": [
       {
         "who": "bot",
@@ -482,7 +482,7 @@
       {
         "who": "you",
         "text": { "en": "Okay, eight {works|v1} for us. {Can|v2} {we|s1} {sit|v2} by the window?", "pl": "Dobrze, ósma nam {pasuje|v1}. Czy {możemy|v2,s1} {usiąść|v2} przy oknie?" },
-        "say": { "en": "ou-KEJ, ejt łerks for as. ken łi sit baj the ŁIN-dou?", "pl": "DOB-zheh, OOS-ma nam pa-SOO-yeh. chi mo-ZHE-mi oo-SHONSHCH pshi OK-nyeh?" }
+        "say": { "en": "ou-KEJ, ejt łerks for as. ken łi sit baj the ŁIN-dou?", "pl": "DOB-zheh, OOS-ma nam pa-SOO-yeh. chi mo-ZHE-mi OO-shonshch pshi OK-nyeh?" }
       },
       {
         "who": "bot",
@@ -513,8 +513,8 @@
       },
       {
         "who": "you",
-        "text": { "en": "{I|s1}{’d like|v1} a {return|a1} {ticket|o1} to the airport, please.", "pl": "{Poproszę|v1,s1} {bilet|o1} {powrotny|a1} na lotnisko." },
-        "say": { "en": "ajd lajk e ri-TERN TI-kit tu thi ER-port, pliiz.", "pl": "po-PRO-sheh BEE-let po-VROT-ni na lot-NEE-sko." }
+        "text": { "en": "{I|s1}{’d like|v1} a {round-trip|a1} {ticket|o1} to the airport, please.", "pl": "{Poproszę|v1,s1} {bilet|o1} {powrotny|a1} na lotnisko." },
+        "say": { "en": "ajd lajk e RAŁND-trip TI-kit tu thi ER-port, pliiz.", "pl": "po-PRO-sheh BEE-let po-VROT-ni na lot-NEE-sko." }
       },
       {
         "who": "bot",
@@ -568,7 +568,7 @@
       },
       {
         "who": "bot",
-        "text": { "en": "Thank you. {Put|v1} {it|o1} on the scale, please.", "pl": "Dziękuję. {Postaw|v1} {ją|o1} na wadze." }
+        "text": { "en": "Thank you. {Put|v1} {it|o1} on the scale, please.", "pl": "Dziękuję. {Połóż|v1} {ją|o1} na wadze." }
       },
       {
         "who": "you",
@@ -664,7 +664,7 @@
     "icon": "pill",
     "partner": "maria",
     "title": { "pl": "W aptece", "en": "At the pharmacy" },
-    "scene": { "pl": "Boli Cię głowa, więc prosisz o coś na przeziębienie.", "en": "You have a headache and ask for something for your cold." },
+    "scene": { "pl": "Boli Cię głowa i masz katar, więc prosisz o coś na przeziębienie.", "en": "You have a headache and a runny nose, so you ask for something for a cold." },
     "lines": [
       {
         "who": "bot",
@@ -758,8 +758,8 @@
       },
       {
         "who": "you",
-        "text": { "en": "Great! {I|s1} {will buy|v1} a {new|a1} {jacket|o1}.", "pl": "Świetnie! {Kupię|v1,s1} {nową|a1} {kurtkę|o1}." },
-        "say": { "en": "grejt! aj łil baj e nuu DŻE-kit.", "pl": "SHFYET-nyeh! KOO-pyeh NO-vom KOORT-keh." }
+        "text": { "en": "Great! {I|s1}{’ll buy|v1} a {new|a1} {jacket|o1}.", "pl": "Świetnie! {Kupię|v1,s1} {nową|a1} {kurtkę|o1}." },
+        "say": { "en": "grejt! ajl baj e nuu DŻE-kit.", "pl": "SHFYET-nyeh! KOO-pyeh NO-vom KOORT-keh." }
       },
       {
         "who": "bot",

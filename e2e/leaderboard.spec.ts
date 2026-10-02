@@ -24,5 +24,5 @@ test('a friend’s card from a link joins the leaderboard', async ({ page }) => 
 
 test('a malformed friend link is refused, even before onboarding', async ({ page }) => {
   await page.goto('./#/friend?c=not-a-card')
-  await expect(page.getByText(/nie zawiera poprawnej karty|doesn't hold a valid card/)).toBeVisible()
+  await expect(page.getByText(/nie zawiera poprawnej karty|doesn’t hold a valid card/)).toBeVisible()
 })

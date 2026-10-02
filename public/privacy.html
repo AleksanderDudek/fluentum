@@ -86,15 +86,15 @@
         <h2>Rozpoznawanie mowy</h2>
         <p>
           Fluentum korzysta z mechanizmu rozpoznawania mowy wbudowanego w przeglądarkę (Web Speech API). <strong>W niektórych
-          przeglądarkach nagranie Twojego głosu jest przesyłane do dostawcy przeglądarki</strong> – np. do Google (Chrome), Microsoft
+          przeglądarkach nagranie Twojego głosu jest przesyłane do dostawcy przeglądarki</strong> – np. do firmy Google (Chrome), Microsoft
           (Edge) lub Apple (Safari) – który zamienia je na tekst na własnych serwerach, zgodnie z własną polityką prywatności. Fluentum
           informuje o tym przed pierwszym użyciem mikrofonu. Jeśli przeglądarka potrafi rozpoznawać mowę na urządzeniu, Fluentum używa
-          tej opcji automatycznie. Głos rozmówcy czyta syntezator mowy wbudowany w system.
+          tej opcji automatycznie. Kwestie rozmówcy odczytuje syntezator mowy wbudowany w system lub przeglądarkę.
         </p>
         <p>
           Możesz też włączyć <strong>silnik offline Whisper</strong>, który rozpoznaje mowę w całości na Twoim urządzeniu – nagranie
-          nigdy go nie opuszcza. Model (ok. 44–80 MB) pobierasz sam w Ustawieniach, jednorazowo, z serwisu Hugging Face
-          (huggingface.co), który – jak każdy serwer – widzi przy tym techniczne dane żądania (np. adres IP); silnik uruchomieniowy
+          nigdy go nie opuszcza. Model (ok. 44–80 MB) pobierasz sam(a) w Ustawieniach, jednorazowo, z serwisu Hugging Face
+          (huggingface.co), który – jak każdy serwer – widzi przy tym techniczne dane żądania (np. adres IP); środowisko uruchomieniowe
           (ok. 27 MB) pochodzi ze strony Fluentum. Bez Twojej decyzji Fluentum nie łączy się z Hugging Face.
         </p>
         <p>
@@ -107,20 +107,22 @@
           W Ustawieniach → „Twoje dane” możesz utworzyć pełną kopię danych w pliku JSON, przywrócić ją oraz usunąć wszystkie dane
           z urządzenia. Ty decydujesz, gdzie zapiszesz plik (np. w Plikach, iCloud, na Dysku Google lub w e-mailu) – Fluentum niczego
           nie wysyła. Kopię możesz zabezpieczyć hasłem (szyfrowanie AES-256 w przeglądarce); bez hasła nie da się jej odczytać ani
-          odzyskać. Usunięcie danych przeglądarki dla tej witryny również usuwa wszystkie dane Fluentum.
+          odzyskać. Usunięcie danych przeglądarki dla tej witryny usuwa wszystkie dane Fluentum (a także Teleo, jeśli go używasz – obie
+          aplikacje mają ten sam adres).
         </p>
 
         <h2>Udostępnianie i tablica znajomych</h2>
         <p>
           Nic nie jest udostępniane automatycznie. Gdy sam(a) wybierzesz „Udostępnij dzień”, „Udostępnij wynik” albo „Rzuć wyzwanie
           znajomemu”, aplikacja przygotowuje obrazek lub link i przekazuje go do wybranej przez Ciebie aplikacji. Link wyzwania
-          zawiera tylko kartę punktów: wybraną nazwę, postać, serię dni oraz punkty z bieżącego dnia, tygodnia i miesiąca. Karta
+          zawiera tylko kartę punktów: wybraną nazwę, postać, serię dni, punkty z bieżącego dnia, tygodnia i miesiąca, datę karty oraz
+          losowy identyfikator instalacji (dzięki niemu nowsza karta od tej samej osoby zastępuje starszą). Karta
           znajomego otwarta z linku jest zapisywana wyłącznie na Twoim urządzeniu i możesz ją w każdej chwili usunąć.
         </p>
 
         <h2>Pliki cookie, śledzenie, połączenia sieciowe</h2>
         <p>
-          Fluentum nie używa plików cookie ani narzędzi śledzących. Aplikacja jest plikami statycznymi hostowanymi w GitHub Pages;
+          Fluentum nie używa plików cookie ani narzędzi śledzących. Aplikacja to statyczne pliki hostowane w serwisie GitHub Pages;
           GitHub może rejestrować techniczne dane o żądaniach (np. adres IP) zgodnie z własną polityką. Poza rozpoznawaniem mowy i
           pobraniem modelu Whisper na Twoje żądanie aplikacja nie łączy się z innymi serwerami. Przycisk „Postaw kawę” otwiera w nowej
           karcie zewnętrzny serwis buycoffee.to, który ma własną politykę prywatności.
@@ -137,13 +139,13 @@
 
       <section id="en" lang="en">
         <p class="eyebrow">Privacy policy</p>
-        <h1>Fluentum – privacy policy</h1>
+        <h1>Fluentum — privacy policy</h1>
         <p>Effective 2 October 2026.</p>
 
         <h2>In short</h2>
         <p>
           <strong>Fluentum has no accounts, no server and no analytics.</strong> Everything you do in the app — your progress in
-          conversations, stars, attempt history, statistics, achievements and settings — is stored only in your browser's storage
+          conversations, stars, attempt history, statistics, achievements and settings — is stored only in your browser’s storage
           (IndexedDB) on this device. The author of the app does not receive, store or process this data. The app is free and shows
           no ads.
         </p>
@@ -153,14 +155,14 @@
           Fluentum uses the speech recognition built into your browser (Web Speech API). <strong>In some browsers the recording of
           your voice is sent to the browser vendor</strong> — e.g. Google (Chrome), Microsoft (Edge) or Apple (Safari) — which turns
           it into text on its own servers under its own privacy policy. Fluentum tells you this before the microphone is used for the
-          first time. Where the browser can recognise speech on the device, Fluentum uses that automatically. Your partner's lines are
-          read by the speech synthesis built into your system.
+          first time. Where the browser can recognise speech on the device, Fluentum uses that automatically. Your partner’s lines are
+          read by the speech synthesis built into your system or browser.
         </p>
         <p>
           You can also switch to the <strong>offline Whisper engine</strong>, which recognises speech entirely on your device — the
           recording never leaves it. You download the model (about 44–80 MB) yourself in Settings, once, from Hugging Face
           (huggingface.co), which — like any server — sees technical request data (e.g. your IP address); the runtime (about 27 MB)
-          comes from Fluentum's own site. Fluentum never contacts Hugging Face unless you choose to.
+          comes from Fluentum’s own site. Fluentum never contacts Hugging Face unless you choose to.
         </p>
         <p>
           <strong>Fluentum never stores recordings.</strong> Only the recognised transcript of an attempt is kept (you can turn this
@@ -172,20 +174,22 @@
           In Settings → “Your data” you can create a full backup of your data as a JSON file, restore it, and delete all data from the
           device. You decide where the file goes (e.g. Files, iCloud, Google Drive or an e-mail to yourself) — Fluentum sends nothing.
           A backup can be protected with a password (AES-256 encryption in your browser); without the password it cannot be read or
-          recovered. Clearing the browser's data for this site also deletes all Fluentum data.
+          recovered. Clearing the browser’s data for this site deletes all Fluentum data (and Teleo’s, if you use it — the two apps share
+          this address).
         </p>
 
-        <h2>Sharing and the friends' leaderboard</h2>
+        <h2>Sharing and the friends’ leaderboard</h2>
         <p>
           Nothing is shared automatically. When you choose “Share today”, “Share your result” or “Challenge a friend”, the app prepares
           a picture or a link and hands it to the app you pick. A challenge link holds only a points card: the name you choose, your
-          character, your streak and your points for the current day, week and month. A friend's card opened from a link is stored
+          character, your streak, your points for the current day, week and month, the card’s date and a random install identifier
+          (so a newer card from the same person replaces the older one). A friend’s card opened from a link is stored
           only on your device, and you can remove it at any time.
         </p>
 
         <h2>Cookies, tracking, network connections</h2>
         <p>
-          Fluentum uses no cookies and no tracking tools. The app is static files hosted on GitHub Pages; GitHub may log technical
+          Fluentum uses no cookies and no tracking tools. The app consists of static files hosted on GitHub Pages; GitHub may log technical
           request data (e.g. IP addresses) under its own policy. Apart from speech recognition and the Whisper download you ask for,
           the app connects to no other servers. The “Buy a coffee” button opens buycoffee.to, an external service with its own privacy
           policy, in a new tab.
@@ -195,7 +199,7 @@
         <p>Fluentum collects no personal data, from children or anyone else.</p>
 
         <h2>Contact</h2>
-        <p>Privacy questions can be raised in the project's repository (Issues).</p>
+        <p>Privacy questions can be raised in the project’s repository (Issues).</p>
       </section>
     </main>
   </body>

@@ -1,6 +1,6 @@
 # Fluentum — speak a new language, one conversation a day
 
-> *Fluent* + *momentum*; Latin *fluentum*, "flowing". Don't just read a language — **say it, out loud, every day.**
+> *Fluent* + *momentum*; Latin *fluentum*, "a stream". Don't just read a language — **say it, out loud, every day.**
 
 Fluentum is a free, local-first Progressive Web App for **speaking practice**: short everyday conversations in a
 messenger-style chat. Your partner speaks first; you answer aloud; speech recognition and a forgiving matcher check every
@@ -21,11 +21,12 @@ daily goal, levels and achievements keep you coming back. Polish speakers practi
   plans, a birthday invitation. The partner's lines are spoken aloud with their meaning; yours come with the pronunciation
   spelt your way (stress in capitals) and what they mean.
 - **Three ways, three stars:** *Read* the line → say it from *prompts* (first letters only) → *recall* it from its meaning.
-  Words appear as you say them. A suggested path brings each conversation back one and two lessons after you first read it.
+  Words appear as you say them. A suggested path spaces the three ways out: a conversation returns for prompts one step after you first read it, and for
+  recall one step after that.
 - **Grammar you can see:** subjects, predicates, adjectives and objects are coloured — and underlined the way Polish schools
-  mark a sentence — together with their counterparts in the translation. Tap a word to light its pair.
-- **Honest, forgiving checking:** a line counts when enough of its words were said and nothing was added — 90 % on the first
-  try, 80 % on the second, 70 % from the third on. Recognition slips (missing Polish letters, words split or run together,
+  mark a sentence — together with their counterparts in the translation. Tap a word to light up its pair.
+- **Honest, forgiving checking:** a line counts when enough of its words were said and nothing was added — 90% on the first
+  try, 80% on the second, 70% from the third on. Recognition slips (missing Polish letters, words split or run together,
   misheard words) are forgiven; fillers like "um" are ignored. Live listening checks each line as you speak.
 - **Motivation:** XP, 20 levels (a plant that grows with your words), 49 achievements, streaks with freezes, a daily goal,
   the golden quarter-hour (5–15 minutes a day earn double points), friends' leaderboard by link, shareable cards.

@@ -23,7 +23,7 @@ Each entry: **decision** — why.
    scheduler, and every step is still a whole, finishable conversation. Once every star is earned, the conversation practised
    longest ago is offered for recall. Home's "Start talking" and the summary's "Next conversation" follow it.
 4. **Name: Fluentum.** *Fluent* (languages) + *momentum* (motivation, progress that keeps going); Latin *fluentum*,
-   "flowing" — a sibling to Teleo's Greek *telos*. It reads naturally in Polish and English. Checked on 2026-10-02: no language
+   "a stream" (from *fluere*, to flow) — a sibling to Teleo's Greek *telos*. It reads naturally in Polish and English. Checked on 2026-10-02: no language
    app of that name; npm `fluentum` and `github.com/AleksanderDudek/fluentum` were free.
 5. **Free, like Teleo.** No accounts, backend, paid services, API keys, ads or analytics; an optional "buy a coffee" link
    (the owner's buycoffee.to, as in Teleo) in the ribbon and the support panel (#84–#85).
@@ -100,7 +100,8 @@ Each entry: **decision** — why.
     sentence analysis (subject one line, predicate two, adjective wavy, object dashed) as a cue that does not depend on colour.
     Pairs show by pointing (hover with a mouse, tap on a touch screen) and in each bubble's word list, which is also the
     keyboard and screen-reader route. "Adjective" includes predicative ones; nominal parts of predicates and adverbials stay
-    unlinked. Polish learner lines avoid gendered forms (no past tense, no adjectives about the speaker).
+    unlinked — except a Polish adverb that translates an English adjective ("Pięknie" ↔ "wonderful", "ciepło" ↔ "warm"),
+    which takes the adjective colour so the pair still lights up: a deliberate simplification of school grammar. Polish learner lines avoid gendered forms (no past tense, no adjectives about the speaker).
 21. **A conversation is played as an ordinary run** of its text: matcher, coverage ladder, XP, streaks, goal, golden
     quarter-hour and first-try credit apply unchanged; the partner's lines come from the script and are not attempts. A later
     script change is synced by `replaceSegments` (lines already spoken are archived, #48).

@@ -25,7 +25,7 @@
     "days_other": "{{count}} dnia"
   },
   "errors": {
-    "body": "Twoje dane są bezpieczne na tym urządzeniu. Spróbuj ponownie lub wróć na start.",
+    "body": "Twoje dane są bezpieczne na tym urządzeniu. Spróbuj ponownie lub wróć do ekranu startowego.",
     "home": "Wróć na start",
     "notFound": "Ta strona nie istnieje.",
     "title": "Coś poszło nie tak"
@@ -44,8 +44,8 @@
     }
   },
   "guide": {
-    "extra": "Blisko! Wkradło się słowo, którego nie ma w zdaniu. Weź oddech i powiedz je jeszcze raz.",
-    "missing": "Blisko! Jedno słowo zostało niewypowiedziane. Bez pośpiechu – powiedz je jeszcze raz.",
+    "extra": "Blisko! Wkradło się słowo, którego nie ma w zdaniu. Weź oddech i powiedz całe zdanie jeszcze raz.",
+    "missing": "Blisko! Zabrakło jednego słowa. Bez pośpiechu – powiedz całe zdanie jeszcze raz.",
     "name": "Lori",
     "stuck": "To zdanie jest wyjątkowo podchwytliwe. Spróbuj jeszcze raz – albo je pomiń i rozmawiaj dalej; to też jest w porządku.",
     "wrong": "Blisko! Jedno słowo zabrzmiało inaczej. Posłuchaj zdania i powiedz je jeszcze raz."
@@ -53,7 +53,7 @@
   "home": {
     "atRisk": "Powiedz dziś choć jedno zdanie, by utrzymać serię.",
     "backupAction": "Zrób kopię",
-    "backupBody": "Wszystko jest zapisane tylko na tym urządzeniu. Co jakiś czas zapisz kopię, by żadna gwiazdka nie przepadła.",
+    "backupBody": "Wszystko jest zapisane tylko na tym urządzeniu. Co jakiś czas zapisuj kopię, by żadna gwiazdka nie przepadła.",
     "backupTitle": "Czas na kopię zapasową",
     "chooseAnother": "Wybierz inną rozmowę",
     "courseFinished_few": "Ukończone rozmowy: {{count}} z {{total}}",
@@ -83,7 +83,7 @@
     "greetingEvening": "Dobry wieczór",
     "greetingMorning": "Dzień dobry",
     "guideDone": "Cel osiągnięty! Wszystko, co teraz powiesz, to bonus – a w złotym kwadransie liczy się podwójnie.",
-    "guideFirst": "Cześć, jestem Lori! Porozmawiajmy {{language}} – rozmówca zaczyna, a Ty odpowiadasz na głos. Gotowe?",
+    "guideFirst": "Cześć, jestem Lori! Porozmawiajmy {{language}} – rozmówca zaczyna, a Ty odpowiadasz na głos. Możemy zaczynać?",
     "guideLeft_few": "Jeszcze tylko {{count}} zdania do dzisiejszego celu – dasz radę!",
     "guideLeft_many": "Jeszcze tylko {{count}} zdań do dzisiejszego celu – dasz radę!",
     "guideLeft_one": "Jeszcze tylko {{count}} zdanie do dzisiejszego celu – dasz radę!",
@@ -92,7 +92,7 @@
     "later": "Później",
     "nextTitle": "Następna rozmowa",
     "resume": "Kontynuuj",
-    "resumeHint": "Zdanie {{done}} z {{total}} · {{mode}}",
+    "resumeHint": "Za Tobą: {{done}} z {{total}} · {{mode}}",
     "resumeTitle": "Dokończ rozmowę",
     "start": "Zacznij rozmowę",
     "streakZero": "Zacznij dziś serię",
@@ -122,20 +122,20 @@
     "chat": "Rozmowa – {{name}}",
     "done_few": "Ukończona {{count}} razy",
     "done_many": "Ukończona {{count}} razy",
-    "done_one": "Ukończona {{count}} raz",
+    "done_one": "Ukończona raz",
     "done_other": "Ukończona {{count}} razy",
     "finished": "Koniec rozmowy",
-    "howToRead": "zapisujemy ją polskimi literami, a WIELKIE litery to sylaba akcentowana. „th” – czubek języka lekko między zębami; „ł” – jak w „łódka”; „ii”, „uu” – długie „i” i „u”; „e” brzmi często jak dźwięk między „a” i „e”.",
+    "howToRead": "zapisujemy ją polskimi literami, a WIELKIMI literami – sylabę akcentowaną. „th” – czubek języka lekko między zębami; „ł” – jak w „łódka”; „ii”, „uu” – długie „i” i „u”; „e” brzmi często jak dźwięk między „a” i „e”; spółgłoski na końcu słowa wymawiaj dźwięcznie – „hew”, nie „hef”.",
     "howToReadTitle": "Jak czytać wymowę:",
-    "leaveBody": "Postęp jest zapisany. Możesz ją dziś dokończyć z ekranu startowego.",
+    "leaveBody": "Postęp jest zapisany. Rozmowę możesz dokończyć jeszcze dziś na ekranie startowym.",
     "leaveTitle": "Przerwać rozmowę?",
     "legendHint": "Wskaż lub dotknij słowa, a podświetli się jego odpowiednik w tłumaczeniu.",
     "legendTitle": "Kolory słów",
     "level": "Poziom {{level}}",
-    "lines_few": "{{count}} Twoje kwestie",
-    "lines_many": "{{count}} Twoich kwestii",
-    "lines_one": "{{count}} Twoja kwestia",
-    "lines_other": "{{count}} Twojej kwestii",
+    "lines_few": "{{count}} Twoje zdania",
+    "lines_many": "{{count}} Twoich zdań",
+    "lines_one": "{{count}} Twoje zdanie",
+    "lines_other": "{{count}} Twojego zdania",
     "listenLine": "Posłuchaj",
     "masked": {
       "prompt": "Zdanie jest ukryte poza pierwszymi literami – powiedz je na podstawie znaczenia poniżej.",
@@ -145,7 +145,7 @@
     "noWords": "W tym zdaniu nie zaznaczono słów.",
     "notFound": "Ta rozmowa nie istnieje.",
     "partnerSpeaking": "Mówi {{name}}…",
-    "progress": "Kwestia {{current}} z {{total}}",
+    "progress": "Zdanie {{current}} z {{total}}",
     "pronunciation": "Wymowa",
     "roles": {
       "adjective": "Przymiotnik",
@@ -155,27 +155,27 @@
     },
     "said": "Powiedziane",
     "show": "Pokaż zdanie",
-    "showHint": "Podejrzenie kosztuje gwiazdkę za ten sposób.",
-    "skip": "Pomiń tę kwestię",
+    "showHint": "Podglądanie zdania odbiera gwiazdkę za ten sposób.",
+    "skip": "Pomiń to zdanie",
     "skipped": "Pominięte",
     "starEarned": "Gwiazdka zdobyta",
     "starOpen": "Gwiazdka jeszcze do zdobycia",
     "start": "Start",
     "startError": "Nie udało się rozpocząć rozmowy.",
     "startWay": "Start: {{mode}}",
-    "suggested": "Proponowana teraz",
+    "suggested": "Proponowany teraz",
     "toSummary": "Podsumowanie",
     "typing": "{{name}} pisze…",
     "waysTitle": "Trzy sposoby, trzy gwiazdki",
-    "with": "Rozmówca: {{name}}",
+    "with": "{{name}} i Ty",
     "words": "Słówka",
     "you": "Ty",
-    "yourLines": "Twoje kwestie",
+    "yourLines": "Twoje zdania",
     "yourTurn": "Twoja kolej – powiedz na głos"
   },
   "modes": {
     "prompt": {
-      "desc": "Każde zdanie pokazuje tylko pierwsze litery słów i znaczenie. Słowa pojawiają się, gdy je mówisz.",
+      "desc": "Widzisz tylko pierwsze litery słów i znaczenie zdania. Słowa pojawiają się, gdy je mówisz.",
       "during": "Tylko pierwsze litery: mów zdania z pamięci, z małą pomocą.",
       "name": "Podpowiedzi",
       "short": "Tylko pierwsze litery i znaczenie."
@@ -208,7 +208,7 @@
     "nextTry": "Następna próba: wystarczy {{percent}}% słów.",
     "notFound": "Ta rozmowa już nie istnieje.",
     "retry": "Spróbuj ponownie",
-    "skipHint": "Utknęło? Możesz pominąć – bez punktów i gwiazdki.",
+    "skipHint": "Trudne zdanie? Możesz je pominąć – bez punktów i gwiazdki.",
     "stay": "Kontynuuj",
     "tapToSpeak": "Dotknij mikrofonu i powiedz zdanie",
     "xp": "{{xp}} XP"
@@ -227,8 +227,8 @@
       "permission-denied": "Dostęp do mikrofonu jest zablokowany. Zezwól na niego w ustawieniach witryny i spróbuj ponownie.",
       "unknown": "Rozpoznawanie mowy nieoczekiwanie się zatrzymało. Spróbuj ponownie."
     },
-    "howWeCount": "Jak liczymy?",
-    "howWeCountBody": "Zdanie się liczy, gdy powiesz dość jego słów i nie dodasz żadnych. Pierwsza próba wymaga 90% słów, druga 80%, a każda kolejna 70% – krótkie zdanie może więc na początku wymagać wszystkich słów. Wybaczamy potknięcia rozpoznawania: brak polskich znaków, jedną literę różnicy w dłuższym słowie, słowo rozdzielone na dwa albo dwa zlane w jedno.",
+    "howWeCount": "Jak sprawdzamy?",
+    "howWeCountBody": "Zdanie się liczy, gdy powiesz dość jego słów i nie dodasz żadnych. Pierwsza próba wymaga 90% słów, druga 80%, a każda kolejna 70% – krótkie zdanie może więc na początku wymagać wszystkich słów. Wybaczamy potknięcia rozpoznawania: jedną literę różnicy w dłuższym słowie, słowo rozdzielone na dwa albo dwa zlane w jedno.",
     "legendExtra": "dodatkowe / inne",
     "legendMatch": "powiedziane",
     "legendMissing": "pominięte",
@@ -304,7 +304,7 @@
     "achievementsHeading": "Osiągnięcia",
     "bestStreak": "Najdłuższa seria",
     "categories": {
-      "consistency": "Konsekwencja",
+      "consistency": "Systematyczność",
       "conversations": "Rozmowy",
       "course": "Kurs",
       "daily": "W jednym dniu",
@@ -317,9 +317,12 @@
       "volume": "Łącznie"
     },
     "cellFrozen": "{{date}}: dzień zamrożony",
-    "cellLabel": "{{date}}: zdań {{count}}",
+    "cellLabel_few": "{{date}}: {{count}} zdania",
+    "cellLabel_many": "{{date}}: {{count}} zdań",
+    "cellLabel_one": "{{date}}: {{count}} zdanie",
+    "cellLabel_other": "{{date}}: {{count}} zdania",
     "colConversation": "Rozmowa",
-    "colDone": "Ukończona",
+    "colDone": "Ukończenia",
     "colLast": "Ostatnio",
     "colRate": "Za pierwszym razem",
     "colSentences": "Zdania",
@@ -339,7 +342,7 @@
     "firstTryTitle": "Skuteczność pierwszej próby w tygodniach",
     "frozen": "zamrożony",
     "goalDays": "Dni z osiągniętym celem",
-    "heatmapSummary": "{{active}} aktywnych dni i {{frozen}} dni zamrożonych w ostatnich 26 tygodniach.",
+    "heatmapSummary": "Ostatnie 26 tygodni – dni aktywne: {{active}}, dni zamrożone: {{frozen}}.",
     "heatmapTitle": "Aktywność z ostatnich 26 tygodni",
     "hiddenBody": "Ćwicz dalej, aby je odkryć.",
     "less": "mniej",
@@ -412,7 +415,7 @@
       },
       "100": {
         "desc": "Ukończ 100 rozmów.",
-        "name": "Mistrz konwersacji"
+        "name": "Sztuka rozmowy"
       },
       "365": {
         "desc": "Ukończ 365 rozmów.",
@@ -435,35 +438,35 @@
     },
     "daily": {
       "10": {
-        "desc": "Powiedz 10 zdań w jeden dzień.",
+        "desc": "Powiedz 10 zdań jednego dnia.",
         "name": "Rozgrzewka"
       },
       "100": {
-        "desc": "Powiedz 100 zdań w jeden dzień.",
+        "desc": "Powiedz 100 zdań jednego dnia.",
         "name": "Maraton"
       },
       "25": {
-        "desc": "Powiedz 25 zdań w jeden dzień.",
+        "desc": "Powiedz 25 zdań jednego dnia.",
         "name": "W rytmie"
       },
       "50": {
-        "desc": "Powiedz 50 zdań w jeden dzień.",
+        "desc": "Powiedz 50 zdań jednego dnia.",
         "name": "Rozgadany dzień"
       }
     },
     "goal": {
       "days": {
         "100": {
-          "desc": "Osiągnij cel dzienny przez 100 dni.",
+          "desc": "Osiągnij cel dzienny 100 razy.",
           "name": "Sto celów"
         },
         "30": {
-          "desc": "Osiągnij cel dzienny przez 30 dni.",
+          "desc": "Osiągnij cel dzienny 30 razy.",
           "name": "Trzydzieści celów"
         },
         "7": {
-          "desc": "Osiągnij cel dzienny przez 7 dni.",
-          "name": "Strażnik celu"
+          "desc": "Osiągnij cel dzienny 7 razy.",
+          "name": "Siedem celów"
         }
       }
     },
@@ -474,19 +477,19 @@
           "name": "Złoty kwadrans"
         },
         "100": {
-          "desc": "Wypełnij złoty kwadrans przez 100 dni.",
+          "desc": "Wypełnij złoty kwadrans 100 razy.",
           "name": "Złota setka"
         },
         "30": {
-          "desc": "Wypełnij złoty kwadrans przez 30 dni.",
+          "desc": "Wypełnij złoty kwadrans 30 razy.",
           "name": "Złoty miesiąc"
         },
         "365": {
-          "desc": "Wypełnij złoty kwadrans przez 365 dni.",
+          "desc": "Wypełnij złoty kwadrans 365 razy.",
           "name": "Złoty rok"
         },
         "7": {
-          "desc": "Wypełnij złoty kwadrans przez 7 dni.",
+          "desc": "Wypełnij złoty kwadrans 7 razy.",
           "name": "Złoty tydzień"
         }
       }
@@ -584,13 +587,13 @@
     "time": {
       "evening": {
         "7": {
-          "desc": "Ćwicz po 21:00 przez 7 dni.",
+          "desc": "Ćwicz po 21:00 w 7 różnych dniach.",
           "name": "Nocny marek"
         }
       },
       "morning": {
         "7": {
-          "desc": "Ćwicz przed 8:00 przez 7 dni.",
+          "desc": "Ćwicz przed 8:00 w 7 różnych dniach.",
           "name": "Ranny ptaszek"
         }
       }
@@ -637,7 +640,7 @@
     "bestWeeks": "Twoje najlepsze tygodnie",
     "challenge": "Rzuć wyzwanie znajomemu",
     "challengeHint": "Twoja karta podróżuje w linku: bez kont i bez serwera. Gdy znajomy odeśle swoją, dołączy do tej tablicy.",
-    "challengeText": "Moje punkty w Fluentum – dziś {{day}}, w tym tygodniu {{week}}, w tym miesiącu {{month}}. Dodaj mnie do swojej tablicy i wyślij mi swoje:",
+    "challengeText": "Moje punkty we Fluentum – dziś {{day}}, w tym tygodniu {{week}}, w tym miesiącu {{month}}. Dodaj mnie do swojej tablicy i wyślij mi swoje:",
     "copied": "Link skopiowany – wyślij go znajomemu.",
     "currentDay": "Dziś",
     "currentMonth": "Ten miesiąc",
@@ -651,15 +654,15 @@
     "points": "{{points}} pkt",
     "rankDay_few": "{{rank}}. miejsce spośród {{count}} Twoich dni",
     "rankDay_many": "{{rank}}. miejsce spośród {{count}} Twoich dni",
-    "rankDay_one": "{{rank}}. miejsce spośród {{count}} dnia",
+    "rankDay_one": "{{rank}}. miejsce – to Twój pierwszy dzień",
     "rankDay_other": "{{rank}}. miejsce spośród {{count}} Twoich dni",
     "rankMonth_few": "{{rank}}. miejsce spośród {{count}} Twoich miesięcy",
     "rankMonth_many": "{{rank}}. miejsce spośród {{count}} Twoich miesięcy",
-    "rankMonth_one": "{{rank}}. miejsce spośród {{count}} miesiąca",
+    "rankMonth_one": "{{rank}}. miejsce – to Twój pierwszy miesiąc",
     "rankMonth_other": "{{rank}}. miejsce spośród {{count}} Twoich miesięcy",
     "rankWeek_few": "{{rank}}. miejsce spośród {{count}} Twoich tygodni",
     "rankWeek_many": "{{rank}}. miejsce spośród {{count}} Twoich tygodni",
-    "rankWeek_one": "{{rank}}. miejsce spośród {{count}} tygodnia",
+    "rankWeek_one": "{{rank}}. miejsce – to Twój pierwszy tydzień",
     "rankWeek_other": "{{rank}}. miejsce spośród {{count}} Twoich tygodni",
     "remove": "Usuń: {{name}}",
     "stale": "brak karty z tego okresu",
@@ -680,7 +683,7 @@
     "privacy": "Nic nie jest nigdzie wysyłane: karta jest zapisana w linku i zostaje tylko na tym urządzeniu.",
     "self": "To Twoja własna karta.",
     "streak": "dni z rzędu",
-    "title": "Punkty w Fluentum: {{name}}",
+    "title": "Punkty we Fluentum: {{name}}",
     "today": "dziś",
     "update": "Zaktualizuj na mojej tablicy",
     "week": "w tym tygodniu"
@@ -688,7 +691,7 @@
   "share": {
     "button": "Udostępnij dzień",
     "cardFirstTry": "za pierwszym razem",
-    "cardLines": "zdań na głos",
+    "cardLines": "zdania na głos",
     "cardMinutes": "min mówienia",
     "cardPoints": "punkty",
     "cardStars_few": "★ {{count}} z 3 gwiazdek w tej rozmowie",
@@ -723,7 +726,7 @@
     "t3_many": "Dziś {{count}} zdań na głos i {{points}} pkt. {{streak}}. dzień z rzędu.",
     "t3_one": "Dziś {{count}} zdanie na głos i {{points}} pkt. {{streak}}. dzień z rzędu.",
     "t3_other": "Dziś {{count}} zdania na głos i {{points}} pkt. {{streak}}. dzień z rzędu.",
-    "unsupported": "Ta przeglądarka nie udostępnia sama – wybierz serwis albo pobierz obrazek.",
+    "unsupported": "Ta przeglądarka nie ma wbudowanego udostępniania – wybierz serwis albo pobierz obrazek.",
     "whatsapp": "WhatsApp",
     "x": "X"
   },
@@ -762,7 +765,7 @@
       "en": "Ćwiczysz angielski.",
       "pl": "Ćwiczysz polski."
     },
-    "micBody": "Dotknij mikrofonu i powiedz zdanie poniżej.",
+    "micBody": "Dotknij mikrofonu i powiedz zwrot poniżej.",
     "micOk": "Słyszę Cię – wszystko działa.",
     "micPhrase": "Good morning",
     "micRetry": "Jeszcze nie – spróbuj ponownie albo pomiń ten krok.",
@@ -782,7 +785,7 @@
     "about": "Fluentum {{version}} – bezpłatne, bez reklam, działa w całości w Twojej przeglądarce.",
     "backupHint": "Wszystkie dane są tylko na tym urządzeniu. Kopia zapasowa pozwala je zachować i przenieść.",
     "character": "Postać",
-    "characterHint": "Wybierz postać, która reprezentuje Cię w Fluentum.",
+    "characterHint": "Wybierz postać, która reprezentuje Cię we Fluentum.",
     "checking": "Jak sprawdzamy",
     "checkingHint": "Każda kolejna próba zdania jest łagodniejsza: pierwsza wymaga 90% słów, druga 80%, a od trzeciej 70%. Słowo usłyszane jako inne liczy się jako niewypowiedziane; słowo dodane do zdania nadal oblewa próbę.",
     "dailyGoal": "Cel dzienny (zdania)",
@@ -803,11 +806,11 @@
     "fontSize": "Rozmiar zdań",
     "fontSm": "Mały",
     "handsFree": "Słuchanie na żywo (bez rąk)",
-    "handsFreeHint": "Słuchaj przez całą rozmowę i sprawdzaj każde zdanie na bieżąco.",
-    "installBody": "Dodaj Fluentum do ekranu głównego: otwiera się na pełnym ekranie jak aplikacja, startuje szybciej i działa bez internetu.",
+    "handsFreeHint": "Fluentum słucha przez całą rozmowę i sprawdza każde zdanie na bieżąco.",
+    "installBody": "Dodaj Fluentum do ekranu początkowego: otwiera się na pełnym ekranie jak aplikacja, startuje szybciej i działa bez internetu.",
     "installButton": "Zainstaluj Fluentum",
-    "installDone": "Fluentum jest na ekranie głównym.",
-    "installIos1": "W Safari stuknij Udostępnij",
+    "installDone": "Fluentum jest na ekranie początkowym.",
+    "installIos1": "W Safari dotknij Udostępnij",
     "installIos2": "Wybierz „Do ekranu początkowego”, a potem „Dodaj”.",
     "installIosShare": "Udostępnij",
     "language": "Twój język",
@@ -843,7 +846,7 @@
     "sectionSpeech": "Mowa",
     "sounds": "Efekty dźwiękowe",
     "soundsHint": "Delikatny dzwonek po każdym zdaniu; pełniejszy po ukończonej rozmowie lub celu.",
-    "theme": "Wygląd",
+    "theme": "Motyw",
     "themeDark": "Ciemny",
     "themeLight": "Jasny",
     "themeSystem": "Systemowy",
@@ -922,7 +925,7 @@
     "inBackup": "W kopii",
     "kept": "Zachowane",
     "lastBackup": "Ostatnia kopia: {{date}}",
-    "lead": "Wszystko, co robisz w Fluentum, jest zapisane tylko w tej przeglądarce na tym urządzeniu – bez konta i bez serwera. Kopia zapasowa to plik, który trzymasz gdzie indziej i możesz przywrócić na dowolnym urządzeniu.",
+    "lead": "Wszystko, co robisz we Fluentum, jest zapisane tylko w tej przeglądarce na tym urządzeniu – bez konta i bez serwera. Kopia zapasowa to plik, który trzymasz gdzie indziej i możesz przywrócić na dowolnym urządzeniu.",
     "neverBackedUp": "Nie masz jeszcze żadnej kopii.",
     "onDevice": "Teraz",
     "password": "Hasło",
@@ -939,7 +942,7 @@
     "previewOlder": "Ta kopia jest starsza niż dane na tym urządzeniu – późniejsze dni zostaną zastąpione.",
     "previewReplace": "Dane na tym urządzeniu zostaną zastąpione zawartością kopii.",
     "previewTitle": "Przywrócić tę kopię?",
-    "previewUndo": "Obecne dane zostaną zachowane na tym urządzeniu – przywrócenie można cofnąć w „Twoje dane”.",
+    "previewUndo": "Obecne dane zostaną zachowane na tym urządzeniu – przywrócenie można cofnąć na ekranie „Twoje dane”.",
     "previewVersion": "Fluentum {{version}}",
     "protect": "Chroń hasłem",
     "protectHint": "Kopia zawiera całą historię Twojej nauki. Z hasłem nikt jej nie odczyta – także w chmurze czy w poczcie.",
@@ -989,7 +992,7 @@
     "whereToKeepDownload": "Plik trafi do pobranych. Przenieś go potem w bezpieczne miejsce poza tym urządzeniem."
   },
   "support": {
-    "bannerTitle": "Pomóż, by Fluentum zostało darmowe",
+    "bannerTitle": "Pomóż, by Fluentum pozostało darmowe",
     "button": "Postaw kawę",
     "buttonLabel": "Postaw autorowi kawę – otwiera buycoffee.to w nowej karcie",
     "eyebrow": "Rada na dziś",
@@ -999,10 +1002,10 @@
     "tip1": "Mów każde zdanie we własnym tempie. To ja czekam na Ciebie – nigdy odwrotnie.",
     "tip10": "Słowa wypowiedziane na głos zostają z nami dłużej niż tylko przeczytane.",
     "tip2": "Od pięciu do piętnastu minut dziennie to złoty kwadrans: dość, by robić postępy, i dość krótko, by wytrwać.",
-    "tip3": "Słowo nie wychodzi? Stuknij „Posłuchaj”, powtórz melodię i powiedz je jeszcze raz. Papugi też tak się uczą.",
+    "tip3": "Słowo nie wychodzi? Dotknij „Posłuchaj”, powtórz melodię i powiedz je jeszcze raz. Papugi też tak się uczą.",
     "tip4": "Najpierw przeczytaj rozmowę, a z podpowiedziami spróbuj następnego dnia: pamięć lubi krótką przerwę.",
     "tip5": "Ta sama pora, to samo miejsce: nawyk najlepiej rośnie w tej samej glebie.",
-    "tip6": "Tryb z pamięci to już prawdziwa rozmowa: wiesz, co chcesz powiedzieć – teraz powiedz to w drugim języku.",
+    "tip6": "Sposób „Z pamięci” to już prawdziwa rozmowa: wiesz, co chcesz powiedzieć – teraz powiedz to w drugim języku.",
     "tip7": "Zamrożenie serii chroni dzień przerwy. Odpoczynek nie cofa przebytej drogi.",
     "tip8": "Dotknij kolorowego słowa, a zobaczysz jego odpowiednik w tłumaczeniu: gramatykę łatwiej zrozumieć, gdy ją widać.",
     "tip9": "Mów zdanie tak, jak w prawdziwej rozmowie. Żywa intonacja zostaje w głowie lepiej niż ostrożny szept."
