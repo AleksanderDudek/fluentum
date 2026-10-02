@@ -183,7 +183,7 @@ function Chat({ data, dialogue, target }: { data: PlayerData; dialogue: Dialogue
     if (!yourTurn || !source) return
     const result = evaluate(source, speech.alternatives, { lang: target, threshold: needed })
     if (result.reason === 'empty') {
-      // Nothing was heard: say so, but it is not an attempt (DECISIONS #53).
+      // Nothing was heard: say so, but it is not an attempt (DECISIONS #40).
       setFeedback({ entryIndex: turn, result, diff: buildDiff(source, target, result), message: resultMessage(result, t) })
       return
     }

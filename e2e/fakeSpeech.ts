@@ -150,11 +150,15 @@ export async function spokenLines(page: Page): Promise<string[]> {
   return page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken)
 }
 
-/** Starts the course's next conversation from Home and says it to the end (live mode). */
-export async function talkThroughNext(page: Page) {
+/**
+ * Starts the course's next conversation from Home and says it to the end (live mode). The first time the learner taps the
+ * microphone and accepts the privacy notice; after that, hands-free listening starts by itself.
+ */
+export async function talkThroughNext(page: Page, { first = true }: { first?: boolean } = {}) {
   await page.getByRole('button', { name: /^(Zacznij rozmowę|Start talking)$/ }).click()
-  await page.getByRole('button', { name: /^(Mów|Speak)$/ }).click()
-  const privacy = page.getByRole('button', { name: /Rozumiem – dalej|I understand — continue/ })
-  if (await privacy.isVisible().catch(() => false)) await privacy.click()
+  if (first) {
+    await page.getByRole('button', { name: /^(Mów|Speak)$/ }).click()
+    await page.getByRole('button', { name: /Rozumiem – dalej|I understand — continue/ }).click()
+  }
   await page.waitForURL(/summary$/, { timeout: 90_000 })
 }

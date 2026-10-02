@@ -54,7 +54,7 @@ export async function courseState(lang: Lang): Promise<CourseState> {
   return state
 }
 
-/** The course's next step in `lang` (DECISIONS #2): which conversation, in which way. */
+/** The course's next step in `lang` (DECISIONS #3): which conversation, in which way. */
 export async function nextCourseStep(lang: Lang): Promise<CourseStep | undefined> {
   return nextStep(
     DIALOGUES.map((d) => d.key),

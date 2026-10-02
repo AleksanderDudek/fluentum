@@ -21,7 +21,7 @@ const inputClass =
   'mt-1.5 h-11 w-full rounded-2xl border border-line bg-surface px-4 text-ink placeholder:text-ink-faint focus:border-line-strong focus:outline-none'
 
 /**
- * Making a backup in two taps (DECISIONS #110): "Create" builds the file (reading everything and, with a
+ * Making a backup in two taps (DECISIONS #65): "Create" builds the file (reading everything and, with a
  * password, encrypting takes a moment); then saving or sharing it is a fresh tap, which iOS requires for the
  * share sheet.
  */

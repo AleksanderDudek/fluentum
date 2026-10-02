@@ -1,66 +1,42 @@
-# Teleo – modlitwy i afirmacje · prayers & affirmations
+# Fluentum — speak a new language, one conversation a day
 
-> gr. *τελέω* — "to bring to completion, to fulfil". Don't just read it — **say it, and finish it.**
+> *Fluent* + *momentum*; Latin *fluentum*, "flowing". Don't just read a language — **say it, out loud, every day.**
 
-Teleo is a free, local-first Progressive Web App that helps you speak prayers, affirmations and
-passages **aloud**, sentence by sentence. Speech recognition transcribes what you said, a matcher
-compares it with the source text (≥ 90% of the words, then 80% and 70% on later tries; zero extra words) and only verified sentences
-count. Repetitions, streaks, levels and achievements grow a quiet little garden — no accounts, no
-servers, no tracking. Polish 🇵🇱 and English 🇺🇸.
-
-- **Private by design:** all data lives in your browser (IndexedDB). Nothing is sent to us — there is
-  no "us" server. Exception: in some browsers (e.g. Chrome) the built-in Web Speech recognizer sends
-  audio to the browser vendor; the app says so before the first use (the Whisper engine keeps audio on
-  the device). Audio is never stored.
-- **Works offline** once installed. Browser speech recognition may need the network; the optional
-  **offline Whisper engine** (Settings → Speech, 70–107 MB download) recognises speech entirely on the
-  device — also in Firefox.
-- **Costs nothing to run:** static files on GitHub Pages.
+Fluentum is a free, local-first Progressive Web App for **speaking practice**: short everyday conversations in a
+messenger-style chat. Your partner speaks first; you answer aloud; speech recognition and a forgiving matcher check every
+line. Then you say the same conversation again from prompts, and finally from memory — three ways, three stars. Streaks, a
+daily goal, levels and achievements keep you coming back. Polish speakers practise **English**; English speakers practise
+**Polish**. No accounts, no servers, no ads, no tracking.
 
 <p align="center">
-  <img src="public/screenshots/player-narrow.png" alt="Live checking of the Our Father, sentence by sentence" width="230" />
-  <img src="public/screenshots/today-narrow.png" alt="Today: streak, daily goal and level" width="230" />
-  <img src="public/screenshots/progress-narrow.png" alt="Progress: a garden that grows with every level" width="230" />
+  <img src="public/screenshots/chat-narrow.png" alt="A conversation: the partner speaks Polish, the learner answers aloud" width="230" />
+  <img src="public/screenshots/home-narrow.png" alt="Home: streak, daily goal, golden quarter-hour and the next conversation" width="230" />
+  <img src="public/screenshots/course-narrow.png" alt="The course: conversations as stepping stones, three stars each" width="230" />
 </p>
 
 ## What it does
 
-- **Live listening (default):** start a session, tap the microphone once and just keep praying — each
-  sentence is checked as you speak it; heard words ink in, a finished sentence gets a quiet “Great!”
-  and the next one is already listening. Repeated items show a counter (`Zdrowaś Maryjo · 3/10`).
-  Tap mode (one utterance per tap) is one switch away.
-- **Honest checking:** a sentence counts when enough of its words were said and nothing was added — 90 % on
-  the first try, 80 % on the second, 70 % from the third on (recognition slips such as missing Polish letters,
-  words written together or apart and misheard words are forgiven; fillers like “um” ignored).
-- **Texts & sessions:** builtin public-domain prayers (PL/EN, incl. the Rosary decade and Psalm 23)
-  and original affirmations, your own texts with automatic sentence/line splitting and manual
-  split/merge, sessions of up to 150 sentences with repetitions and drag-and-drop ordering.
-- **Calm gamification:** XP, 20 plant-themed levels (then “circles”), 65 achievements (every text gets
-  its own automatically), streaks with freezes, daily goal, comeback and “steady rhythm” rewards.
-- **Bible challenge:** read the whole Bible aloud (KJV or Biblia Gdańska) in readings of about a minute that always
-  end on a finished sentence — about a year at 15 minutes a day; progress by book, Bible achievements, offline.
-- **Language dialogues:** short everyday conversations in a messenger-style chat — English for Polish speakers,
-  Polish for English speakers. The partner speaks first (aloud, with the meaning); you answer aloud, with the
-  pronunciation spelt your way; subject, predicate, adjectives and objects are coloured together with their
-  translation. Recognised and checked in the language you learn.
-- **Golden quarter-hour & leaderboard:** 5–15 minutes a day earn double points; points by day/week/month against
-  your own best and against friends who send their card by link (no accounts, no server). Share your day — or a
-  finished session — as a card.
-- **Feels like an app:** installable PWA (“Install Teleo” in Settings, steps for iPhone), sticky back button and title
-  bar, tab bar that scrolls to the top on a second tap, smooth screen transitions, bottom-sheet dialogs, offline.
-- **Memory mode & listen first:** say a text from memory (first letters → every other word → hidden;
-  words appear as you say them) and optionally hear each sentence read aloud before you say it.
-- **Progress:** heatmap, weekly first-try success, per-text statistics, achievement gallery.
-- **One language at a time:** Polish or English, taken from the browser and changeable in Settings; each language
-  has its own prayers, texts, sessions and Bible.
-- **Your data, yours to keep:** everything stays on the device; “Your data” makes a backup file (optionally
-  password-protected, AES-256) to download or save to Files / iCloud / Google Drive / e-mail, restores it after
-  showing what it holds, and can undo a restore.
-- **Yours only:** calendar (.ics) reminders, delete-everything, light/dark theme, three text sizes, keyboard
-  (Space = microphone), screen stays on in sessions.
+- **Conversations aloud:** 16 everyday scenes, A1 to A2 — meeting a neighbour, a café, a bakery, the weather, asking the way,
+  the market, a taxi, a hotel, a restaurant, booking a table, the station, the airport, buying a jacket, the pharmacy, weekend
+  plans, a birthday invitation. The partner's lines are spoken aloud with their meaning; yours come with the pronunciation
+  spelt your way (stress in capitals) and what they mean.
+- **Three ways, three stars:** *Read* the line → say it from *prompts* (first letters only) → *recall* it from its meaning.
+  Words appear as you say them. A suggested path brings each conversation back one and two lessons after you first read it.
+- **Grammar you can see:** subjects, predicates, adjectives and objects are coloured — and underlined the way Polish schools
+  mark a sentence — together with their counterparts in the translation. Tap a word to light its pair.
+- **Honest, forgiving checking:** a line counts when enough of its words were said and nothing was added — 90 % on the first
+  try, 80 % on the second, 70 % from the third on. Recognition slips (missing Polish letters, words split or run together,
+  misheard words) are forgiven; fillers like "um" are ignored. Live listening checks each line as you speak.
+- **Motivation:** XP, 20 levels (a plant that grows with your words), 49 achievements, streaks with freezes, a daily goal,
+  the golden quarter-hour (5–15 minutes a day earn double points), friends' leaderboard by link, shareable cards.
+- **Private by design:** everything stays in your browser (IndexedDB); audio is never stored. In some browsers the built-in
+  speech recogniser sends audio to the browser vendor — the app says so first — and the optional **offline Whisper** engine
+  (Settings → Speech) recognises speech entirely on the device, also in Firefox.
+- **Feels like an app:** installable PWA, works offline, light and dark themes, three line sizes, keyboard (Space =
+  microphone), calendar reminders, backups you can protect with a password and restore anywhere.
 
-Changes: [CHANGELOG.md](CHANGELOG.md) · Product spec: [docs/TELEO_SPEC.md](docs/TELEO_SPEC.md) · decisions: [docs/DECISIONS.md](docs/DECISIONS.md)
-· implementation plan: [docs/superpowers/plans/2026-09-25-teleo-v1.md](docs/superpowers/plans/2026-09-25-teleo-v1.md)
+Changes: [CHANGELOG.md](CHANGELOG.md) · Product spec: [docs/FLUENTUM_SPEC.md](docs/FLUENTUM_SPEC.md) · Decisions:
+[docs/DECISIONS.md](docs/DECISIONS.md) · Plan: [docs/plans/2026-10-02-fluentum.md](docs/plans/2026-10-02-fluentum.md)
 
 ## Development
 
@@ -68,51 +44,48 @@ Requirements: Node ≥ 22.22 (24 recommended), npm.
 
 ```bash
 npm ci
-npm run dev          # http://localhost:5173/teleo/
+npm run dev          # http://localhost:5173/fluentum/
 npm run test         # unit + component tests (Vitest, watch mode)
-npm run test:e2e     # end-to-end (Playwright; first run: npx playwright install chromium)
+npm run test:e2e     # end-to-end (Playwright; first run: npx playwright install chromium webkit firefox)
 npm run lint         # oxlint
 npm run build        # type-check + production build → dist/
-npm run preview      # serve the production build at http://localhost:4173/teleo/
+npm run preview      # serve the production build at http://localhost:4173/fluentum/
 ```
 
-Speech recognition needs a secure context: `localhost` works; on a phone use the deployed HTTPS URL.
+Speech recognition needs a secure context: `localhost` works; on a phone use the deployed HTTPS URL. End-to-end tests replace
+`SpeechRecognition` with a scriptable fake (`e2e/fakeSpeech.ts`) that "says" the line on screen, and speechSynthesis with a
+silent voice.
 
-End-to-end tests replace `SpeechRecognition` with a scriptable fake (`e2e/fakeSpeech.ts`) that
-"says" the sentence on screen — in echo (tap) or streaming (live) mode. Playwright's headless shell
-has no speech service (calling the real `SpeechRecognition.available()` crashes it), so every test
-that reaches a microphone screen installs the fake.
+## Publishing (free, on GitHub Pages)
 
-## Deploying to GitHub Pages (free)
+The repository was created locally only — creating the public GitHub repository publishes the code, so that step is yours:
 
-The GitHub Free plan only serves Pages from **public** repositories.
+```bash
+gh repo create AleksanderDudek/fluentum --public --source . --push
+gh api -X POST repos/AleksanderDudek/fluentum/pages -f build_type=workflow   # Pages from GitHub Actions
+```
 
-Live at **https://aleksanderdudek.github.io/teleo/** (repository `AleksanderDudek/teleo`).
-
-1. Pages is served from **GitHub Actions** (Settings → Pages → Source). The app is built for the
-   `/teleo/` path; for another repository name change `BASE` in `vite.config.ts`.
-2. Every push to `main` runs `.github/workflows/deploy.yml` (lint, unit tests, build, deploy).
-3. The GitHub Free plan only serves Pages from **public** repositories.
-
-Pull requests run `.github/workflows/ci.yml` (lint, type-check, unit and e2e tests).
+Every push to `main` then runs `.github/workflows/deploy.yml` (lint, unit tests, build, deploy) and the app goes live at
+**https://aleksanderdudek.github.io/fluentum/**. Pull requests run `.github/workflows/ci.yml` (lint, type-check, unit and e2e
+tests). The GitHub Free plan serves Pages only from public repositories. For another repository name change `BASE` in
+`vite.config.ts`.
 
 ## Project layout
 
 ```
-src/domain/     pure business rules (segmenter, matcher, gamification, sessions, time) + unit tests
+src/domain/     pure rules: matcher, live tracker, dialogue (gloss, turns), mastery (ways, stars, course), gamification…
 src/db/         Dexie (IndexedDB) schema and row types
 src/services/   DB-coupled use cases (one transaction per user event)
-src/screens/    route screens · src/components/ shared UI (ui/ primitives, brand/ figures, icons/) · src/i18n/ PL + EN strings
-public/         icons, privacy policy · e2e/ Playwright tests
+src/content/    the course: dialogues.json (+ validation test)
+src/screens/    route screens · src/components/ shared UI (ui/, brand/ portraits and Lori, icons/) · src/i18n/ PL + EN
+public/         icons, screenshots, privacy policy · e2e/ Playwright tests
 ```
 
 ## Licence & content
 
-© 2026 Aleksander Dudek — **all rights reserved** (see [LICENSE](LICENSE)). The code is public to read,
-but it may not be used, copied, modified or redistributed without prior written agreement. Builtin texts are traditional public-domain prayers (Polish liturgical wording, English
-traditional wording, Psalm 23 KJV) and original affirmations written for this project. Fonts:
-Alegreya, Alegreya SC and Instrument Sans (SIL Open Font License). Icons: Phosphor Icons (MIT) and
-custom Teleo Glyphs; the illustrated figures are drawn in code for this project. Bible texts: King James Version (Pure
-Cambridge Edition) and Biblia Gdańska (1881), public domain, via scrollmapper/bible_databases.
+© 2026 Aleksander Dudek — **all rights reserved** (see [LICENSE](LICENSE)). The code is public to read, but it may not be used,
+copied, modified or redistributed without prior written agreement. The conversations, their pronunciation respellings, the
+portraits, Lori and the mark were written or drawn for this project. Fonts: Lexend and Instrument Sans (SIL Open Font
+License). Icons: Phosphor Icons (MIT). Fluentum grew out of the engine of Teleo, the author's app for prayers and affirmations.
 
-Teleo is free, with no ads and no tracking. If it helps you: [buy the author a coffee](https://buycoffee.to/uriel).
+Fluentum is free, with no ads and no tracking. If it helps you: [buy the author a coffee](https://buycoffee.to/uriel).

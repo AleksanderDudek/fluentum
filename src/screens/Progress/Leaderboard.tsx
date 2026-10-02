@@ -22,8 +22,7 @@ const BEST = { day: 'leaderboard.bestDays', week: 'leaderboard.bestWeeks', month
 
 /**
  * Points by day, week and month. You against your own best periods, and against friends whose cards
- * came through links (there is no server, and religious practice is special-category data — so no
- * global board).
+ * came through links (there is no server — so no global board, DECISIONS #74).
  */
 export function Leaderboard() {
   const { t, i18n } = useTranslation()

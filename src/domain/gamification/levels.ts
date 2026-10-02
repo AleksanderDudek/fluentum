@@ -73,7 +73,7 @@ const ROMAN_NUMERALS: ReadonlyArray<readonly [number, string]> = [
   [1, 'I'],
 ]
 
-/** Roman numeral for 1–3999 (used for circles: Teleo I, II, III…). */
+/** Roman numeral for 1–3999 (used for circles: Fluent I, II, III…). */
 export function toRoman(n: number): string {
   if (!Number.isInteger(n) || n < 1 || n > 3999) {
     throw new RangeError(`Cannot write ${n} as a Roman numeral`)

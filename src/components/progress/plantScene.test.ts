@@ -24,7 +24,7 @@ describe('plantScene', () => {
     expect(plantScene(10).parts.length).toBeGreaterThan(plantScene(5).parts.length)
   })
 
-  it('adds gilded rings for circles beyond level 20', () => {
+  it('adds golden rings for circles beyond level 20', () => {
     expect(plantScene(20).rings).toBe(0)
     expect(plantScene(23)).toMatchObject({ stage: 20, rings: 3 })
     expect(plantScene(0)).toMatchObject({ stage: 1, rings: 0 })

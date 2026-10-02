@@ -42,6 +42,6 @@ export function playChime(kind: ChimeKind, step = 0): void {
       osc.stop(t0 + n.duration + 0.05)
     }
   } catch {
-    // Audio is a nicety; a failing AudioContext must never interrupt a prayer.
+    // Audio is a nicety; a failing AudioContext must never interrupt a conversation.
   }
 }

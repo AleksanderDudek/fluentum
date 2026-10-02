@@ -3,9 +3,9 @@ import { buildDailyReminderIcs, escapeIcsText, foldIcsLine } from './ics'
 
 const baseOptions = {
   time: '07:00',
-  title: 'Teleo reminder',
-  description: 'Say your daily prayer',
-  url: 'https://teleo.app/s/abc',
+  title: 'Fluentum reminder',
+  description: 'Have your daily conversation',
+  url: 'https://fluentum.app/s/abc',
   uid: 'fluentum-daily-reminder',
   now: new Date(Date.UTC(2026, 8, 25, 5, 3, 9)),
   startDate: new Date(2026, 0, 15), // local 2026-01-15, Europe/Warsaw
@@ -30,12 +30,12 @@ describe('buildDailyReminderIcs', () => {
       'DTSTART:20260115T070000',
       'DURATION:PT10M',
       'RRULE:FREQ=DAILY',
-      'SUMMARY:Teleo reminder',
-      'DESCRIPTION:Say your daily prayer\\nhttps://teleo.app/s/abc',
-      'URL:https://teleo.app/s/abc',
+      'SUMMARY:Fluentum reminder',
+      'DESCRIPTION:Have your daily conversation\\nhttps://fluentum.app/s/abc',
+      'URL:https://fluentum.app/s/abc',
       'BEGIN:VALARM',
       'ACTION:DISPLAY',
-      'DESCRIPTION:Teleo reminder',
+      'DESCRIPTION:Fluentum reminder',
       'TRIGGER:PT0M',
       'END:VALARM',
       'END:VEVENT',
@@ -74,22 +74,22 @@ describe('buildDailyReminderIcs', () => {
   it('escapes the summary, and the description together with its appended url, as ICS TEXT', () => {
     const ics = buildDailyReminderIcs({
       ...baseOptions,
-      title: 'Czas na Teleo; módl się, proszę',
-      description: 'Krótka modlitwa',
+      title: 'Czas na Fluentum; mów, proszę',
+      description: 'Krótka rozmowa',
     })
-    expect(ics).toContain('SUMMARY:Czas na Teleo\\; módl się\\, proszę\r\n')
-    expect(ics).toContain('DESCRIPTION:Krótka modlitwa\\nhttps://teleo.app/s/abc\r\n')
+    expect(ics).toContain('SUMMARY:Czas na Fluentum\\; mów\\, proszę\r\n')
+    expect(ics).toContain('DESCRIPTION:Krótka rozmowa\\nhttps://fluentum.app/s/abc\r\n')
     // The standalone URL property is a URI value, not TEXT, so it is not escaped.
-    expect(ics).toContain('URL:https://teleo.app/s/abc\r\n')
+    expect(ics).toContain('URL:https://fluentum.app/s/abc\r\n')
     // The VALARM's DESCRIPTION carries the escaped title, not the body description.
     const afterAlarm = ics.split('BEGIN:VALARM')[1]
-    expect(afterAlarm).toContain('DESCRIPTION:Czas na Teleo\\; módl się\\, proszę\r\n')
+    expect(afterAlarm).toContain('DESCRIPTION:Czas na Fluentum\\; mów\\, proszę\r\n')
   })
 
   it('folds a long Polish description so every physical line stays within 75 bytes', () => {
     const encoder = new TextEncoder()
     const description =
-      'Ćwicz codziennie wytrwałość, cierpliwość i wdzięczność, żeby modlitwa stała się nawykiem serca, nie tylko ust, a poranna modlitwa różańcowa przynosiła prawdziwy spokój.'
+      'Ćwicz codziennie wytrwałość, cierpliwość i wdzięczność, żeby rozmowa stała się nawykiem, nie tylko ćwiczeniem, a poranna rozmowa po angielsku przynosiła prawdziwą radość.'
     const ics = buildDailyReminderIcs({ ...baseOptions, description })
 
     const physicalLines = ics.split('\r\n').slice(0, -1)
@@ -133,7 +133,7 @@ describe('buildDailyReminderIcs', () => {
     },
   )
 
-  it.each(['https://teleo.app\r\n/evil', 'https://teleo.app\n/evil', 'https://teleo.app\r/evil'])(
+  it.each(['https://fluentum.app\r\n/evil', 'https://fluentum.app\n/evil', 'https://fluentum.app\r/evil'])(
     'rejects a url containing a line break: %j',
     (url) => {
       expect(() => buildDailyReminderIcs({ ...baseOptions, url })).toThrow(RangeError)
@@ -155,8 +155,8 @@ describe('buildDailyReminderIcs', () => {
 
 describe('escapeIcsText', () => {
   it('escapes semicolons and commas', () => {
-    expect(escapeIcsText('Czas na Teleo; módl się, proszę')).toBe(
-      'Czas na Teleo\\; módl się\\, proszę',
+    expect(escapeIcsText('Czas na Fluentum; mów, proszę')).toBe(
+      'Czas na Fluentum\\; mów\\, proszę',
     )
   })
 
@@ -171,7 +171,7 @@ describe('escapeIcsText', () => {
   })
 
   it('leaves ordinary text untouched', () => {
-    expect(escapeIcsText('Teleo reminder')).toBe('Teleo reminder')
+    expect(escapeIcsText('Fluentum reminder')).toBe('Fluentum reminder')
   })
 })
 
@@ -185,7 +185,7 @@ describe('foldIcsLine', () => {
     const encoder = new TextEncoder()
     const content =
       'DESCRIPTION:' +
-      'Ćwicz codziennie wytrwałość, cierpliwość i wdzięczność, żeby modlitwa stała się nawykiem serca. '.repeat(
+      'Ćwicz codziennie wytrwałość, cierpliwość i wdzięczność, żeby rozmowa stała się nawykiem codzienności. '.repeat(
         2,
       )
     const folded = foldIcsLine(content)

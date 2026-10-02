@@ -1,7 +1,7 @@
 import { LANGS, type Lang } from '@/domain/types'
 
 /**
- * The language a user learns in dialogues: the other one (DECISIONS #101). The interface language is the
+ * The language a user learns in dialogues: the other one (DECISIONS #19). The interface language is the
  * user's own language (#92); Polish speakers learn English, English speakers learn Polish.
  */
 export function learningLang(native: Lang): Lang {

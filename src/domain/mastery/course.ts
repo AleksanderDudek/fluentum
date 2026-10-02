@@ -1,7 +1,7 @@
 import { PRACTICE_MODES, type PracticeMode } from './modes'
 
 /*
- * The course path (DECISIONS #2): every conversation is met three times — read, then prompted, then recalled —
+ * The course path (DECISIONS #3): every conversation is met three times — read, then prompted, then recalled —
  * at growing intervals instead of three times in a row. Step k reads conversation k, prompts conversation k-1 and
  * recalls conversation k-2 (a staircase), so a conversation comes back one and two lessons after it was first read.
  */

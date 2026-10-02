@@ -20,7 +20,7 @@ export type PlantPart =
 export interface PlantScene {
   stage: number
   parts: PlantPart[]
-  /** Past level 20: one gilded ring per circle (max 5 drawn). */
+  /** Past level 20: one golden ring per circle (max 5 drawn). */
   rings: number
 }
 
@@ -52,7 +52,7 @@ function tree(x: number, height: number, crown: number, extras: { fruit?: number
   return parts
 }
 
-/** Level → scene (spec §9.3: Seed … Garden, Teleo; circles beyond 20). */
+/** Level → scene (spec §9.3: Seed … Garden, Fluent; circles beyond 20). */
 export function plantScene(level: number): PlantScene {
   const stage = Math.max(1, Math.min(20, Math.floor(level)))
   const rings = Math.max(0, Math.floor(level) - 20)

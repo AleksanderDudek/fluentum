@@ -4,7 +4,7 @@ import { normalize } from './normalize'
 import type { EvaluateOptions, MatchOp, MatchResult, OpEntry, RejectReason } from './types'
 
 /**
- * The coverage ladder (owner request 2026-09-27; replaces spec §6.1's 95 % and the §6.4 modes): the
+ * The coverage ladder (spec §6.1, DECISIONS #47): the
  * words a sentence needs on its first try, its second, and its third and every later one.
  */
 export const COVERAGE_LADDER = [0.9, 0.8, 0.7] as const

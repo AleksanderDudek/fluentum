@@ -28,7 +28,7 @@ interface Preview {
 }
 
 /**
- * Restoring from a file (DECISIONS #112): a protected file asks for its password first, then the file's contents
+ * Restoring from a file (DECISIONS #67): a protected file asks for its password first, then the file's contents
  * are shown next to this device's — with a warning when restoring would take progress away — before anything is
  * replaced. The replaced data stays on the device as the restore point.
  */

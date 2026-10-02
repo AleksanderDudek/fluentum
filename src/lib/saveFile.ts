@@ -1,7 +1,7 @@
 import { isIosDevice } from './install'
 
 /*
- * Getting a file off the device (DECISIONS #110). A download stays on the same phone or computer; the system share
+ * Getting a file off the device (DECISIONS #65). A download stays on the same phone or computer; the system share
  * sheet (Web Share with files: iOS 15+, Android, Chromium on Windows/ChromeOS/macOS) reaches Files, iCloud Drive,
  * Google Drive, e-mail and messengers — where a backup outlives the browser.
  */

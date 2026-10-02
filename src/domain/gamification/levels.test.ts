@@ -44,7 +44,7 @@ describe('levelInfo', () => {
     expect(levelInfo(94_999).level).toBe(19)
   })
 
-  it('reaches Teleo (level 20) at 95 000 XP, before any circle', () => {
+  it('reaches Fluent (level 20) at 95 000 XP, before any circle', () => {
     expect(levelInfo(95_000)).toMatchObject({
       level: 20,
       circle: 0,

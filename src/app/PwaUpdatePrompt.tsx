@@ -5,7 +5,7 @@ import { useUiStore } from '@/stores/ui'
 
 /**
  * Service-worker lifecycle → toasts. Updates are never applied automatically:
- * reloading in the middle of a session would interrupt a prayer (DECISIONS #8).
+ * reloading in the middle of a conversation would interrupt it (DECISIONS #34).
  */
 export function PwaUpdatePrompt() {
   const { t } = useTranslation()

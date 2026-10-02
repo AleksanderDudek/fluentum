@@ -79,7 +79,7 @@ function emptyTextStats(textId: string): TextStats {
   return { textId, repetitions: 0, segmentsAccepted: 0, perfectRuns: 0, stars: [] }
 }
 
-/** Morning = before 08:00 (after the day start); evening = 21:00 until the day start (DECISIONS #19). */
+/** Morning = before 08:00 (after the day start); evening = 21:00 until the day start (DECISIONS #39). */
 function timeOfDay(timestamp: number, dayStartHour: number): { morning: boolean; evening: boolean } {
   const hour = new Date(timestamp).getHours()
   return { morning: hour >= dayStartHour && hour < 8, evening: hour >= 21 || hour < dayStartHour }
@@ -104,7 +104,7 @@ function nextPending(run: SessionRun, from: number): number {
 
 /**
  * Freezes the missed days before `today` when the available freezes cover the
- * whole gap (DECISIONS #16). Mutates `game` (freezes, pending notice); the caller
+ * whole gap (DECISIONS #38). Mutates `game` (freezes, pending notice); the caller
  * persists it. Idempotent. Runs at app start AND before the first accepted
  * sentence of a day — an installed PWA resumed from memory may skip the former.
  */
@@ -353,7 +353,7 @@ export async function finishRun(runId: string, now = Date.now()): Promise<Finish
 
 /**
  * App start: bridge missed days with streak freezes when they cover the whole gap
- * (DECISIONS #16) and remember them for the "your streak is safe" notice.
+ * (DECISIONS #38) and remember them for the "your streak is safe" notice.
  */
 export async function reconcileStreakFreezes(now = Date.now()): Promise<DayKey[]> {
   return db.transaction('rw', [db.dailyStats, db.settings], async () => {

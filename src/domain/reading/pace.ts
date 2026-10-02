@@ -2,7 +2,7 @@ import type { Lang } from '@/domain/types'
 
 /**
  * A calm reading-aloud pace. Polish words carry more syllables than English ones, so fewer of them fit in
- * a minute. Used to size Bible readings and to estimate today's reading time from the words said.
+ * a minute. Used to estimate today's speaking time from the words said (DECISIONS #71).
  */
 export const WORDS_PER_MINUTE: Readonly<Record<Lang, number>> = { en: 140, pl: 110 }
 

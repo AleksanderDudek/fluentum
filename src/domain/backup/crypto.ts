@@ -1,9 +1,8 @@
 import { BACKUP_APP, BACKUP_SCHEMA_VERSION, type BackupErrorCode, type BackupFile } from './validate'
 
 /*
- * Password-protected backups (owner request 2026-10-01, DECISIONS #111). Religious practice is special-category
- * data (GDPR art. 9) and a backup is meant to leave the device (cloud drive, e-mail), so it may be sealed with a
- * password: AES-256-GCM with a key from PBKDF2-SHA-256. Web Crypto only — no dependency, no server. The header
+ * Password-protected backups (DECISIONS #66). A backup is meant to leave the device (cloud drive, e-mail) and holds
+ * the learner's whole history, so it may be sealed with a password: AES-256-GCM with a key from PBKDF2-SHA-256. Web Crypto only — no dependency, no server. The header
  * (app, format, date, version) stays readable for the preview and is authenticated with the data.
  */
 

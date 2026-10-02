@@ -6,7 +6,7 @@ import type { ProgressOutcome } from '@/services/practice'
 /**
  * One quiet line per thing a practice event unlocked (goal, freeze, achievements,
  * level). Shown inside the player instead of toasts, which would cover the text
- * mid-prayer; the summary lists everything again at the end.
+ * mid-conversation; the summary lists everything again at the end.
  */
 export function celebrationLines(outcome: ProgressOutcome, t: TFunction): string[] {
   const lines: string[] = []

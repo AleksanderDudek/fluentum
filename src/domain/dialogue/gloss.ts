@@ -1,5 +1,5 @@
 /**
- * Word links of a dialogue line (owner request 2026-09-30, DECISIONS #102). A line is written with inline
+ * Word links of a dialogue line (owner request 2026-09-30, DECISIONS #20). A line is written with inline
  * markup: `{word(s)|id}` links the words to the words with the same id in the other language, e.g.
  * `{I|s1}{’d like|v1} a {coffee|o1}.` ↔ `{Poproszę|v1,s1} {kawę|o1}.` The id's letter is the grammatical
  * role; a word may carry several ids (Polish puts the subject into the verb ending). Pure module.

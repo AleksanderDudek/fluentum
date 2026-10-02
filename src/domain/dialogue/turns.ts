@@ -3,7 +3,7 @@ import { parseGloss } from './gloss'
 import type { Dialogue } from './types'
 
 /*
- * A dialogue is played as an ordinary run whose plan holds the user's lines only (DECISIONS #103): the run's
+ * A dialogue is played as an ordinary run whose plan holds the user's lines only (DECISIONS #21): the run's
  * cursor counts the user's turns, and the bot's lines around them are derived from the script.
  */
 

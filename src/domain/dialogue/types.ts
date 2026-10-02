@@ -16,7 +16,7 @@ export interface DialogueLine {
 
 export type DialogueLevel = 'A1' | 'A2'
 
-/** A scripted conversation (DECISIONS #101): one bilingual script serves learners of either language. */
+/** A scripted conversation (DECISIONS #19): one bilingual script serves learners of either language. */
 export interface Dialogue {
   /** Stable id: the text is `dialogue:<lang>:<key>`. */
   key: string
