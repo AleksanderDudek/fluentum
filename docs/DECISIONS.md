@@ -54,7 +54,10 @@ Each entry: **decision** — why.
 10. **"Show" costs the star; feedback never gives the line away.** In prompts and recall a "Show the line" button reveals the
     current line (stored as `hinted`, restored on resume); the run can still be finished and counts as a repetition, but earns
     no star, and the summary says why. After a rejected try, words not said yet stay masked in the comparison (first letter
-    only), so recall stays recall. Skip after three failed tries stays (#35) and also costs the star.
+    only) and the message never names them (it gives the coverage, or the word heard), so recall stays recall. The hidden line
+    cannot be heard either — no "Listen" button and no "Listen first" until it is shown. Skip after three failed tries stays
+    (#35) and also costs the star. Closing the player once every line is said finishes the run (only the partner's closing
+    lines were left) instead of pausing it.
 11. **Identity "Lagoon", not the gilded icon.** Devotional imagery has no place in a language app. Sea-glass paper, deep teal
     for actions (flowing water), coral for the live voice and the streak flame, sunny gold for what is earned (XP, stars,
     the golden quarter-hour), sky blue for a streak freeze; dark theme "Night swim" (turquoise becomes the action colour).

@@ -1,8 +1,11 @@
 import type { TFunction } from 'i18next'
 import type { MatchResult } from '@/domain/matcher'
 
-/** Short feedback line for a comparison result (spec §6.5: "Extra word: *very*. Try again."). */
-export function resultMessage(result: MatchResult, t: TFunction): string {
+/**
+ * Short feedback line for a comparison result (spec §6.5: "Extra word: *very*. Try again."). With `hideUnsaid` (prompts,
+ * recall: the line is hidden) it never names a word of the line that was not said — only what was heard, or the coverage.
+ */
+export function resultMessage(result: MatchResult, t: TFunction, { hideUnsaid = false }: { hideUnsaid?: boolean } = {}): string {
   if (result.accepted) return result.near > 0 ? t('speech.result.acceptedNear') : t('speech.result.great')
   switch (result.reason) {
     case 'empty':
@@ -16,9 +19,10 @@ export function resultMessage(result: MatchResult, t: TFunction): string {
     default: {
       // One word heard as another: say what was heard (a misheard word counts as not said).
       const misheard = result.wrong === 1 && result.missing === 0 ? result.ops.find((o) => o.op === 'wrong') : undefined
+      if (misheard && hideUnsaid) return t('speech.result.misheard', { spoken: misheard.spoken ?? '' })
       if (misheard) return t('speech.result.wrong', { spoken: misheard.spoken ?? '', expected: misheard.source ?? '' })
       const words = result.ops.filter((op) => op.op === 'missing' || op.op === 'wrong').map((op) => op.source ?? '')
-      return words.length > 0 && words.length <= 3
+      return !hideUnsaid && words.length > 0 && words.length <= 3
         ? t('speech.result.missing', { count: words.length, words: words.join(', ') })
         : t('speech.result.coverage', { percent: Math.floor(result.coverage * 100), needed: Math.round(result.threshold * 100) })
     }

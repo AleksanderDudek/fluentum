@@ -258,6 +258,7 @@
       "extra_one": "Dodatkowe słowo: „{{words}}”. Spróbuj jeszcze raz.",
       "extra_other": "Dodatkowe słowa: „{{words}}”. Spróbuj jeszcze raz.",
       "great": "Świetnie!",
+      "misheard": "Usłyszałam „{{spoken}}” – jedno słowo zabrzmiało inaczej. Spróbuj jeszcze raz.",
       "missing_few": "Pominięte słowa: „{{words}}”. Spróbuj jeszcze raz.",
       "missing_many": "Pominięte słowa: „{{words}}”. Spróbuj jeszcze raz.",
       "missing_one": "Pominięte słowo: „{{words}}”. Spróbuj jeszcze raz.",

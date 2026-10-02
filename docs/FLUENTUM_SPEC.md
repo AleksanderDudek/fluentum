@@ -200,7 +200,7 @@ pointing at a word lights its counterpart; each bubble has a word list (keyboard
 
 Words reveal as they are heard (live mode) and the whole line once accepted. "Show the line" reveals it (and costs the star of
 that run). The partner's lines always show in full with their meaning. "Listen first" and the listen buttons speak a line with
-speechSynthesis in the language being learnt.
+speechSynthesis in the language being learnt — the learner's hidden line only once it is shown.
 
 ### 7.4 The course
 

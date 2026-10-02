@@ -38,6 +38,8 @@ export default function Progress() {
   const percent = (value: number | null) => (value === null ? t('progress.noValue') : `${Math.round(value * 100)}%`)
   const number = (value: number) => new Intl.NumberFormat(i18n.language).format(value)
   const date = (time: number) => new Intl.DateTimeFormat(i18n.language, { day: 'numeric', month: 'short' }).format(time)
+  // In the language being learnt, like the star bars above it (achievements count the best language).
+  const mastered = [...data.course.stars.values()].filter((stars) => stars.length === 3).length
   const practised = DIALOGUES.filter((d) => (data.course.repetitions.get(d.key) ?? 0) > 0 || (data.course.stars.get(d.key)?.length ?? 0) > 0)
 
   return (
@@ -80,7 +82,7 @@ export default function Progress() {
               </div>
             )
           })}
-          <p className="text-sm text-ink-soft">{t('progress.mastered', { count: data.courseMetrics.mastered, total: DIALOGUES.length })}</p>
+          <p className="text-sm text-ink-soft">{t('progress.mastered', { count: mastered, total: DIALOGUES.length })}</p>
         </Card>
       </section>
 

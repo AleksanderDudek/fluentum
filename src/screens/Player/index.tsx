@@ -69,7 +69,6 @@ interface Feedback {
   entryIndex: number
   result: MatchResult
   diff: DiffPart[]
-  message: string
 }
 
 /** Where the conversation is: the partner's lines of this turn appear one by one, then it is the user's turn. */
@@ -163,7 +162,7 @@ function Chat({ data, dialogue, target }: { data: PlayerData; dialogue: Dialogue
       if (app.sounds) playChime(outcome.goalReached || outcome.levelUp ? 'goal' : outcome.conversationCompleted ? 'text' : 'sentence', 0)
       return
     }
-    setFeedback({ entryIndex, result, diff: buildDiff(source, target, result), message: resultMessage(result, t) })
+    setFeedback({ entryIndex, result, diff: buildDiff(source, target, result) })
   }
 
   // --- live mode: one recognition per turn, the line accepted the moment every word needed was heard ------
@@ -184,7 +183,7 @@ function Chat({ data, dialogue, target }: { data: PlayerData; dialogue: Dialogue
     const result = evaluate(source, speech.alternatives, { lang: target, threshold: needed })
     if (result.reason === 'empty') {
       // Nothing was heard: say so, but it is not an attempt (DECISIONS #40).
-      setFeedback({ entryIndex: turn, result, diff: buildDiff(source, target, result), message: resultMessage(result, t) })
+      setFeedback({ entryIndex: turn, result, diff: buildDiff(source, target, result) })
       return
     }
     setBusy(true)
@@ -289,7 +288,8 @@ function Chat({ data, dialogue, target }: { data: PlayerData; dialogue: Dialogue
   useEffect(() => {
     if (!yourTurn || currentLine === undefined) return
     const canListen = app.handsFree && !!engine && app.speechPrivacyAcknowledged && autoListened.current !== turn
-    if (app.listenFirst && ttsSupported() && prepared.current !== turn) {
+    // Prompts and recall hide the line: reading it aloud first would give it away.
+    if (app.listenFirst && !mask && ttsSupported() && prepared.current !== turn) {
       prepared.current = turn
       if (canListen) autoListened.current = turn
       void latest.current.hear(currentLine, canListen)
@@ -299,7 +299,7 @@ function Chat({ data, dialogue, target }: { data: PlayerData; dialogue: Dialogue
       autoListened.current = turn
       latest.current.listen()
     }
-  }, [yourTurn, turn, currentLine, engine, app.handsFree, app.speechPrivacyAcknowledged, app.listenFirst])
+  }, [yourTurn, turn, currentLine, engine, app.handsFree, app.speechPrivacyAcknowledged, app.listenFirst, mask])
 
   // Keep the newest message in view: to the very end, where the sticky footer has its own room (a message
   // scrolled only to the viewport's edge would sit under the microphone).
@@ -333,8 +333,20 @@ function Chat({ data, dialogue, target }: { data: PlayerData; dialogue: Dialogue
   }, [])
 
   const hasProgress = run.entries.some((entry) => entry.status !== 'pending' || entry.attempts > 0)
+  // Every line said: only the partner's closing lines are left, so leaving finishes the run instead of pausing it.
+  const allSaid = run.entries.every((entry) => entry.status !== 'pending')
   const blocker = useBlocker(
-    ({ nextLocation }) => hasProgress && !allowLeave.current && !completed && !nextLocation.pathname.endsWith('/summary'),
+    ({ nextLocation }) => hasProgress && !allSaid && !allowLeave.current && !completed && !nextLocation.pathname.endsWith('/summary'),
+  )
+  const finishOnLeave = useRef(false)
+  useLayoutEffect(() => {
+    finishOnLeave.current = allSaid && !completed
+  })
+  useEffect(
+    () => () => {
+      if (finishOnLeave.current && !finishing.current) void finishRun(run.id)
+    },
+    [run.id],
   )
   const leaveDialogOpen = leaving || blocker.state === 'blocked'
   const stay = () => {
@@ -526,7 +538,7 @@ function Chat({ data, dialogue, target }: { data: PlayerData; dialogue: Dialogue
         </div>
         {current && visibleFeedback && (
           <div className="card card-hero mt-1 w-full max-w-[92%] space-y-3 p-4 text-left animate-rise">
-            <p className="font-semibold text-bad">{visibleFeedback.message}</p>
+            <p className="font-semibold text-bad">{resultMessage(visibleFeedback.result, t, { hideUnsaid: currentMasked })}</p>
             <DiffView parts={visibleFeedback.diff} hideUnsaid={currentMasked} className="text-lg" />
             {nextTry !== null && (
               <p className="flex items-center gap-2 text-sm font-medium text-gold-ink">
@@ -548,7 +560,11 @@ function Chat({ data, dialogue, target }: { data: PlayerData; dialogue: Dialogue
     <div className="flex min-h-dvh flex-col">
       <header className="sticky top-0 z-20 border-b border-line bg-paper/90 px-4 pt-[max(env(safe-area-inset-top),0.75rem)] pb-3 backdrop-blur-md">
         <div className="mx-auto flex max-w-2xl items-center gap-3">
-          <IconButton label={t('player.close')} icon="x" onClick={() => (hasProgress && !completed ? setLeaving(true) : void leave())} />
+          <IconButton
+            label={t('player.close')}
+            icon="x"
+            onClick={() => (allSaid && !completed ? void finish() : hasProgress && !completed ? setLeaving(true) : void leave())}
+          />
           <Avatar id={dialogue.partner} size={40} speaking={speakingLine !== null && dialogue.lines[speakingLine]?.who === 'bot'} decorative />
           <div className="min-w-0 flex-1">
             <p className="truncate font-display text-lg font-semibold">{run.title}</p>
@@ -658,7 +674,7 @@ function Chat({ data, dialogue, target }: { data: PlayerData; dialogue: Dialogue
               </p>
             )}
             <div className="flex items-center gap-5">
-              {ttsSupported() && yourTurn && currentLine !== undefined ? (
+              {ttsSupported() && yourTurn && currentLine !== undefined && !currentMasked ? (
                 <IconButton outlined label={t('conversation.listenLine')} icon="speaker-high" onClick={() => void hear(currentLine)} disabled={speakingLine !== null} />
               ) : (
                 <span className="size-12" />

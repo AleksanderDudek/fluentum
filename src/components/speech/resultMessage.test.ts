@@ -22,6 +22,14 @@ describe('resultMessage', () => {
   it('lists up to three words not said, a misheard one among them', () => {
     expect(resultMessage(check('I am calm and focused.', 'I am cold focused'), tWith)).toBe('speech.result.missing {"count":2,"words":"calm, and"}')
   })
+
+  it('never names a word not said while the line is hidden (prompts, recall)', () => {
+    const hidden = { hideUnsaid: true }
+    expect(resultMessage(check('I am calm and focused.', 'I am cold focused'), tWith, hidden)).toBe('speech.result.coverage {"percent":60,"needed":90}')
+    expect(resultMessage(check('I am calm', 'I am cold'), tWith, hidden)).toBe('speech.result.misheard {"spoken":"cold"}')
+    // Extra words are the learner's own: naming them gives nothing away.
+    expect(resultMessage(check('I am calm', 'I am very calm'), tWith, hidden)).toBe('speech.result.extra {"count":1,"words":"very"}')
+  })
 })
 
 describe('guideLine', () => {

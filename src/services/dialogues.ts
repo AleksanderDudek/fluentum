@@ -62,10 +62,13 @@ export async function nextCourseStep(lang: Lang): Promise<CourseStep | undefined
   )
 }
 
-/** After a run: start the course's next step in the same language. Undefined when `textId` is no conversation. */
+/**
+ * After a run: start the course's next step in the language being learnt now (`startDialogue` starts it there too, even
+ * if the interface language changed since the run). Undefined when `textId` is no conversation.
+ */
 export async function startNextStep(textId: string, now = Date.now()): Promise<SessionRun | undefined> {
-  const current = dialogueOfText(textId)
-  if (!current) return undefined
-  const step = await nextCourseStep(current.lang)
+  if (!dialogueOfText(textId)) return undefined
+  const { app } = await readSettings()
+  const step = await nextCourseStep(learningLang(app.uiLang))
   return step ? startDialogue(step.key, step.mode, now) : undefined
 }

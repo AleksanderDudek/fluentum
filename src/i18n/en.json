@@ -238,6 +238,7 @@
       "extra_one": "Extra word: “{{words}}”. Try again.",
       "extra_other": "Extra words: “{{words}}”. Try again.",
       "great": "Great!",
+      "misheard": "I heard “{{spoken}}” — one word came out differently. Try again.",
       "missing_one": "Missing word: “{{words}}”. Try again.",
       "missing_other": "Missing words: “{{words}}”. Try again.",
       "wrong": "I heard “{{spoken}}” instead of “{{expected}}”. Try again."
