@@ -89,4 +89,4 @@ copied, modified or redistributed without prior written agreement. The conversat
 portraits, Lori and the mark were written or drawn for this project. Fonts: Lexend and Instrument Sans (SIL Open Font
 License). Icons: Phosphor Icons (MIT). Fluentum grew out of the engine of Teleo, the author's app for prayers and affirmations.
 
-Fluentum is free, with no ads and no tracking. If it helps you: [buy the author a coffee](https://buycoffee.to/uriel).
+Fluentum is free, with no ads and no tracking. If it helps you: [buy the author a coffee](https://buymeacoffee.com/atd_uriel) (in Poland: [buycoffee.to](https://buycoffee.to/uriel)).
